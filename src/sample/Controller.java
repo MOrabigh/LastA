@@ -516,7 +516,9 @@ public class Controller implements Initializable {
                 int MO_num = Integer.parseInt(MONber);
                 int CusMobile = Integer.parseInt(mobile);
 
-                double TotalCost = Double.parseDouble(priceSP) + Double.parseDouble(priceMO);
+                double total = Double.parseDouble(priceSP) + Double.parseDouble(priceMO);
+                double vat = total * 0.05;
+                double TotalCost = total + vat;
                 /*
                 if (rs.getString("STATE").equalsIgnoreCase("cannot be done") || rs.getString("STATE").equalsIgnoreCase("other defects has been detected")
                 || rs.getString("STATE").equalsIgnoreCase("created")
@@ -2963,8 +2965,8 @@ i=1000;
 
     @FXML
     private void M_Btn_ArchiveDB_Tools(ActionEvent event) throws SQLException {
-        
-                FXMLLoader loader = new FXMLLoader();
+
+        FXMLLoader loader = new FXMLLoader();
         //Controller controller = loader.getController();
         if (count_Language == 0) {
             loader.setLocation(getClass().getResource("/sample/ForArchive_Date_EN.fxml"));
@@ -2975,7 +2977,7 @@ i=1000;
                 Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-           Controller_ArchiveDate controller_ArchiveDate = loader.getController();
+            Controller_ArchiveDate controller_ArchiveDate = loader.getController();
             controller_ArchiveDate.Set_count_Language(0);
 
             //controller.count_Language=0;
@@ -2985,9 +2987,9 @@ i=1000;
             try {
 
                 loader.load();
-                  Controller_ArchiveDate controller_ArchiveDate = loader.getController();
-            controller_ArchiveDate.Set_count_Language(0);
-            
+                Controller_ArchiveDate controller_ArchiveDate = loader.getController();
+                controller_ArchiveDate.Set_count_Language(0);
+
             } catch (IOException ex) {
                 Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -2995,14 +2997,11 @@ i=1000;
         }
 
         //loadWindow("/sample/ChangePassword.fxml" ,"" );
-
-
         Parent parent = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
         stage.showAndWait();
 
-        
         /*
         String query = "SELECT * FROM `maintenance_operation` Where `STARTING_DATE` < \"2019-01-30\" ";
         ResultSet rs = connectionClass.execQuery(query);
@@ -3034,9 +3033,8 @@ i=1000;
             System.out.println(sql1);
             statement1.executeUpdate(deletSP);
             statement1.executeUpdate(sql1);
-*/
-        }
-    
+         */
+    }
 
     @FXML
     private void M_KeyReleased_TabelSelecSP_ReqSP(KeyEvent event) {

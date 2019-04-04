@@ -361,7 +361,7 @@
                                                             <TableColumn fx:id="Col_MOtechin_Current_MngMO" prefWidth="161.0" text="فني الصيانة" />
                                                             <TableColumn fx:id="Col_MOEndDate_Current_MngMO" minWidth="65.0" prefWidth="152.0" text="تاريخ الإنتهاء المتوقع" />
                                                             <TableColumn fx:id="Col_MOStatus_Current_MngMO" minWidth="61.0" prefWidth="186.0" text="الحالة" />
-                                                            <TableColumn fx:id="Col_Cost_Current_MngMO" minWidth="136.0" prefWidth="139.0" text="التكلفة" />
+                                                            <TableColumn fx:id="Col_Cost_Current_MngMO" minWidth="136.0" prefWidth="139.0" text="التكلفة مع ضريبة 5%" />
                                                          </columns>
                                                          <VBox.margin>
                                                             <Insets top="15.0" />
@@ -410,7 +410,7 @@
                                                       <TableColumn fx:id="Col_MOtechin_Finshed_MngMO" minWidth="182.0" prefWidth="182.0" text="فني الصيانة" />
                                                       <TableColumn fx:id="Col_MOEndDate_Finshed_MngMO" minWidth="166.0" prefWidth="166.0" text="تاريخ الإنتهاء المتوقع" />
                                                       <TableColumn fx:id="Col_MOStatus_Finshed_MngMO" minWidth="61.0" prefWidth="154.0" text="الحالة" />
-                                                      <TableColumn fx:id="Col_MOCost_Finshed_MngMO" minWidth="112.0" prefWidth="112.0" text="التكلفة" />
+                                                      <TableColumn fx:id="Col_MOCost_Finshed_MngMO" minWidth="112.0" prefWidth="112.0" text="التكلفة مع ضريبة 5%" />
                                                    </columns>
                                                    <VBox.margin>
                                                       <Insets top="15.0" />
@@ -462,7 +462,7 @@
                                                             <TableColumn fx:id="Col_MOtechin_Previous_MngMO" minWidth="182.0" prefWidth="183.0" text="فني الصيانة" />
                                                             <TableColumn fx:id="Col_MOEndDate_Previous_MngMO" minWidth="158.0" prefWidth="158.0" text="تاريخ الإنتهاء المتوقع" />
                                                             <TableColumn fx:id="Col_MOStatus_Previous_MngMO" minWidth="61.0" prefWidth="167.0" text="الحالة" />
-                                                            <TableColumn fx:id="Col_MOCost_Previous_MngMO" minWidth="90.0" prefWidth="114.0" text="التكلفة" />
+                                                            <TableColumn fx:id="Col_MOCost_Previous_MngMO" minWidth="90.0" prefWidth="114.0" text="التكلفة مع ضريبة 5%" />
                                                          </columns>
                                                       </TableView>
                                                    </children>
@@ -509,8 +509,8 @@
                                                             <TableColumn fx:id="Col_CusMobile_Pending_MngMO" minWidth="122.0" prefWidth="153.0" text="هاتف العميل" />
                                                             <TableColumn fx:id="Col_MOtechin_Pending_MngMO" minWidth="167.0" prefWidth="167.0" text="فني الصيانة" />
                                                             <TableColumn fx:id="Col_MOEndDate_Pending_MngMO" minWidth="65.0" prefWidth="141.0" text="تاريخ الإنتهاء المتوقع" />
-                                                            <TableColumn fx:id="Col_MOStatus_Pending_MngMO" minWidth="61.0" prefWidth="187.0" text="الحالة" />
-                                                            <TableColumn fx:id="Col_MOCost_Pending_MngMO" minWidth="50.0" prefWidth="103.0" text="التكلفة" />
+                                                            <TableColumn fx:id="Col_MOStatus_Pending_MngMO" minWidth="61.0" prefWidth="178.0" text="الحالة" />
+                                                            <TableColumn fx:id="Col_MOCost_Pending_MngMO" minWidth="50.0" prefWidth="112.0" text="التكلفة مع ضريبة 5%" />
                                                          </columns>
                                                          <VBox.margin>
                                                             <Insets top="15.0" />

@@ -351,13 +351,13 @@
                                                    <children>
                                                       <TableView fx:id="Table_CurrentMO_MngMO">
                                                          <columns>
-                                                            <TableColumn fx:id="Col_MOnum_Current_MngMO" minWidth="182.0" prefWidth="0.0" text="MO number" />
-                                                            <TableColumn fx:id="Col_CusName_Current_MngMO" minWidth="182.0" prefWidth="0.0" text="Customer name" />
-                                                            <TableColumn fx:id="Col_CusMobile_Current_MngMO" minWidth="166.0" prefWidth="166.0" text="Customer mobile number" />
-                                                            <TableColumn fx:id="Col_MOtechin_Current_MngMO" minWidth="151.0" prefWidth="153.0" text="Technician " />
-                                                            <TableColumn fx:id="Col_MOEndDate_Current_MngMO" minWidth="158.0" prefWidth="158.0" text="Expected ending date" />
-                                                            <TableColumn fx:id="Col_MOStatus_Current_MngMO" minWidth="88.0" prefWidth="134.0" text="Status" />
-                                                            <TableColumn fx:id="Col_Cost_Current_MngMO" minWidth="50.0" prefWidth="90.0" text="Cost" />
+                                                            <TableColumn fx:id="Col_MOnum_Current_MngMO" minWidth="151.0" prefWidth="151.0" text="MO number" />
+                                                            <TableColumn fx:id="Col_CusName_Current_MngMO" minWidth="165.0" prefWidth="165.0" text="Customer name" />
+                                                            <TableColumn fx:id="Col_CusMobile_Current_MngMO" minWidth="165.0" prefWidth="165.0" text="Customer mobile number" />
+                                                            <TableColumn fx:id="Col_MOtechin_Current_MngMO" minWidth="144.0" prefWidth="147.0" text="Technician " />
+                                                            <TableColumn fx:id="Col_MOEndDate_Current_MngMO" minWidth="158.0" prefWidth="168.0" text="Expected ending date" />
+                                                            <TableColumn fx:id="Col_MOStatus_Current_MngMO" minWidth="88.0" prefWidth="144.0" text="Status" />
+                                                            <TableColumn fx:id="Col_Cost_Current_MngMO" minWidth="50.0" prefWidth="125.0" text="Cost include VAT 5%" />
                                                          </columns>
                                                          <VBox.margin>
                                                             <Insets top="15.0" />
@@ -403,13 +403,13 @@
                                                       <Insets top="15.0" />
                                                    </VBox.margin>
                                                    <columns>
-                                                      <TableColumn fx:id="Col_MOnum_Finshed_MngMO" minWidth="182.0" prefWidth="0.0" text="MO number" />
-                                                      <TableColumn fx:id="Col_CusName_Finshed_MngMO" minWidth="182.0" prefWidth="0.0" text="Customer name" />
-                                                      <TableColumn fx:id="Col_CusMobile_Finshed_MngMO" minWidth="161.0" prefWidth="161.0" text="Customer mobile number" />
-                                                      <TableColumn fx:id="Col_MOtechin_Finshed_MngMO" minWidth="145.0" prefWidth="154.0" text="Technician " />
-                                                      <TableColumn fx:id="Col_MOEndDate_Finshed_MngMO" minWidth="149.0" prefWidth="163.0" text="Expected ending date" />
-                                                      <TableColumn fx:id="Col_MOStatus_Finshed_MngMO" minWidth="88.0" prefWidth="117.0" text="Status" />
-                                                      <TableColumn fx:id="Col_MOCost_Finshed_MngMO" minWidth="50.0" prefWidth="101.0" text="Cost" />
+                                                      <TableColumn fx:id="Col_MOnum_Finshed_MngMO" minWidth="145.0" prefWidth="145.0" text="MO number" />
+                                                      <TableColumn fx:id="Col_CusName_Finshed_MngMO" minWidth="133.0" prefWidth="133.0" text="Customer name" />
+                                                      <TableColumn fx:id="Col_CusMobile_Finshed_MngMO" minWidth="161.0" prefWidth="177.0" text="Customer mobile number" />
+                                                      <TableColumn fx:id="Col_MOtechin_Finshed_MngMO" minWidth="145.0" prefWidth="185.0" text="Technician " />
+                                                      <TableColumn fx:id="Col_MOEndDate_Finshed_MngMO" minWidth="149.0" prefWidth="157.0" text="Expected ending date" />
+                                                      <TableColumn fx:id="Col_MOStatus_Finshed_MngMO" minWidth="88.0" prefWidth="139.0" text="Status" />
+                                                      <TableColumn fx:id="Col_MOCost_Finshed_MngMO" minWidth="50.0" prefWidth="130.0" text="Cost include VAT 5%" />
                                                    </columns>
                                                 </TableView>
                                              </children>
@@ -452,13 +452,13 @@
                                                             <Insets top="15.0" />
                                                          </VBox.margin>
                                                          <columns>
-                                                            <TableColumn fx:id="Col_MOnum_Previous_MngMO" minWidth="182.0" prefWidth="0.0" text="MO number" />
-                                                            <TableColumn fx:id="Col_CusName_Previous_MngMO" minWidth="182.0" prefWidth="0.0" text="Customer name" />
-                                                            <TableColumn fx:id="Col_CusMobile_Previous_MngMO" minWidth="182.0" prefWidth="0.0" text="Customer mobile number" />
-                                                            <TableColumn fx:id="Col_MOtechin_Previous_MngMO" minWidth="138.0" prefWidth="138.0" text="Technician " />
-                                                            <TableColumn fx:id="Col_MOEndDate_Previous_MngMO" minWidth="147.0" prefWidth="173.0" text="Expected ending date" />
-                                                            <TableColumn fx:id="Col_MOStatus_Previous_MngMO" minWidth="86.0" prefWidth="104.0" text="Status" />
-                                                            <TableColumn fx:id="Col_MOCost_Previous_MngMO" minWidth="50.0" prefWidth="100.0" text="Cost" />
+                                                            <TableColumn fx:id="Col_MOnum_Previous_MngMO" minWidth="144.0" prefWidth="144.0" text="MO number" />
+                                                            <TableColumn fx:id="Col_CusName_Previous_MngMO" minWidth="170.0" prefWidth="170.0" text="Customer name" />
+                                                            <TableColumn fx:id="Col_CusMobile_Previous_MngMO" minWidth="166.0" prefWidth="169.0" text="Customer mobile number" />
+                                                            <TableColumn fx:id="Col_MOtechin_Previous_MngMO" minWidth="124.0" prefWidth="155.0" text="Technician " />
+                                                            <TableColumn fx:id="Col_MOEndDate_Previous_MngMO" minWidth="147.0" prefWidth="169.0" text="Expected ending date" />
+                                                            <TableColumn fx:id="Col_MOStatus_Previous_MngMO" minWidth="86.0" prefWidth="122.0" text="Status" />
+                                                            <TableColumn fx:id="Col_MOCost_Previous_MngMO" minWidth="50.0" prefWidth="132.0" text="Cost include VAT 5%" />
                                                          </columns>
                                                       </TableView>
                                                    </children>
@@ -503,13 +503,13 @@
                                                             <Insets top="15.0" />
                                                          </VBox.margin>
                                                          <columns>
-                                                            <TableColumn fx:id="Col_MOnum_Pending_MngMO" minWidth="182.0" prefWidth="0.0" text="MO number" />
-                                                            <TableColumn fx:id="Col_CusName_Pending_MngMO" minWidth="182.0" prefWidth="0.0" text="Customer name" />
-                                                            <TableColumn fx:id="Col_CusMobile_Pending_MngMO" minWidth="182.0" prefWidth="0.0" text="Customer mobile number" />
-                                                            <TableColumn fx:id="Col_MOtechin_Pending_MngMO" minWidth="182.0" prefWidth="0.0" text="Technician " />
-                                                            <TableColumn fx:id="Col_MOEndDate_Pending_MngMO" minWidth="150.0" prefWidth="150.0" text="Expected ending date" />
-                                                            <TableColumn fx:id="Col_MOStatus_Pending_MngMO" minWidth="88.0" prefWidth="94.0" text="Status" />
-                                                            <TableColumn fx:id="Col_MOCost_Pending_MngMO" minWidth="50.0" prefWidth="92.0" text="Cost" />
+                                                            <TableColumn fx:id="Col_MOnum_Pending_MngMO" minWidth="146.0" prefWidth="146.0" text="MO number" />
+                                                            <TableColumn fx:id="Col_CusName_Pending_MngMO" minWidth="150.0" prefWidth="150.0" text="Customer name" />
+                                                            <TableColumn fx:id="Col_CusMobile_Pending_MngMO" minWidth="160.0" prefWidth="177.0" text="Customer mobile number" />
+                                                            <TableColumn fx:id="Col_MOtechin_Pending_MngMO" minWidth="154.0" prefWidth="156.0" text="Technician " />
+                                                            <TableColumn fx:id="Col_MOEndDate_Pending_MngMO" minWidth="150.0" prefWidth="156.0" text="Expected ending date" />
+                                                            <TableColumn fx:id="Col_MOStatus_Pending_MngMO" minWidth="48.0" prefWidth="144.0" text="Status" />
+                                                            <TableColumn fx:id="Col_MOCost_Pending_MngMO" minWidth="50.0" prefWidth="135.0" text="Cost include VAT 5%" />
                                                          </columns>
                                                       </TableView>
                                                    </children>

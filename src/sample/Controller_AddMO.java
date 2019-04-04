@@ -188,7 +188,7 @@ public class Controller_AddMO implements Initializable {
                 Txfiled_SpSerialN_AddMO.setText("Serial number");
                 Txfiled_SpPrice_AddMO.setText("Cost");
                 //alert2.setContentText("The price of the spare part has been adjusted");
-     
+
                 alert2.setContentText("Changes saved successfully");
             } else {
                 Txfiled_SpSerialN_AddMO.setText("الرقم التسلسلي");
@@ -300,10 +300,9 @@ public class Controller_AddMO implements Initializable {
             Search(trysql);
 
         }}*/
-    String INVOICE_NBER="DD";
-   
-          //String INVOICE_NBER3=null;
-
+    String INVOICE_NBER = "DD";
+ String MO_State="";
+    //String INVOICE_NBER3=null;
     public void Search_MO(int MO) throws SQLException {
 
         Connection connection = connectionClass.getConnection();
@@ -314,14 +313,13 @@ public class Controller_AddMO implements Initializable {
         //st = connection.prepareCall(sql);
 
         if (rs.first()) {
-            
- INVOICE_NBER=rs.getString("INVOICE_NBER");
-            System.out.println("i am ="+INVOICE_NBER);
-            System.out.println(Txfiled_MOnum_AddMO.getText());
 
-            System.out.println("INVOICE_NBER======"+INVOICE_NBER+".");
-            
-           // System.out.println("INVOICE_NBER======333333333"+INVOICE_NBER3+".");
+            INVOICE_NBER = rs.getString("INVOICE_NBER");
+            System.out.println("i am =" + INVOICE_NBER);
+
+            System.out.println("INVOICE_NBER======" + INVOICE_NBER + ".");
+
+            // System.out.println("INVOICE_NBER======333333333"+INVOICE_NBER3+".");
             System.out.println("THIS MO NUMBER IN DB== " + rs.getString("MO_NBER"));
             System.out.println("THIS MO NUMBER IN FILED== " + Txfiled_MOnum_AddMO.getText());
 
@@ -348,7 +346,7 @@ public class Controller_AddMO implements Initializable {
             //State.add(rs.getString("STATE"));
             //Selct_MoStatus_AddMO.setItems(FXCollections.observableArrayList(State));
             Selct_MoStatus_AddMO.getSelectionModel().select(rs.getString("STATE"));
-
+MO_State=rs.getString("STATE");
             //List<String> Tec = new ArrayList<>();
             //Tec.add(rs.getString("EMPLOYEE_ID"));
             System.out.println("PPPPPPPPPPPPPP " + rs.getString("EMP_NAME"));
@@ -449,7 +447,7 @@ public class Controller_AddMO implements Initializable {
                 Btn_Cancle_AddMo.setDisable(false);
                 Btn_Save_AddMo.setDisable(false);
                 Btn_Print_AddMo.setDisable(false);
-                Txfiled_CusName_AddMO.setDisable(false);
+                Txfiled_CusName_AddMO.setDisable(true);
             }
 
         }
@@ -828,8 +826,6 @@ public class Controller_AddMO implements Initializable {
 
         } else {
 
-            
-            
 //IndexOFTech++;
             System.out.println("INDEX== " + IndexOFTech);
             if (count == 1) {
@@ -852,220 +848,245 @@ public class Controller_AddMO implements Initializable {
 
                 alert2.showAndWait();
             } else if (count == 2) {
-                System.out.println("Equal  update");
-                System.out.println(Selct_MoStatus_AddMO.getValue());
-                String sql1 = "UPDATE  `maintenance_operation` SET STATE='" + Selct_MoStatus_AddMO.getValue() + "',MO_COST='" + Txfiled_MOCost_AddMO.getText() + "',SP_COST='" + Txfiled_SPCost_AddMO.getText()
-                        + "',STARTING_DATE='" + Date_StartMo_AddMO.getValue() + "',ENDING_DATE='" + Date_EndMO_AddMO.getValue() + "',WARRANTY='" + Date_Warranty_AddMO.getValue() + "',PROBLEM_DESC='" + Txfiled_ProplemDisc_AddMO.getText()
-                        + "',DEVICE_SN='" + Txfiled_DevSerialN_AddMO.getText() + "',DEVICE_DESC='" + Txfiled_DevDiscription_AddMO.getText() + "',EMPLOYEE_ID='" + IndexOFTech + "',CUS_MOBILE_NBER='" + Txfiled_CusMnum_AddMO.getText()
-                        + "' WHERE MO_NBER= '" + Txfiled_MOnum_AddMO.getText() + "'";
-                System.out.println(sql1);
-                java.sql.Statement statement1 = connection.createStatement();
-                statement1.executeUpdate(sql1);
-                System.out.println(Selct_MoStatus_AddMO.getValue().equalsIgnoreCase(sql1));
-
-                if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("paid") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("دفعت")) {
+                
+ 
+                if (MO_State.equalsIgnoreCase("paid") || MO_State.equalsIgnoreCase("دفعت")) {
+                    System.out.println("لاتستطيع التعديل على عمليت الصيانة لانها مدفوعة");
                     //ystem.out.println("????pls"+INVOICE_NBER.isEmpty());
-                    System.out.println("INVOICE_NBER?>?>"+INVOICE_NBER);
+
+
+                } else {
+
+                    System.out.println("Equal  update");
+                    System.out.println(Selct_MoStatus_AddMO.getValue());
+                    String sql1 = "UPDATE  `maintenance_operation` SET STATE='" + Selct_MoStatus_AddMO.getValue() + "',MO_COST='" + Txfiled_MOCost_AddMO.getText() + "',SP_COST='" + Txfiled_SPCost_AddMO.getText()
+                            + "',STARTING_DATE='" + Date_StartMo_AddMO.getValue() + "',ENDING_DATE='" + Date_EndMO_AddMO.getValue() + "',WARRANTY='" + Date_Warranty_AddMO.getValue() + "',PROBLEM_DESC='" + Txfiled_ProplemDisc_AddMO.getText()
+                            + "',DEVICE_SN='" + Txfiled_DevSerialN_AddMO.getText() + "',DEVICE_DESC='" + Txfiled_DevDiscription_AddMO.getText() + "',EMPLOYEE_ID='" + IndexOFTech + "',CUS_MOBILE_NBER='" + Txfiled_CusMnum_AddMO.getText()
+                            + "' WHERE MO_NBER= '" + Txfiled_MOnum_AddMO.getText() + "'";
+                    System.out.println(sql1);
+                    java.sql.Statement statement1 = connection.createStatement();
+                    statement1.executeUpdate(sql1);
+                    System.out.println(Selct_MoStatus_AddMO.getValue().equalsIgnoreCase(sql1));
                     
-                    if(INVOICE_NBER !=null){
+                    if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("paid") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("دفعت")) {
+                     if (INVOICE_NBER != null) {
+                        /*
                             alert2.setContentText("لدى العملية الحالية فاتورة بالفعل برقم "+INVOICE_NBER);
                 alert2.showAndWait();
-                        
+                         */
 
-                    //System.out.println(Txfiled_MOnum_AddMO.getText());
-                }else{
-                        
+                        //System.out.println(Txfiled_MOnum_AddMO.getText());
+                    } else {
+
                         Statement st3 = connection.createStatement();
-                    st3.executeQuery("SELECT * FROM `maintenance_operation` ORDER BY `INVOICE_NBER` DESC LIMIT 1");
-                    ResultSet rs3 = st3.getResultSet();
-                    //System.out.println("FFFFFFFFFFFFFFFFF"+rs2.getString("MO_NBER"));
-                    if (rs3.first()) {
-                        System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-                        //System.out.println();
+                        st3.executeQuery("SELECT INVOICE_NBER FROM `maintenance_operation` ORDER BY `INVOICE_NBER` DESC LIMIT 1");
+                        ResultSet rs3 = st3.getResultSet();
+                        rs3.next();
+                        INVOICE_NBER = rs3.getString("INVOICE_NBER");
+                        if (INVOICE_NBER != null) {
 
-                        monumber = Integer.parseInt(rs3.getString("INVOICE_NBER"));
-                        monumber++;
-                        System.out.println(monumber);
+                            monumber = Integer.parseInt(rs3.getString("INVOICE_NBER"));
+                            monumber++;
+                            System.out.println(monumber);
+                        } else {
+                            st3.executeQuery("SELECT INVOICE_NBER FROM `maintenance_operation_backup` ORDER BY `INVOICE_NBER` DESC LIMIT 1");
+                            ResultSet rs4 = st3.getResultSet();
+                            rs4.next();
+                            INVOICE_NBER = rs4.getString("INVOICE_NBER");
+
+                            if (INVOICE_NBER != null) {
+
+                                monumber = Integer.parseInt(rs4.getString("INVOICE_NBER"));
+                                monumber++;
+                                System.out.println(monumber);
+                            } else {
+                                monumber = 1;
+                            }
+
+                        }
+
+                        System.out.println("PAAAAAAAAAID");
+                        String inv_num_date = "UPDATE  `maintenance_operation` SET INVOICE_DATE='" +/*المفروض  يكون التاريخ الحالي للنظام*/ LocalDate.now() + "',INVOICE_NBER='" + monumber + "' WHERE MO_NBER= '" + Txfiled_MOnum_AddMO.getText() + "'";
+                        java.sql.Statement statement2 = connection.createStatement();
+                        statement2.executeUpdate(inv_num_date);
+                        alert2.setContentText("تم انشاء فاتورة لعملية الصيانة برقم " + monumber);
+                        alert2.showAndWait();
+                        //       alert2.setTitle(null);
+                        //alert2.setHeaderText(null);
+
                     }
-                    System.out.println("PAAAAAAAAAID");
-                    String inv_num_date = "UPDATE  `maintenance_operation` SET INVOICE_DATE='" +/*المفروض  يكون التاريخ الحالي للنظام*/ LocalDate.now() + "',INVOICE_NBER='" + monumber + "' WHERE MO_NBER= '" + Txfiled_MOnum_AddMO.getText() + "'";
-                    java.sql.Statement statement2 = connection.createStatement();
-                    statement2.executeUpdate(inv_num_date);
-                     alert2.setContentText("تم انشاء فاتورة لعملية الصيانة برقم "+monumber);
-                alert2.showAndWait();
-                              //       alert2.setTitle(null);
-        //alert2.setHeaderText(null);
-        
-                    }}
-                if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("approved") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تم الموافقة")) {
+ }
 
-                    Statement st = connection.createStatement();
-                    String CusEmail_query = "SELECT CUS_EMAIL FROM `customer` Where CUS_MOBILE_NBER =" + Txfiled_CusMnum_AddMO.getText();
-                    System.out.println(CusEmail_query);
-                    st.executeQuery(CusEmail_query);
-                    ResultSet rs = st.getResultSet();
-                    String to = "";
-                    System.out.println("?>?>?> " + rs.isFirst());
-                    if (rs.first()) {
-                        System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-                        //System.out.println();
+                    if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("approved") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تم الموافقة")) {
 
-                        to = rs.getString("CUS_EMAIL");
+                        Statement st = connection.createStatement();
+                        String CusEmail_query = "SELECT CUS_EMAIL FROM `customer` Where CUS_MOBILE_NBER =" + Txfiled_CusMnum_AddMO.getText();
+                        System.out.println(CusEmail_query);
+                        st.executeQuery(CusEmail_query);
+                        ResultSet rs = st.getResultSet();
+                        String to = "";
+                        System.out.println("?>?>?> " + rs.isFirst());
+                        if (rs.first()) {
+                            System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+                            //System.out.println();
+
+                            to = rs.getString("CUS_EMAIL");
+                        } else {
+                        }
+
+                        String host = "smtp.gmail.com";
+                        String user = "abdualziz.alhazmi1997@gmail.com";
+                        String pass = "Azoz789!@#";
+
+                        String from = "abdualziz.alhazmi1997@gmail.com";
+                        String subject = "العنوان تم استلام الجهاز";
+                        String messageText = "تم استلام الجهاز";
+                        boolean sessionDebug = false;
+
+                        Properties props = System.getProperties();
+
+                        props.put("mail.smtp.starttls.enable", "true");
+                        props.put("mail.smtp.host", host);
+                        props.put("mail.smtp.port", "587");
+                        props.put("mail.smtp.auth", "true");
+                        props.put("mail.smtp.starttls.required", "true");
+
+                        java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+                        Session mailSession = Session.getDefaultInstance(props, null);
+                        mailSession.setDebug(sessionDebug);
+                        Message msg = new MimeMessage(mailSession);
+                        msg.setFrom(new InternetAddress(from));
+                        InternetAddress[] address = {new InternetAddress(to)};
+                        msg.setRecipients(Message.RecipientType.TO, address);
+                        msg.setSubject(subject);
+                        msg.setSentDate(new Date());
+                        msg.setText(messageText);
+                        Transport transport = mailSession.getTransport("smtp");
+                        transport.connect(host, user, pass);
+                        transport.sendMessage(msg, msg.getAllRecipients());
+                        transport.close();
+
+                        System.out.println("message send successfully");
+
+                        //System.out.println(Txfiled_MOnum_AddMO.getText());
+                    } else if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("repaired") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تم الاصلاح")) {
+
+                        Statement st = connection.createStatement();
+                        String CusEmail_query = "SELECT CUS_EMAIL FROM `customer` Where CUS_MOBILE_NBER =" + Txfiled_CusMnum_AddMO.getText();
+                        System.out.println(CusEmail_query);
+                        st.executeQuery(CusEmail_query);
+                        ResultSet rs = st.getResultSet();
+                        String to = "";
+                        System.out.println("?>?>?> " + rs.isFirst());
+                        if (rs.first()) {
+                            System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+                            //System.out.println();
+
+                            to = rs.getString("CUS_EMAIL");
+                        } else {
+                        }
+
+                        String host = "smtp.gmail.com";
+                        String user = "abdualziz.alhazmi1997@gmail.com";
+                        String pass = "Azoz789!@#";
+
+                        String from = "abdualziz.alhazmi1997@gmail.com";
+                        String subject = "العنوان تعال استلم جهازك";
+                        String messageText = "تم تعال استلم جهازك";
+                        boolean sessionDebug = false;
+
+                        Properties props = System.getProperties();
+
+                        props.put("mail.smtp.starttls.enable", "true");
+                        props.put("mail.smtp.host", host);
+                        props.put("mail.smtp.port", "587");
+                        props.put("mail.smtp.auth", "true");
+                        props.put("mail.smtp.starttls.required", "true");
+
+                        java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+                        Session mailSession = Session.getDefaultInstance(props, null);
+                        mailSession.setDebug(sessionDebug);
+                        Message msg = new MimeMessage(mailSession);
+                        msg.setFrom(new InternetAddress(from));
+                        InternetAddress[] address = {new InternetAddress(to)};
+                        msg.setRecipients(Message.RecipientType.TO, address);
+                        msg.setSubject(subject);
+                        msg.setSentDate(new Date());
+                        msg.setText(messageText);
+                        Transport transport = mailSession.getTransport("smtp");
+                        transport.connect(host, user, pass);
+                        transport.sendMessage(msg, msg.getAllRecipients());
+                        transport.close();
+
+                        System.out.println("message send successfully");
+
+                        //System.out.println(Txfiled_MOnum_AddMO.getText());
+                    } else if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("other defects has been detected") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تم الكشف عن عيوب أخرى")) {
+
+                        Statement st = connection.createStatement();
+                        String CusEmail_query = "SELECT CUS_EMAIL FROM `customer` Where CUS_MOBILE_NBER =" + Txfiled_CusMnum_AddMO.getText();
+                        System.out.println(CusEmail_query);
+                        st.executeQuery(CusEmail_query);
+                        ResultSet rs = st.getResultSet();
+                        String to = "";
+                        System.out.println("?>?>?> " + rs.isFirst());
+                        if (rs.first()) {
+                            System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+                            //System.out.println();
+
+                            to = rs.getString("CUS_EMAIL");
+                        } else {
+                        }
+
+                        String host = "smtp.gmail.com";
+                        String user = "abdualziz.alhazmi1997@gmail.com";
+                        String pass = "Azoz789!@#";
+
+                        String from = "abdualziz.alhazmi1997@gmail.com";
+                        String subject = "العنوان تم استلام الجهاز";
+                        String messageText = "تم استلام الجهاز";
+                        boolean sessionDebug = false;
+
+                        Properties props = System.getProperties();
+
+                        props.put("mail.smtp.starttls.enable", "true");
+                        props.put("mail.smtp.host", host);
+                        props.put("mail.smtp.port", "587");
+                        props.put("mail.smtp.auth", "true");
+                        props.put("mail.smtp.starttls.required", "true");
+
+                        java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+                        Session mailSession = Session.getDefaultInstance(props, null);
+                        mailSession.setDebug(sessionDebug);
+                        Message msg = new MimeMessage(mailSession);
+                        msg.setFrom(new InternetAddress(from));
+                        InternetAddress[] address = {new InternetAddress(to)};
+                        msg.setRecipients(Message.RecipientType.TO, address);
+                        msg.setSubject(subject);
+                        msg.setSentDate(new Date());
+                        msg.setText(messageText);
+                        Transport transport = mailSession.getTransport("smtp");
+                        transport.connect(host, user, pass);
+                        transport.sendMessage(msg, msg.getAllRecipients());
+                        transport.close();
+
+                        System.out.println("message send successfully");
+
+                        //System.out.println(Txfiled_MOnum_AddMO.getText());
+                    }
+                    //else if (mo state == problem){send mail}
+
+                    if (count_Language == 0) {
+
+                        alert2.setContentText("Changes saved successfully");
                     } else {
+                        alert2.setContentText("تم حفظ التعديلات بنجاح");
                     }
-
-                    String host = "smtp.gmail.com";
-                    String user = "abdualziz.alhazmi1997@gmail.com";
-                    String pass = "Azoz789!@#";
-
-                    String from = "abdualziz.alhazmi1997@gmail.com";
-                    String subject = "العنوان تم استلام الجهاز";
-                    String messageText = "تم استلام الجهاز";
-                    boolean sessionDebug = false;
-
-                    Properties props = System.getProperties();
-
-                    props.put("mail.smtp.starttls.enable", "true");
-                    props.put("mail.smtp.host", host);
-                    props.put("mail.smtp.port", "587");
-                    props.put("mail.smtp.auth", "true");
-                    props.put("mail.smtp.starttls.required", "true");
-
-                    java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
-                    Session mailSession = Session.getDefaultInstance(props, null);
-                    mailSession.setDebug(sessionDebug);
-                    Message msg = new MimeMessage(mailSession);
-                    msg.setFrom(new InternetAddress(from));
-                    InternetAddress[] address = {new InternetAddress(to)};
-                    msg.setRecipients(Message.RecipientType.TO, address);
-                    msg.setSubject(subject);
-                    msg.setSentDate(new Date());
-                    msg.setText(messageText);
-                    Transport transport = mailSession.getTransport("smtp");
-                    transport.connect(host, user, pass);
-                    transport.sendMessage(msg, msg.getAllRecipients());
-                    transport.close();
-
-                    System.out.println("message send successfully");
-
-                    //System.out.println(Txfiled_MOnum_AddMO.getText());
-                } else if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("repaired") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تم الاصلاح")) {
-
-                    Statement st = connection.createStatement();
-                    String CusEmail_query = "SELECT CUS_EMAIL FROM `customer` Where CUS_MOBILE_NBER =" + Txfiled_CusMnum_AddMO.getText();
-                    System.out.println(CusEmail_query);
-                    st.executeQuery(CusEmail_query);
-                    ResultSet rs = st.getResultSet();
-                    String to = "";
-                    System.out.println("?>?>?> " + rs.isFirst());
-                    if (rs.first()) {
-                        System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-                        //System.out.println();
-
-                        to = rs.getString("CUS_EMAIL");
-                    } else {
-                    }
-
-                    String host = "smtp.gmail.com";
-                    String user = "abdualziz.alhazmi1997@gmail.com";
-                    String pass = "Azoz789!@#";
-
-                    String from = "abdualziz.alhazmi1997@gmail.com";
-                    String subject = "العنوان تعال استلم جهازك";
-                    String messageText = "تم تعال استلم جهازك";
-                    boolean sessionDebug = false;
-
-                    Properties props = System.getProperties();
-
-                    props.put("mail.smtp.starttls.enable", "true");
-                    props.put("mail.smtp.host", host);
-                    props.put("mail.smtp.port", "587");
-                    props.put("mail.smtp.auth", "true");
-                    props.put("mail.smtp.starttls.required", "true");
-
-                    java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
-                    Session mailSession = Session.getDefaultInstance(props, null);
-                    mailSession.setDebug(sessionDebug);
-                    Message msg = new MimeMessage(mailSession);
-                    msg.setFrom(new InternetAddress(from));
-                    InternetAddress[] address = {new InternetAddress(to)};
-                    msg.setRecipients(Message.RecipientType.TO, address);
-                    msg.setSubject(subject);
-                    msg.setSentDate(new Date());
-                    msg.setText(messageText);
-                    Transport transport = mailSession.getTransport("smtp");
-                    transport.connect(host, user, pass);
-                    transport.sendMessage(msg, msg.getAllRecipients());
-                    transport.close();
-
-                    System.out.println("message send successfully");
-
-                    //System.out.println(Txfiled_MOnum_AddMO.getText());
-                } else if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("other defects has been detected") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تم الكشف عن عيوب أخرى")) {
-
-                    Statement st = connection.createStatement();
-                    String CusEmail_query = "SELECT CUS_EMAIL FROM `customer` Where CUS_MOBILE_NBER =" + Txfiled_CusMnum_AddMO.getText();
-                    System.out.println(CusEmail_query);
-                    st.executeQuery(CusEmail_query);
-                    ResultSet rs = st.getResultSet();
-                    String to = "";
-                    System.out.println("?>?>?> " + rs.isFirst());
-                    if (rs.first()) {
-                        System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-                        //System.out.println();
-
-                        to = rs.getString("CUS_EMAIL");
-                    } else {
-                    }
-
-                    String host = "smtp.gmail.com";
-                    String user = "abdualziz.alhazmi1997@gmail.com";
-                    String pass = "Azoz789!@#";
-
-                    String from = "abdualziz.alhazmi1997@gmail.com";
-                    String subject = "العنوان تم استلام الجهاز";
-                    String messageText = "تم استلام الجهاز";
-                    boolean sessionDebug = false;
-
-                    Properties props = System.getProperties();
-
-                    props.put("mail.smtp.starttls.enable", "true");
-                    props.put("mail.smtp.host", host);
-                    props.put("mail.smtp.port", "587");
-                    props.put("mail.smtp.auth", "true");
-                    props.put("mail.smtp.starttls.required", "true");
-
-                    java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
-                    Session mailSession = Session.getDefaultInstance(props, null);
-                    mailSession.setDebug(sessionDebug);
-                    Message msg = new MimeMessage(mailSession);
-                    msg.setFrom(new InternetAddress(from));
-                    InternetAddress[] address = {new InternetAddress(to)};
-                    msg.setRecipients(Message.RecipientType.TO, address);
-                    msg.setSubject(subject);
-                    msg.setSentDate(new Date());
-                    msg.setText(messageText);
-                    Transport transport = mailSession.getTransport("smtp");
-                    transport.connect(host, user, pass);
-                    transport.sendMessage(msg, msg.getAllRecipients());
-                    transport.close();
-
-                    System.out.println("message send successfully");
-
-                    //System.out.println(Txfiled_MOnum_AddMO.getText());
+                    alert2.showAndWait();
                 }
-                //else if (mo state == problem){send mail}
+                count = 2;
 
-                if (count_Language == 0) {
-
-                    alert2.setContentText("Changes saved successfully");
-                } else {
-                    alert2.setContentText("تم حفظ التعديلات بنجاح");
-                }
-                alert2.showAndWait();
             }
-            count = 2;
-
         }
     }
     public int monumber = 0;
@@ -1536,14 +1557,15 @@ public class Controller_AddMO implements Initializable {
 
     @FXML
     private void M_KeyReleased_TabelSelecSP_AddMO(KeyEvent event) {
-        
-         if (event.getCode().isNavigationKey() == true) {  
-             SPSelected2 = Table_SelectedSP_AddMO.getSelectionModel().getSelectedItems();
 
-        Txfiled_SpSerialN_AddMO.setText(SPSelected2.get(0).getSP_SN());
-        Txfiled_SpPrice_AddMO.setText(String.valueOf(SPSelected2.get(0).getSP_Price2()));
-         
-    }}
+        if (event.getCode().isNavigationKey() == true) {
+            SPSelected2 = Table_SelectedSP_AddMO.getSelectionModel().getSelectedItems();
+
+            Txfiled_SpSerialN_AddMO.setText(SPSelected2.get(0).getSP_SN());
+            Txfiled_SpPrice_AddMO.setText(String.valueOf(SPSelected2.get(0).getSP_Price2()));
+
+        }
+    }
 
     public static class AddSP {
 
