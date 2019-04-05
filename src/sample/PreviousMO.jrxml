@@ -89,7 +89,7 @@
 			<staticText>
 				<reportElement x="184" y="20" width="205" height="34" uuid="cf69ede5-a478-464f-aa54-14adf56caf03"/>
 				<textElement textAlignment="Center">
-					<font fontName="Arial" size="20" isBold="false" isItalic="false" isUnderline="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial" size="20" isBold="true" isItalic="false" isUnderline="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[عمليات الصيانة السابقة ]]></text>
 			</staticText>
@@ -97,86 +97,91 @@
 				<reportElement x="377" y="53" width="93" height="20" uuid="1910fd2f-79ce-46ae-a0f9-b0fa844b043b"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement x="0" y="76" width="555" height="1" uuid="5c0ab1ba-5a10-4be1-b4ca-6c399ef3220f"/>
-			</line>
 		</band>
 	</title>
 	<columnHeader>
 		<band height="61" splitType="Stretch">
 			<staticText>
-				<reportElement x="470" y="2" width="70" height="20" uuid="c4acee46-cd41-46c5-8e9d-c083568f73c0"/>
+				<reportElement x="470" y="22" width="70" height="20" uuid="c4acee46-cd41-46c5-8e9d-c083568f73c0"/>
 				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[رقم العملية]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="122" y="2" width="100" height="20" uuid="4411fce3-484f-4f70-aa7d-223f04ec6cf9"/>
+				<reportElement x="122" y="22" width="100" height="20" uuid="4411fce3-484f-4f70-aa7d-223f04ec6cf9"/>
 				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[وصف الجهاز ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="346" y="2" width="100" height="20" uuid="a665194b-5835-4a45-91bb-0e79bb1ed44a"/>
+				<reportElement x="346" y="22" width="100" height="20" uuid="a665194b-5835-4a45-91bb-0e79bb1ed44a"/>
 				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[اسم العميل]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="240" y="2" width="84" height="20" uuid="c615e4a0-26ea-4ec9-9b61-15a3150836df"/>
+				<reportElement x="240" y="22" width="84" height="20" uuid="c615e4a0-26ea-4ec9-9b61-15a3150836df"/>
 				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[اسم الموظف]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="20" y="2" width="81" height="20" uuid="0a4b9834-3c12-43dc-a502-5348107c01a7"/>
+				<reportElement x="20" y="22" width="81" height="20" uuid="0a4b9834-3c12-43dc-a502-5348107c01a7"/>
 				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[الحالة]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="40" width="555" height="1" uuid="6ada18c0-0b62-43aa-9fef-568c7377d146"/>
+				<reportElement x="0" y="51" width="555" height="1" uuid="5c0ab1ba-5a10-4be1-b4ca-6c399ef3220f"/>
 			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="29" splitType="Stretch">
 			<textField>
 				<reportElement x="20" y="0" width="81" height="20" uuid="520c6521-4450-490d-841f-04cfce0aedd4"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{STATE}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="470" y="0" width="70" height="20" uuid="c621059c-1864-4a74-94e5-6304ae75ee20"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{MO_NBER}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="122" y="0" width="100" height="20" uuid="202b09a0-6825-4a54-a276-71a74a2251cf"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{DEVICE_DESC}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="346" y="0" width="100" height="20" uuid="db58f810-ef79-42b3-9c51-674d9377e1c0"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{CUS_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="240" y="0" width="84" height="20" uuid="7f167740-00d9-4f38-b220-1b705168c976"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{EMP_NAME}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="457" y="-64" width="1" height="189" uuid="7e07a6b3-4ec7-4e5b-aed0-9e614c32209e"/>
+				<reportElement x="460" y="-9" width="1" height="33" uuid="7e07a6b3-4ec7-4e5b-aed0-9e614c32209e"/>
 			</line>
 			<line>
-				<reportElement x="337" y="-63" width="1" height="188" uuid="81a3e1b2-0066-4aae-8fe6-058ece4f4838"/>
+				<reportElement x="0" y="23" width="555" height="1" uuid="6ada18c0-0b62-43aa-9fef-568c7377d146"/>
 			</line>
 			<line>
-				<reportElement x="230" y="-63" width="1" height="188" uuid="4c259a67-0136-4c0a-85ab-a83cab51a252"/>
+				<reportElement x="334" y="-9" width="1" height="33" uuid="083a70c6-9592-4a0b-aaa2-93fb19a87e01"/>
 			</line>
 			<line>
-				<reportElement x="112" y="-63" width="1" height="188" uuid="96666cba-c5b0-4e33-8e22-8d7861e11b92"/>
+				<reportElement x="230" y="-9" width="1" height="33" uuid="837bc963-97ca-447a-9a45-bc31bee372eb"/>
+			</line>
+			<line>
+				<reportElement x="111" y="-9" width="1" height="33" uuid="57681529-5923-44a3-8bdd-56a9f4362e61"/>
 			</line>
 		</band>
 	</detail>

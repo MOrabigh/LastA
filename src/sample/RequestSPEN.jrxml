@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d82eba48-91b0-4f57-8d00-55ca4a1e269b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT * FROM `requested_spare_parts` s JOIN `attach` r ON s.REQUEST_NBER  = r.REQUEST_NBER JOIN spare_parts p ON r.SP_NBER = p.SP_NBER]]>
+	</queryString>
+	<field name="REQUEST_NBER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REQUEST_DATE" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUPPLIER_NBER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SP_NBER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Req_QUANTITY" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SP_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PRICE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SP_QUANTITY" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DESCRIPTION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MINIMUM_QUANTITY_IN_STOCK" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="88" y="5" width="402" height="68" uuid="b0df03f3-8863-493c-84f9-7945da70fddb"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="150" y="20" width="299" height="34" uuid="cf69ede5-a478-464f-aa54-14adf56caf03"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="20" isBold="false" isItalic="false" isUnderline="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[REQUEST SPARE PARTS]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="377" y="53" width="93" height="20" uuid="1910fd2f-79ce-46ae-a0f9-b0fa844b043b"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="56" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="129" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="21" width="555" height="1" uuid="5c0ab1ba-5a10-4be1-b4ca-6c399ef3220f"/>
+			</line>
+			<staticText>
+				<reportElement x="12" y="0" width="130" height="20" uuid="e5d5621e-c798-4380-8ce3-f066fa5a6ecf"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Request Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="28" width="130" height="20" uuid="e16c2a36-7a2f-42cf-8846-137076d86dc5"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Request Date]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="179" y="28" width="130" height="20" uuid="31fa8396-bd9d-43c8-8fac-6f07386f7e83"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{REQUEST_DATE}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="47" width="555" height="1" uuid="76d4e055-ded4-4ab2-8722-18481329b2d9"/>
+			</line>
+			<textField>
+				<reportElement x="179" y="0" width="130" height="20" uuid="74d9582e-86e9-46bb-91ba-b6c306276eb7"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{REQUEST_NBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="179" y="51" width="130" height="20" uuid="a468c760-5318-4a43-b7bf-caccb73472b7"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{SP_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="51" width="130" height="20" uuid="340ffc86-c894-4915-9a2c-bb88ed7f1a01"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Spare_Part Name]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="71" width="555" height="1" uuid="939b763f-bfad-4d1d-a40d-24a5cf11d2e0"/>
+			</line>
+			<staticText>
+				<reportElement x="12" y="72" width="130" height="20" uuid="2ed24511-fde4-4ac3-ac9c-b0396fc8a0ed"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Supplier Number]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="179" y="72" width="130" height="20" uuid="2643a492-de05-4f7e-9b74-133a87cde649"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{SUPPLIER_NBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="94" width="555" height="1" uuid="b5e32039-29b9-4866-a4c8-600726ba0e52"/>
+			</line>
+			<staticText>
+				<reportElement x="12" y="95" width="130" height="20" uuid="3525cd93-694c-4083-8336-28262c078640"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Quantity of Request ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="179" y="95" width="130" height="20" uuid="9052d814-dfd4-48ab-9271-ea568124fd79"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Req_QUANTITY}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="117" width="555" height="1" uuid="ec05c417-458f-4446-be6a-4c092e841d8b"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="18" y="15" width="100" height="20" uuid="cf77deae-8476-47b3-80bd-06baa5be81fb"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -263,7 +263,7 @@
                                           </ImageView>
                                        </graphic>
                                     </JFXButton>
-                                    <JFXButton fx:id="Btn_Save_Customer" layoutX="62.0" layoutY="10.0" onAction="#M_Btn_Save_Customer" stylesheets="/css/hr.css" text="حفظ">
+                                    <JFXButton fx:id="Btn_Save_Customer" disable="true" layoutX="62.0" layoutY="10.0" onAction="#M_Btn_Save_Customer" stylesheets="/css/hr.css" text="حفظ">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
@@ -657,7 +657,7 @@
                               </VBox>
                               <HBox alignment="CENTER" layoutY="471.0" prefHeight="54.0" prefWidth="600.0">
                                  <children>
-                                    <JFXButton fx:id="Btn_Cancle_SP" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Cancle_SP" stylesheets="/css/hr.css" text="الغاء">
+                                    <JFXButton fx:id="Btn_Cancle_SP" disable="true" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Cancle_SP" stylesheets="/css/hr.css" text="الغاء">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
@@ -669,7 +669,7 @@
                                           </ImageView>
                                        </graphic>
                                     </JFXButton>
-                                    <JFXButton fx:id="Btn_Delete_SP" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Delete_SP" stylesheets="/css/hr.css" text="حذف">
+                                    <JFXButton fx:id="Btn_Delete_SP" disable="true" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Delete_SP" stylesheets="/css/hr.css" text="حذف">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
@@ -681,7 +681,7 @@
                                           </ImageView>
                                        </graphic>
                                     </JFXButton>
-                                    <JFXButton fx:id="Btn_Save_SP" layoutX="62.0" layoutY="10.0" onAction="#M_Btn_Save_SP" stylesheets="/css/hr.css" text="حفظ">
+                                    <JFXButton fx:id="Btn_Save_SP" disable="true" layoutX="62.0" layoutY="10.0" onAction="#M_Btn_Save_SP" stylesheets="/css/hr.css" text="حفظ">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
@@ -798,7 +798,7 @@
                               </VBox>
                               <HBox alignment="CENTER" layoutX="176.0" layoutY="584.0" prefHeight="54.0" prefWidth="600.0">
                                  <children>
-                                    <JFXButton fx:id="Btn_Print_ReqSP" onAction="#M_Btn_Print_ReqSP" stylesheets="/css/hr.css" text="طباعة">
+                                    <JFXButton fx:id="Btn_Print_ReqSP" disable="true" onAction="#M_Btn_Print_ReqSP" stylesheets="/css/hr.css" text="طباعة">
                                        <graphic>
                                           <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -810,7 +810,7 @@
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
                                     </JFXButton>
-                                    <JFXButton fx:id="Btn_Cancle_ReqSP" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Cancle_ReqSP" stylesheets="/css/hr.css" text="الغاء">
+                                    <JFXButton fx:id="Btn_Cancle_ReqSP" disable="true" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Cancle_ReqSP" stylesheets="/css/hr.css" text="الغاء">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
@@ -822,7 +822,7 @@
                                           </ImageView>
                                        </graphic>
                                     </JFXButton>
-                                    <JFXButton fx:id="Btn_Delete_ReqSP" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Delete_ReqSP" stylesheets="/css/hr.css" text="حذف">
+                                    <JFXButton fx:id="Btn_Delete_ReqSP" disable="true" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Delete_ReqSP" stylesheets="/css/hr.css" text="حذف">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
@@ -834,7 +834,7 @@
                                           </ImageView>
                                        </graphic>
                                     </JFXButton>
-                                    <JFXButton fx:id="Btn_Save_ReqSP" layoutX="62.0" layoutY="10.0" onAction="#M_Btn_Save_ReqSP" stylesheets="/css/hr.css" text="حفظ">
+                                    <JFXButton fx:id="Btn_Save_ReqSP" disable="true" layoutX="62.0" layoutY="10.0" onAction="#M_Btn_Save_ReqSP" stylesheets="/css/hr.css" text="حفظ">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
@@ -1065,7 +1065,7 @@
                               </VBox>
                               <HBox alignment="CENTER" layoutY="471.0" prefHeight="54.0" prefWidth="600.0">
                                  <children>
-                                    <JFXButton fx:id="Btn_Cancle_Supplier" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Cancle_Supplier" stylesheets="/css/hr.css" text="الغاء">
+                                    <JFXButton fx:id="Btn_Cancle_Supplier" disable="true" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Cancle_Supplier" stylesheets="/css/hr.css" text="الغاء">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
@@ -1077,7 +1077,7 @@
                                           </ImageView>
                                        </graphic>
                                     </JFXButton>
-                                    <JFXButton fx:id="Btn_Delete_Supplier" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Delete_Supplier" stylesheets="/css/hr.css" text="حذف">
+                                    <JFXButton fx:id="Btn_Delete_Supplier" disable="true" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Delete_Supplier" stylesheets="/css/hr.css" text="حذف">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
@@ -1089,7 +1089,7 @@
                                           </ImageView>
                                        </graphic>
                                     </JFXButton>
-                                    <JFXButton fx:id="Btn_Save_Supplier" layoutX="62.0" layoutY="10.0" onAction="#M_Btn_Save_Supplier" stylesheets="/css/hr.css" text="حفظ">
+                                    <JFXButton fx:id="Btn_Save_Supplier" disable="true" layoutX="62.0" layoutY="10.0" onAction="#M_Btn_Save_Supplier" stylesheets="/css/hr.css" text="حفظ">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
@@ -1260,7 +1260,7 @@
                               </VBox>
                               <HBox alignment="CENTER" layoutY="471.0" prefHeight="54.0" prefWidth="600.0">
                                  <children>
-                                    <JFXButton fx:id="Btn_Cancel_Employee" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Cancel_Employee" stylesheets="/css/hr22.css" text="الغاء">
+                                    <JFXButton fx:id="Btn_Cancel_Employee" disable="true" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Cancel_Employee" stylesheets="/css/hr22.css" text="الغاء">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
@@ -1272,7 +1272,7 @@
                                           </ImageView>
                                        </graphic>
                                     </JFXButton>
-                                    <JFXButton fx:id="Btn_Delete_Employee" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Delete_Employee" stylesheets="/css/hr.css" text="حذف">
+                                    <JFXButton fx:id="Btn_Delete_Employee" disable="true" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Delete_Employee" stylesheets="/css/hr.css" text="حذف">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
@@ -1284,7 +1284,7 @@
                                           </ImageView>
                                        </graphic>
                                     </JFXButton>
-                                    <JFXButton fx:id="Btn_Save_Employee" layoutX="62.0" layoutY="10.0" onAction="#M_Btn_Save_Employee" stylesheets="/css/hr.css" text="حفظ">
+                                    <JFXButton fx:id="Btn_Save_Employee" disable="true" layoutX="62.0" layoutY="10.0" onAction="#M_Btn_Save_Employee" stylesheets="/css/hr.css" text="حفظ">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>

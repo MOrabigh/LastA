@@ -53,6 +53,8 @@ import net.sf.jasperreports.engine.JRException;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.mail.internet.MimeMessage;
@@ -654,6 +656,14 @@ MO_State=rs.getString("STATE");
             s.printStackTrace();
         }
     }
+     public static boolean PhoneNvalid(String s) {
+
+        Pattern p = Pattern.compile(".*[0-9].*");
+
+        Matcher m = p.matcher(s);
+        return (m.find() && m.group().equals(s));
+    }
+
 
     @FXML
     private void M_Btn_Print_AddMo(ActionEvent event) throws JRException, SQLException {
@@ -837,16 +847,22 @@ MO_State=rs.getString("STATE");
                         + "'" + "," + "'" + IndexOFTech + "'" + "," + "'" + Txfiled_CusMnum_AddMO.getText() + "', NULL ,NULL" + ")";
                 System.out.println(sql1);
                 java.sql.Statement statement1 = connection.createStatement();
+                 String s = Txfiled_CusMnum_AddMO.getText();
+               if (PhoneNvalid(s)) {
                 statement1.executeUpdate(sql1);
                 if (count_Language == 0) {
 
                     alert2.setContentText(" A new MO has been created");
                 } else {
                     alert2.setContentText("تم انشاء عملية صيانة جديدة");
-
                 }
+            } else if (count_Language == 0) {
 
-                alert2.showAndWait();
+                alert2.setContentText(" invalid Mobile Number");
+            } else {
+                alert2.setContentText("رقم الهاتف خاطئ");
+            }
+            alert2.showAndWait();
             } else if (count == 2) {
                 
  

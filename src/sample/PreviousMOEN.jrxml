@@ -116,21 +116,21 @@
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[CUS_NAME]]></text>
+				<text><![CDATA[CUSTOMER_NAME]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="237" y="14" width="100" height="20" uuid="8556a3b2-472d-4147-84cd-f1963563f9cb"/>
+				<reportElement x="234" y="14" width="100" height="20" uuid="8556a3b2-472d-4147-84cd-f1963563f9cb"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[EMP_NAME]]></text>
+				<text><![CDATA[EMPLOYEE_NAME]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="346" y="14" width="100" height="20" uuid="b6b5af2f-889e-48b3-84b9-354cbff6f312"/>
+				<reportElement x="338" y="14" width="118" height="20" uuid="b6b5af2f-889e-48b3-84b9-354cbff6f312"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[DEVICE_DESC]]></text>
+				<text><![CDATA[DEVICE_DESCRIPTION]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="461" y="14" width="94" height="20" uuid="9015f846-a1e0-4ced-81f5-b77c5cbe4559"/>

@@ -35,7 +35,7 @@
 			<staticText>
 				<reportElement x="184" y="20" width="205" height="34" uuid="cf69ede5-a478-464f-aa54-14adf56caf03"/>
 				<textElement textAlignment="Center">
-					<font size="20"/>
+					<font size="20" isBold="true"/>
 				</textElement>
 				<text><![CDATA[قطع الغيار على وشك النفاذ]]></text>
 			</staticText>
@@ -43,86 +43,91 @@
 				<reportElement x="377" y="53" width="93" height="20" uuid="1910fd2f-79ce-46ae-a0f9-b0fa844b043b"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement x="0" y="76" width="555" height="1" uuid="225a006a-c0bc-4695-908e-7d9315079be9"/>
-			</line>
 		</band>
 	</title>
 	<columnHeader>
 		<band height="61" splitType="Stretch">
 			<staticText>
-				<reportElement x="460" y="2" width="85" height="20" uuid="c363d98d-85f9-4a86-923e-30347267213d"/>
+				<reportElement x="460" y="22" width="85" height="20" uuid="c363d98d-85f9-4a86-923e-30347267213d"/>
 				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[رقم القطعة]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="346" y="2" width="100" height="20" uuid="f5608180-96cb-46e8-8383-3c08295e5b64"/>
+				<reportElement x="346" y="22" width="100" height="20" uuid="f5608180-96cb-46e8-8383-3c08295e5b64"/>
 				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[اسم القطعة]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="263" y="2" width="59" height="20" uuid="2335081b-b791-44e0-a83d-91d60506f6a6"/>
+				<reportElement x="255" y="22" width="67" height="20" uuid="2335081b-b791-44e0-a83d-91d60506f6a6"/>
 				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[السعر]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="131" y="2" width="100" height="20" uuid="53cfaac0-9a47-4dfb-bc4d-209f95a6d16c"/>
+				<reportElement x="131" y="22" width="100" height="20" uuid="53cfaac0-9a47-4dfb-bc4d-209f95a6d16c"/>
 				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[الكمية]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="18" y="2" width="100" height="20" uuid="1181c0ad-95a7-49e0-abf5-81662ac2ea43"/>
+				<reportElement x="18" y="22" width="100" height="20" uuid="1181c0ad-95a7-49e0-abf5-81662ac2ea43"/>
 				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[وصف القطعة]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="42" width="555" height="1" uuid="80527a3d-a1c5-44fa-9ee1-b84492cf03c8"/>
+				<reportElement x="0" y="49" width="555" height="1" uuid="80527a3d-a1c5-44fa-9ee1-b84492cf03c8"/>
 			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="28" splitType="Stretch">
 			<textField>
 				<reportElement x="460" y="0" width="80" height="20" uuid="e28d9b16-b3a7-48e8-bba8-4b077f99f904"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{SP_NBER}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="346" y="0" width="100" height="20" uuid="1beacee5-1125-4fde-98de-bf00e3137d75"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{SP_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="255" y="0" width="67" height="20" uuid="015bdeea-83c1-4656-8023-3c81dac981df"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{PRICE}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="131" y="0" width="100" height="20" uuid="4b997a0c-d3cc-43c1-b1f4-a36706b96b7e"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{SP_QUANTITY}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="18" y="0" width="100" height="20" uuid="69c86a18-51f3-4eaa-8878-110fe69810d3"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{DESCRIPTION}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="453" y="-63" width="1" height="188" uuid="0287d8de-3082-4a3a-bd2e-df24e977ad83"/>
+				<reportElement x="451" y="-11" width="1" height="37" uuid="0287d8de-3082-4a3a-bd2e-df24e977ad83"/>
 			</line>
 			<line>
-				<reportElement x="335" y="-63" width="1" height="188" uuid="9b4cb2b0-a5a2-49f4-9270-b28227b0a62b"/>
+				<reportElement x="0" y="25" width="555" height="1" uuid="225a006a-c0bc-4695-908e-7d9315079be9"/>
 			</line>
 			<line>
-				<reportElement x="243" y="-63" width="1" height="188" uuid="2a9c2603-078f-4c06-a918-407c2b7f828e"/>
+				<reportElement x="334" y="-11" width="1" height="36" uuid="100a893f-7d51-4f24-8904-dd9859d6f7dc"/>
 			</line>
 			<line>
-				<reportElement x="124" y="-61" width="1" height="186" uuid="898f1f3e-83b5-4421-be70-13953361077d"/>
+				<reportElement x="243" y="-11" width="1" height="36" uuid="5c076046-a8aa-43f9-91f6-d8509065d54d"/>
+			</line>
+			<line>
+				<reportElement x="123" y="-11" width="1" height="36" uuid="7f63e078-9131-4335-b583-1b74369c3805"/>
 			</line>
 		</band>
 	</detail>

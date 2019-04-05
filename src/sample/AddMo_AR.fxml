@@ -294,7 +294,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="Btn_Save_AddMo" layoutX="62.0" layoutY="10.0" onAction="#M_Btn_Save_AddMo" stylesheets="@../css/hr.css" text="حفظ">
+                  <JFXButton fx:id="Btn_Save_AddMo" disable="true" layoutX="62.0" layoutY="10.0" onAction="#M_Btn_Save_AddMo" stylesheets="@../css/hr.css" text="حفظ">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
