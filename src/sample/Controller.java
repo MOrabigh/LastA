@@ -2971,13 +2971,13 @@ i=1000;
                 System.out.println(sql1);
                 java.sql.Statement statement1 = connection.createStatement();
                 statement1.executeUpdate(sql1);
-                 if (count_Language == 0) {
+                if (count_Language == 0) {
 
                     alert2.setContentText(" A new Request Spare Part has been created");
                 } else {
                     alert2.setContentText("تم انشاء طلب غيار جديد ");
                 }
-                 alert2.showAndWait();
+                alert2.showAndWait();
 
             } else if (count == 2) {
                 System.out.println("Equal  update");
@@ -2987,15 +2987,15 @@ i=1000;
                 System.out.println(sql1);
                 java.sql.Statement statement1 = connection.createStatement();
                 statement1.executeUpdate(sql1);
-                      if (count_Language == 0) {
+                if (count_Language == 0) {
 
-                alert2.setContentText(" Changes saved successfully");
-            } else {
-                alert2.setContentText("تم حفظ التعديلات بنجاح");
+                    alert2.setContentText(" Changes saved successfully");
+                } else {
+                    alert2.setContentText("تم حفظ التعديلات بنجاح");
 
-            }
+                }
 
-            alert2.showAndWait();
+                alert2.showAndWait();
 
             }
             Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
