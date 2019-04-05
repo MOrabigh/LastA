@@ -2097,12 +2097,12 @@ i=1000;
 
             } else if (SelectedItem.equalsIgnoreCase("- تقدير مالي عن عملية صيانة")) {
                 Statement st2 = connection.createStatement();
-                String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected') AND m.MO_NBER = '" + Txfiled_MO_Nber.getText() + "' OR r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
+                String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired') AND m.MO_NBER = '" + Txfiled_MO_Nber.getText() + "' OR r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
                 System.out.println(q);
                 st2.executeQuery(q);
                 ResultSet rs2 = st2.getResultSet();
                 if (rs2.first()) {
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected') AND m.MO_NBER = '" + Txfiled_MO_Nber.getText() + "' OR r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired') AND m.MO_NBER = '" + Txfiled_MO_Nber.getText() + "' OR r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
                     System.out.println(query);
                     java.sql.Statement statement1 = connection.createStatement();
 
@@ -2563,12 +2563,12 @@ i=1000;
 
             } else if (SelectedItem.equalsIgnoreCase("- financial estimate of maintenance")) {
                 Statement st2 = connection.createStatement();
-                String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected') AND m.MO_NBER = '" + Txfiled_MO_Nber.getText() + "' OR r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
+                String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired') AND m.MO_NBER = '" + Txfiled_MO_Nber.getText() + "' OR r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
                 System.out.println(q);
                 st2.executeQuery(q);
                 ResultSet rs2 = st2.getResultSet();
                 if (rs2.first()) {
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected') AND m.MO_NBER = '" + Txfiled_MO_Nber.getText() + "' OR r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired') AND m.MO_NBER = '" + Txfiled_MO_Nber.getText() + "' OR r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
                     System.out.println(query);
                     java.sql.Statement statement1 = connection.createStatement();
 

@@ -61,7 +61,7 @@ public class printreport extends JFrame {
 
     public void financialassessmentEN(String ff) throws JRException {
         JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\financialassessmentEN.jrxml");
-        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approve', 'under maintenance', 'other defects has been detected') AND m.MO_NBER = '" + ff + "'";
+        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired') AND m.MO_NBER = '" + ff + "'";
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
         jasperDesign.setQuery(jrquery);
@@ -100,7 +100,7 @@ public class printreport extends JFrame {
 
     public void financialassessment(String ff) throws JRException {
         JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\financialassessment.jrxml");
-        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approve', 'under maintenance', 'other defects has been detected') AND m.MO_NBER = '" + ff + "'";
+        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired') AND m.MO_NBER = '" + ff + "'";
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
         jasperDesign.setQuery(jrquery);
@@ -292,7 +292,7 @@ public class printreport extends JFrame {
 
     public void FinancialassessReport(String bb, String ss) throws JRException {
         JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\Financialassessmentreport.jrxml");
-        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approve', 'under maintenance', 'other defects has been detected') AND m.MO_NBER = '" + bb + "' OR r.CUS_MOBILE_NBER = '" + ss + "'";
+        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired') AND m.MO_NBER = '" + bb + "' OR r.CUS_MOBILE_NBER = '" + ss + "'";
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
         jasperDesign.setQuery(jrquery);
@@ -542,7 +542,7 @@ public class printreport extends JFrame {
 
     public void FinancialassessReportEN(String bb, String ss) throws JRException {
         JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\FinancialassessmentreportEN.jrxml");
-        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approve', 'under maintenance', 'other defects has been detected') AND m.MO_NBER = '" + bb + "' OR r.CUS_MOBILE_NBER = '" + ss + "'";
+        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired') AND m.MO_NBER = '" + bb + "' OR r.CUS_MOBILE_NBER = '" + ss + "'";
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
         jasperDesign.setQuery(jrquery);
