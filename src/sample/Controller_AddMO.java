@@ -159,7 +159,7 @@ public class Controller_AddMO implements Initializable {
     private Label Lable_ifPaid_AddMO;
 
     @FXML
-    private void M_Txfiled_SpSerialN_AddMO(ActionEvent event) throws SQLException {
+    private void M_Txfiled_SpSerialN_AddMO(ActionEvent event)  {
         alert2.setTitle(null);
         alert2.setHeaderText(null);
         AllSP2 = Table_SelectedSP_AddMO.getItems();
@@ -169,38 +169,42 @@ public class Controller_AddMO implements Initializable {
         double perSp_price = Double.parseDouble(Txfiled_SpPrice_AddMO.getText());
 
         for (int i = 0; i < SPSelected2.size(); i++) {
-            loadlist.add(new Controller_AddMO.SelectedSP(SPSelected2.get(i).getSP2_Number(), SPSelected2.get(i).getSP2_Name(),
-                    SPSelected2.get(i).getSP2_Description(), perSp_price, Txfiled_SpSerialN_AddMO.getText(), SPSelected2.get(i).getSP_Seq_Nber()));
-
-            String sqlupdateAddSP = "UPDATE `require` SET `SERIAL_NUMBER` = '" + Txfiled_SpSerialN_AddMO.getText() + "', `Effective_Price` ='" + Txfiled_SpPrice_AddMO.getText() + "' WHERE MO_NBER= " + Txfiled_MOnum_AddMO.getText()
-                    + " AND SP_NBER=" + SPSelected2.get(i).getSP2_Number() + " AND Seq_Nber=" + SPSelected2.get(i).getSP_Seq_Nber();
-            System.out.println(sqlupdateAddSP);
-            java.sql.Statement statement1 = connection.createStatement();
-            statement1.executeUpdate(sqlupdateAddSP);
-
-            SPSelected2.forEach(loadlist::remove);
-            Table_SelectedSP_AddMO.getItems().setAll(loadlist);
-            calculate();
-
-            String sqlupdatePrice = "UPDATE `maintenance_operation` SET `MO_COST` = " + Txfiled_MOCost_AddMO.getText() + ", `SP_COST` = " + Txfiled_SPCost_AddMO.getText() + " WHERE `MO_NBER` = " + Txfiled_MOnum_AddMO.getText() + ";";
-
-            statement1.executeUpdate(sqlupdatePrice);
-            //JOptionPane.showMessageDialog(null, "تم تعديل سعر قطعة الغيار", "Alert", JOptionPane.INFORMATION_MESSAGE);
-
-            if (count_Language == 0) {
-                Txfiled_SpSerialN_AddMO.setText("Serial number");
-                Txfiled_SpPrice_AddMO.setText("Cost");
-                //alert2.setContentText("The price of the spare part has been adjusted");
-
-                alert2.setContentText("Changes saved successfully");
-            } else {
-                Txfiled_SpSerialN_AddMO.setText("الرقم التسلسلي");
-                Txfiled_SpPrice_AddMO.setText("السعر");
-                alert2.setContentText("تم حفظ التعديلات بنجاح");
-
+            try {
+                loadlist.add(new Controller_AddMO.SelectedSP(SPSelected2.get(i).getSP2_Number(), SPSelected2.get(i).getSP2_Name(),
+                        SPSelected2.get(i).getSP2_Description(), perSp_price, Txfiled_SpSerialN_AddMO.getText(), SPSelected2.get(i).getSP_Seq_Nber()));
+                
+                String sqlupdateAddSP = "UPDATE `require` SET `SERIAL_NUMBER` = '" + Txfiled_SpSerialN_AddMO.getText() + "', `Effective_Price` ='" + Txfiled_SpPrice_AddMO.getText() + "' WHERE MO_NBER= " + Txfiled_MOnum_AddMO.getText()
+                        + " AND SP_NBER=" + SPSelected2.get(i).getSP2_Number() + " AND Seq_Nber=" + SPSelected2.get(i).getSP_Seq_Nber();
+                System.out.println(sqlupdateAddSP);
+                java.sql.Statement statement1 = connection.createStatement();
+                statement1.executeUpdate(sqlupdateAddSP);
+                
+                SPSelected2.forEach(loadlist::remove);
+                Table_SelectedSP_AddMO.getItems().setAll(loadlist);
+                calculate();
+                
+                String sqlupdatePrice = "UPDATE `maintenance_operation` SET `MO_COST` = " + Txfiled_MOCost_AddMO.getText() + ", `SP_COST` = " + Txfiled_SPCost_AddMO.getText() + " WHERE `MO_NBER` = " + Txfiled_MOnum_AddMO.getText() + ";";
+                
+                statement1.executeUpdate(sqlupdatePrice);
+                //JOptionPane.showMessageDialog(null, "تم تعديل سعر قطعة الغيار", "Alert", JOptionPane.INFORMATION_MESSAGE);
+                
+                if (count_Language == 0) {
+                    Txfiled_SpSerialN_AddMO.setText("Serial number");
+                    Txfiled_SpPrice_AddMO.setText("Cost");
+                    //alert2.setContentText("The price of the spare part has been adjusted");
+                    
+                    alert2.setContentText("Changes saved successfully");
+                } else {
+                    Txfiled_SpSerialN_AddMO.setText("الرقم التسلسلي");
+                    Txfiled_SpPrice_AddMO.setText("السعر");
+                    alert2.setContentText("تم حفظ التعديلات بنجاح");
+                    
+                }
+                
+                alert2.showAndWait();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
             }
-
-            alert2.showAndWait();
         }
     }
 
@@ -232,56 +236,65 @@ public class Controller_AddMO implements Initializable {
     }
 
     @FXML
-    private void M_Btn_ReomveSP_AddMo(ActionEvent event) throws SQLException {
-        alert2.setTitle(null);
-        alert2.setHeaderText(null);
-
-        AllSP2 = Table_SelectedSP_AddMO.getItems();
-        SPSelected2 = Table_SelectedSP_AddMO.getSelectionModel().getSelectedItems();
-
-        Txfiled_SpSerialN_AddMO.setText(SPSelected2.get(0).getSP_SN());
-        //_____________________
-        //for (AddSP addSP : Table_AddSP_AddMO.getSelectionModel().getSelectedItems()) {
-        for (int i = 0; i < SPSelected2.size(); i++) {
-            //for(int i =1;i<=1; i++){
-            //list.clear();
-            // list.add(new Controller_AddMO.AddSP(SPSelected2.get(i).getSP2_Number(), SPSelected2.get(i).getSP2_Name(), SPSelected2.get(i).getSP2_Description(), 
-            //SPSelected2.get(i).getSP_Price2()));
-            // Table_AddSP_AddMO.setItems(list);
-            String sqlDeletSP = "DELETE FROM `require` " + " WHERE MO_NBER= " + Txfiled_MOnum_AddMO.getText() + " AND SP_NBER=" + SPSelected2.get(i).getSP2_Number()
-                    + " AND Seq_Nber=" + SPSelected2.get(i).getSP_Seq_Nber();
-            System.out.println(sqlDeletSP);
-            //SPSelected2.get(i).ge
-            String sqlupdateSP = "UPDATE `spare_parts` SET `SP_Quantity` = SP_Quantity+1 WHERE `spare_parts`.`SP_NBER` =" + SPSelected2.get(i).getSP2_Number();
-
-            System.out.println(sqlupdateSP);
-            java.sql.Statement statement1 = connection.createStatement();
-            statement1.executeUpdate(sqlDeletSP);
-            statement1.executeUpdate(sqlupdateSP);
-
-            //JOptionPane.showMessageDialog(null, "تم ازالة  " + SPSelected2.get(0).getSP2_Name() + "من عملية الصيانة", "Alert", JOptionPane.INFORMATION_MESSAGE);
-            if (count_Language == 0) {
-                alert2.setContentText("The " + SPSelected2.get(0).getSP2_Name() + " has been removed from the MO");
-            } else {
-                alert2.setContentText("تم ازالة  " + SPSelected2.get(0).getSP2_Name() + "من عملية الصيانة");
-
+    private void M_Btn_ReomveSP_AddMo(ActionEvent event)  {
+        try {
+            alert2.setTitle(null);
+            alert2.setHeaderText(null);
+            
+            AllSP2 = Table_SelectedSP_AddMO.getItems();
+            SPSelected2 = Table_SelectedSP_AddMO.getSelectionModel().getSelectedItems();
+            
+            Txfiled_SpSerialN_AddMO.setText(SPSelected2.get(0).getSP_SN());
+            //_____________________
+            //for (AddSP addSP : Table_AddSP_AddMO.getSelectionModel().getSelectedItems()) {
+            for (int i = 0; i < SPSelected2.size(); i++) {
+                try {
+                    //for(int i =1;i<=1; i++){
+                    //list.clear();
+                    // list.add(new Controller_AddMO.AddSP(SPSelected2.get(i).getSP2_Number(), SPSelected2.get(i).getSP2_Name(), SPSelected2.get(i).getSP2_Description(),
+                    //SPSelected2.get(i).getSP_Price2()));
+                    // Table_AddSP_AddMO.setItems(list);
+                    String sqlDeletSP = "DELETE FROM `require` " + " WHERE MO_NBER= " + Txfiled_MOnum_AddMO.getText() + " AND SP_NBER=" + SPSelected2.get(i).getSP2_Number()
+                            + " AND Seq_Nber=" + SPSelected2.get(i).getSP_Seq_Nber();
+                    System.out.println(sqlDeletSP);
+                    //SPSelected2.get(i).ge
+                    String sqlupdateSP = "UPDATE `spare_parts` SET `SP_Quantity` = SP_Quantity+1 WHERE `spare_parts`.`SP_NBER` =" + SPSelected2.get(i).getSP2_Number();
+                    
+                    System.out.println(sqlupdateSP);
+                    java.sql.Statement statement1 = connection.createStatement();
+                    statement1.executeUpdate(sqlDeletSP);
+                    statement1.executeUpdate(sqlupdateSP);
+                    
+                    //JOptionPane.showMessageDialog(null, "تم ازالة  " + SPSelected2.get(0).getSP2_Name() + "من عملية الصيانة", "Alert", JOptionPane.INFORMATION_MESSAGE);
+                    if (count_Language == 0) {
+                        alert2.setContentText("The " + SPSelected2.get(0).getSP2_Name() + " has been removed from the MO");
+                    } else {
+                        alert2.setContentText("تم ازالة  " + SPSelected2.get(0).getSP2_Name() + "من عملية الصيانة");
+                        
+                    }
+                    
+                    alert2.showAndWait();
+                }
+                //loadData();
+                //}
+                catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, ex);
+                }
             }
-
-            alert2.showAndWait();
+            
+            SPSelected2.forEach(loadlist::remove);
+            Table_SelectedSP_AddMO.getItems().setAll(loadlist);
+            loadData();
+            calculate();
+            String sqlupdatePrice = "UPDATE `maintenance_operation` SET `MO_COST` = " + Txfiled_MOCost_AddMO.getText() + ", `SP_COST` = " + Txfiled_SPCost_AddMO.getText() + " WHERE `MO_NBER` = " + Txfiled_MOnum_AddMO.getText() + ";";
+            java.sql.Statement statement1 = connection.createStatement();
+            statement1.executeUpdate(sqlupdatePrice);
+            //DELETE FROM `require` WHERE `require`.`MO_NBER` = 7 AND `require`.`SP_NBER` = 3;
+            
+            // Txfiled_SPCost_AddMO.setText(String.valueOf(spcost));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
         }
-        //loadData();
-        //}
-
-        SPSelected2.forEach(loadlist::remove);
-        Table_SelectedSP_AddMO.getItems().setAll(loadlist);
-        loadData();
-        calculate();
-        String sqlupdatePrice = "UPDATE `maintenance_operation` SET `MO_COST` = " + Txfiled_MOCost_AddMO.getText() + ", `SP_COST` = " + Txfiled_SPCost_AddMO.getText() + " WHERE `MO_NBER` = " + Txfiled_MOnum_AddMO.getText() + ";";
-        java.sql.Statement statement1 = connection.createStatement();
-        statement1.executeUpdate(sqlupdatePrice);
-        //DELETE FROM `require` WHERE `require`.`MO_NBER` = 7 AND `require`.`SP_NBER` = 3;
-
-        // Txfiled_SPCost_AddMO.setText(String.valueOf(spcost));
     }
     //DELETE FROM `require` WHERE `SERIAL_NUMBER`=HH-2fC
 
@@ -307,187 +320,191 @@ public class Controller_AddMO implements Initializable {
     String MO_State = "";
 
     //String INVOICE_NBER3=null;
-    public void Search_MO(int MO) throws SQLException {
+    public void Search_MO(int MO) {
 
-        Connection connection = connectionClass.getConnection();
-        Statement st = connection.createStatement();
-        st.executeQuery("SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE MO_NBER = " + MO);
-
-        ResultSet rs = st.getResultSet();
-        //st = connection.prepareCall(sql);
-
-        if (rs.first()) {
-
-            INVOICE_NBER = rs.getString("INVOICE_NBER");
-            System.out.println("i am =" + INVOICE_NBER);
-
-            System.out.println("INVOICE_NBER======" + INVOICE_NBER + ".");
-
-            // System.out.println("INVOICE_NBER======333333333"+INVOICE_NBER3+".");
-            System.out.println("THIS MO NUMBER IN DB== " + rs.getString("MO_NBER"));
-            System.out.println("THIS MO NUMBER IN FILED== " + Txfiled_MOnum_AddMO.getText());
-
-            count = 2;
-            Txfiled_MOnum_AddMO.setText(String.valueOf(MO));
-            Txfiled_MOnum_AddMO.setDisable(true);
-            Txfiled_CusName_AddMO.setText(rs.getString("CUS_NAME"));
-            Txfiled_ProplemDisc_AddMO.setText(rs.getString("PROBLEM_DESC"));
-            Txfiled_CusMnum_AddMO.setText(rs.getString("CUS_MOBILE_NBER"));
-            Txfiled_SPCost_AddMO.setText(rs.getString("SP_COST"));
-            Txfiled_MOCost_AddMO.setText(rs.getString("MO_COST"));
-            Txfiled_DevSerialN_AddMO.setText(rs.getString("DEVICE_SN"));
-            Txfiled_DevDiscription_AddMO.setText(rs.getString("DEVICE_DESC"));
-
-            LocalDate WARRANTYDate = LocalDate.parse(rs.getString("WARRANTY"));
-            LocalDate STARTINGDate = LocalDate.parse(rs.getString("STARTING_DATE"));
-            LocalDate ENDINGDate = LocalDate.parse(rs.getString("ENDING_DATE"));
-
-            Date_Warranty_AddMO.setValue(WARRANTYDate);
-            Date_StartMo_AddMO.setValue(STARTINGDate);
-            Date_EndMO_AddMO.setValue(ENDINGDate);
-
-            //List<String> State = new ArrayList<>();
-            //State.add(rs.getString("STATE"));
-            //Selct_MoStatus_AddMO.setItems(FXCollections.observableArrayList(State));
-            Selct_MoStatus_AddMO.getSelectionModel().select(rs.getString("STATE"));
-            MO_State = rs.getString("STATE");
-
-            //List<String> Tec = new ArrayList<>();
-            //Tec.add(rs.getString("EMPLOYEE_ID"));
-            System.out.println("PPPPPPPPPPPPPP " + rs.getString("EMP_NAME"));
-            Selct_Techichan_AddMO.getSelectionModel().select(rs.getString("EMP_NAME"));
-
-            if (rs.getString("STATE").equals("created") || rs.getString("STATE").equals("تم الإنشاء")) {
-                if (count_Language == 0) {
-                    Selct_MoStatus_AddMO.getSelectionModel().select("created");
-                } else {
-                    Selct_MoStatus_AddMO.getSelectionModel().select("تم الإنشاء");
-
-                }
-            } else if (rs.getString("STATE").equals("approved") || rs.getString("STATE").equals("تم الموافقة")) {
-                if (count_Language == 0) {
-                    Selct_MoStatus_AddMO.getSelectionModel().select("approved");
-                } else {
-                    Selct_MoStatus_AddMO.getSelectionModel().select("تم الموافقة");
-
-                }
-
-            } else if (rs.getString("STATE").equals("مرفوضة") || rs.getString("STATE").equals("disapproved")) {
-                if (count_Language == 0) {
-                    Selct_MoStatus_AddMO.getSelectionModel().select("disapproved");
-                } else {
-                    Selct_MoStatus_AddMO.getSelectionModel().select("مرفوضة");
-
-                }
-            } else if (rs.getString("STATE").equals("لا يمكن القيام بعملية الصيانة") || rs.getString("STATE").equals("cannot be done")) {
-                if (count_Language == 0) {
-                    Selct_MoStatus_AddMO.getSelectionModel().select("cannot be done");
-                } else {
-                    Selct_MoStatus_AddMO.getSelectionModel().select("لا يمكن القيام بعملية الصيانة");
-
-                }
-            } else if (rs.getString("STATE").equals("تم الكشف عن عيوب أخرى") || rs.getString("STATE").equals("other defects has been detected")) {
-                if (count_Language == 0) {
-                    Selct_MoStatus_AddMO.getSelectionModel().select("other defects has been detected");
-                } else {
-                    Selct_MoStatus_AddMO.getSelectionModel().select("تم الكشف عن عيوب أخرى");
-
-                }
-            } else if (rs.getString("STATE").equals("تم الاصلاح") || rs.getString("STATE").equals("repaired")) {
-                if (count_Language == 0) {
-                    Selct_MoStatus_AddMO.getSelectionModel().select("repaired");
-                } else {
-                    Selct_MoStatus_AddMO.getSelectionModel().select("تم الاصلاح");
-
-                }
-            } else if (rs.getString("STATE").equals("تحت الصيانة") || rs.getString("STATE").equals("under maintenance")) {
-                if (count_Language == 0) {
-                    Selct_MoStatus_AddMO.getSelectionModel().select("under maintenance");
-                } else {
-                    Selct_MoStatus_AddMO.getSelectionModel().select("تحت الصيانة");
-
-                }
-            }
-            Btn_Delete_AddMo.setDisable(false);
-            Btn_Save_AddMo.setDisable(false);
-            Btn_Print_AddMo.setDisable(false);
-            Txfiled_CusName_AddMO.setDisable(true);
-            Btn_Cancle_AddMo.setDisable(false);
-            Btn_AddSP_AddMo.setDisable(false);
-            Btn_ReomveSP_AddMo.setDisable(false);
-
-            if (rs.getString("STATE").equals("دفعت") || rs.getString("STATE").equals("paid")) {
-                Btn_Delete_AddMo.setDisable(true);
-                Btn_Save_AddMo.setDisable(true);
-                Btn_Print_AddMo.setDisable(true);
-                Btn_Save_AddMo.setDisable(true);
-                Btn_Search_AddMo.setDisable(true);
-                Btn_AddSP_AddMo.setDisable(true);
-                Btn_ReomveSP_AddMo.setDisable(true);
-                Txfiled_SpSerialN_AddMO.setDisable(true);
-                Txfiled_SpPrice_AddMO.setDisable(true);
-                Txfiled_MOCost_AddMO.setDisable(true);
-                if (count_Language == 0) {
-
-                    Lable_ifPaid_AddMO.setText("The MO is paid, can not be modified");
-                    Selct_MoStatus_AddMO.getSelectionModel().select("paid");
-                } else {
-                    Selct_MoStatus_AddMO.getSelectionModel().select("دفعت");
-                    Lable_ifPaid_AddMO.setText("عملية الصيانة مدفوعة، لا يمكن التعديل عليها");
-
-                }
-            }
-
-            //loadlist.clear();
-            loadSpSelected(MO);
-
-            calculate();
-
-            //java.sql.Statement statement1 = connection.createStatement();
-            //statement1.executeQuery(sql);
-        } else {
-
-            Statement st2 = connection.createStatement();
-                        Statement st3 = connection.createStatement();
-
-            st2.executeQuery("SELECT * FROM `maintenance_operation` ORDER BY `MO_NBER` DESC LIMIT 1");
-            ResultSet rs2 = st2.getResultSet();
-            //System.out.println("FFFFFFFFFFFFFFFFF"+rs2.getString("MO_NBER"));
-            if (rs2.first()) {
-                st3.executeQuery("SELECT * FROM `maintenance_operation_backup` ORDER BY `MO_NBER` DESC LIMIT 1");
-                ResultSet rs3 = st3.getResultSet();
-               
-                int MO_NBER = Integer.parseInt(rs2.getString("MO_NBER"));
+        try {
+            Connection connection = connectionClass.getConnection();
+            Statement st = connection.createStatement();
+            st.executeQuery("SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE MO_NBER = " + MO);
+            
+            ResultSet rs = st.getResultSet();
+            //st = connection.prepareCall(sql);
+            
+            if (rs.first()) {
                 
-                 if (rs3.first()) {
-                int MO_NBER_backup = Integer.parseInt(rs3.getString("MO_NBER"));
-
-                if (MO_NBER > MO_NBER_backup) {
-                    monumber = MO_NBER;
-                } else {
-                    monumber =MO_NBER_backup;
-
-                }}else{ monumber = MO_NBER;}
-                System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-                //System.out.println();
-                count = 1;
-                monumber++;
-                System.out.println(monumber);
-                Txfiled_MOnum_AddMO.setText(String.valueOf(monumber));
+                INVOICE_NBER = rs.getString("INVOICE_NBER");
+                System.out.println("i am =" + INVOICE_NBER);
+                
+                System.out.println("INVOICE_NBER======" + INVOICE_NBER + ".");
+                
+                // System.out.println("INVOICE_NBER======333333333"+INVOICE_NBER3+".");
+                System.out.println("THIS MO NUMBER IN DB== " + rs.getString("MO_NBER"));
+                System.out.println("THIS MO NUMBER IN FILED== " + Txfiled_MOnum_AddMO.getText());
+                
+                count = 2;
+                Txfiled_MOnum_AddMO.setText(String.valueOf(MO));
                 Txfiled_MOnum_AddMO.setDisable(true);
-                //Txfiled_MOnum_AddMO.clear();
-                Btn_Delete_AddMo.setDisable(true);
-                Btn_Cancle_AddMo.setDisable(false);
+                Txfiled_CusName_AddMO.setText(rs.getString("CUS_NAME"));
+                Txfiled_ProplemDisc_AddMO.setText(rs.getString("PROBLEM_DESC"));
+                Txfiled_CusMnum_AddMO.setText(rs.getString("CUS_MOBILE_NBER"));
+                Txfiled_SPCost_AddMO.setText(rs.getString("SP_COST"));
+                Txfiled_MOCost_AddMO.setText(rs.getString("MO_COST"));
+                Txfiled_DevSerialN_AddMO.setText(rs.getString("DEVICE_SN"));
+                Txfiled_DevDiscription_AddMO.setText(rs.getString("DEVICE_DESC"));
+                
+                LocalDate WARRANTYDate = LocalDate.parse(rs.getString("WARRANTY"));
+                LocalDate STARTINGDate = LocalDate.parse(rs.getString("STARTING_DATE"));
+                LocalDate ENDINGDate = LocalDate.parse(rs.getString("ENDING_DATE"));
+                
+                Date_Warranty_AddMO.setValue(WARRANTYDate);
+                Date_StartMo_AddMO.setValue(STARTINGDate);
+                Date_EndMO_AddMO.setValue(ENDINGDate);
+                
+                //List<String> State = new ArrayList<>();
+                //State.add(rs.getString("STATE"));
+                //Selct_MoStatus_AddMO.setItems(FXCollections.observableArrayList(State));
+                Selct_MoStatus_AddMO.getSelectionModel().select(rs.getString("STATE"));
+                MO_State = rs.getString("STATE");
+                
+                //List<String> Tec = new ArrayList<>();
+                //Tec.add(rs.getString("EMPLOYEE_ID"));
+                System.out.println("PPPPPPPPPPPPPP " + rs.getString("EMP_NAME"));
+                Selct_Techichan_AddMO.getSelectionModel().select(rs.getString("EMP_NAME"));
+                
+                if (rs.getString("STATE").equals("created") || rs.getString("STATE").equals("تم الإنشاء")) {
+                    if (count_Language == 0) {
+                        Selct_MoStatus_AddMO.getSelectionModel().select("created");
+                    } else {
+                        Selct_MoStatus_AddMO.getSelectionModel().select("تم الإنشاء");
+                        
+                    }
+                } else if (rs.getString("STATE").equals("approved") || rs.getString("STATE").equals("تم الموافقة")) {
+                    if (count_Language == 0) {
+                        Selct_MoStatus_AddMO.getSelectionModel().select("approved");
+                    } else {
+                        Selct_MoStatus_AddMO.getSelectionModel().select("تم الموافقة");
+                        
+                    }
+                    
+                } else if (rs.getString("STATE").equals("مرفوضة") || rs.getString("STATE").equals("disapproved")) {
+                    if (count_Language == 0) {
+                        Selct_MoStatus_AddMO.getSelectionModel().select("disapproved");
+                    } else {
+                        Selct_MoStatus_AddMO.getSelectionModel().select("مرفوضة");
+                        
+                    }
+                } else if (rs.getString("STATE").equals("لا يمكن القيام بعملية الصيانة") || rs.getString("STATE").equals("cannot be done")) {
+                    if (count_Language == 0) {
+                        Selct_MoStatus_AddMO.getSelectionModel().select("cannot be done");
+                    } else {
+                        Selct_MoStatus_AddMO.getSelectionModel().select("لا يمكن القيام بعملية الصيانة");
+                        
+                    }
+                } else if (rs.getString("STATE").equals("تم الكشف عن عيوب أخرى") || rs.getString("STATE").equals("other defects has been detected")) {
+                    if (count_Language == 0) {
+                        Selct_MoStatus_AddMO.getSelectionModel().select("other defects has been detected");
+                    } else {
+                        Selct_MoStatus_AddMO.getSelectionModel().select("تم الكشف عن عيوب أخرى");
+                        
+                    }
+                } else if (rs.getString("STATE").equals("تم الاصلاح") || rs.getString("STATE").equals("repaired")) {
+                    if (count_Language == 0) {
+                        Selct_MoStatus_AddMO.getSelectionModel().select("repaired");
+                    } else {
+                        Selct_MoStatus_AddMO.getSelectionModel().select("تم الاصلاح");
+                        
+                    }
+                } else if (rs.getString("STATE").equals("تحت الصيانة") || rs.getString("STATE").equals("under maintenance")) {
+                    if (count_Language == 0) {
+                        Selct_MoStatus_AddMO.getSelectionModel().select("under maintenance");
+                    } else {
+                        Selct_MoStatus_AddMO.getSelectionModel().select("تحت الصيانة");
+                        
+                    }
+                }
+                Btn_Delete_AddMo.setDisable(false);
                 Btn_Save_AddMo.setDisable(false);
                 Btn_Print_AddMo.setDisable(false);
                 Txfiled_CusName_AddMO.setDisable(true);
+                Btn_Cancle_AddMo.setDisable(false);
+                Btn_AddSP_AddMo.setDisable(false);
+                Btn_ReomveSP_AddMo.setDisable(false);
+                
+                if (rs.getString("STATE").equals("دفعت") || rs.getString("STATE").equals("paid")) {
+                    Btn_Delete_AddMo.setDisable(true);
+                    Btn_Save_AddMo.setDisable(true);
+                    Btn_Print_AddMo.setDisable(true);
+                    Btn_Save_AddMo.setDisable(true);
+                    Btn_Search_AddMo.setDisable(true);
+                    Btn_AddSP_AddMo.setDisable(true);
+                    Btn_ReomveSP_AddMo.setDisable(true);
+                    Txfiled_SpSerialN_AddMO.setDisable(true);
+                    Txfiled_SpPrice_AddMO.setDisable(true);
+                    Txfiled_MOCost_AddMO.setDisable(true);
+                    if (count_Language == 0) {
+                        
+                        Lable_ifPaid_AddMO.setText("The MO is paid, can not be modified");
+                        Selct_MoStatus_AddMO.getSelectionModel().select("paid");
+                    } else {
+                        Selct_MoStatus_AddMO.getSelectionModel().select("دفعت");
+                        Lable_ifPaid_AddMO.setText("عملية الصيانة مدفوعة، لا يمكن التعديل عليها");
+                        
+                    }
+                }
+                
+                //loadlist.clear();
+                loadSpSelected(MO);
+                
+                calculate();
+                
+                //java.sql.Statement statement1 = connection.createStatement();
+                //statement1.executeQuery(sql);
+            } else {
+                
+                Statement st2 = connection.createStatement();
+                Statement st3 = connection.createStatement();
+                
+                st2.executeQuery("SELECT * FROM `maintenance_operation` ORDER BY `MO_NBER` DESC LIMIT 1");
+                ResultSet rs2 = st2.getResultSet();
+                //System.out.println("FFFFFFFFFFFFFFFFF"+rs2.getString("MO_NBER"));
+                if (rs2.first()) {
+                    st3.executeQuery("SELECT * FROM `maintenance_operation_backup` ORDER BY `MO_NBER` DESC LIMIT 1");
+                    ResultSet rs3 = st3.getResultSet();
+                    
+                    int MO_NBER = Integer.parseInt(rs2.getString("MO_NBER"));
+                    
+                    if (rs3.first()) {
+                        int MO_NBER_backup = Integer.parseInt(rs3.getString("MO_NBER"));
+                        
+                        if (MO_NBER > MO_NBER_backup) {
+                            monumber = MO_NBER;
+                        } else {
+                            monumber =MO_NBER_backup;
+                            
+                        }}else{ monumber = MO_NBER;}
+                    System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+                    //System.out.println();
+                    count = 1;
+                    monumber++;
+                    System.out.println(monumber);
+                    Txfiled_MOnum_AddMO.setText(String.valueOf(monumber));
+                    Txfiled_MOnum_AddMO.setDisable(true);
+                    //Txfiled_MOnum_AddMO.clear();
+                    Btn_Delete_AddMo.setDisable(true);
+                    Btn_Cancle_AddMo.setDisable(false);
+                    Btn_Save_AddMo.setDisable(false);
+                    Btn_Print_AddMo.setDisable(false);
+                    Txfiled_CusName_AddMO.setDisable(true);
+                }
+                
             }
-
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, ex);
         }
     }
 
     public void loadInTO(String MO_Nber, String CUS_NAME, String PROBLEM_DESC, String CUS_MOBILE_NBER, String SP_COST, String MO_COST, String DEVICE_SN, String DEVICE_DESC, String WARRANTY, String STARTING_DATE, String ENDING_DATE,
-            String STATE, String EMP_NAME) throws SQLException {
+            String STATE, String EMP_NAME)  {
         count = 2;
 
         Txfiled_MOnum_AddMO.setDisable(true);
@@ -553,7 +570,7 @@ public class Controller_AddMO implements Initializable {
                 }
 
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, ex);
 
             }
             Table_AddSP_AddMO.getItems().setAll(list);
@@ -571,7 +588,7 @@ public class Controller_AddMO implements Initializable {
                     Txfiled_CusName_AddMO.clear();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(Controller_AddMO.class.getName()).log(Level.SEVERE, null, ex);
+               JOptionPane.showMessageDialog(null, ex);
             }
 
         }
@@ -579,100 +596,105 @@ public class Controller_AddMO implements Initializable {
     }
 
     @FXML
-    private void M_Btn_AddSP_AddMo(ActionEvent event) throws SQLException {
-        alert2.setTitle(null);
-        alert2.setHeaderText(null);
-        ObservableList<Controller_AddMO.AddSP> SPSelected, AllSP;
-        AllSP = Table_AddSP_AddMO.getItems();
-        SPSelected = Table_AddSP_AddMO.getSelectionModel().getSelectedItems();
-        // ObservableList<Controller_AddMO.SelectedSP> SPSelected3, AllSP3;
-        //AllSP3 = Table_SelectedSP_AddMO.getItems();
-        ///SPSelected3 = Table_SelectedSP_AddMO.getSelectionModel().getSelectedItems();
-
-        //_____________________
-        //for (AddSP addSP : Table_AddSP_AddMO.getSelectionModel().getSelectedItems()) {
-        for (int i = 0; i < SPSelected.size(); i++) {
-            System.out.println(SPSelected.size());
-            //for(int i =1;i<=1; i++){
-
-            int a = 0;
-            int seqNumber = 1;
-            for (SelectedSP loadlist1 : loadlist) {
-
-                System.out.println("i==== " + a);
-                System.out.println(SPSelected.get(0).getSP_Name());
-                System.out.println(loadlist.get(a).getSP2_Name());
-                System.out.println("SPSelected size === " + SPSelected.size());
-                System.out.println("load size === " + loadlist.size());
-                if (loadlist.get(a).getSP2_Name().equals(SPSelected.get(0).getSP_Name())) {
-                    loadlist.get(a).getSP_Seq_Nber();
-                    System.out.println("seq for a load ==  " + loadlist.get(a).getSP_Seq_Nber());
-                    seqNumber = loadlist.get(a).getSP_Seq_Nber() + 1;
-                    System.out.println("seqNumber== " + seqNumber);
+    private void M_Btn_AddSP_AddMo(ActionEvent event)  {
+        try {
+            alert2.setTitle(null);
+            alert2.setHeaderText(null);
+            ObservableList<Controller_AddMO.AddSP> SPSelected, AllSP;
+            AllSP = Table_AddSP_AddMO.getItems();
+            SPSelected = Table_AddSP_AddMO.getSelectionModel().getSelectedItems();
+            // ObservableList<Controller_AddMO.SelectedSP> SPSelected3, AllSP3;
+            //AllSP3 = Table_SelectedSP_AddMO.getItems();
+            ///SPSelected3 = Table_SelectedSP_AddMO.getSelectionModel().getSelectedItems();
+            //_____________________
+            //for (AddSP addSP : Table_AddSP_AddMO.getSelectionModel().getSelectedItems()) {
+            for (int i = 0; i < SPSelected.size(); i++) {
+                System.out.println(SPSelected.size());
+                //for(int i =1;i<=1; i++){
+                
+                int a = 0;
+                int seqNumber = 1;
+                for (SelectedSP loadlist1 : loadlist) {
+                    
+                    System.out.println("i==== " + a);
+                    System.out.println(SPSelected.get(0).getSP_Name());
+                    System.out.println(loadlist.get(a).getSP2_Name());
+                    System.out.println("SPSelected size === " + SPSelected.size());
+                    System.out.println("load size === " + loadlist.size());
+                    if (loadlist.get(a).getSP2_Name().equals(SPSelected.get(0).getSP_Name())) {
+                        loadlist.get(a).getSP_Seq_Nber();
+                        System.out.println("seq for a load ==  " + loadlist.get(a).getSP_Seq_Nber());
+                        seqNumber = loadlist.get(a).getSP_Seq_Nber() + 1;
+                        System.out.println("seqNumber== " + seqNumber);
+                    }
+                    a++;
+                    
                 }
-                a++;
-
-            }
-            if (SPSelected.get(0).getSP_Quantity() > 0) {
-
-                loadlist.add(new Controller_AddMO.SelectedSP(SPSelected.get(0).getSP_Number(), SPSelected.get(0).getSP_Name(),
-                        SPSelected.get(0).getSP_Description(), SPSelected.get(0).getSP_Price(), "null", seqNumber));
-                //AllSP3.add()
-
-                String sql1 = "INSERT INTO `require` VALUES(" + Txfiled_MOnum_AddMO.getText() + ",'" + SPSelected.get(0).getSP_Number() + "','"
-                        + seqNumber + "','" + "Null'" + ",'" + SPSelected.get(0).getSP_Price() + "')";
-                System.out.println(sql1);
-
-                String sqlupdateSP = "UPDATE `spare_parts` SET `SP_QUANTITY` = SP_Quantity-1 WHERE `spare_parts`.`SP_NBER` =" + SPSelected.get(0).getSP_Number();
-                System.out.println(sqlupdateSP);
-
-                java.sql.Statement statement1 = connection.createStatement();
-                statement1.executeUpdate(sql1);
-                statement1.executeUpdate(sqlupdateSP);
-                // JOptionPane.showMessageDialog(null, "تم اضافة  " + SPSelected.get(0).getSP_Name() + "لعملية الصيانة", "Alert", JOptionPane.INFORMATION_MESSAGE);
-
-                if (count_Language == 0) {
-                    alert2.setContentText("A " + SPSelected.get(0).getSP_Name() + " has been added to the MO");
+                if (SPSelected.get(0).getSP_Quantity() > 0) {
+                    
+                    try {
+                        loadlist.add(new Controller_AddMO.SelectedSP(SPSelected.get(0).getSP_Number(), SPSelected.get(0).getSP_Name(),
+                                SPSelected.get(0).getSP_Description(), SPSelected.get(0).getSP_Price(), "null", seqNumber));
+                        //AllSP3.add()
+                    
+                        String sql1 = "INSERT INTO `require` VALUES(" + Txfiled_MOnum_AddMO.getText() + ",'" + SPSelected.get(0).getSP_Number() + "','"
+                                + seqNumber + "','" + "Null'" + ",'" + SPSelected.get(0).getSP_Price() + "')";
+                        System.out.println(sql1);
+                        
+                        String sqlupdateSP = "UPDATE `spare_parts` SET `SP_QUANTITY` = SP_Quantity-1 WHERE `spare_parts`.`SP_NBER` =" + SPSelected.get(0).getSP_Number();
+                        System.out.println(sqlupdateSP);
+                        
+                        java.sql.Statement statement1 = connection.createStatement();
+                        statement1.executeUpdate(sql1);
+                        statement1.executeUpdate(sqlupdateSP);
+                        // JOptionPane.showMessageDialog(null, "تم اضافة  " + SPSelected.get(0).getSP_Name() + "لعملية الصيانة", "Alert", JOptionPane.INFORMATION_MESSAGE);
+                        
+                        if (count_Language == 0) {
+                            alert2.setContentText("A " + SPSelected.get(0).getSP_Name() + " has been added to the MO");
+                        } else {
+                            alert2.setContentText("تم اضافة  " + SPSelected.get(0).getSP_Name() + "لعملية الصيانة");
+                            
+                        }
+                        alert2.showAndWait();
+                        
+                        loadData();
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(null, ex);
+                    }
                 } else {
-                    alert2.setContentText("تم اضافة  " + SPSelected.get(0).getSP_Name() + "لعملية الصيانة");
-
+                    Alert alert3 = new Alert(Alert.AlertType.WARNING);
+                    alert3.setTitle(null);
+                    alert3.setHeaderText(null);
+                    //JOptionPane.showMessageDialog(null, "Wrong !!! .", "Alert", JOptionPane.ERROR_MESSAGE);
+                    if (count_Language == 0) {
+                        alert3.setContentText("The spare part can not be added because it is out of stock");
+                    } else {
+                        alert3.setContentText("لا يمكنك اضافة قطعة الغيار , لقد نفذت كميتها");
+                        
+                    }
+                    
+                    alert3.showAndWait();
                 }
-                alert2.showAndWait();
-
-                loadData();
-            } else {
-                Alert alert3 = new Alert(Alert.AlertType.WARNING);
-                alert3.setTitle(null);
-                alert3.setHeaderText(null);
-                //JOptionPane.showMessageDialog(null, "Wrong !!! .", "Alert", JOptionPane.ERROR_MESSAGE);
-                if (count_Language == 0) {
-                    alert3.setContentText("The spare part can not be added because it is out of stock");
-                } else {
-                    alert3.setContentText("لا يمكنك اضافة قطعة الغيار , لقد نفذت كميتها");
-
-                }
-
-                alert3.showAndWait();
-            }
-
+                
+            }   //}
+            Table_SelectedSP_AddMO.getItems().setAll(loadlist);
+            calculate();
+            String sqlupdatePrice = "UPDATE `maintenance_operation` SET `MO_COST` = " + Txfiled_MOCost_AddMO.getText() + ", `SP_COST` = " + Txfiled_SPCost_AddMO.getText() + " WHERE `MO_NBER` = " + Txfiled_MOnum_AddMO.getText() + ";";
+            java.sql.Statement statement1 = connection.createStatement();
+            statement1.executeUpdate(sqlupdatePrice);
+            
+            // Txfiled_SPCost_AddMO.setText(String.valueOf(spcost));
+            //SPSelected.forEach(AllSP::remove);
+            //System.out.println(SPSelected);
+            //list.add(new Controller_AddMO.AddSP(aa, mid, mobile));
+            //list2.add(SPSelected.get(1));
+            //System.out.println(SPSelected.get(0).SP_Description);
+            //Table_AddSP_AddMO.getItems().setAll(list);
+            //Table_SelectedSP_AddMO.getItems().setAll(list2);
+            //SPSelected.forEach(AllSP::remove);
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, ex);
         }
-        //}
-        Table_SelectedSP_AddMO.getItems().setAll(loadlist);
-
-        calculate();
-        String sqlupdatePrice = "UPDATE `maintenance_operation` SET `MO_COST` = " + Txfiled_MOCost_AddMO.getText() + ", `SP_COST` = " + Txfiled_SPCost_AddMO.getText() + " WHERE `MO_NBER` = " + Txfiled_MOnum_AddMO.getText() + ";";
-        java.sql.Statement statement1 = connection.createStatement();
-        statement1.executeUpdate(sqlupdatePrice);
-
-        // Txfiled_SPCost_AddMO.setText(String.valueOf(spcost));
-        //SPSelected.forEach(AllSP::remove);
-        //System.out.println(SPSelected);
-        //list.add(new Controller_AddMO.AddSP(aa, mid, mobile));
-        //list2.add(SPSelected.get(1));
-        //System.out.println(SPSelected.get(0).SP_Description);
-        //Table_AddSP_AddMO.getItems().setAll(list);
-        //Table_SelectedSP_AddMO.getItems().setAll(list2);
-        //SPSelected.forEach(AllSP::remove);
     }
 
     void loadWindow(String loc, String title) {
@@ -689,25 +711,37 @@ public class Controller_AddMO implements Initializable {
     }
 
     @FXML
-    private void M_Btn_Print_AddMo(ActionEvent event) throws JRException, SQLException {
+    private void M_Btn_Print_AddMo(ActionEvent event) {
         if (count_Language == 0) {
             if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("paid")) {
-                String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('paid') AND m.MO_NBER ='" + Txfiled_MOnum_AddMO.getText() + "'";
-                System.out.println(query);
-                java.sql.Statement statement1 = connection.createStatement();
-
-                printreport print = new printreport();
-                String ss = Txfiled_MOnum_AddMO.getText();
-
-                print.showReportEN(ss);
+                try {
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('paid') AND m.MO_NBER ='" + Txfiled_MOnum_AddMO.getText() + "'";
+                    System.out.println(query);
+                    java.sql.Statement statement1 = connection.createStatement();
+                    
+                    printreport print = new printreport();
+                    String ss = Txfiled_MOnum_AddMO.getText();
+                    
+                    print.showReportEN(ss);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, ex);
+                } catch (JRException ex) {
+                   JOptionPane.showMessageDialog(null, ex);
+                }
             } else if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("created") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("approved") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("under maintenance") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("other defects has been detected")) {
-                String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected') AND m.MO_NBER = '" + Txfiled_MOnum_AddMO.getText() + "'";
-                System.out.println(query);
-                java.sql.Statement statement1 = connection.createStatement();
-
-                printreport print = new printreport();
-                String ff = Txfiled_MOnum_AddMO.getText();
-                print.financialassessmentEN(ff);
+                try {
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected') AND m.MO_NBER = '" + Txfiled_MOnum_AddMO.getText() + "'";
+                    System.out.println(query);
+                    java.sql.Statement statement1 = connection.createStatement();
+                    
+                    printreport print = new printreport();
+                    String ff = Txfiled_MOnum_AddMO.getText();
+                    print.financialassessmentEN(ff);
+                } catch (JRException ex) {
+                    JOptionPane.showMessageDialog(null, ex);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, ex);
+                }
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
@@ -718,22 +752,34 @@ public class Controller_AddMO implements Initializable {
             }
         } else if (count_Language == 1) {
             if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("paid")) {
-                String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('paid') AND m.MO_NBER ='" + Txfiled_MOnum_AddMO.getText() + "'";
-                System.out.println(query);
-                java.sql.Statement statement1 = connection.createStatement();
-
-                printreport print = new printreport();
-                String ss = Txfiled_MOnum_AddMO.getText();
-
-                print.showReport(ss);
+                try {
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('paid') AND m.MO_NBER ='" + Txfiled_MOnum_AddMO.getText() + "'";
+                    System.out.println(query);
+                    java.sql.Statement statement1 = connection.createStatement();
+                    
+                    printreport print = new printreport();
+                    String ss = Txfiled_MOnum_AddMO.getText();
+                    
+                    print.showReport(ss);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, ex);
+                } catch (JRException ex) {
+                    JOptionPane.showMessageDialog(null, ex);
+                }
             } else if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("created") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("approved") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("under maintenance") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("other defects has been detected")) {
-                String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected') AND m.MO_NBER = '" + Txfiled_MOnum_AddMO.getText() + "'";
-                System.out.println(query);
-                java.sql.Statement statement1 = connection.createStatement();
-
-                printreport print = new printreport();
-                String ff = Txfiled_MOnum_AddMO.getText();
-                print.financialassessment(ff);
+                try {
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected') AND m.MO_NBER = '" + Txfiled_MOnum_AddMO.getText() + "'";
+                    System.out.println(query);
+                    java.sql.Statement statement1 = connection.createStatement();
+                    
+                    printreport print = new printreport();
+                    String ff = Txfiled_MOnum_AddMO.getText();
+                    print.financialassessment(ff);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, ex);
+                } catch (JRException ex) {
+                 JOptionPane.showMessageDialog(null, ex);
+                }
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
@@ -754,10 +800,10 @@ public class Controller_AddMO implements Initializable {
     }
 
     @FXML
-    private void M_Btn_Delete_AddMo(ActionEvent event) throws SQLException {
+    private void M_Btn_Delete_AddMo(ActionEvent event)  {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("");
-        alert.setHeaderText("");
+        alert.setTitle(null);
+        alert.setHeaderText(null);
         if (count_Language == 0) {
             alert.setContentText("This MO will be deleted ");
         } else {
@@ -767,15 +813,19 @@ public class Controller_AddMO implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            // ... user chose OK
-            String deletSP = "DELETE FROM  `require` " + " WHERE MO_NBER= " + Txfiled_MOnum_AddMO.getText();
-            String sql1 = "DELETE FROM  `maintenance_operation` " + " WHERE MO_NBER= " + Txfiled_MOnum_AddMO.getText();
-            System.out.println(deletSP);
-            System.out.println(sql1);
-            java.sql.Statement statement1 = connection.createStatement();
-            statement1.executeUpdate(deletSP);
-            statement1.executeUpdate(sql1);
-            clear();
+            try {
+                // ... user chose OK
+                String deletSP = "DELETE FROM  `require` " + " WHERE MO_NBER= " + Txfiled_MOnum_AddMO.getText();
+                String sql1 = "DELETE FROM  `maintenance_operation` " + " WHERE MO_NBER= " + Txfiled_MOnum_AddMO.getText();
+                System.out.println(deletSP);
+                System.out.println(sql1);
+                java.sql.Statement statement1 = connection.createStatement();
+                statement1.executeUpdate(deletSP);
+                statement1.executeUpdate(sql1);
+                clear();
+            } catch (SQLException ex) {
+               JOptionPane.showMessageDialog(null, ex);
+            }
         }
 
     }
@@ -818,7 +868,7 @@ public class Controller_AddMO implements Initializable {
     }
 
     @FXML
-    private void M_Btn_Save_AddMo(ActionEvent event) throws SQLException, AddressException, MessagingException {
+    private void M_Btn_Save_AddMo(ActionEvent event)  {
         alert2.setTitle(null);
         alert2.setHeaderText(null);
         if (Txfiled_MOnum_AddMO.getText().isEmpty() || Txfiled_ProplemDisc_AddMO.getText().isEmpty() || Txfiled_CusMnum_AddMO.getText().isEmpty()
@@ -836,313 +886,346 @@ public class Controller_AddMO implements Initializable {
             }
             alert.showAndWait();
 
-        }
-        Statement st2 = connection.createStatement();
-        st2.executeQuery("SELECT * FROM `employee`");
-        ResultSet rs2 = st2.getResultSet();
-        //SELECT * FROM `employee` 
-        int IndexOFTech = 0;
-        for (int i = 0; i < ListOfTechichan.size(); i++) {
-
-            while (rs2.next()) {
-
-                //ListOfTechichan.add(rs2.getString("EMP_NAME"));
-                //البحث ب رقم العميل من الداتابيس
-                if (Selct_Techichan_AddMO.getValue().equals(rs2.getString("EMP_NAME"))) {
-
-                    IndexOFTech = Integer.parseInt(rs2.getString("EMPLOYEE_ID"));
-
-                }
-            }
-        }
-        if (Txfiled_CusName_AddMO.getText().isEmpty()) {
-
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-
-            if (count_Language == 0) {
-                alert.setContentText("Please enter valid customer");
-            } else {
-                alert.setContentText("الرجاء التاكد من اضافة عميل");
-
-            }
-            alert.showAndWait();
-
-        } else {
-
-            String AlertMessageAR = "";
-            String AlertMessageEN = "";
-
-//IndexOFTech++;
-            System.out.println("INDEX== " + IndexOFTech);
-            if (count == 1) {
-                System.out.println("Equal  insert");
-
-                String sql1 = "INSERT INTO `maintenance_operation` VALUES(" + monumber + "," + "'" + Selct_MoStatus_AddMO.getValue() + "'" + "," + "'" + Txfiled_MOCost_AddMO.getText()
-                        + "'" + "," + "'" + Txfiled_SPCost_AddMO.getText() + "'" + "," + "'" + Date_StartMo_AddMO.getValue() + "'" + "," + "'" + Date_EndMO_AddMO.getValue() + "'" + "," + "'"
-                        + Date_Warranty_AddMO.getValue() + "'" + "," + "'" + Txfiled_ProplemDisc_AddMO.getText() + "'" + "," + "'" + Txfiled_DevSerialN_AddMO.getText() + "'" + "," + "'" + Txfiled_DevDiscription_AddMO.getText()
-                        + "'" + "," + "'" + IndexOFTech + "'" + "," + "'" + Txfiled_CusMnum_AddMO.getText() + "', NULL ,NULL" + ")";
-                System.out.println(sql1);
-                java.sql.Statement statement1 = connection.createStatement();
-                statement1.executeUpdate(sql1);
-                if (count_Language == 0) {
-
-                    alert2.setContentText(" A new MO has been created");
-                } else {
-                    alert2.setContentText("تم انشاء عملية صيانة جديدة");
-
-                }
-
-                alert2.showAndWait();
-                Btn_AddSP_AddMo.setDisable(false);
-                Btn_ReomveSP_AddMo.setDisable(false);
-
-            } else if (count == 2) {
-
-                if (MO_State.equalsIgnoreCase("paid") || MO_State.equalsIgnoreCase("دفعت")) {
-
-                    System.out.println("لاتستطيع التعديل على عمليت الصيانة لانها مدفوعة");
-                    //ystem.out.println("????pls"+INVOICE_NBER.isEmpty());
-
-                } else {
-
-                    System.out.println("Equal  update");
-                    System.out.println(Selct_MoStatus_AddMO.getValue());
-                    String sql1 = "UPDATE  `maintenance_operation` SET STATE='" + Selct_MoStatus_AddMO.getValue() + "',MO_COST='" + Txfiled_MOCost_AddMO.getText() + "',SP_COST='" + Txfiled_SPCost_AddMO.getText()
-                            + "',STARTING_DATE='" + Date_StartMo_AddMO.getValue() + "',ENDING_DATE='" + Date_EndMO_AddMO.getValue() + "',WARRANTY='" + Date_Warranty_AddMO.getValue() + "',PROBLEM_DESC='" + Txfiled_ProplemDisc_AddMO.getText()
-                            + "',DEVICE_SN='" + Txfiled_DevSerialN_AddMO.getText() + "',DEVICE_DESC='" + Txfiled_DevDiscription_AddMO.getText() + "',EMPLOYEE_ID='" + IndexOFTech + "',CUS_MOBILE_NBER='" + Txfiled_CusMnum_AddMO.getText()
-                            + "' WHERE MO_NBER= '" + Txfiled_MOnum_AddMO.getText() + "'";
-                    System.out.println(sql1);
-                    java.sql.Statement statement1 = connection.createStatement();
-                    statement1.executeUpdate(sql1);
-                    System.out.println(Selct_MoStatus_AddMO.getValue().equalsIgnoreCase(sql1));
-
-                    if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("paid") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("دفعت")) {
-                        if (INVOICE_NBER != null) {
-                            /*
-                            alert2.setContentText("لدى العملية الحالية فاتورة بالفعل برقم "+INVOICE_NBER);
-                alert2.showAndWait();
-                             */
-
-                            //System.out.println(Txfiled_MOnum_AddMO.getText());
-                        } else {
-
-                            Statement st3 = connection.createStatement();
-                            st3.executeQuery("SELECT INVOICE_NBER FROM `maintenance_operation` ORDER BY `INVOICE_NBER` DESC LIMIT 1");
-                            ResultSet rs3 = st3.getResultSet();
-                            rs3.next();
-                            INVOICE_NBER = rs3.getString("INVOICE_NBER");
-                            if (INVOICE_NBER != null) {
-
-                                monumber = Integer.parseInt(rs3.getString("INVOICE_NBER"));
-                                monumber++;
-                                System.out.println(monumber);
-                            } else {
-                                st3.executeQuery("SELECT INVOICE_NBER FROM `maintenance_operation_backup` ORDER BY `INVOICE_NBER` DESC LIMIT 1");
-                                ResultSet rs4 = st3.getResultSet();
-                                rs4.next();
-                                INVOICE_NBER = rs4.getString("INVOICE_NBER");
-
-                                if (INVOICE_NBER != null) {
-
-                                    monumber = Integer.parseInt(rs4.getString("INVOICE_NBER"));
-                                    monumber++;
-                                    System.out.println(monumber);
-                                } else {
-                                    monumber = 1;
-                                }
-
-                            }
-
-                            System.out.println("PAAAAAAAAAID");
-                            String inv_num_date = "UPDATE  `maintenance_operation` SET INVOICE_DATE='" +/*المفروض  يكون التاريخ الحالي للنظام*/ LocalDate.now() + "',INVOICE_NBER='" + monumber + "' WHERE MO_NBER= '" + Txfiled_MOnum_AddMO.getText() + "'";
-                            java.sql.Statement statement2 = connection.createStatement();
-                            statement2.executeUpdate(inv_num_date);
-                            AlertMessageAR += "تم انشاء فاتورة لعملية الصيانة برقم " + monumber + '\n';
-
-                            //alert2.setContentText("تم انشاء فاتورة لعملية الصيانة برقم " + monumber);
-                            //alert2.showAndWait();
-                            //       alert2.setTitle(null);
-                            //alert2.setHeaderText(null);
+        }else{
+            try {
+                Statement st2 = connection.createStatement();
+                st2.executeQuery("SELECT * FROM `employee`");
+                ResultSet rs2 = st2.getResultSet();
+                //SELECT * FROM `employee`
+                int IndexOFTech = 0;
+                for (int i = 0; i < ListOfTechichan.size(); i++) {
+                    
+                    while (rs2.next()) {
+                        
+                        //ListOfTechichan.add(rs2.getString("EMP_NAME"));
+                        //البحث ب رقم العميل من الداتابيس
+                        if (Selct_Techichan_AddMO.getValue().equals(rs2.getString("EMP_NAME"))) {
+                            
+                            IndexOFTech = Integer.parseInt(rs2.getString("EMPLOYEE_ID"));
+                            
                         }
                     }
-
-                    if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("approved") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تم الموافقة")) {
-
-                        Statement st = connection.createStatement();
-                        String CusEmail_query = "SELECT CUS_EMAIL FROM `customer` Where CUS_MOBILE_NBER =" + Txfiled_CusMnum_AddMO.getText();
-                        System.out.println(CusEmail_query);
-                        st.executeQuery(CusEmail_query);
-                        ResultSet rs = st.getResultSet();
-                        String to = "";
-                        System.out.println("?>?>?> " + rs.isFirst());
-                        if (rs.first()) {
-                            System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-                            //System.out.println();
-
-                            to = rs.getString("CUS_EMAIL");
-                        } else {
-                        }
-
-                        String host = "smtp.gmail.com";
-                        String user = "abdualziz.alhazmi1997@gmail.com";
-                        String pass = "Azoz789!@#";
-
-                        String from = "abdualziz.alhazmi1997@gmail.com";
-                        String subject = "العنوان تم استلام الجهاز";
-                        String messageText = "تم استلام الجهاز";
-                        boolean sessionDebug = false;
-
-                        Properties props = System.getProperties();
-
-                        props.put("mail.smtp.starttls.enable", "true");
-                        props.put("mail.smtp.host", host);
-                        props.put("mail.smtp.port", "587");
-                        props.put("mail.smtp.auth", "true");
-                        props.put("mail.smtp.starttls.required", "true");
-
-                        java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
-                        Session mailSession = Session.getDefaultInstance(props, null);
-                        mailSession.setDebug(sessionDebug);
-                        Message msg = new MimeMessage(mailSession);
-                        msg.setFrom(new InternetAddress(from));
-                        InternetAddress[] address = {new InternetAddress(to)};
-                        msg.setRecipients(Message.RecipientType.TO, address);
-                        msg.setSubject(subject);
-                        msg.setSentDate(new Date());
-                        msg.setText(messageText);
-                        Transport transport = mailSession.getTransport("smtp");
-                        transport.connect(host, user, pass);
-                        transport.sendMessage(msg, msg.getAllRecipients());
-                        transport.close();
-
-                        System.out.println("message send successfully");
-
-                        //System.out.println(Txfiled_MOnum_AddMO.getText());
-                    } else if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("repaired") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تم الاصلاح")) {
-
-                        Statement st = connection.createStatement();
-                        String CusEmail_query = "SELECT CUS_EMAIL FROM `customer` Where CUS_MOBILE_NBER =" + Txfiled_CusMnum_AddMO.getText();
-                        System.out.println(CusEmail_query);
-                        st.executeQuery(CusEmail_query);
-                        ResultSet rs = st.getResultSet();
-                        String to = "";
-                        System.out.println("?>?>?> " + rs.isFirst());
-                        if (rs.first()) {
-                            System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-                            //System.out.println();
-
-                            to = rs.getString("CUS_EMAIL");
-                        } else {
-                        }
-
-                        String host = "smtp.gmail.com";
-                        String user = "abdualziz.alhazmi1997@gmail.com";
-                        String pass = "Azoz789!@#";
-
-                        String from = "abdualziz.alhazmi1997@gmail.com";
-                        String subject = "العنوان تعال استلم جهازك";
-                        String messageText = "تم تعال استلم جهازك";
-                        boolean sessionDebug = false;
-
-                        Properties props = System.getProperties();
-
-                        props.put("mail.smtp.starttls.enable", "true");
-                        props.put("mail.smtp.host", host);
-                        props.put("mail.smtp.port", "587");
-                        props.put("mail.smtp.auth", "true");
-                        props.put("mail.smtp.starttls.required", "true");
-
-                        java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
-                        Session mailSession = Session.getDefaultInstance(props, null);
-                        mailSession.setDebug(sessionDebug);
-                        Message msg = new MimeMessage(mailSession);
-                        msg.setFrom(new InternetAddress(from));
-                        InternetAddress[] address = {new InternetAddress(to)};
-                        msg.setRecipients(Message.RecipientType.TO, address);
-                        msg.setSubject(subject);
-                        msg.setSentDate(new Date());
-                        msg.setText(messageText);
-                        Transport transport = mailSession.getTransport("smtp");
-                        transport.connect(host, user, pass);
-                        transport.sendMessage(msg, msg.getAllRecipients());
-                        transport.close();
-
-                        System.out.println("message send successfully");
-
-                        //System.out.println(Txfiled_MOnum_AddMO.getText());
-                    } else if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("other defects has been detected") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تم الكشف عن عيوب أخرى")) {
-
-                        Statement st = connection.createStatement();
-                        String CusEmail_query = "SELECT CUS_EMAIL FROM `customer` Where CUS_MOBILE_NBER =" + Txfiled_CusMnum_AddMO.getText();
-                        System.out.println(CusEmail_query);
-                        st.executeQuery(CusEmail_query);
-                        ResultSet rs = st.getResultSet();
-                        String to = "";
-                        System.out.println("?>?>?> " + rs.isFirst());
-                        if (rs.first()) {
-                            System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-                            //System.out.println();
-
-                            to = rs.getString("CUS_EMAIL");
-                        } else {
-                        }
-
-                        String host = "smtp.gmail.com";
-                        String user = "abdualziz.alhazmi1997@gmail.com";
-                        String pass = "Azoz789!@#";
-
-                        String from = "abdualziz.alhazmi1997@gmail.com";
-                        String subject = "العنوان تم استلام الجهاز";
-                        String messageText = "تم استلام الجهاز";
-                        boolean sessionDebug = false;
-
-                        Properties props = System.getProperties();
-
-                        props.put("mail.smtp.starttls.enable", "true");
-                        props.put("mail.smtp.host", host);
-                        props.put("mail.smtp.port", "587");
-                        props.put("mail.smtp.auth", "true");
-                        props.put("mail.smtp.starttls.required", "true");
-
-                        java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
-                        Session mailSession = Session.getDefaultInstance(props, null);
-                        mailSession.setDebug(sessionDebug);
-                        Message msg = new MimeMessage(mailSession);
-                        msg.setFrom(new InternetAddress(from));
-                        InternetAddress[] address = {new InternetAddress(to)};
-                        msg.setRecipients(Message.RecipientType.TO, address);
-                        msg.setSubject(subject);
-                        msg.setSentDate(new Date());
-                        msg.setText(messageText);
-                        Transport transport = mailSession.getTransport("smtp");
-                        transport.connect(host, user, pass);
-                        transport.sendMessage(msg, msg.getAllRecipients());
-                        transport.close();
-
-                        System.out.println("message send successfully");
-
-                        //System.out.println(Txfiled_MOnum_AddMO.getText());
-                    }
-                    //else if (mo state == problem){send mail}
-                    AlertMessageAR += "تم حفظ التعديلات بنجاح";
+                }                     
+                if (Txfiled_CusName_AddMO.getText().isEmpty()) {
+                    
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText(null);
+                    
                     if (count_Language == 0) {
-
-                        alert2.setContentText("Changes saved successfully");
+                        alert.setContentText("Please enter valid customer");
                     } else {
-                        alert2.setContentText(AlertMessageAR);
+                        alert.setContentText("الرجاء التاكد من اضافة عميل");
+                        
                     }
-                    alert2.showAndWait();
-                }
-                count = 2;
-
+                    alert.showAndWait();
+                    
+                } else {
+                    
+                    String AlertMessageAR = "";
+                    String AlertMessageEN = "";
+                    
+//IndexOFTech++;
+System.out.println("INDEX== " + IndexOFTech);
+if (count == 1) {
+    System.out.println("Equal  insert");
+    
+    String sql1 = "INSERT INTO `maintenance_operation` VALUES(" + monumber + "," + "'" + Selct_MoStatus_AddMO.getValue() + "'" + "," + "'" + Txfiled_MOCost_AddMO.getText()
+            + "'" + "," + "'" + Txfiled_SPCost_AddMO.getText() + "'" + "," + "'" + Date_StartMo_AddMO.getValue() + "'" + "," + "'" + Date_EndMO_AddMO.getValue() + "'" + "," + "'"
+            + Date_Warranty_AddMO.getValue() + "'" + "," + "'" + Txfiled_ProplemDisc_AddMO.getText() + "'" + "," + "'" + Txfiled_DevSerialN_AddMO.getText() + "'" + "," + "'" + Txfiled_DevDiscription_AddMO.getText()
+            + "'" + "," + "'" + IndexOFTech + "'" + "," + "'" + Txfiled_CusMnum_AddMO.getText() + "', NULL ,NULL" + ")";
+    System.out.println(sql1);
+    java.sql.Statement statement1 = connection.createStatement();
+    statement1.executeUpdate(sql1);
+    if (count_Language == 0) {
+        
+        alert2.setContentText(" A new MO has been created");
+    } else {
+        alert2.setContentText("تم انشاء عملية صيانة جديدة");
+        
+    }
+    
+    alert2.showAndWait();
+    // Btn_AddSP_AddMo.setDisable(false);
+    // Btn_ReomveSP_AddMo.setDisable(false);
+    //Btn_Delete_AddMo.setDisable(false);
+    clear();
+    
+} else if (count == 2) {
+    
+    if (MO_State.equalsIgnoreCase("paid") || MO_State.equalsIgnoreCase("دفعت")) {
+        
+        System.out.println("لاتستطيع التعديل على عمليت الصيانة لانها مدفوعة");
+        //ystem.out.println("????pls"+INVOICE_NBER.isEmpty());
+        
+    } else {
+        
+        System.out.println("Equal  update");
+        System.out.println(Selct_MoStatus_AddMO.getValue());
+        String sql1 = "UPDATE  `maintenance_operation` SET STATE='" + Selct_MoStatus_AddMO.getValue() + "',MO_COST='" + Txfiled_MOCost_AddMO.getText() + "',SP_COST='" + Txfiled_SPCost_AddMO.getText()
+                + "',STARTING_DATE='" + Date_StartMo_AddMO.getValue() + "',ENDING_DATE='" + Date_EndMO_AddMO.getValue() + "',WARRANTY='" + Date_Warranty_AddMO.getValue() + "',PROBLEM_DESC='" + Txfiled_ProplemDisc_AddMO.getText()
+                + "',DEVICE_SN='" + Txfiled_DevSerialN_AddMO.getText() + "',DEVICE_DESC='" + Txfiled_DevDiscription_AddMO.getText() + "',EMPLOYEE_ID='" + IndexOFTech + "',CUS_MOBILE_NBER='" + Txfiled_CusMnum_AddMO.getText()
+                + "' WHERE MO_NBER= '" + Txfiled_MOnum_AddMO.getText() + "'";
+        System.out.println(sql1);
+        java.sql.Statement statement1 = connection.createStatement();
+        statement1.executeUpdate(sql1);
+        System.out.println(Selct_MoStatus_AddMO.getValue().equalsIgnoreCase(sql1));
+        AlertMessageAR += "تم حفظ التعديلات بنجاح";
+        AlertMessageEN+="Changes saved successfully";
+        if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("paid") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("دفعت")) {
+            if (INVOICE_NBER != null) {
+                /*
+                alert2.setContentText("لدى العملية الحالية فاتورة بالفعل برقم "+INVOICE_NBER);
+                alert2.showAndWait();
+                */
+                
+                //System.out.println(Txfiled_MOnum_AddMO.getText());
+            } else {
+                
+                Statement st3 = connection.createStatement();
+                st3.executeQuery("SELECT INVOICE_NBER FROM `maintenance_operation` ORDER BY `INVOICE_NBER` DESC LIMIT 1");
+                ResultSet rs3 = st3.getResultSet();
+                rs3.next();
+                INVOICE_NBER = rs3.getString("INVOICE_NBER");
+                if (INVOICE_NBER != null) {
+                    
+                    monumber = Integer.parseInt(rs3.getString("INVOICE_NBER"));
+                    monumber++;
+                    System.out.println(monumber);
+                } else {
+                    st3.executeQuery("SELECT INVOICE_NBER FROM `maintenance_operation_backup` ORDER BY `INVOICE_NBER` DESC LIMIT 1");
+                    ResultSet rs4 = st3.getResultSet();
+                    rs4.next();
+                    INVOICE_NBER = rs4.getString("INVOICE_NBER");
+                    
+                    if (INVOICE_NBER != null) {
+                        
+                        monumber = Integer.parseInt(rs4.getString("INVOICE_NBER"));
+                        monumber++;
+                        System.out.println(monumber);
+                    } else {
+                        monumber = 1;
+                    }
+                    
+                }                  
+                
+                System.out.println("PAAAAAAAAAID");
+                String inv_num_date = "UPDATE  `maintenance_operation` SET INVOICE_DATE='" +/*المفروض  يكون التاريخ الحالي للنظام*/ LocalDate.now() + "',INVOICE_NBER='" + monumber + "' WHERE MO_NBER= '" + Txfiled_MOnum_AddMO.getText() + "'";
+                java.sql.Statement statement2 = connection.createStatement();
+                statement2.executeUpdate(inv_num_date);
+                //AlertMessageAR += "تم انشاء فاتورة لعملية الصيانة برقم " + monumber + '\n';
+                // AlertMessageEN+= "تم انشاء فاتورة لعملية الصيانة برقم " + monumber + '\n';
+                
+                //alert2.setContentText("تم انشاء فاتورة لعملية الصيانة برقم " + monumber);
+                //alert2.showAndWait();
+                //       alert2.setTitle(null);
+                //alert2.setHeaderText(null);
             }
         }
-    }
+        
+        if (count_Language == 0) {
+            
+            alert2.setContentText(AlertMessageEN);
+        } else {
+            alert2.setContentText(AlertMessageAR);
+        }
+        alert2.showAndWait();
+        
+        
+        if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("approved") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تم الموافقة")) {
+            if (count_Language == 0) {
+                
+                alert2.setContentText("An alert is sent to the customer, which may take some time");
+            } else {
+                alert2.setContentText("يتم ارسال تنبية للعميل ,  قد يستغرق ذلك بعض الوقت");
+            }
+            alert2.showAndWait();
+            
+            Statement st = connection.createStatement();
+            String CusEmail_query = "SELECT CUS_EMAIL FROM `customer` Where CUS_MOBILE_NBER =" + Txfiled_CusMnum_AddMO.getText();
+            System.out.println(CusEmail_query);
+            st.executeQuery(CusEmail_query);
+            ResultSet rs = st.getResultSet();
+            String to = "";
+            System.out.println("?>?>?> " + rs.isFirst());
+            if (rs.first()) {
+                System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+                //System.out.println();
+                
+                to = rs.getString("CUS_EMAIL");
+            } else {
+            }
+            
+            String host = "smtp.gmail.com";
+            String user = "abdualziz.alhazmi1997@gmail.com";
+            String pass = "Azoz789!@#";
+            
+            String from = "abdualziz.alhazmi1997@gmail.com";
+            String subject = "العنوان تم استلام الجهاز";
+            String messageText = "تم استلام الجهاز";
+            boolean sessionDebug = false;
+            
+            Properties props = System.getProperties();
+            
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.host", host);
+            props.put("mail.smtp.port", "587");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.required", "true");
+            
+            java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+            Session mailSession = Session.getDefaultInstance(props, null);
+            mailSession.setDebug(sessionDebug);
+            Message msg = new MimeMessage(mailSession);
+            msg.setFrom(new InternetAddress(from));
+            InternetAddress[] address = {new InternetAddress(to)};
+            msg.setRecipients(Message.RecipientType.TO, address);
+            msg.setSubject(subject);
+            msg.setSentDate(new Date());
+            msg.setText(messageText);
+            Transport transport = mailSession.getTransport("smtp");
+            transport.connect(host, user, pass);
+            transport.sendMessage(msg, msg.getAllRecipients());
+            transport.close();
+            
+            System.out.println("message send successfully");
+            
+            //System.out.println(Txfiled_MOnum_AddMO.getText());
+        } else if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("repaired") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تم الاصلاح")) {
+            if (count_Language == 0) {
+                
+                alert2.setContentText("An alert is sent to the customer, which may take some time");
+            } else {
+                alert2.setContentText("يتم ارسال تنبية للعميل ,  قد يستغرق ذلك بعض الوقت");
+            }
+            alert2.showAndWait();
+            
+            Statement st = connection.createStatement();
+            String CusEmail_query = "SELECT CUS_EMAIL FROM `customer` Where CUS_MOBILE_NBER =" + Txfiled_CusMnum_AddMO.getText();
+            System.out.println(CusEmail_query);
+            st.executeQuery(CusEmail_query);
+            ResultSet rs = st.getResultSet();
+            String to = "";
+            System.out.println("?>?>?> " + rs.isFirst());
+            if (rs.first()) {
+                System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+                //System.out.println();
+                
+                to = rs.getString("CUS_EMAIL");
+            } else {
+            }
+            
+            String host = "smtp.gmail.com";
+            String user = "abdualziz.alhazmi1997@gmail.com";
+            String pass = "Azoz789!@#";
+            
+            String from = "abdualziz.alhazmi1997@gmail.com";
+            String subject = "العنوان تعال استلم جهازك";
+            String messageText = "تم تعال استلم جهازك";
+            boolean sessionDebug = false;
+            
+            Properties props = System.getProperties();
+            
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.host", host);
+            props.put("mail.smtp.port", "587");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.required", "true");
+            
+            java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+            Session mailSession = Session.getDefaultInstance(props, null);
+            mailSession.setDebug(sessionDebug);
+            Message msg = new MimeMessage(mailSession);
+            msg.setFrom(new InternetAddress(from));
+            InternetAddress[] address = {new InternetAddress(to)};
+            msg.setRecipients(Message.RecipientType.TO, address);
+            msg.setSubject(subject);
+            msg.setSentDate(new Date());
+            msg.setText(messageText);
+            Transport transport = mailSession.getTransport("smtp");
+            transport.connect(host, user, pass);
+            transport.sendMessage(msg, msg.getAllRecipients());
+            transport.close();
+            
+            System.out.println("message send successfully");
+            
+            //System.out.println(Txfiled_MOnum_AddMO.getText());
+        } else if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("other defects has been detected") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تم الكشف عن عيوب أخرى")) {
+            if (count_Language == 0) {
+                
+                alert2.setContentText("An alert is sent to the customer, which may take some time");
+            } else {
+                alert2.setContentText("يتم ارسال تنبية للعميل ,  قد يستغرق ذلك بعض الوقت");
+            }
+            alert2.showAndWait();
+            Statement st = connection.createStatement();
+            String CusEmail_query = "SELECT CUS_EMAIL FROM `customer` Where CUS_MOBILE_NBER =" + Txfiled_CusMnum_AddMO.getText();
+            System.out.println(CusEmail_query);
+            st.executeQuery(CusEmail_query);
+            ResultSet rs = st.getResultSet();
+            String to = "";
+            System.out.println("?>?>?> " + rs.isFirst());
+            if (rs.first()) {
+                System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+                //System.out.println();
+                
+                to = rs.getString("CUS_EMAIL");
+            } else {
+            }
+            
+            String host = "smtp.gmail.com";
+            String user = "abdualziz.alhazmi1997@gmail.com";
+            String pass = "Azoz789!@#";
+            
+            String from = "abdualziz.alhazmi1997@gmail.com";
+            String subject = "العنوان تم استلام الجهاز";
+            String messageText = "تم استلام الجهاز";
+            boolean sessionDebug = false;
+            
+            Properties props = System.getProperties();
+            
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.host", host);
+            props.put("mail.smtp.port", "587");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.required", "true");
+            
+            java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+            Session mailSession = Session.getDefaultInstance(props, null);
+            mailSession.setDebug(sessionDebug);
+            Message msg = new MimeMessage(mailSession);
+            msg.setFrom(new InternetAddress(from));
+            InternetAddress[] address = {new InternetAddress(to)};
+            msg.setRecipients(Message.RecipientType.TO, address);
+            msg.setSubject(subject);
+            msg.setSentDate(new Date());
+            msg.setText(messageText);
+            Transport transport = mailSession.getTransport("smtp");
+            transport.connect(host, user, pass);
+            transport.sendMessage(msg, msg.getAllRecipients());
+            transport.close();
+            
+            System.out.println("message send successfully");
+            
+            //System.out.println(Txfiled_MOnum_AddMO.getText());
+        }
+        //else if (mo state == problem){send mail}
+        
+        
+        clear();
+    }//count = 2;
+}
+                }       } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            } catch (AddressException ex) {
+               JOptionPane.showMessageDialog(null, ex);
+            } catch (MessagingException ex) {
+              JOptionPane.showMessageDialog(null, ex);
+            }
+}}
     public int monumber = 0;
 
     @FXML
-    private void M_Btn_Search_AddMo(ActionEvent event) throws SQLException, ParseException {
+    private void M_Btn_Search_AddMo(ActionEvent event)  {
         if (Txfiled_MOnum_AddMO.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
@@ -1410,7 +1493,7 @@ public class Controller_AddMO implements Initializable {
         //Table_AddSP_AddMO.getItems().get(0).getSP_Quantity()
     }
 
-    private void loadSpSelected(int MM) throws SQLException {
+    private void loadSpSelected(int MM) {
         int MO_num = MM;
         loadlist.clear();
         System.out.println("i am in loadSpSelected ");
@@ -1455,6 +1538,7 @@ public class Controller_AddMO implements Initializable {
             rs.close();
 
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
         }
 
         /*String query = "SELECT * FROM `require` WHERE MO_NBER= " + Txfiled_MOnum_AddMO.getText();
