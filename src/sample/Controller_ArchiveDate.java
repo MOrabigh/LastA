@@ -68,7 +68,8 @@ public class Controller_ArchiveDate {
 
             }else{
             
-            if (rs.isBeforeFirst()) {
+            if (rowcount>0) {
+                rs.beforeFirst();
                 while (rs.next()) {
                     System.out.println("HEREEEEE");
                     //System.out.println("rs.getString(\"MO_Number\")  ="+rs.getString("MO_Number"));

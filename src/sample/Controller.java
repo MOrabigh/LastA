@@ -67,6 +67,7 @@ public class Controller implements Initializable {
     ConnectionClass connectionClass = new ConnectionClass();
     // we call conneClass  that we make it up
     Connection connection = connectionClass.getConnection();
+
     Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
 
     int count = 0;
@@ -907,11 +908,21 @@ i=1000;
 
     public static boolean PhoneNvalid(String s) {
 
+        if (s.matches("[0-9]*") && s.length() > 7) {
+            return true;
+        } else {
+            return false;
+        }
+
+        /*
+
         Pattern p = Pattern.compile(".*[0-9].*");
 
         Matcher m = p.matcher(s);
         return (m.find() && m.group().equals(s));
+         */
     }
+    String CusMO = "";
 
     @FXML
     private void M_Btn_ChangeMN_Customer(ActionEvent event) {
@@ -920,6 +931,9 @@ i=1000;
         Txfiled_Name_Customer.setDisable(true);
         Txfiled_Email_Customer.setDisable(true);
         Txfiled_Address_Customer.setDisable(true);
+        Btn_Save_Customer.setDisable(false);
+
+        CusMO = Txfiled_MNum_Customer.getText();
     }
 
     @FXML
@@ -930,6 +944,16 @@ i=1000;
         Txfiled_Address_Customer.clear();
 
         Txfiled_MNum_Customer.setDisable(false);
+                Txfiled_Name_Customer.setDisable(false);
+        Txfiled_Email_Customer.setDisable(false);
+        Txfiled_Address_Customer.setDisable(false);
+    
+    Btn_ChangeMN_Customer.setDisable(true);
+    Btn_Cancle_Customer.setDisable(true);
+    Btn_Delete_Customer.setDisable(true);
+    Btn_Search_Customer.setDisable(false);
+    Btn_Save_Customer.setDisable(true);
+    
     }
 
     @FXML
@@ -1068,9 +1092,11 @@ i=1000;
 
     @FXML
     private void M_Btn_Save_Customer(ActionEvent event) throws SQLException {
+
         alert2.setTitle(null);
         alert2.setHeaderText(null);
-        if (Txfiled_MNum_Customer.getText().isEmpty() || Txfiled_Name_Customer.getText().isEmpty()) {
+        String email = Txfiled_Email_Customer.getText();
+        if (Txfiled_MNum_Customer.getText().isEmpty() || Txfiled_Name_Customer.getText().isEmpty() || !EmailValid(email) || !PhoneNvalid(Txfiled_MNum_Customer.getText())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
 
@@ -1082,16 +1108,15 @@ i=1000;
             }
             alert.showAndWait();
             return;
-        }
+        } else {
 
-        if (count == 1) {
-            System.out.println("Equal  insert");
-            String sqll = ("INSERT INTO customer (CUS_MOBILE_NBER,CUS_NAME,CUS_EMAIL,CUS_ADDRESS) VALUES('" + Txfiled_MNum_Customer.getText() + "','" + Txfiled_Name_Customer.getText() + "','" + Txfiled_Email_Customer.getText() + "','" + Txfiled_Address_Customer.getText() + "')");
-            //"INSERT INTO customer (CUS_MOBILE_NBER ,'CUS_NAME','CUS_EMAIL',' CUS_ADDRESS') VALUES ("+Txfiled_MNum_Customer.getText()+ ""+","+"" +   Txfiled_Name_Customer.getText() + "" + ","+"" +    Txfiled_Email_Customer.getText()+ "" + ","+"" +  Txfiled_Address_Customer.getText()+")"; 
-            System.out.println(sqll);
-            java.sql.Statement statement1 = connection.createStatement();
-            String email = Txfiled_Email_Customer.getText();
-            if (EmailValid(email)) {
+            if (count == 1) {
+                System.out.println("Equal  insert");
+                String sqll = ("INSERT INTO customer (CUS_MOBILE_NBER,CUS_NAME,CUS_EMAIL,CUS_ADDRESS) VALUES('" + Txfiled_MNum_Customer.getText() + "','" + Txfiled_Name_Customer.getText() + "','" + Txfiled_Email_Customer.getText() + "','" + Txfiled_Address_Customer.getText() + "')");
+                //"INSERT INTO customer (CUS_MOBILE_NBER ,'CUS_NAME','CUS_EMAIL',' CUS_ADDRESS') VALUES ("+Txfiled_MNum_Customer.getText()+ ""+","+"" +   Txfiled_Name_Customer.getText() + "" + ","+"" +    Txfiled_Email_Customer.getText()+ "" + ","+"" +  Txfiled_Address_Customer.getText()+")"; 
+                System.out.println(sqll);
+                java.sql.Statement statement1 = connection.createStatement();
+
                 statement1.executeUpdate(sqll);
                 if (count_Language == 0) {
 
@@ -1101,46 +1126,53 @@ i=1000;
 
                 }
 
-            } else if (count_Language == 0) {
+            } /*
+        else if (count_Language == 0) {
                 alert2.setContentText("invalid Email");
             } else {
                 alert2.setContentText(" البريد الالكتروني خاطئ");
 
             }
-            alert2.showAndWait();
-        } else if (count == 2) {
-            System.out.println("Equal  update");
-            //System.out.println(Selct_MoStatus_AddMO.getValue());
-            String sql1 = "UPDATE  `customer` SET CUS_NAME='" + Txfiled_Name_Customer.getText() + "',CUS_EMAIL='" + Txfiled_Email_Customer.getText() + "',CUS_ADDRESS='" + Txfiled_Address_Customer.getText()
-                    + "' WHERE CUS_MOBILE_NBER= '" + Txfiled_MNum_Customer.getText() + "'";
-            System.out.println(sql1);
-            java.sql.Statement statement1 = connection.createStatement();
-            statement1.executeUpdate(sql1);
-            if (count_Language == 0) {
+            alert2.showAndWait();*/ else if (count == 2) {
+                System.out.println("Equal  update");
+                //System.out.println(Selct_MoStatus_AddMO.getValue());
+                String sql1 = "UPDATE  `customer` SET CUS_NAME='" + Txfiled_Name_Customer.getText() + "',CUS_EMAIL='" + Txfiled_Email_Customer.getText() + "',CUS_ADDRESS='" + Txfiled_Address_Customer.getText()
+                        + "' WHERE CUS_MOBILE_NBER= '" + Txfiled_MNum_Customer.getText() + "'";
+                System.out.println(sql1);
+                java.sql.Statement statement1 = connection.createStatement();
+                statement1.executeUpdate(sql1);
+                if (count_Language == 0) {
 
-                alert2.setContentText(" Changes saved successfully");
-            } else {
-                alert2.setContentText("تم حفظ التعديلات بنجاح");
+                    alert2.setContentText(" Changes saved successfully");
+                } else {
+                    alert2.setContentText("تم حفظ التعديلات بنجاح");
 
-            }
+                }
 
-            alert2.showAndWait();
-        } else if (count == 3) {
-            System.out.println("Equal  update mobile number");
-            String sqll = "UPDATE customer SET CUS_MOBILE_NBER='" + Txfiled_MNum_Customer.getText() + "' WHERE CUS_NAME= '" + Txfiled_Name_Customer.getText() + "'";
-            System.out.println(sqll);
-            java.sql.Statement statement1 = connection.createStatement();
-            String s = Txfiled_MNum_Customer.getText();
-            if (PhoneNvalid(s)) {
+                alert2.showAndWait();
+            } else if (count == 3) {
+
+                System.out.println("Equal  update mobile number");
+                String sqll = "UPDATE customer SET CUS_MOBILE_NBER='" + Txfiled_MNum_Customer.getText() + "' WHERE CUS_NAME= '" + Txfiled_Name_Customer.getText() + "'";
+                System.out.println(sqll);
+                java.sql.Statement statement1 = connection.createStatement();
+                //CusMO
+
+                String sqlupdatePrice = "UPDATE `maintenance_operation` SET `CUS_MOBILE_NBER` = " + Txfiled_MNum_Customer.getText() + " WHERE `CUS_MOBILE_NBER` = " + CusMO + ";";
                 statement1.executeUpdate(sqll);
+                java.sql.Statement statement2 = connection.createStatement();
+
+                statement2.executeUpdate(sqlupdatePrice);
                 if (count_Language == 0) {
 
                     alert2.setContentText("Mobile Number has been changed");
                 } else {
                     alert2.setContentText("تم تغيير رقم الهاتف");
 
-                }
-            } else if (count_Language == 0) {
+                } alert2.showAndWait();
+            }
+            /*
+        else if (count_Language == 0) {
                 alert2.setContentText("invalid Mobile Number");
             } else {
                 alert2.setContentText(" رقم الهاتف خاطئ");
@@ -1148,6 +1180,7 @@ i=1000;
             }
             alert2.showAndWait();
 
+        }*/
         }
         //count = 2;
 
@@ -1156,28 +1189,46 @@ i=1000;
 
     @FXML
     private void M_Btn_Search_Customer(ActionEvent event) throws SQLException {
+        alert2.setTitle(null);
+        alert2.setHeaderText(null);
+        //EmailValid(Txfiled_Email_Customer.getText()) ||
 
-        Connection connection = connectionClass.getConnection();
-        Statement st = connection.createStatement();
-        st.executeQuery("SELECT * FROM `customer`  WHERE CUS_MOBILE_NBER = " + Txfiled_MNum_Customer.getText());
-        ResultSet rs = st.getResultSet();
-        if (rs.first()) {
+        System.out.println("?>?>" + PhoneNvalid(Txfiled_MNum_Customer.getText()));
+        if ((PhoneNvalid(Txfiled_MNum_Customer.getText()))) {
 
-            System.out.println(Txfiled_MNum_Customer.getText());
+            Connection connection = connectionClass.getConnection();
+            Statement st = connection.createStatement();
+            st.executeQuery("SELECT * FROM `customer`  WHERE CUS_MOBILE_NBER = " + Txfiled_MNum_Customer.getText());
+            ResultSet rs = st.getResultSet();
+            if (rs.first()) {
 
-            System.out.println("THIS MO NUMBER IN DB== " + rs.getString("CUS_MOBILE_NBER"));
-            System.out.println("THIS MO NUMBER IN FILED== " + Txfiled_MNum_Customer.getText());
+                System.out.println(Txfiled_MNum_Customer.getText());
 
-            if (rs.getString("CUS_MOBILE_NBER").equals(Txfiled_MNum_Customer.getText())) {
+                System.out.println("THIS MO NUMBER IN DB== " + rs.getString("CUS_MOBILE_NBER"));
+                System.out.println("THIS MO NUMBER IN FILED== " + Txfiled_MNum_Customer.getText());
 
-                count = 2;
+                if (rs.getString("CUS_MOBILE_NBER").equals(Txfiled_MNum_Customer.getText())) {
 
-                Txfiled_Name_Customer.setText(rs.getString("CUS_NAME"));
-                Txfiled_Email_Customer.setText(rs.getString("CUS_EMAIL"));
-                Txfiled_Address_Customer.setText(rs.getString("CUS_ADDRESS"));
+                    count = 2;
+
+                    Txfiled_Name_Customer.setText(rs.getString("CUS_NAME"));
+                    Txfiled_Email_Customer.setText(rs.getString("CUS_EMAIL"));
+                    Txfiled_Address_Customer.setText(rs.getString("CUS_ADDRESS"));
+                    Txfiled_MNum_Customer.setDisable(true);
+                    Btn_Delete_Customer.setDisable(false);
+                    Btn_Cancle_Customer.setDisable(false);
+                     Btn_Save_Customer.setDisable(false);
+                    Btn_ChangeMN_Customer.setDisable(false);
+
+                }
+            } else {
+
+                System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+                count = 1;
                 Txfiled_MNum_Customer.setDisable(true);
-                Btn_Delete_Customer.setDisable(false);
                 Btn_Cancle_Customer.setDisable(false);
+                Btn_Save_Customer.setDisable(false);
+                Btn_Delete_Customer.setDisable(true);
                 Btn_ChangeMN_Customer.setDisable(false);
 
             }
@@ -1189,16 +1240,8 @@ i=1000;
 
             }
             alert2.showAndWait();
-            System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-            count = 1;
-            Txfiled_MNum_Customer.setDisable(true);
-            Btn_Cancle_Customer.setDisable(false);
-            Btn_Save_Customer.setDisable(false);
-            Btn_Delete_Customer.setDisable(true);
-            Btn_ChangeMN_Customer.setDisable(false);
 
         }
-
     }
 
     @FXML
@@ -2998,12 +3041,13 @@ i=1000;
                 alert2.showAndWait();
 
             }
+            /*
             Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-            alert2.setTitle("Information Dialog");
+            alert2.setTitle(null);
             alert2.setHeaderText(null);
             alert2.setContentText("I have a great message for you!");
 
-            alert2.showAndWait();
+            alert2.showAndWait();*/
             clear();
             count = 2;
 

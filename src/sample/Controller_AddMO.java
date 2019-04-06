@@ -53,8 +53,7 @@ import net.sf.jasperreports.engine.JRException;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import javafx.scene.control.Label;
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.mail.internet.MimeMessage;
@@ -156,6 +155,8 @@ public class Controller_AddMO implements Initializable {
     @FXML
     private JFXTextField Txfiled_SpPrice_AddMO;
     private int count_Language;
+    @FXML
+    private Label Lable_ifPaid_AddMO;
 
     @FXML
     private void M_Txfiled_SpSerialN_AddMO(ActionEvent event) throws SQLException {
@@ -303,7 +304,8 @@ public class Controller_AddMO implements Initializable {
 
         }}*/
     String INVOICE_NBER = "DD";
- String MO_State="";
+    String MO_State = "";
+
     //String INVOICE_NBER3=null;
     public void Search_MO(int MO) throws SQLException {
 
@@ -348,7 +350,8 @@ public class Controller_AddMO implements Initializable {
             //State.add(rs.getString("STATE"));
             //Selct_MoStatus_AddMO.setItems(FXCollections.observableArrayList(State));
             Selct_MoStatus_AddMO.getSelectionModel().select(rs.getString("STATE"));
-MO_State=rs.getString("STATE");
+            MO_State = rs.getString("STATE");
+
             //List<String> Tec = new ArrayList<>();
             //Tec.add(rs.getString("EMPLOYEE_ID"));
             System.out.println("PPPPPPPPPPPPPP " + rs.getString("EMP_NAME"));
@@ -404,23 +407,37 @@ MO_State=rs.getString("STATE");
                     Selct_MoStatus_AddMO.getSelectionModel().select("تحت الصيانة");
 
                 }
-            } else if (rs.getString("STATE").equals("دفعت") || rs.getString("STATE").equals("paid")) {
-                if (count_Language == 0) {
-                    Selct_MoStatus_AddMO.getSelectionModel().select("paid");
-                } else {
-                    Selct_MoStatus_AddMO.getSelectionModel().select("دفعت");
-
-                }
             }
-
             Btn_Delete_AddMo.setDisable(false);
             Btn_Save_AddMo.setDisable(false);
             Btn_Print_AddMo.setDisable(false);
-            Btn_Delete_AddMo.setDisable(false);
             Txfiled_CusName_AddMO.setDisable(true);
             Btn_Cancle_AddMo.setDisable(false);
             Btn_AddSP_AddMo.setDisable(false);
             Btn_ReomveSP_AddMo.setDisable(false);
+
+            if (rs.getString("STATE").equals("دفعت") || rs.getString("STATE").equals("paid")) {
+                Btn_Delete_AddMo.setDisable(true);
+                Btn_Save_AddMo.setDisable(true);
+                Btn_Print_AddMo.setDisable(true);
+                Btn_Save_AddMo.setDisable(true);
+                Btn_Search_AddMo.setDisable(true);
+                Btn_AddSP_AddMo.setDisable(true);
+                Btn_ReomveSP_AddMo.setDisable(true);
+                Txfiled_SpSerialN_AddMO.setDisable(true);
+                Txfiled_SpPrice_AddMO.setDisable(true);
+                Txfiled_MOCost_AddMO.setDisable(true);
+                if (count_Language == 0) {
+
+                    Lable_ifPaid_AddMO.setText("The MO is paid, can not be modified");
+                    Selct_MoStatus_AddMO.getSelectionModel().select("paid");
+                } else {
+                    Selct_MoStatus_AddMO.getSelectionModel().select("دفعت");
+                    Lable_ifPaid_AddMO.setText("عملية الصيانة مدفوعة، لا يمكن التعديل عليها");
+
+                }
+            }
+
             //loadlist.clear();
             loadSpSelected(MO);
 
@@ -431,15 +448,29 @@ MO_State=rs.getString("STATE");
         } else {
 
             Statement st2 = connection.createStatement();
+                        Statement st3 = connection.createStatement();
+
             st2.executeQuery("SELECT * FROM `maintenance_operation` ORDER BY `MO_NBER` DESC LIMIT 1");
             ResultSet rs2 = st2.getResultSet();
             //System.out.println("FFFFFFFFFFFFFFFFF"+rs2.getString("MO_NBER"));
             if (rs2.first()) {
+                st3.executeQuery("SELECT * FROM `maintenance_operation_backup` ORDER BY `MO_NBER` DESC LIMIT 1");
+                ResultSet rs3 = st3.getResultSet();
+               
+                int MO_NBER = Integer.parseInt(rs2.getString("MO_NBER"));
+                
+                 if (rs3.first()) {
+                int MO_NBER_backup = Integer.parseInt(rs3.getString("MO_NBER"));
 
+                if (MO_NBER > MO_NBER_backup) {
+                    monumber = MO_NBER;
+                } else {
+                    monumber =MO_NBER_backup;
+
+                }}else{ monumber = MO_NBER;}
                 System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
                 //System.out.println();
                 count = 1;
-                monumber = Integer.parseInt(rs2.getString("MO_NBER"));
                 monumber++;
                 System.out.println(monumber);
                 Txfiled_MOnum_AddMO.setText(String.valueOf(monumber));
@@ -656,14 +687,6 @@ MO_State=rs.getString("STATE");
             s.printStackTrace();
         }
     }
-     public static boolean PhoneNvalid(String s) {
-
-        Pattern p = Pattern.compile(".*[0-9].*");
-
-        Matcher m = p.matcher(s);
-        return (m.find() && m.group().equals(s));
-    }
-
 
     @FXML
     private void M_Btn_Print_AddMo(ActionEvent event) throws JRException, SQLException {
@@ -677,8 +700,8 @@ MO_State=rs.getString("STATE");
                 String ss = Txfiled_MOnum_AddMO.getText();
 
                 print.showReportEN(ss);
-            } else if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("created") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("approved") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("under maintenance") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("other defects has been detected")||Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("disapproved")||Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("cannot be done")||Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("repaired")) {
-                String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired') AND m.MO_NBER = '" + Txfiled_MOnum_AddMO.getText() + "'";
+            } else if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("created") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("approved") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("under maintenance") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("other defects has been detected")) {
+                String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected') AND m.MO_NBER = '" + Txfiled_MOnum_AddMO.getText() + "'";
                 System.out.println(query);
                 java.sql.Statement statement1 = connection.createStatement();
 
@@ -703,8 +726,8 @@ MO_State=rs.getString("STATE");
                 String ss = Txfiled_MOnum_AddMO.getText();
 
                 print.showReport(ss);
-            } else if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("created") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("approved") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("under maintenance") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("other defects has been detected")||Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("disapproved")||Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("cannot be done")||Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("repaired")) {
-                String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired') AND m.MO_NBER = '" + Txfiled_MOnum_AddMO.getText() + "'";
+            } else if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("created") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("approved") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("under maintenance") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("other defects has been detected")) {
+                String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected') AND m.MO_NBER = '" + Txfiled_MOnum_AddMO.getText() + "'";
                 System.out.println(query);
                 java.sql.Statement statement1 = connection.createStatement();
 
@@ -758,6 +781,16 @@ MO_State=rs.getString("STATE");
     }
 
     public void clear() {
+
+        Btn_Search_AddMo.setDisable(false);
+
+        Btn_Delete_AddMo.setDisable(true);
+        Btn_Save_AddMo.setDisable(true);
+        Btn_Print_AddMo.setDisable(true);
+        Btn_Save_AddMo.setDisable(true);
+        Btn_AddSP_AddMo.setDisable(true);
+        Btn_ReomveSP_AddMo.setDisable(true);
+
         Txfiled_MOnum_AddMO.setDisable(false);
 
         Txfiled_ProplemDisc_AddMO.clear();
@@ -779,6 +812,7 @@ MO_State=rs.getString("STATE");
         Date_StartMo_AddMO.setValue(null);
         Date_EndMO_AddMO.setValue(null);
         Table_SelectedSP_AddMO.getItems().clear();
+        Lable_ifPaid_AddMO.setText("");
         //loadlist.clear();
 
     }
@@ -836,6 +870,9 @@ MO_State=rs.getString("STATE");
 
         } else {
 
+            String AlertMessageAR = "";
+            String AlertMessageEN = "";
+
 //IndexOFTech++;
             System.out.println("INDEX== " + IndexOFTech);
             if (count == 1) {
@@ -847,29 +884,25 @@ MO_State=rs.getString("STATE");
                         + "'" + "," + "'" + IndexOFTech + "'" + "," + "'" + Txfiled_CusMnum_AddMO.getText() + "', NULL ,NULL" + ")";
                 System.out.println(sql1);
                 java.sql.Statement statement1 = connection.createStatement();
-                 String s = Txfiled_CusMnum_AddMO.getText();
-               if (PhoneNvalid(s)) {
                 statement1.executeUpdate(sql1);
                 if (count_Language == 0) {
 
                     alert2.setContentText(" A new MO has been created");
                 } else {
                     alert2.setContentText("تم انشاء عملية صيانة جديدة");
-                }
-            } else if (count_Language == 0) {
 
-                alert2.setContentText(" invalid Mobile Number");
-            } else {
-                alert2.setContentText("رقم الهاتف خاطئ");
-            }
-            alert2.showAndWait();
+                }
+
+                alert2.showAndWait();
+                Btn_AddSP_AddMo.setDisable(false);
+                Btn_ReomveSP_AddMo.setDisable(false);
+
             } else if (count == 2) {
-                
- 
+
                 if (MO_State.equalsIgnoreCase("paid") || MO_State.equalsIgnoreCase("دفعت")) {
+
                     System.out.println("لاتستطيع التعديل على عمليت الصيانة لانها مدفوعة");
                     //ystem.out.println("????pls"+INVOICE_NBER.isEmpty());
-
 
                 } else {
 
@@ -883,55 +916,56 @@ MO_State=rs.getString("STATE");
                     java.sql.Statement statement1 = connection.createStatement();
                     statement1.executeUpdate(sql1);
                     System.out.println(Selct_MoStatus_AddMO.getValue().equalsIgnoreCase(sql1));
-                    
+
                     if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("paid") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("دفعت")) {
-                     if (INVOICE_NBER != null) {
-                        /*
+                        if (INVOICE_NBER != null) {
+                            /*
                             alert2.setContentText("لدى العملية الحالية فاتورة بالفعل برقم "+INVOICE_NBER);
                 alert2.showAndWait();
-                         */
+                             */
 
-                        //System.out.println(Txfiled_MOnum_AddMO.getText());
-                    } else {
-
-                        Statement st3 = connection.createStatement();
-                        st3.executeQuery("SELECT INVOICE_NBER FROM `maintenance_operation` ORDER BY `INVOICE_NBER` DESC LIMIT 1");
-                        ResultSet rs3 = st3.getResultSet();
-                        rs3.next();
-                        INVOICE_NBER = rs3.getString("INVOICE_NBER");
-                        if (INVOICE_NBER != null) {
-
-                            monumber = Integer.parseInt(rs3.getString("INVOICE_NBER"));
-                            monumber++;
-                            System.out.println(monumber);
+                            //System.out.println(Txfiled_MOnum_AddMO.getText());
                         } else {
-                            st3.executeQuery("SELECT INVOICE_NBER FROM `maintenance_operation_backup` ORDER BY `INVOICE_NBER` DESC LIMIT 1");
-                            ResultSet rs4 = st3.getResultSet();
-                            rs4.next();
-                            INVOICE_NBER = rs4.getString("INVOICE_NBER");
 
+                            Statement st3 = connection.createStatement();
+                            st3.executeQuery("SELECT INVOICE_NBER FROM `maintenance_operation` ORDER BY `INVOICE_NBER` DESC LIMIT 1");
+                            ResultSet rs3 = st3.getResultSet();
+                            rs3.next();
+                            INVOICE_NBER = rs3.getString("INVOICE_NBER");
                             if (INVOICE_NBER != null) {
 
-                                monumber = Integer.parseInt(rs4.getString("INVOICE_NBER"));
+                                monumber = Integer.parseInt(rs3.getString("INVOICE_NBER"));
                                 monumber++;
                                 System.out.println(monumber);
                             } else {
-                                monumber = 1;
+                                st3.executeQuery("SELECT INVOICE_NBER FROM `maintenance_operation_backup` ORDER BY `INVOICE_NBER` DESC LIMIT 1");
+                                ResultSet rs4 = st3.getResultSet();
+                                rs4.next();
+                                INVOICE_NBER = rs4.getString("INVOICE_NBER");
+
+                                if (INVOICE_NBER != null) {
+
+                                    monumber = Integer.parseInt(rs4.getString("INVOICE_NBER"));
+                                    monumber++;
+                                    System.out.println(monumber);
+                                } else {
+                                    monumber = 1;
+                                }
+
                             }
 
+                            System.out.println("PAAAAAAAAAID");
+                            String inv_num_date = "UPDATE  `maintenance_operation` SET INVOICE_DATE='" +/*المفروض  يكون التاريخ الحالي للنظام*/ LocalDate.now() + "',INVOICE_NBER='" + monumber + "' WHERE MO_NBER= '" + Txfiled_MOnum_AddMO.getText() + "'";
+                            java.sql.Statement statement2 = connection.createStatement();
+                            statement2.executeUpdate(inv_num_date);
+                            AlertMessageAR += "تم انشاء فاتورة لعملية الصيانة برقم " + monumber + '\n';
+
+                            //alert2.setContentText("تم انشاء فاتورة لعملية الصيانة برقم " + monumber);
+                            //alert2.showAndWait();
+                            //       alert2.setTitle(null);
+                            //alert2.setHeaderText(null);
                         }
-
-                        System.out.println("PAAAAAAAAAID");
-                        String inv_num_date = "UPDATE  `maintenance_operation` SET INVOICE_DATE='" +/*المفروض  يكون التاريخ الحالي للنظام*/ LocalDate.now() + "',INVOICE_NBER='" + monumber + "' WHERE MO_NBER= '" + Txfiled_MOnum_AddMO.getText() + "'";
-                        java.sql.Statement statement2 = connection.createStatement();
-                        statement2.executeUpdate(inv_num_date);
-                        alert2.setContentText("تم انشاء فاتورة لعملية الصيانة برقم " + monumber);
-                        alert2.showAndWait();
-                        //       alert2.setTitle(null);
-                        //alert2.setHeaderText(null);
-
                     }
- }
 
                     if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("approved") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تم الموافقة")) {
 
@@ -1091,12 +1125,12 @@ MO_State=rs.getString("STATE");
                         //System.out.println(Txfiled_MOnum_AddMO.getText());
                     }
                     //else if (mo state == problem){send mail}
-
+                    AlertMessageAR += "تم حفظ التعديلات بنجاح";
                     if (count_Language == 0) {
 
                         alert2.setContentText("Changes saved successfully");
                     } else {
-                        alert2.setContentText("تم حفظ التعديلات بنجاح");
+                        alert2.setContentText(AlertMessageAR);
                     }
                     alert2.showAndWait();
                 }

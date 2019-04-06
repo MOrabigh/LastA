@@ -113,10 +113,21 @@
             </VBox>
             <HBox alignment="CENTER" layoutY="-1.0" prefHeight="67.0" prefWidth="1140.0">
                <children>
+                  <Label fx:id="Lable_ifPaid_AddMO" prefHeight="38.0" prefWidth="477.0" stylesheets="@../../../GP_LastA_AZ/src/css/hr.css" textFill="RED">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="30.0" />
+                     </HBox.margin>
+                  </Label>
                   <Label stylesheets="@../css/hr.css" text="عملية الصيانة">
                      <font>
                         <Font size="26.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets right="450.0" />
+                     </HBox.margin>
                   </Label>
                </children>
             </HBox>
