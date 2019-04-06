@@ -433,7 +433,7 @@ public class Controller_AddMO implements Initializable {
                 if (rs.getString("STATE").equals("دفعت") || rs.getString("STATE").equals("paid")) {
                     Btn_Delete_AddMo.setDisable(true);
                     Btn_Save_AddMo.setDisable(true);
-                    Btn_Print_AddMo.setDisable(true);
+                    Btn_Print_AddMo.setDisable(false);
                     Btn_Save_AddMo.setDisable(true);
                     Btn_Search_AddMo.setDisable(true);
                     Btn_AddSP_AddMo.setDisable(true);
