@@ -255,7 +255,7 @@ public class printreport extends JFrame {
     }
 
     public void ListofaemployeesMOs(String ss) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\List of a employee's MOs .jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\List of a employee's MOs.jrxml");
         String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID Where e.EMP_NAME = '" + ss + "'";
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
@@ -273,7 +273,7 @@ public class printreport extends JFrame {
     }
 
     public void ListofcustomersMOs(String bb, String ss) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\List of a customer's MOs .jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\List of a customer's MOs.jrxml");
         String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID Where m.MO_NBER = '" + bb + "'OR r.CUS_MOBILE_NBER = '" + ss + "'";
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
@@ -505,7 +505,7 @@ public class printreport extends JFrame {
     }
 
     public void ListofaemployeesMOsEN(String ss) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\List of a employee's MOsEN .jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\List of a employee's MOsEN.jrxml");
         String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID Where e.EMP_NAME = '" + ss + "'";
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
@@ -523,7 +523,7 @@ public class printreport extends JFrame {
     }
 
     public void ListofcustomersMOsEN(String bb, String ss) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\List of a customer's MOsEN .jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\List of a customer's MOsEN.jrxml");
         String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID Where m.MO_NBER = '" + bb + "'OR r.CUS_MOBILE_NBER = '" + ss + "'";
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);

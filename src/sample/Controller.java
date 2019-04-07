@@ -1080,35 +1080,54 @@ public class Controller implements Initializable {
     
     @FXML
     private void M_Btn_Delete_Customer(ActionEvent event)  {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("");
-        alert.setHeaderText("");
-        if (count_Language == 0) {
-            alert.setContentText("This Cstomer will be deleted ");
-        } else {
-            alert.setContentText("  سوف يتم حذف هذا العميل ");
-            
-        }
+        try {
+         String sql1 = "DELETE FROM  `customer`  WHERE CUS_MOBILE_NBER= " + Txfiled_MNum_Customer.getText();
+        System.out.println(sql1);
+        java.sql.Statement statement1 = connection.createStatement();
+ Txfiled_MNum_Customer.setDisable(false);
+        Txfiled_MNum_Customer.clear();
+        Txfiled_Name_Customer.clear();
+        Txfiled_Email_Customer.clear();
+        Txfiled_Address_Customer.clear();
+        try { 
+            statement1.executeUpdate(sql1);
+     
+             {
+                if (count_Language == 0){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Deleted Successfully");
+                alert.showAndWait();
+                return;
+                     
+            }else if (count_Language == 1){
+                  Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("تم الحذف بنجاح");
+                alert.showAndWait();
+                return;
+            }}
+                 
         
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            try {
-                // ... user chose OK
-                String deletSP = "DELETE FROM  `maintenance_operation` " + " WHERE CUS_MOBILE_NBER= " + Txfiled_MNum_Customer.getText();
-                String sql1 = "DELETE FROM  `customer` " + " WHERE CUS_MOBILE_NBER= " + Txfiled_MNum_Customer.getText();
-                System.out.println(deletSP);
-                System.out.println(sql1);
-                java.sql.Statement statement1 = connection.createStatement();
-                statement1.executeUpdate(deletSP);
-                statement1.executeUpdate(sql1);
-                clear();
-            } catch (SQLException ex) {
-               JOptionPane.showMessageDialog(null, ex);
-            }
-        }
-        
-    }
-    
+        } catch (SQLException e) {
+           if (count_Language == 0){ 
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Can not delete this customer");
+            alert.showAndWait();
+            return;
+       }else if (count_Language == 1){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("لا يمكن حذف هذا العميل");
+            alert.showAndWait();
+       }
+           
+       }
+
+    }catch (SQLException ex) {
+                  JOptionPane.showMessageDialog(null, ex);
+                }}
     @FXML
     private void M_Btn_Save_Customer(ActionEvent event) {
         
@@ -1305,35 +1324,57 @@ clearEmp();
     
     @FXML
     void M_Btn_Delete_Employee(ActionEvent event)  {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("");
-        alert.setHeaderText("");
-        if (count_Language == 0) {
-            alert.setContentText("This Employee will be deleted ");
-        } else {
-            alert.setContentText("  سوف يتم حذف هذا الموظف ");
-            
+        try {
+       String sql1 = "DELETE FROM  `employee`  WHERE EMPLOYEE_ID= " + Txfiled_Num_Employee.getText();
+        System.out.println(sql1);
+        java.sql.Statement statement1 = connection.createStatement();
+
+        Txfiled_Num_Employee.setDisable(false);
+        Txfiled_Num_Employee.clear();
+        Txfiled_Name_Employee.clear();
+        Txfiled_Email_Employee.clear();
+        Txfiled_Address_Employee.clear();
+        Txfiled_MNum_Employee.clear();
+        Selct_JType_Employee.getSelectionModel().clearSelection();
+        Selct_Sex_Employee.getSelectionModel().clearSelection();
+        Txfiled_Password_Employee.clear();
+        try {
+            statement1.executeUpdate(sql1);
+
+            {
+                if(count_Language==0){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Deleted Successfully");
+                alert.showAndWait();
+                return;
+            }else if (count_Language==1){
+                 Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("تم الحذف بنجاح ");
+                alert.showAndWait();
+                return;
+                
+            }}
+        } catch (SQLException e) {
+            if(count_Language==0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Can not delete this employee");
+            alert.showAndWait();
+            return;
+        }else if (count_Language==1){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("لا يمكن حذف هذا الموظف");
+                alert.showAndWait();
+                return;
         }
-        
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            try {
-                // ... user chose OK
-                String deletSP = "DELETE FROM  `maintenance_operation` " + " WHERE EMPLOYEE_ID= " + Txfiled_Num_Employee.getText();
-                String sql1 = "DELETE FROM  `employee` " + " WHERE EMPLOYEE_ID= " + Txfiled_Num_Employee.getText();
-                System.out.println(deletSP);
-                System.out.println(sql1);
-                java.sql.Statement statement1 = connection.createStatement();
-                statement1.executeUpdate(deletSP);
-                statement1.executeUpdate(sql1);
-                clearEmp();
-            } catch (SQLException ex) {
-               JOptionPane.showMessageDialog(null, ex);
-            }
         }
-        
-    }
-    
+     }catch (SQLException ex) {
+                  JOptionPane.showMessageDialog(null, ex);
+                }}
+
     @FXML
     private void M_Btn_Save_Employee(ActionEvent event)  {
         alert2.setTitle(null);
@@ -1596,37 +1637,63 @@ clearEmp();
     
     @FXML
     private void M_Btn_Delete_SP(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("");
-        alert.setHeaderText("");
-        if (count_Language == 0) {
-            alert.setContentText("This Spare part will be deleted ");
-        } else {
-            alert.setContentText("  سوف يتم حذف قطعة الغيار ");
-            
-        }
+      try{
+             String sql1 = "DELETE FROM  `spare_parts`  WHERE SP_NBER= " + Txfiled_SPNum_SP.getText();
+        System.out.println(sql1);
+        java.sql.Statement statement1 = connection.createStatement();
         
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            try {
-                // ... user chose OK
-                String deleteSP = "DELETE FROM  `require` " + " WHERE SP_NBER= " + Txfiled_SPNum_SP.getText();
-                String deletSP = "DELETE FROM  `attach` " + " WHERE SP_NBER= " + Txfiled_SPNum_SP.getText();
-                String sql1 = "DELETE FROM  `spare_parts`" + " WHERE SP_NBER= " + Txfiled_SPNum_SP.getText();
-                System.out.println(deleteSP);
-                System.out.println(deletSP);
-                System.out.println(sql1);
-                java.sql.Statement statement1 = connection.createStatement();
-                statement1.executeUpdate(deleteSP);
-                statement1.executeUpdate(deletSP);
-                statement1.executeUpdate(sql1);
-                ClearSp();
+        Txfiled_SPNum_SP.setDisable(false);
+        Txfiled_SPNum_SP.clear();
+        Txfiled_Name_SP.clear();
+        Txfiled_Price_SP.clear();
+        Txfiled_Quantity_SP.clear();
+        Txfiled_Discription_SP.clear();
+        Txfiled_minimumQuantity_SP.clear();
+
+        try {
+            
+
+            
+                 statement1.executeUpdate(sql1);
+                 {
+                     if (count_Language==0){
+                         
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Deleted Successfully");
+                alert.showAndWait();
+                return;
+            
+            }else if (count_Language==1){
+                 
+                  Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("تم الحذف بنجاح");
+                alert.showAndWait();
+                return;
+            }
+                 }  
+        } catch (SQLException e) {
+             if (count_Language==0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Can not delete this spare part");
+            alert.showAndWait();
+            return;
+        } else if (count_Language==1){
+                
+                  Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("لا يمكن حذف  قطعة الغيار");
+                alert.showAndWait();
+                return;
+        }}
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, ex);
             }
             
         }
-    }
+    
     
     @FXML
     private void M_Btn_Save_SP(ActionEvent event)  {
@@ -1847,34 +1914,59 @@ clearEmp();
     
     @FXML
     private void M_Btn_Delete_Supplier(ActionEvent event)  {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("");
-        alert.setHeaderText("");
-        if (count_Language == 0) {
-            alert.setContentText("This Supplier will be deleted ");
-        } else {
-            alert.setContentText("  سوف يتم حذف هذا المزود ");
+        try{
+             String sql1 = "DELETE FROM  `supplier`  WHERE SUPPLIER_NBER= " + Txfiled_Num_Supplier.getText();
+        System.out.println(sql1);
+        java.sql.Statement statement1 = connection.createStatement();
+        Txfiled_Num_Supplier.setDisable(false);
+        Txfiled_Num_Supplier.clear();
+        Txfiled_MNum_Supplier.clear();
+        Txfiled_Email_Supplier.clear();
+        Txfiled_Name_Supplier.clear();
+        Txfiled_Address_Supplier.clear();
+        try {
+            statement1.executeUpdate(sql1);
+
+            {
+                if (count_Language==0){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Deleted Successfully");
+                alert.showAndWait();
+                return;
+            }else if (count_Language==1){
+                 Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("تم الحذف بنجاح");
+                alert.showAndWait();
+                return;
+                
+            }
+                
+            }
+        } catch (SQLException e) {
+             if (count_Language==0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Can not delete this supplier");
+            alert.showAndWait();
+            return;
+        }else if (count_Language==1){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("لا يمكن حذف هذا المزود");
+            alert.showAndWait();
+            return;
             
         }
-        
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            try {
-                // ... user chose OK
-                String deletSP = "DELETE FROM `requested_spare_parts` " + " WHERE SUPPLIER_NBER= " + Txfiled_Num_Supplier.getText();
-                String sql1 = "DELETE FROM  `supplier` " + " WHERE SUPPLIER_NBER= " + Txfiled_Num_Supplier.getText();
-                System.out.println(deletSP);
-                System.out.println(sql1);
-                java.sql.Statement statement1 = connection.createStatement();
-                statement1.executeUpdate(deletSP);
-                statement1.executeUpdate(sql1);
-                clearSUP();
+
+    }
             } catch (SQLException ex) {
                JOptionPane.showMessageDialog(null, ex);
             }
         }
         
-    }
+    
     
     @FXML
     private void M_Btn_Cancle_Supplier(ActionEvent event) {

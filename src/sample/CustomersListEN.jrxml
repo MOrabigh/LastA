@@ -55,22 +55,14 @@
 				<text><![CDATA[CUSTOMER_MOBILE_NUMBER]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="304" y="22" width="114" height="20" uuid="b61c1342-05c3-4f86-8f96-860c07433790"/>
+				<reportElement x="304" y="22" width="240" height="20" uuid="b61c1342-05c3-4f86-8f96-860c07433790"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[CUSTOMER_EMAIL]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="429" y="22" width="125" height="20" uuid="65cc08e4-8ee0-4e89-9279-81c4c8cbe971"/>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[CUSTOMER_ADDRESS]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="29" splitType="Stretch">
-			<line>
-				<reportElement x="428" y="-11" width="1" height="36" uuid="450d96d2-9c20-4da3-bf84-86885f442001"/>
-			</line>
 			<textField>
 				<reportElement x="8" y="0" width="100" height="20" uuid="1c536923-ec13-44d2-91f7-789f31400880"/>
 				<textElement textAlignment="Center"/>
@@ -82,14 +74,9 @@
 				<textFieldExpression><![CDATA[$F{CUS_MOBILE_NBER}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="304" y="0" width="114" height="20" uuid="48d2abff-3027-466e-b3a7-3f721cd2957c"/>
+				<reportElement x="304" y="0" width="240" height="20" uuid="48d2abff-3027-466e-b3a7-3f721cd2957c"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{CUS_EMAIL}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="436" y="0" width="119" height="20" uuid="e00a1bd9-1286-43e6-ae52-ba41f9fd1b39"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{CUS_ADDRESS}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="0" y="24" width="555" height="1" uuid="838a9da9-10ce-42a9-8886-ca6f66d11c54"/>
