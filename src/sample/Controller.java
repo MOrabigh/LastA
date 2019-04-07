@@ -60,6 +60,7 @@ import java.util.regex.Pattern;
 import javafx.application.Application;
 import javafx.scene.layout.HBox;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import javax.swing.JOptionPane;
 
@@ -393,6 +394,8 @@ public class Controller implements Initializable {
     @FXML
     private JFXButton Btn_Search_SP;
     //private ListView<?> List_of_reports;
+    @FXML
+    private JFXButton Btn_RestoreDB_Tools;
 
     //int count = 0;
     @Override
@@ -1459,6 +1462,14 @@ clearEmp();
     
     @FXML
     private void M_Btn_Search_Employee(ActionEvent event)  {
+         if (Txfiled_Num_Employee.getText().isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Pleas enter the value");
+                alert.showAndWait();
+                return;
+                
+            }else{
         
         try {
             Connection connection = connectionClass.getConnection();
@@ -1558,11 +1569,19 @@ clearEmp();
             }
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null, ex);
-        }
+        }   }
     }
     
     @FXML
     void M_Btn_Search_SP(ActionEvent event) throws SQLException {
+         if (Txfiled_SPNum_SP.getText().isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Pleas enter the value");
+                alert.showAndWait();
+                return;
+                
+            }else{
         
         Connection connection = connectionClass.getConnection();
         Statement st = connection.createStatement();
@@ -1615,7 +1634,7 @@ clearEmp();
             }
         }
         
-    }
+    }}
     
     @FXML
     private void M_Btn_Cancle_SP(ActionEvent event) {
@@ -1713,7 +1732,7 @@ clearEmp();
             alert.showAndWait();
             return;
             
-        }
+        }else{
         
         if (count == 1) {
             try {
@@ -1768,7 +1787,7 @@ clearEmp();
         }
         // count = 2;
 
-    }
+    }}
     
     @FXML
     private void M_Btn_Save_Supplier(ActionEvent event)  {
@@ -1857,7 +1876,14 @@ clearEmp();
     
     @FXML
     private void M_Btn_Search_Supplier(ActionEvent event)  {
-        
+        if (Txfiled_Num_Supplier.getText().isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Pleas enter the value");
+                alert.showAndWait();
+                return;
+                
+            }else{
         try {
             Connection connection = connectionClass.getConnection();
             Statement st = connection.createStatement();
@@ -1911,7 +1937,7 @@ clearEmp();
           JOptionPane.showMessageDialog(null, ex);
         }
     }
-    
+    }
     @FXML
     private void M_Btn_Delete_Supplier(ActionEvent event)  {
         try{
@@ -3077,10 +3103,10 @@ clearEmp();
                }
         }
         //}
-        SPSelected2.forEach(ListOFSelectedSP::remove);
-        Table_SelectedSP_ReqSP.getItems().setAll(ListOFSelectedSP);
+       // SPSelected2.forEach(ListOFSelectedSP::remove);
+        //Table_SelectedSP_ReqSP.getItems().setAll(ListOFSelectedSP);
+              loadSpSelected();
         loadSpecifecSP();
-
         //calculate();
         //DELETE FROM `require` WHERE `require`.`MO_NBER` = 7 AND `require`.`SP_NBER` = 3;
         // Txfiled_SPCost_AddMO.setText(String.valueOf(spcost));
@@ -3125,8 +3151,11 @@ clearEmp();
                }
         }
         //}
-        Table_SelectedSP_ReqSP.getItems().setAll(ListOFSelectedSP);
-
+        
+                   loadSpSelected();
+        loadSpecifecSP();
+       // Table_SelectedSP_ReqSP.getItems().setAll(ListOFSelectedSP);
+       //SPSelected.forEach(AllSP::remove);
         // Txfiled_SPCost_AddMO.setText(String.valueOf(spcost));
         //SPSelected.forEach(AllSP::remove);
         //System.out.println(SPSelected);
@@ -3135,7 +3164,7 @@ clearEmp();
         //System.out.println(SPSelected.get(0).SP_Description);
         //Table_AddSP_AddMO.getItems().setAll(list);
         //Table_SelectedSP_AddMO.getItems().setAll(list2);
-        SPSelected.forEach(AllSP::remove);
+       
     }
     
     @FXML
@@ -3225,7 +3254,7 @@ clearEmp();
                 alert.showAndWait();
                 return;
                 
-            }
+            }else{
             Statement st2 = connection.createStatement();
             st2.executeQuery("SELECT * FROM `supplier`");
             ResultSet rs2 = st2.getResultSet();
@@ -3296,6 +3325,7 @@ clearEmp();
             alert2.showAndWait();*/
             clear();
             count = 2;
+            }
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null, ex);
         }
@@ -3348,6 +3378,7 @@ clearEmp();
     
     @FXML
     private void M_Btn_Search_ReqSP(ActionEvent event) {
+        
         try {
             if (Txfiled_REQnum_ReqSP.getText().isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -3356,7 +3387,7 @@ clearEmp();
                 alert.showAndWait();
                 return;
                 
-            }
+            }else{
             Connection connection = connectionClass.getConnection();
             Statement st = connection.createStatement();
             st.executeQuery("SELECT * FROM `requested_spare_parts` r JOIN `supplier` s ON r.SUPPLIER_NBER  = s.SUPPLIER_NBER  WHERE REQUEST_NBER = " + Txfiled_REQnum_ReqSP.getText());
@@ -3423,7 +3454,7 @@ if (rs.first()) {
         Btn_Print_ReqSP.setDisable(true);
     }
 }
-        } //}
+        } }//}
         catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -3646,7 +3677,48 @@ if (rs.first()) {
         }
         
     }
-    
+       @FXML
+    private void M_Btn_RestoreDB_Tools(ActionEvent event) {
+           FileChooser fileChooser= new FileChooser();
+       // DirectoryChooser directoryChooser = new DirectoryChooser();
+        Window stage = null;
+        File selectedDirectory = fileChooser.showOpenDialog(stage);
+        
+        if (selectedDirectory == null) {
+            //No Directory selected
+        } else {
+            System.out.println(selectedDirectory.getAbsolutePath());
+            String Path = selectedDirectory.getAbsolutePath();
+            
+             String[] executeCmd = new String[]{"C:\\xampp\\mysql\\bin\\mysql.exe","mo_db_Restore", "--user=" + "root", "--password=" + "", "-e", " source " + Path};
+            
+            
+            System.out.println(executeCmd );
+            Process runtimeProcess;
+            try {
+                
+                runtimeProcess = Runtime.getRuntime().exec(executeCmd );
+                
+                int processComplete = runtimeProcess.waitFor();
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText(null);
+                
+                if (processComplete == 0) {
+                    alert.setContentText("Restored Succuss");
+                    System.out.println("Restored Succuss");
+                    //return true;
+                } else {
+                    alert.setContentText("Can't Restored");
+                    System.out.println("Can't Restored");
+                }
+                alert.showAndWait();
+            } catch (Exception ex) {
+              JOptionPane.showMessageDialog(null, ex);
+            }
+            
+        }
+        
+    }
     @FXML
     private void M_Btn_SaveDB_Tools(ActionEvent event) {
         System.out.println("Btn_SaveDB_Tools");
@@ -3684,7 +3756,7 @@ if (rs.first()) {
                 }
                 alert.showAndWait();
             } catch (Exception ex) {
-                ex.printStackTrace();
+               JOptionPane.showMessageDialog(null, ex);
             }
             
         }
@@ -3802,6 +3874,8 @@ if (rs.first()) {
             
         }
     }
+
+ 
     
     public static class AddSP {
         

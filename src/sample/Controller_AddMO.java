@@ -980,46 +980,66 @@ if (count == 1) {
                 
                 //System.out.println(Txfiled_MOnum_AddMO.getText());
             } else {
-                
-                Statement st3 = connection.createStatement();
-                st3.executeQuery("SELECT INVOICE_NBER FROM `maintenance_operation` ORDER BY `INVOICE_NBER` DESC LIMIT 1");
-                ResultSet rs3 = st3.getResultSet();
-                rs3.next();
-                INVOICE_NBER = rs3.getString("INVOICE_NBER");
-                if (INVOICE_NBER != null) {
-                    
-                    monumber = Integer.parseInt(rs3.getString("INVOICE_NBER"));
-                    monumber++;
-                    System.out.println(monumber);
-                } else {
-                    st3.executeQuery("SELECT INVOICE_NBER FROM `maintenance_operation_backup` ORDER BY `INVOICE_NBER` DESC LIMIT 1");
-                    ResultSet rs4 = st3.getResultSet();
-                    rs4.next();
-                    INVOICE_NBER = rs4.getString("INVOICE_NBER");
-                    
-                    if (INVOICE_NBER != null) {
-                        
-                        monumber = Integer.parseInt(rs4.getString("INVOICE_NBER"));
-                        monumber++;
-                        System.out.println(monumber);
-                    } else {
-                        monumber = 1;
-                    }
-                    
-                }                  
-                
-                System.out.println("PAAAAAAAAAID");
-                String inv_num_date = "UPDATE  `maintenance_operation` SET INVOICE_DATE='" +/*المفروض  يكون التاريخ الحالي للنظام*/ LocalDate.now() + "',INVOICE_NBER='" + monumber + "' WHERE MO_NBER= '" + Txfiled_MOnum_AddMO.getText() + "'";
-                java.sql.Statement statement2 = connection.createStatement();
-                statement2.executeUpdate(inv_num_date);
-                //AlertMessageAR += "تم انشاء فاتورة لعملية الصيانة برقم " + monumber + '\n';
-                // AlertMessageEN+= "تم انشاء فاتورة لعملية الصيانة برقم " + monumber + '\n';
-                
-                //alert2.setContentText("تم انشاء فاتورة لعملية الصيانة برقم " + monumber);
-                //alert2.showAndWait();
-                //       alert2.setTitle(null);
-                //alert2.setHeaderText(null);
-            }
+
+                                    Statement st3 = connection.createStatement();
+                                    st3.executeQuery("SELECT INVOICE_NBER FROM `maintenance_operation` ORDER BY `INVOICE_NBER` DESC LIMIT 1");
+                                    ResultSet rs3 = st3.getResultSet();
+                                    rs3.next();
+                                    INVOICE_NBER = rs3.getString("INVOICE_NBER");
+
+                                    if (INVOICE_NBER != null) {
+                                        int INVOICE_NBER_ORg = Integer.parseInt(rs3.getString("INVOICE_NBER"));
+                                         Statement st4 = connection.createStatement();
+                                        st4.executeQuery("SELECT INVOICE_NBER FROM `maintenance_operation_backup` ORDER BY `INVOICE_NBER` DESC LIMIT 1");
+                                        ResultSet rs5 = st4.getResultSet();
+                                        rs5.next();
+                                       
+                                         INVOICE_NBER = rs5.getString("INVOICE_NBER");
+                                        if (INVOICE_NBER != null) {
+                                             int INVOICE_NBER_backup = Integer.parseInt(rs5.getString("INVOICE_NBER"));
+
+                                            if (INVOICE_NBER_ORg > INVOICE_NBER_backup) {
+                                                monumber = INVOICE_NBER_ORg;
+                                            } else {
+                                                monumber = INVOICE_NBER_backup;
+
+                                            }
+
+                                        } else {
+
+                                            monumber = Integer.parseInt(rs3.getString("INVOICE_NBER"));
+                                            monumber++;
+                                            System.out.println(monumber);
+                                        }
+                                    } else {
+                                        st3.executeQuery("SELECT INVOICE_NBER FROM `maintenance_operation_backup` ORDER BY `INVOICE_NBER` DESC LIMIT 1");
+                                        ResultSet rs4 = st3.getResultSet();
+                                        rs4.next();
+                                        INVOICE_NBER = rs4.getString("INVOICE_NBER");
+
+                                        if (INVOICE_NBER != null) {
+
+                                            monumber = Integer.parseInt(rs4.getString("INVOICE_NBER"));
+                                            monumber++;
+                                            System.out.println(monumber);
+                                        } else {
+                                            monumber = 1;
+                                        }
+
+                                    }
+
+                                    System.out.println("PAAAAAAAAAID");
+                                    String inv_num_date = "UPDATE  `maintenance_operation` SET INVOICE_DATE='" +/*المفروض  يكون التاريخ الحالي للنظام*/ LocalDate.now() + "',INVOICE_NBER='" + monumber + "' WHERE MO_NBER= '" + Txfiled_MOnum_AddMO.getText() + "'";
+                                    java.sql.Statement statement2 = connection.createStatement();
+                                    statement2.executeUpdate(inv_num_date);
+                                    //AlertMessageAR += "تم انشاء فاتورة لعملية الصيانة برقم " + monumber + '\n';
+                                    // AlertMessageEN+= "تم انشاء فاتورة لعملية الصيانة برقم " + monumber + '\n';
+
+                                    //alert2.setContentText("تم انشاء فاتورة لعملية الصيانة برقم " + monumber);
+                                    //alert2.showAndWait();
+                                    //       alert2.setTitle(null);
+                                    //alert2.setHeaderText(null);
+                                }
         }
         
         if (count_Language == 0) {
@@ -1238,9 +1258,9 @@ if (count == 1) {
             }
             alert.showAndWait();
             return;
-        }
+        }else{
         int MO_number = Integer.parseInt(Txfiled_MOnum_AddMO.getText());
-        Search_MO(MO_number);
+        Search_MO(MO_number);}
         /*Connection connection = connectionClass.getConnection();
         Statement st = connection.createStatement();
         st.executeQuery("SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE MO_NBER = " + Txfiled_MOnum_AddMO.getText());

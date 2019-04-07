@@ -1367,7 +1367,7 @@
                            <children>
                               <VBox prefHeight="512.0" prefWidth="857.0">
                                  <children>
-                                    <HBox fx:id="Hbox_Date_Reports" alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                    <HBox fx:id="Hbox_Date_Reports" alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" visible="false">
                                        <children>
                                           <JFXDatePicker fx:id="Date_Unill" defaultColor="BLACK" layoutX="370.0" layoutY="60.0">
                                              <HBox.margin>
@@ -1391,7 +1391,7 @@
                                           </Label>
                                           <VBox prefHeight="100.0" prefWidth="125.0">
                                              <children>
-                                                <JFXRadioButton fx:id="Rad_Last_month" nodeOrientation="LEFT_TO_RIGHT" text="اخر شهر">
+                                                <JFXRadioButton fx:id="Rad_Last_month" nodeOrientation="LEFT_TO_RIGHT" style="-jfx-selected-color: black;" text="اخر شهر">
                                                    <VBox.margin>
                                                       <Insets top="10.0" />
                                                    </VBox.margin>
@@ -1399,17 +1399,17 @@
                                                       <ToggleGroup fx:id="ReportsDate" />
                                                    </toggleGroup>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="Rad_LastThree_months" nodeOrientation="LEFT_TO_RIGHT" text="اخر ثلاث اشهر" toggleGroup="$ReportsDate">
+                                                <JFXRadioButton fx:id="Rad_LastThree_months" nodeOrientation="LEFT_TO_RIGHT" style="-jfx-selected-color: black;" text="اخر ثلاث اشهر" toggleGroup="$ReportsDate">
                                                    <VBox.margin>
                                                       <Insets top="10.0" />
                                                    </VBox.margin>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="Rad_This_Year" nodeOrientation="LEFT_TO_RIGHT" text="السنة الحالية" toggleGroup="$ReportsDate">
+                                                <JFXRadioButton fx:id="Rad_This_Year" nodeOrientation="LEFT_TO_RIGHT" style="-jfx-selected-color: black;" text="السنة الحالية" toggleGroup="$ReportsDate">
                                                    <VBox.margin>
                                                       <Insets top="10.0" />
                                                    </VBox.margin>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="Rad_Last_Year" nodeOrientation="LEFT_TO_RIGHT" text="اخر سنة" toggleGroup="$ReportsDate">
+                                                <JFXRadioButton fx:id="Rad_Last_Year" nodeOrientation="LEFT_TO_RIGHT" style="-jfx-selected-color: black;" text="اخر سنة" toggleGroup="$ReportsDate">
                                                    <VBox.margin>
                                                       <Insets top="10.0" />
                                                    </VBox.margin>
@@ -1423,7 +1423,7 @@
                                           </VBox>
                                        </children>
                                     </HBox>
-                                    <HBox fx:id="Hbox_Emolyee_Reports" alignment="CENTER" prefHeight="80.0" prefWidth="857.0">
+                                    <HBox fx:id="Hbox_Emolyee_Reports" alignment="CENTER" prefHeight="80.0" prefWidth="857.0" visible="false">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -1439,7 +1439,7 @@
                                           </Label>
                                        </children>
                                     </HBox>
-                                    <HBox fx:id="Hbox_MO_Reports" alignment="CENTER" prefHeight="71.0" prefWidth="857.0">
+                                    <HBox fx:id="Hbox_MO_Reports" alignment="CENTER" prefHeight="71.0" prefWidth="857.0" visible="false">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -1458,7 +1458,7 @@
                                           <Label text="رقم العملية" />
                                        </children>
                                     </HBox>
-                                    <HBox fx:id="Hbox_Customer_Reports" prefHeight="183.0" prefWidth="857.0">
+                                    <HBox fx:id="Hbox_Customer_Reports" prefHeight="183.0" prefWidth="857.0" visible="false">
                                        <children>
                                           <JFXTextField fx:id="Txfiled_CUS_MNBER" alignment="CENTER">
                                              <HBox.margin>
@@ -1562,6 +1562,21 @@
                                     <ImageView fitHeight="75.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../icons/download-to-storage-drive.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                              </JFXButton>
+                              <JFXButton fx:id="Btn_RestoreDB_Tools" onAction="#M_Btn_RestoreDB_Tools" prefHeight="94.0" prefWidth="449.0" stylesheets="/css/hr.css" text="استعادة قاعدة البيانات ">
+                                 <graphic>
+                                    <ImageView fitHeight="75.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icons/server%20(2).png" />
                                        </image>
                                     </ImageView>
                                  </graphic>

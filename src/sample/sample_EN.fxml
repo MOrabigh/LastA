@@ -1362,7 +1362,7 @@
                                           </JFXDatePicker>
                                           <VBox prefHeight="155.0" prefWidth="159.0">
                                              <children>
-                                                <JFXRadioButton fx:id="Rad_Last_month" nodeOrientation="LEFT_TO_RIGHT" text="Last Month">
+                                                <JFXRadioButton fx:id="Rad_Last_month" nodeOrientation="LEFT_TO_RIGHT" style="-jfx-selected-color: black;" text="Last Month">
                                                    <VBox.margin>
                                                       <Insets top="10.0" />
                                                    </VBox.margin>
@@ -1370,22 +1370,22 @@
                                                       <ToggleGroup fx:id="ReportsDate" />
                                                    </toggleGroup>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="Rad_LastThree_months" nodeOrientation="LEFT_TO_RIGHT" text="Last Three Months" toggleGroup="$ReportsDate">
+                                                <JFXRadioButton fx:id="Rad_LastThree_months" nodeOrientation="LEFT_TO_RIGHT" style="-jfx-selected-color: black;" text="Last Three Months" toggleGroup="$ReportsDate">
                                                    <VBox.margin>
                                                       <Insets top="10.0" />
                                                    </VBox.margin>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="Rad_This_Year" nodeOrientation="LEFT_TO_RIGHT" text="Current Year" toggleGroup="$ReportsDate">
+                                                <JFXRadioButton fx:id="Rad_This_Year" nodeOrientation="LEFT_TO_RIGHT" style="-jfx-selected-color: black;" text="Current Year" toggleGroup="$ReportsDate">
                                                    <VBox.margin>
                                                       <Insets top="10.0" />
                                                    </VBox.margin>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="Rad_Last_Year" nodeOrientation="LEFT_TO_RIGHT" text="Last Year " toggleGroup="$ReportsDate">
+                                                <JFXRadioButton fx:id="Rad_Last_Year" nodeOrientation="LEFT_TO_RIGHT" style="-jfx-selected-color: black;" text="Last Year " toggleGroup="$ReportsDate">
                                                    <VBox.margin>
                                                       <Insets top="10.0" />
                                                    </VBox.margin>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="Rad_Choose_Period" nodeOrientation="LEFT_TO_RIGHT" style="-jfx-selected-color: black;" text="Choose Period" toggleGroup="$ReportsDate">
+                                                <JFXRadioButton fx:id="Rad_Choose_Period" nodeOrientation="LEFT_TO_RIGHT" selected="true" style="-jfx-selected-color: black;" text="Choose Period" toggleGroup="$ReportsDate">
                                                    <VBox.margin>
                                                       <Insets top="10.0" />
                                                    </VBox.margin>
@@ -1530,6 +1530,21 @@
                                     <ImageView fitHeight="75.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../icons/download-to-storage-drive.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                              </JFXButton>
+                              <JFXButton fx:id="Btn_RestoreDB_Tools" onAction="#M_Btn_RestoreDB_Tools" prefHeight="94.0" prefWidth="449.0" stylesheets="/css/hr.css" text="    Restore database">
+                                 <graphic>
+                                    <ImageView fitHeight="75.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icons/server%20(2).png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
