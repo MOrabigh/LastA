@@ -58,74 +58,85 @@
 		</band>
 	</title>
 	<columnHeader>
-		<band height="56" splitType="Stretch"/>
-	</columnHeader>
-	<detail>
-		<band height="129" splitType="Stretch">
-			<line>
-				<reportElement x="0" y="21" width="555" height="1" uuid="5c0ab1ba-5a10-4be1-b4ca-6c399ef3220f"/>
-			</line>
+		<band height="97" splitType="Stretch">
 			<staticText>
-				<reportElement x="402" y="0" width="130" height="20" uuid="e5d5621e-c798-4380-8ce3-f066fa5a6ecf"/>
+				<reportElement x="470" y="13" width="74" height="20" uuid="e5d5621e-c798-4380-8ce3-f066fa5a6ecf"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[رقم الطلب]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="402" y="13" width="38" height="20" uuid="74d9582e-86e9-46bb-91ba-b6c306276eb7"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{REQUEST_NBER}]]></textFieldExpression>
+			</textField>
 			<staticText>
-				<reportElement x="402" y="28" width="130" height="20" uuid="e16c2a36-7a2f-42cf-8846-137076d86dc5"/>
+				<reportElement x="280" y="13" width="97" height="20" uuid="e16c2a36-7a2f-42cf-8846-137076d86dc5"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[تاريخ الطلب]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="234" y="27" width="130" height="20" uuid="31fa8396-bd9d-43c8-8fac-6f07386f7e83"/>
+				<reportElement x="176" y="13" width="104" height="20" uuid="31fa8396-bd9d-43c8-8fac-6f07386f7e83"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{REQUEST_DATE}]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement x="0" y="47" width="555" height="1" uuid="76d4e055-ded4-4ab2-8722-18481329b2d9"/>
-			</line>
-			<textField>
-				<reportElement x="234" y="0" width="130" height="20" uuid="74d9582e-86e9-46bb-91ba-b6c306276eb7"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{REQUEST_NBER}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="234" y="48" width="130" height="20" uuid="a468c760-5318-4a43-b7bf-caccb73472b7"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{SP_NAME}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="402" y="52" width="130" height="20" uuid="340ffc86-c894-4915-9a2c-bb88ed7f1a01"/>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[اسم قطعة الغيار]]></text>
-			</staticText>
-			<line>
-				<reportElement x="0" y="71" width="555" height="1" uuid="939b763f-bfad-4d1d-a40d-24a5cf11d2e0"/>
-			</line>
-			<staticText>
-				<reportElement x="402" y="75" width="130" height="20" uuid="2ed24511-fde4-4ac3-ac9c-b0396fc8a0ed"/>
+				<reportElement x="62" y="13" width="88" height="20" uuid="2ed24511-fde4-4ac3-ac9c-b0396fc8a0ed"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[رقم المزود]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="234" y="74" width="130" height="20" uuid="2643a492-de05-4f7e-9b74-133a87cde649"/>
+				<reportElement x="11" y="13" width="50" height="20" uuid="2643a492-de05-4f7e-9b74-133a87cde649"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{SUPPLIER_NBER}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="94" width="555" height="1" uuid="b5e32039-29b9-4866-a4c8-600726ba0e52"/>
+				<reportElement x="0" y="44" width="555" height="1" uuid="5c0ab1ba-5a10-4be1-b4ca-6c399ef3220f"/>
 			</line>
 			<staticText>
-				<reportElement x="402" y="95" width="130" height="20" uuid="3525cd93-694c-4083-8336-28262c078640"/>
+				<reportElement x="414" y="64" width="130" height="20" uuid="340ffc86-c894-4915-9a2c-bb88ed7f1a01"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[اسم قطعة الغيار]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="84" width="555" height="1" uuid="76d4e055-ded4-4ab2-8722-18481329b2d9"/>
+			</line>
+			<staticText>
+				<reportElement x="46" y="64" width="130" height="20" uuid="3525cd93-694c-4083-8336-28262c078640"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[كمية طلب قطع الغيار]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="234" y="64" width="143" height="20" uuid="c0cf8d50-fe50-4e6e-9e93-f08ba6135ca9"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[رقم قطعة الغيار]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
 			<textField>
-				<reportElement x="234" y="98" width="130" height="20" uuid="9052d814-dfd4-48ab-9271-ea568124fd79"/>
+				<reportElement x="414" y="0" width="130" height="20" uuid="a468c760-5318-4a43-b7bf-caccb73472b7"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{SP_NAME}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="25" width="555" height="1" uuid="939b763f-bfad-4d1d-a40d-24a5cf11d2e0"/>
+			</line>
+			<textField>
+				<reportElement x="46" y="5" width="130" height="20" uuid="9052d814-dfd4-48ab-9271-ea568124fd79"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{Req_QUANTITY}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="234" y="0" width="143" height="20" uuid="6b65e2a7-a39c-40e7-92bd-9fec7b037e25"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{SP_NBER}]]></textFieldExpression>
+			</textField>
 			<line>
-				<reportElement x="0" y="119" width="555" height="1" uuid="a7ba5558-3f76-4879-95ba-b5fba3b05fc2"/>
+				<reportElement x="402" y="-12" width="1" height="38" uuid="3440d442-cd3a-487f-bd2c-0226b3607184"/>
+			</line>
+			<line>
+				<reportElement x="207" y="-12" width="1" height="38" uuid="ea837a74-fdba-49f3-b433-3d0c3f84cdce"/>
 			</line>
 		</band>
 	</detail>
