@@ -239,7 +239,7 @@
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
                                     </JFXButton>
-                                    <JFXButton fx:id="Btn_Cancle_Customer" disable="true" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Cancle_Customer" stylesheets="/css/hr.css" text="الغاء">
+                                    <JFXButton fx:id="Btn_Cancel_Customer" disable="true" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Cancel_Customer" stylesheets="/css/hr.css" text="الغاء">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
@@ -657,7 +657,7 @@
                               </VBox>
                               <HBox alignment="CENTER" layoutY="471.0" prefHeight="54.0" prefWidth="600.0">
                                  <children>
-                                    <JFXButton fx:id="Btn_Cancle_SP" disable="true" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Cancle_SP" stylesheets="/css/hr.css" text="الغاء">
+                                    <JFXButton fx:id="Btn_Cancel_SP" disable="true" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Cancel_SP" stylesheets="/css/hr.css" text="الغاء">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
@@ -810,7 +810,7 @@
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
                                     </JFXButton>
-                                    <JFXButton fx:id="Btn_Cancle_ReqSP" disable="true" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Cancle_ReqSP" stylesheets="/css/hr.css" text="الغاء">
+                                    <JFXButton fx:id="Btn_Cancel_ReqSP" disable="true" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Cancel_ReqSP" stylesheets="/css/hr.css" text="الغاء">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
@@ -1065,7 +1065,7 @@
                               </VBox>
                               <HBox alignment="CENTER" layoutY="471.0" prefHeight="54.0" prefWidth="600.0">
                                  <children>
-                                    <JFXButton fx:id="Btn_Cancle_Supplier" disable="true" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Cancle_Supplier" stylesheets="/css/hr.css" text="الغاء">
+                                    <JFXButton fx:id="Btn_Cancel_Supplier" disable="true" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Cancel_Supplier" stylesheets="/css/hr.css" text="الغاء">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
@@ -1477,7 +1477,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="27.0" prefWidth="857.0">
                                        <children>
-                                          <JFXButton onAction="#prbuttonReports" prefHeight="42.0" prefWidth="93.0" stylesheets="/css/hr.css" text="طباعة">
+                                          <JFXButton onAction="#M_btn_print_reports" prefHeight="42.0" prefWidth="93.0" stylesheets="/css/hr.css" text="طباعة">
                                              <graphic>
                                                 <ImageView fitHeight="26.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>

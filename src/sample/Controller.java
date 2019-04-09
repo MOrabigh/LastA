@@ -166,7 +166,7 @@ public class Controller implements Initializable {
     @FXML
     private JFXButton Btn_Print_ReqSP;
     @FXML
-    private JFXButton Btn_Cancle_ReqSP;
+    private JFXButton Btn_Cancel_ReqSP;
     @FXML
     private JFXButton Btn_Delete_ReqSP;
     @FXML
@@ -227,7 +227,7 @@ public class Controller implements Initializable {
     @FXML
     private JFXButton Btn_Save_Customer;
     @FXML
-    private JFXButton Btn_Cancle_Customer;
+    private JFXButton Btn_Cancel_Customer;
 
     @FXML
     private JFXButton Btn_Delete_Customer;
@@ -245,7 +245,7 @@ public class Controller implements Initializable {
     @FXML
     private JFXTextArea Txfiled_Discription_SP;
     @FXML
-    private JFXButton Btn_Cancle_SP;
+    private JFXButton Btn_Cancel_SP;
     @FXML
     private JFXButton Btn_Delete_SP;
     @FXML
@@ -283,7 +283,7 @@ public class Controller implements Initializable {
     private JFXTextField Txfiled_Email_Supplier;
 
     @FXML
-    private JFXButton Btn_Cancle_Supplier;
+    private JFXButton Btn_Cancel_Supplier;
 
     @FXML
     private JFXButton Btn_Delete_Supplier;
@@ -654,7 +654,7 @@ public class Controller implements Initializable {
             SP_aboutTObeOUT_MainWindow.setText(String.valueOf(rowcount));
 
         } catch (SQLException ex) {
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
     }
 
@@ -678,7 +678,7 @@ public class Controller implements Initializable {
             // Table_AddSP_ReqSP.getItems().setAll(ListOFSP);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
-            // Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            // JOptionPane.showMessageDialog(null, ex);
         }
     }
 
@@ -726,7 +726,7 @@ public class Controller implements Initializable {
             rs.close();
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, ex);
 
         }
         Table_AddSP_ReqSP.getItems().setAll(ListOFSP);
@@ -852,6 +852,7 @@ public class Controller implements Initializable {
             rs.close();
 
         } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null, ex);
         }
     }
 
@@ -866,7 +867,7 @@ public class Controller implements Initializable {
             stage.showAndWait();
 
         } catch (IOException e) {
-            e.printStackTrace();
+             JOptionPane.showMessageDialog(null, e);
         }
     }
 
@@ -883,7 +884,7 @@ public class Controller implements Initializable {
                 loader.load();
 
             } catch (IOException ex) {
-                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                 JOptionPane.showMessageDialog(null, ex);
             }
 
             Controller_AddMO controller_AddMO = loader.getController();
@@ -898,7 +899,7 @@ public class Controller implements Initializable {
                 controller_AddMO.SetMoStatus_language(1);
 
             } catch (IOException ex) {
-                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                 JOptionPane.showMessageDialog(null, ex);
             }
 
         }
@@ -956,7 +957,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void M_Btn_Cancle_Customer(ActionEvent event) {
+    private void M_Btn_Cancel_Customer(ActionEvent event) {
         ClearCus();
 
     }
@@ -973,7 +974,7 @@ public class Controller implements Initializable {
         Txfiled_Address_Customer.setDisable(false);
 
         Btn_ChangeMN_Customer.setDisable(true);
-        Btn_Cancle_Customer.setDisable(true);
+        Btn_Cancel_Customer.setDisable(true);
         Btn_Delete_Customer.setDisable(true);
         Btn_Search_Customer.setDisable(false);
         Btn_Save_Customer.setDisable(true);
@@ -1007,7 +1008,7 @@ public class Controller implements Initializable {
                     loader.load();
 
                 } catch (IOException ex) {
-                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, ex);
                 }
                 Controller_AddMO controller_AddMO = loader.getController();
                 controller_AddMO.SetMoStatus_language(0);
@@ -1019,7 +1020,7 @@ public class Controller implements Initializable {
                     loader.load();
 
                 } catch (IOException ex) {
-                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, ex);
                 }
                 Controller_AddMO controller_AddMO = loader.getController();
                 controller_AddMO.SetMoStatus_language(1);
@@ -1282,7 +1283,7 @@ public class Controller implements Initializable {
                     Txfiled_Address_Customer.setText(rs.getString("CUS_ADDRESS"));
                     Txfiled_MNum_Customer.setDisable(true);
                     Btn_Delete_Customer.setDisable(false);
-                    Btn_Cancle_Customer.setDisable(false);
+                    Btn_Cancel_Customer.setDisable(false);
                     Btn_Save_Customer.setDisable(false);
                     Btn_ChangeMN_Customer.setDisable(false);
 
@@ -1292,7 +1293,7 @@ public class Controller implements Initializable {
                     System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
                     count = 1;
                     Txfiled_MNum_Customer.setDisable(true);
-                    Btn_Cancle_Customer.setDisable(false);
+                    Btn_Cancel_Customer.setDisable(false);
                     Btn_Save_Customer.setDisable(false);
                     Btn_Delete_Customer.setDisable(true);
                     Btn_ChangeMN_Customer.setDisable(false);
@@ -1618,7 +1619,7 @@ public class Controller implements Initializable {
                     Txfiled_SPNum_SP.setDisable(true);
                     Btn_Save_SP.setDisable(false);
                     Btn_Delete_SP.setDisable(false);
-                    Btn_Cancle_SP.setDisable(false);
+                    Btn_Cancel_SP.setDisable(false);
 
                 }
             } else {
@@ -1640,7 +1641,7 @@ public class Controller implements Initializable {
                     Txfiled_SPNum_SP.setDisable(true);
                     Btn_Save_SP.setDisable(false);
                     Btn_Delete_SP.setDisable(true);
-                    Btn_Cancle_SP.setDisable(false);
+                    Btn_Cancel_SP.setDisable(false);
 
                 }
             }
@@ -1649,7 +1650,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void M_Btn_Cancle_SP(ActionEvent event) {
+    private void M_Btn_Cancel_SP(ActionEvent event) {
         ClearSp();
     }
 
@@ -1663,7 +1664,7 @@ public class Controller implements Initializable {
         Txfiled_minimumQuantity_SP.clear();
         Btn_Delete_SP.setDisable(true);
         Btn_Save_SP.setDisable(true);
-        Btn_Cancle_SP.setDisable(true);
+        Btn_Cancel_SP.setDisable(true);
     }
 
     @FXML
@@ -1794,7 +1795,7 @@ public class Controller implements Initializable {
                 } catch (SQLException ex) {
                     //System.out.println(ex);
                     JOptionPane.showMessageDialog(null, ex);
-                    // Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                    // JOptionPane.showMessageDialog(null, ex);
                 }
             }
             // count = 2;
@@ -1920,7 +1921,7 @@ public class Controller implements Initializable {
                         Txfiled_Num_Supplier.setDisable(true);
                         Btn_Save_Supplier.setDisable(false);
                         Btn_Delete_Supplier.setDisable(false);
-                        Btn_Cancle_Supplier.setDisable(false);
+                        Btn_Cancel_Supplier.setDisable(false);
 
                     }
                 } else {
@@ -1941,7 +1942,7 @@ public class Controller implements Initializable {
                         Txfiled_Num_Supplier.setDisable(true);
                         Btn_Save_Supplier.setDisable(false);
                         Btn_Delete_Supplier.setDisable(true);
-                        Btn_Cancle_Supplier.setDisable(false);
+                        Btn_Cancel_Supplier.setDisable(false);
 
                     }
                 }
@@ -2006,7 +2007,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void M_Btn_Cancle_Supplier(ActionEvent event) {
+    private void M_Btn_Cancel_Supplier(ActionEvent event) {
 
         clearSUP();
     }
@@ -2019,7 +2020,7 @@ public class Controller implements Initializable {
         Txfiled_Name_Supplier.clear();
         Txfiled_Address_Supplier.clear();
         Btn_Delete_Supplier.setDisable(true);
-        Btn_Cancle_Supplier.setDisable(true);
+        Btn_Cancel_Supplier.setDisable(true);
         Btn_Save_Supplier.setDisable(true);
 
     }
@@ -2037,7 +2038,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void prbuttonReports(ActionEvent event) throws SQLException, JRException {
+    private void M_btn_print_reports(ActionEvent event) throws SQLException, JRException {
         if (count_Language == 1) {
             ObservableList<String> names;
             names = List_of_reports.getSelectionModel().getSelectedItems();
@@ -2965,7 +2966,7 @@ public class Controller implements Initializable {
             rs.close();
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, ex);
 
         }
     }
@@ -3213,7 +3214,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void M_Btn_Cancle_ReqSP(ActionEvent event) {
+    private void M_Btn_Cancel_ReqSP(ActionEvent event) {
         clear();
     }
 
@@ -3341,7 +3342,7 @@ public class Controller implements Initializable {
 
     public void clear() {
         Btn_AddSP_ReqSP.setDisable(true);
-        Btn_Cancle_ReqSP.setDisable(true);
+        Btn_Cancel_ReqSP.setDisable(true);
         Btn_Delete_ReqSP.setDisable(true);
         Btn_RemoveSP_ReqSP.setDisable(true);
         Btn_Save_ReqSP.setDisable(true);
@@ -3380,7 +3381,7 @@ public class Controller implements Initializable {
             rs.close();
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+           JOptionPane.showMessageDialog(null, ex);
 
         }
         Selct_Supplier_ReqSP.setItems(ListOfSuppliers);
@@ -3433,7 +3434,7 @@ public class Controller implements Initializable {
                         Btn_Print_ReqSP.setDisable(false);
                         Btn_Delete_ReqSP.setDisable(false);
 
-                        Btn_Cancle_ReqSP.setDisable(false);
+                        Btn_Cancel_ReqSP.setDisable(false);
                         Btn_AddSP_ReqSP.setDisable(false);
                         Btn_RemoveSP_ReqSP.setDisable(false);
                         //loadlist.clear();
@@ -3462,7 +3463,7 @@ public class Controller implements Initializable {
                         Txfiled_REQnum_ReqSP.setDisable(true);
                         //Txfiled_MOnum_AddMO.clear();
                         Btn_Delete_ReqSP.setDisable(true);
-                        Btn_Cancle_ReqSP.setDisable(false);
+                        Btn_Cancel_ReqSP.setDisable(false);
                         Btn_Save_ReqSP.setDisable(false);
                         Btn_Print_ReqSP.setDisable(true);
                     }
@@ -4010,7 +4011,7 @@ public class Controller implements Initializable {
                 }
 
             } catch (SQLException ex) {
-                ex.printStackTrace();
+               JOptionPane.showMessageDialog(null, ex);
 
             }
             Table_AddSP_ReqSP.getItems().setAll(ListOFSP);
@@ -4025,7 +4026,7 @@ public class Controller implements Initializable {
                 }
 
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, ex);
 
             }
 
@@ -4048,7 +4049,7 @@ public class Controller implements Initializable {
                 }
 
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, ex);
 
             }
             Table_CurrentMO_MngMO.getItems().setAll(CurrnetList);
@@ -4072,7 +4073,7 @@ public class Controller implements Initializable {
                 }
 
             } catch (SQLException ex) {
-                ex.printStackTrace();
+               JOptionPane.showMessageDialog(null, ex);
 
             }
             Table_FinshedMO_MngMO.getItems().setAll(FinshedList);
@@ -4096,7 +4097,7 @@ public class Controller implements Initializable {
                 }
 
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, ex);
 
             }
             Table_PreviousMO_MngMO.getItems().setAll(PriveousList);
@@ -4120,7 +4121,7 @@ public class Controller implements Initializable {
                 }
 
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, ex);
 
             }
             Table_pendingMO_MngMO.getItems().setAll(PendingList);
@@ -4142,7 +4143,7 @@ public class Controller implements Initializable {
                 loader.load();
 
             } catch (IOException ex) {
-                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, ex);
             }
 
             Controller_ChangePassword changePassword = loader.getController();
@@ -4159,7 +4160,7 @@ public class Controller implements Initializable {
                 changePassword.Set_count_Language(1);
 
             } catch (IOException ex) {
-                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, ex);
             }
 
         }
@@ -4365,7 +4366,7 @@ public class Controller implements Initializable{
     }
 
     @FXML
-    private void Btn_Cancle_Customer(ActionEvent event) {
+    private void Btn_Cancel_Customer(ActionEvent event) {
     }
 
     @FXML

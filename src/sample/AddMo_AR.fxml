@@ -281,7 +281,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="Btn_Cancle_AddMo" disable="true" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Cancle_AddMo" stylesheets="@../css/hr.css" text="الغاء">
+                  <JFXButton fx:id="Btn_Cancel_AddMo" disable="true" layoutX="10.0" layoutY="10.0" onAction="#M_Btn_Cancel_AddMo" stylesheets="@../css/hr.css" text="الغاء">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>

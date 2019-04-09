@@ -151,7 +151,7 @@ public class Controller_Login {
                                 loader.load();
                                 
                             } catch (IOException ex) {
-                                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                                JOptionPane.showMessageDialog(null, ex);
                             }
                             
                             Controller controller = loader.getController();
@@ -170,7 +170,7 @@ public class Controller_Login {
                                 controller.EmJob_SEX_lang(1);
                                 
                             } catch (IOException ex) {
-                                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                                JOptionPane.showMessageDialog(null, ex);
                             }
                             
                         }

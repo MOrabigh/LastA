@@ -110,7 +110,7 @@ public class Controller_AddMO implements Initializable {
     @FXML
     private JFXButton Btn_Print_AddMo;
     @FXML
-    private JFXButton Btn_Cancle_AddMo;
+    private JFXButton Btn_Cancel_AddMo;
     @FXML
     private JFXButton Btn_Delete_AddMo;
     @FXML
@@ -426,7 +426,7 @@ public class Controller_AddMO implements Initializable {
                 Btn_Save_AddMo.setDisable(false);
                 Btn_Print_AddMo.setDisable(false);
                 Txfiled_CusName_AddMO.setDisable(true);
-                Btn_Cancle_AddMo.setDisable(false);
+                Btn_Cancel_AddMo.setDisable(false);
                 Btn_AddSP_AddMo.setDisable(false);
                 Btn_ReomveSP_AddMo.setDisable(false);
                 
@@ -491,7 +491,7 @@ public class Controller_AddMO implements Initializable {
                     Txfiled_MOnum_AddMO.setDisable(true);
                     //Txfiled_MOnum_AddMO.clear();
                     Btn_Delete_AddMo.setDisable(true);
-                    Btn_Cancle_AddMo.setDisable(false);
+                    Btn_Cancel_AddMo.setDisable(false);
                     Btn_Save_AddMo.setDisable(false);
                     Btn_Print_AddMo.setDisable(false);
                     Txfiled_CusName_AddMO.setDisable(true);
@@ -540,7 +540,7 @@ public class Controller_AddMO implements Initializable {
         Btn_Print_AddMo.setDisable(false);
         Btn_Delete_AddMo.setDisable(false);
         Txfiled_CusName_AddMO.setDisable(true);
-        Btn_Cancle_AddMo.setDisable(false);
+        Btn_Cancel_AddMo.setDisable(false);
         Btn_AddSP_AddMo.setDisable(false);
         Btn_ReomveSP_AddMo.setDisable(false);
         //loadlist.clear();
@@ -706,7 +706,7 @@ public class Controller_AddMO implements Initializable {
             stage.setTitle(title);
             stage.show();
         } catch (IOException s) {
-            s.printStackTrace();
+             JOptionPane.showMessageDialog(null, s);
         }
     }
 
@@ -718,11 +718,9 @@ public class Controller_AddMO implements Initializable {
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('paid') AND m.MO_NBER ='" + Txfiled_MOnum_AddMO.getText() + "'";
                     System.out.println(query);
                     java.sql.Statement statement1 = connection.createStatement();
-                    
                     printreport print = new printreport();
-                    String ss = Txfiled_MOnum_AddMO.getText();
+                    print.showReportEN(Txfiled_MOnum_AddMO.getText());
                     
-                    print.showReportEN(ss);
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, ex);
                 } catch (JRException ex) {
@@ -735,8 +733,7 @@ public class Controller_AddMO implements Initializable {
                     java.sql.Statement statement1 = connection.createStatement();
                     
                     printreport print = new printreport();
-                    String ff = Txfiled_MOnum_AddMO.getText();
-                    print.financialassessmentEN(ff);
+                    print.financialassessmentEN(Txfiled_MOnum_AddMO.getText());
                 } catch (JRException ex) {
                     JOptionPane.showMessageDialog(null, ex);
                 } catch (SQLException ex) {
@@ -758,9 +755,8 @@ public class Controller_AddMO implements Initializable {
                     java.sql.Statement statement1 = connection.createStatement();
                     
                     printreport print = new printreport();
-                    String ss = Txfiled_MOnum_AddMO.getText();
                     
-                    print.showReport(ss);
+                    print.showReport(Txfiled_MOnum_AddMO.getText());
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, ex);
                 } catch (JRException ex) {
@@ -773,8 +769,7 @@ public class Controller_AddMO implements Initializable {
                     java.sql.Statement statement1 = connection.createStatement();
                     
                     printreport print = new printreport();
-                    String ff = Txfiled_MOnum_AddMO.getText();
-                    print.financialassessment(ff);
+                    print.financialassessment(Txfiled_MOnum_AddMO.getText());
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, ex);
                 } catch (JRException ex) {
@@ -793,7 +788,7 @@ public class Controller_AddMO implements Initializable {
     }
 
     @FXML
-    private void M_Btn_Cancle_AddMo(ActionEvent event) {
+    private void M_Btn_Cancel_AddMo(ActionEvent event) {
 
         clear();
 
@@ -1371,7 +1366,7 @@ if (count == 1) {
                 Btn_Print_AddMo.setDisable(false);
                 Btn_Delete_AddMo.setDisable(false);
                 Txfiled_CusName_AddMO.setDisable(true);
-                Btn_Cancle_AddMo.setDisable(false);
+                Btn_Cancel_AddMo.setDisable(false);
                 Btn_AddSP_AddMo.setDisable(false);
                 Btn_ReomveSP_AddMo.setDisable(false);
                 //loadlist.clear();
@@ -1399,7 +1394,7 @@ if (count == 1) {
                     Txfiled_MOnum_AddMO.setDisable(true);
                     //Txfiled_MOnum_AddMO.clear();
                     Btn_Delete_AddMo.setDisable(true);
-                    Btn_Cancle_AddMo.setDisable(false);
+                    Btn_Cancel_AddMo.setDisable(false);
                     Btn_Save_AddMo.setDisable(false);
                     Btn_Print_AddMo.setDisable(false);
                     Txfiled_CusName_AddMO.setDisable(false);
@@ -1437,7 +1432,7 @@ if (count == 1) {
             rs.close();
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+             JOptionPane.showMessageDialog(null, ex);
 
         }
 
@@ -1482,7 +1477,7 @@ if (count == 1) {
             rs.close();
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+          JOptionPane.showMessageDialog(null, ex);
 
         }
         Table_AddSP_AddMO.getItems().setAll(list);
@@ -1705,9 +1700,7 @@ if (count == 1) {
         calculate();
     }
 
-    @FXML
-    private void M_Txfiled_SPCost_AddMO(ActionEvent event) {
-    }
+   
 
     @FXML
     private void M_KeyReleased_TabelSelecSP_AddMO(KeyEvent event) {
