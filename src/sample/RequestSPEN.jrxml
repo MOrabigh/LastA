@@ -95,7 +95,7 @@
 			<staticText>
 				<reportElement x="12" y="49" width="130" height="20" uuid="340ffc86-c894-4915-9a2c-bb88ed7f1a01"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[Spare_Part Name]]></text>
+				<text><![CDATA[Spare Part Name]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="387" y="49" width="130" height="20" uuid="3525cd93-694c-4083-8336-28262c078640"/>
@@ -105,7 +105,7 @@
 			<staticText>
 				<reportElement x="195" y="49" width="142" height="20" uuid="248b75c4-c865-41d3-aaa7-b515d0b62f99"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[Spare_Part Number]]></text>
+				<text><![CDATA[Spare Part Number]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="70" width="555" height="1" uuid="76d4e055-ded4-4ab2-8722-18481329b2d9"/>

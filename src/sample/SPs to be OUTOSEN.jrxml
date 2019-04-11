@@ -53,27 +53,27 @@
 			<staticText>
 				<reportElement x="18" y="20" width="100" height="20" uuid="ee1108e9-b988-4b7a-8af6-5c04ab57d4eb"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[SP_NBER]]></text>
+				<text><![CDATA[Spare part Number]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="133" y="20" width="100" height="20" uuid="29820f16-6e71-4179-8592-f0563cf3341e"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[SP_NAME]]></text>
+				<text><![CDATA[Spare part Name]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="244" y="20" width="91" height="20" uuid="6769f17f-73c9-4933-a60a-b30e570de284"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[PRICE]]></text>
+				<text><![CDATA[Price]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="342" y="20" width="100" height="20" uuid="b30dfdfd-bc69-48bd-8f39-2da78b3829ad"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[SP_QUANTITY]]></text>
+				<text><![CDATA[Spare part Quantity]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="457" y="20" width="100" height="20" uuid="92bf8d5b-5896-4f38-af5a-9638bc62a62b"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[DESCRIPTION]]></text>
+				<text><![CDATA[Description]]></text>
 			</staticText>
 		</band>
 	</columnHeader>

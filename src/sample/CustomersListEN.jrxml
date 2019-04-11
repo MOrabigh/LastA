@@ -45,31 +45,31 @@
 				<reportElement x="0" y="49" width="555" height="1" uuid="b8e7b548-c29f-455e-8754-993167bf2547"/>
 			</line>
 			<staticText>
-				<reportElement x="8" y="22" width="100" height="20" uuid="49bb5c90-f7f7-470e-954c-9167eb7eb9de"/>
+				<reportElement x="8" y="22" width="145" height="20" uuid="49bb5c90-f7f7-470e-954c-9167eb7eb9de"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[CUS_NAME]]></text>
+				<text><![CDATA[Customer Name]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="135" y="22" width="161" height="20" uuid="b842a4da-37f5-4009-90f6-908b5313d6c7"/>
+				<reportElement x="170" y="22" width="126" height="20" uuid="b842a4da-37f5-4009-90f6-908b5313d6c7"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[CUSTOMER_MOBILE_NUMBER]]></text>
+				<text><![CDATA[Customer Mobile Number]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="304" y="22" width="240" height="20" uuid="b61c1342-05c3-4f86-8f96-860c07433790"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[CUSTOMER_EMAIL]]></text>
+				<text><![CDATA[Customer Email]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="29" splitType="Stretch">
 			<textField>
-				<reportElement x="8" y="0" width="100" height="20" uuid="1c536923-ec13-44d2-91f7-789f31400880"/>
+				<reportElement x="8" y="0" width="145" height="20" uuid="1c536923-ec13-44d2-91f7-789f31400880"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{CUS_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="135" y="0" width="161" height="20" uuid="ae13ef0d-90d7-4fb8-b6b4-9c76db5ea27a"/>
+				<reportElement x="170" y="0" width="126" height="20" uuid="ae13ef0d-90d7-4fb8-b6b4-9c76db5ea27a"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{CUS_MOBILE_NBER}]]></textFieldExpression>
 			</textField>
@@ -85,7 +85,7 @@
 				<reportElement x="299" y="-11" width="1" height="36" uuid="1658057f-57b7-4b47-9915-216132df8580"/>
 			</line>
 			<line>
-				<reportElement x="118" y="-11" width="1" height="36" uuid="f57c4473-d192-407f-b627-2de916b067b7"/>
+				<reportElement x="153" y="-11" width="1" height="36" uuid="f57c4473-d192-407f-b627-2de916b067b7"/>
 			</line>
 		</band>
 	</detail>

@@ -107,22 +107,22 @@
 			<staticText>
 				<reportElement x="11" y="25" width="77" height="20" uuid="df71c859-b95f-452f-867a-7897bd611cf3"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[MO_NBER]]></text>
+				<text><![CDATA[MO Number]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="118" y="25" width="145" height="20" uuid="791fffc9-4011-45d5-ab2c-a5c2f13dc207"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[CUSTOMER_NAME]]></text>
+				<text><![CDATA[CUSTOMER NAME]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="301" y="25" width="136" height="20" uuid="c5b241e8-f3ee-4ab0-955e-dbb8063a6667"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[EMPLOYEE_NAME]]></text>
+				<text><![CDATA[EMPLOYEE NAME]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="470" y="25" width="137" height="20" uuid="306598ae-400b-4c8f-9108-9d8a1d17702f"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[DEVICE_DESCRIPTION]]></text>
+				<text><![CDATA[DEVICE DESCRIPTION]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="650" y="25" width="152" height="20" uuid="efa51c0a-86e9-4514-a23e-b3dc15a98f98"/>

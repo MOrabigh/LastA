@@ -2064,7 +2064,7 @@ public class Controller implements Initializable {
                 if (Rad_Last_month.isSelected()) {
 
                     Statement st2 = connection.createStatement();
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapproved','دفعت','مرفوضة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(1) + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','دفعت','disapproved','مرفوضة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(1) + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2085,7 +2085,7 @@ public class Controller implements Initializable {
 
                 } else if (Rad_LastThree_months.isSelected()) {
                     Statement st2 = connection.createStatement();
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapproved','دفعت','مرفوضة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(3) + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','دفعت','disapproved','مرفوضة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(3) + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2105,7 +2105,7 @@ public class Controller implements Initializable {
                     }
                 } else if (Rad_This_Year.isSelected()) {
                     Statement st2 = connection.createStatement();
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapproved','دفعت','مرفوضة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','دفعت','disapproved','مرفوضة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2125,7 +2125,7 @@ public class Controller implements Initializable {
                     }
                 } else if (Rad_Last_Year.isSelected()) {
                     Statement st2 = connection.createStatement();
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapproved','دفعت','مرفوضة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','دفعت','disapproved','مرفوضة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2148,7 +2148,7 @@ public class Controller implements Initializable {
                     Statement st2 = connection.createStatement();
                     System.out.println(Rad_Choose_Period.getText());
 
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapproved','دفعت','مرفوضة') AND m.STARTING_DATE >= '" + Date_StartFrom.getValue() + "' AND m.STARTING_DATE <= '" + Date_Unill.getValue() + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','دفعت','disapproved','مرفوضة') AND m.STARTING_DATE >= '" + Date_StartFrom.getValue() + "' AND m.STARTING_DATE <= '" + Date_Unill.getValue() + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2274,7 +2274,7 @@ public class Controller implements Initializable {
                 if (Rad_Last_month.isSelected()) {
                     Statement st2 = connection.createStatement();
 
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired','تم الاصلاح') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(1) + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('تم الاصلاح','repaired') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(1) + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2295,7 +2295,7 @@ public class Controller implements Initializable {
                 } else if (Rad_LastThree_months.isSelected()) {
                     Statement st2 = connection.createStatement();
 
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired','تم الاصلاح') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(3) + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('تم الاصلاح','repaired') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(3) + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2316,7 +2316,7 @@ public class Controller implements Initializable {
 
                 } else if (Rad_This_Year.isSelected()) {
                     Statement st2 = connection.createStatement();
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired','تم الاصلاح') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('تم الاصلاح','repaired') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2337,7 +2337,7 @@ public class Controller implements Initializable {
 
                 } else if (Rad_Last_Year.isSelected()) {
                     Statement st2 = connection.createStatement();
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired','تم الاصلاح') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('تم الاصلاح','repaired') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2358,7 +2358,7 @@ public class Controller implements Initializable {
 
                 } else if (Rad_Choose_Period.isSelected()) {
                     Statement st2 = connection.createStatement();
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired','تم الاصلاح') AND m.STARTING_DATE >= '" + Date_StartFrom.getValue() + "' AND m.STARTING_DATE <= '" + Date_Unill.getValue() + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('تم الاصلاح','repaired') AND m.STARTING_DATE >= '" + Date_StartFrom.getValue() + "' AND m.STARTING_DATE <= '" + Date_Unill.getValue() + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2502,7 +2502,7 @@ public class Controller implements Initializable {
                 if (Rad_Last_month.isSelected()) {
 
                     Statement st2 = connection.createStatement();
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapproved')  AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(1) + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','دفعت','disapproved','مرفوضة')  AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(1) + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2524,7 +2524,7 @@ public class Controller implements Initializable {
                 } else if (Rad_LastThree_months.isSelected()) {
 
                     Statement st2 = connection.createStatement();
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapproved')  AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(3) + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','دفعت','disapproved','مرفوضة')  AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(3) + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2545,7 +2545,7 @@ public class Controller implements Initializable {
                 } else if (Rad_This_Year.isSelected()) {
 
                     Statement st2 = connection.createStatement();
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapproved')  AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','دفعت','disapproved','مرفوضة')  AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2566,7 +2566,7 @@ public class Controller implements Initializable {
                 } else if (Rad_Last_Year.isSelected()) {
 
                     Statement st2 = connection.createStatement();
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapproved')  AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','دفعت','disapproved','مرفوضة')  AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2589,7 +2589,7 @@ public class Controller implements Initializable {
                     Statement st2 = connection.createStatement();
                     System.out.println(Rad_Choose_Period.getText());
 
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapproved') AND m.STARTING_DATE >= '" + Date_StartFrom.getValue() + "' AND m.STARTING_DATE <= '" + Date_Unill.getValue() + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','دفعت','disapproved','مرفوضة') AND m.STARTING_DATE >= '" + Date_StartFrom.getValue() + "' AND m.STARTING_DATE <= '" + Date_Unill.getValue() + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2615,7 +2615,7 @@ public class Controller implements Initializable {
                     Statement st2 = connection.createStatement();
 
                     //String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance') AND '" + LocalDate.now() + "'>='" + Date.minusMonths(3) + "'";
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(1) + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance','تم الموافقة','تحت الصيانة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(1) + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2637,7 +2637,7 @@ public class Controller implements Initializable {
 
                 } else if (Rad_LastThree_months.isSelected()) {
                     Statement st2 = connection.createStatement();
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(3) + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance','تم الموافقة','تحت الصيانة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(3) + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2659,7 +2659,7 @@ public class Controller implements Initializable {
 
                 } else if (Rad_This_Year.isSelected()) {
                     Statement st2 = connection.createStatement();
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance','تم الموافقة','تحت الصيانة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2681,7 +2681,7 @@ public class Controller implements Initializable {
 
                 } else if (Rad_Last_Year.isSelected()) {
                     Statement st2 = connection.createStatement();
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance','تم الموافقة','تحت الصيانة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2703,7 +2703,7 @@ public class Controller implements Initializable {
 
                 } else if (Rad_Choose_Period.isSelected()) {
                     Statement st2 = connection.createStatement();
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance') AND m.STARTING_DATE >= '" + Date_StartFrom.getValue() + "' AND m.STARTING_DATE <= '" + Date_Unill.getValue() + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance','تم الموافقة','تحت الصيانة') AND m.STARTING_DATE >= '" + Date_StartFrom.getValue() + "' AND m.STARTING_DATE <= '" + Date_Unill.getValue() + "'";
 
                     System.out.println(query);
                     st2.executeQuery(query);
@@ -2729,7 +2729,7 @@ public class Controller implements Initializable {
                 if (Rad_Last_month.isSelected()) {
                     Statement st2 = connection.createStatement();
 
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(1) + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired','تم الاصلاح') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(1) + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2752,7 +2752,7 @@ public class Controller implements Initializable {
                 } else if (Rad_LastThree_months.isSelected()) {
                     Statement st2 = connection.createStatement();
 
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(3) + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired','تم الاصلاح') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(3) + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2774,7 +2774,7 @@ public class Controller implements Initializable {
                 } else if (Rad_This_Year.isSelected()) {
 
                     Statement st2 = connection.createStatement();
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired','تم الاصلاح') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2797,7 +2797,7 @@ public class Controller implements Initializable {
                 } else if (Rad_Last_Year.isSelected()) {
                     Statement st2 = connection.createStatement();
 
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired','تم الاصلاح') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
@@ -2820,7 +2820,7 @@ public class Controller implements Initializable {
                 } else if (Rad_Choose_Period.isSelected()) {
                     Statement st2 = connection.createStatement();
 
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired') AND m.STARTING_DATE >= '" + Date_StartFrom.getValue() + "' AND m.STARTING_DATE <= '" + Date_Unill.getValue() + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired','تم الاصلاح') AND m.STARTING_DATE >= '" + Date_StartFrom.getValue() + "' AND m.STARTING_DATE <= '" + Date_Unill.getValue() + "'";
                     System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
