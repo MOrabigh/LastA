@@ -97,7 +97,7 @@
 			</staticText>
 			<image>
 				<reportElement x="238" y="5" width="116" height="65" uuid="ad4bc430-a73c-4fe7-99bd-a4d913bb1921"/>
-				<imageExpression><![CDATA["C:\\Users\\algha\\Desktop\\icons\\customer-support (2).png"]]></imageExpression>
+				<imageExpression><![CDATA["C:\\LastA\\src\\icons\\customer-support (2).png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="94" y="77" width="100" height="20" uuid="c5004834-44c8-4ec4-9086-a9636b149e95"/>
