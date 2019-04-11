@@ -716,7 +716,7 @@ public class Controller_AddMO implements Initializable {
             if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("paid")) {
                 try { 
                 Statement st2 = connection.createStatement();
-                String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('paid') AND m.MO_NBER ='" + Txfiled_MOnum_AddMO.getText() + "'";
+                String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('paid','دفعت') AND m.MO_NBER ='" + Txfiled_MOnum_AddMO.getText() + "'";
                 System.out.println(query);
                 st2.executeQuery(query);
                 ResultSet rs2 = st2.getResultSet();
@@ -742,7 +742,7 @@ public class Controller_AddMO implements Initializable {
             } else if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("created") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("approved") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("under maintenance") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("other defects has been detected") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("disapproved") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("cannot be done") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("repaired")) {
                 try {
                      Statement st2 = connection.createStatement();
-                String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired') AND m.MO_NBER = '" + Txfiled_MOnum_AddMO.getText() + "'";
+                String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired','تم الإنشاء', 'تم الموافقة', 'تحت الصيانة', 'تم الكشف عن عيوب أخرى','مرفوضة','لا يمكن القيام بعملية الصيانة','تم الاصلاح') AND m.MO_NBER = '" + Txfiled_MOnum_AddMO.getText() + "'";
 
                 System.out.println(query);
                 st2.executeQuery(query);
@@ -779,7 +779,7 @@ public class Controller_AddMO implements Initializable {
             if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("دفعت")) {
                 try {
                     Statement st2 = connection.createStatement();
-                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('دفعت') AND m.MO_NBER ='" + Txfiled_MOnum_AddMO.getText() + "'";
+                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('paid','دفعت') AND m.MO_NBER ='" + Txfiled_MOnum_AddMO.getText() + "'";
                 System.out.println(query);
                 st2.executeQuery(query);
                 ResultSet rs2 = st2.getResultSet();
@@ -804,7 +804,7 @@ public class Controller_AddMO implements Initializable {
             } else if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تم الإنشاء") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تم الموافقة") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تحت الصيانة") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تم الكشف عن عيوب أخرى") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("مرفوضة") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("لا يمكن القيام بعملية الصيانة") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تم الاصلاح")) {
                 try {
                       Statement st2 = connection.createStatement();
-                String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('تم الإنشاء', 'تم الموافقة', 'تحت الصيانة', 'تم الكشف عن عيوب أخرى','مرفوضة','لا يمكن القيام بعملية الصيانة','تم الاصلاح') AND m.MO_NBER = '" + Txfiled_MOnum_AddMO.getText() + "'";
+                String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired','تم الإنشاء', 'تم الموافقة', 'تحت الصيانة', 'تم الكشف عن عيوب أخرى','مرفوضة','لا يمكن القيام بعملية الصيانة','تم الاصلاح') AND m.MO_NBER = '" + Txfiled_MOnum_AddMO.getText() + "'";
                 System.out.println(query);
                 st2.executeQuery(query);
                 ResultSet rs2 = st2.getResultSet();
