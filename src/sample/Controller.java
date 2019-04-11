@@ -623,8 +623,10 @@ public class Controller implements Initializable {
                     }
                     CurrnetList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, State));
 
-                } else if (rs.getString("STATE").equals("دفعت") || rs.getString("STATE").equals("paid")) {
+                } else if (rs.getString("STATE").equalsIgnoreCase("دفعت") || rs.getString("STATE").equalsIgnoreCase("paid")) {
+                    System.out.println("whyyyyyyyyyyyyyyyyyy?????");
                     if (count_Language == 0) {
+                        
                         State = "paid";
 
                     } else {
@@ -1210,6 +1212,11 @@ public class Controller implements Initializable {
             } else if (count == 3) {
 
                 try {
+                     String sqlSetGl = "set GLOBAL FOREIGN_key_checks=0";
+                    System.out.println(sqlSetGl);
+                    java.sql.Statement statement3 = connection.createStatement();
+                    statement3.executeUpdate(sqlSetGl);
+                    
                     System.out.println("Equal  update mobile number");
                     String sqll = "UPDATE customer SET CUS_MOBILE_NBER='" + Txfiled_MNum_Customer.getText() + "' WHERE CUS_NAME= '" + Txfiled_Name_Customer.getText() + "'";
                     System.out.println(sqll);
