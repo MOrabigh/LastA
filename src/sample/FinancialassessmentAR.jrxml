@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d82eba48-91b0-4f57-8d00-55ca4a1e269b">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="24"/>
+	<property name="ireport.y" value="0"/>
 	<subDataset name="dataset1" uuid="03329a4a-3aa6-4679-b9e7-3ddd0ff357c4"/>
 	<subDataset name="dataset2" uuid="036ad4c0-0a31-47f3-acb1-31533d174652"/>
 	<queryString>
@@ -113,14 +113,16 @@
 	<title>
 		<band height="162" splitType="Stretch">
 			<staticText>
-				<reportElement x="437" y="20" width="100" height="20" uuid="dda5e1f5-cf49-4c91-9874-e086393a73bc"/>
+				<reportElement x="414" y="20" width="140" height="20" uuid="dda5e1f5-cf49-4c91-9874-e086393a73bc"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[اسم مركز الصيانة]]></text>
+				<text><![CDATA[مركز رابغ لصيانة الاجهزة والبرمجيات]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="33" y="20" width="100" height="20" uuid="1c66fb3d-24ba-4420-8b49-eb76123e4fb3"/>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[Center's Name]]></text>
+				<reportElement x="0" y="20" width="200" height="31" uuid="1c66fb3d-24ba-4420-8b49-eb76123e4fb3"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Rabigh Center for hardware and software maintenance]]></text>
 			</staticText>
 			<image>
 				<reportElement x="238" y="5" width="116" height="65" uuid="ad4bc430-a73c-4fe7-99bd-a4d913bb1921"/>

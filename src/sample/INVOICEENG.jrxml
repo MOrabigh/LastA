@@ -112,16 +112,6 @@
 	</variable>
 	<title>
 		<band height="162" splitType="Stretch">
-			<staticText>
-				<reportElement x="437" y="20" width="100" height="20" uuid="dda5e1f5-cf49-4c91-9874-e086393a73bc"/>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[اسم مركز الصيانة]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="33" y="20" width="100" height="20" uuid="1c66fb3d-24ba-4420-8b49-eb76123e4fb3"/>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[Center's Name]]></text>
-			</staticText>
 			<image>
 				<reportElement x="238" y="5" width="116" height="65" uuid="ad4bc430-a73c-4fe7-99bd-a4d913bb1921"/>
 				<imageExpression><![CDATA["C:\\LastA\\src\\icons\\customer-support (2).png"]]></imageExpression>
@@ -143,6 +133,18 @@
 				<reportElement x="7" y="132" width="100" height="20" uuid="a1f1d1fb-3bc1-41d5-a2f5-73f75028dfab"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[Warranty Until Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="23" width="140" height="20" uuid="0a712563-68a1-456d-9535-f63020cbc16d"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[مركز رابغ لصيانة الاجهزة والبرمجيات]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="23" width="200" height="31" uuid="fdef69ae-f163-48fc-8e29-4444415b7060"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Rabigh Center for hardware and software maintenance]]></text>
 			</staticText>
 		</band>
 	</title>
