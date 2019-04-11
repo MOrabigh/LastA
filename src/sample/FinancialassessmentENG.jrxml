@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d82eba48-91b0-4f57-8d00-55ca4a1e269b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="22"/>
+	<subDataset name="dataset1" uuid="03329a4a-3aa6-4679-b9e7-3ddd0ff357c4"/>
+	<subDataset name="dataset2" uuid="036ad4c0-0a31-47f3-acb1-31533d174652"/>
+	<queryString>
+		<![CDATA[SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER]]>
+	</queryString>
+	<field name="MO_NBER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="STATE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MO_COST" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SP_COST" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="STARTING_DATE" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ENDING_DATE" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="WARRANTY" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PROBLEM_DESC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DEVICE_SN" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DEVICE_DESC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMPLOYEE_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CUS_MOBILE_NBER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="INVOICE_DATE" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="INVOICE_NBER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CUS_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CUS_EMAIL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CUS_ADDRESS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_EMAIL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_ADDRESS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_MOBILE_NBER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="JOP_TYPE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SEX" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PASSWORD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SP_NBER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Seq_Nber" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SERIAL_NUMBER" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Effective_Price" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SP_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PRICE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SP_QUANTITY" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DESCRIPTION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MINIMUM_QUANTITY_IN_STOCK" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="MO_COST_1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{MO_COST}]]></variableExpression>
+	</variable>
+	<title>
+		<band height="162" splitType="Stretch">
+			<staticText>
+				<reportElement x="437" y="20" width="100" height="20" uuid="dda5e1f5-cf49-4c91-9874-e086393a73bc"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[اسم مركز الصيانة]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="33" y="20" width="100" height="20" uuid="1c66fb3d-24ba-4420-8b49-eb76123e4fb3"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Center's Name]]></text>
+			</staticText>
+			<image>
+				<reportElement x="238" y="5" width="116" height="65" uuid="ad4bc430-a73c-4fe7-99bd-a4d913bb1921"/>
+				<imageExpression><![CDATA["C:\\Users\\algha\\Desktop\\icons\\customer-support (2).png"]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="33" y="83" width="464" height="79" uuid="aec90307-da28-49d7-abe7-d4f054eeaf7b"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="346" y="132" width="100" height="20" uuid="12e376b2-6f96-44ec-a614-e2b6b245278e"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Invoice Date]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="446" y="132" width="51" height="20" uuid="b1e7ee32-fef5-4479-be2b-bab6d9d87a05"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="90" y="93" width="347" height="39" uuid="4ab46ebc-887e-40bc-b20f-6647deae50a1"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[financial assessment of maintenance operation ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="156">
+			<textField>
+				<reportElement x="238" y="35" width="138" height="20" uuid="059a6f2e-b037-40ff-8d80-d194fecdef8b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{CUS_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="238" y="64" width="138" height="20" uuid="f5f643e0-38c0-454b-80fb-64b174aa6d84"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{DEVICE_SN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="238" y="96" width="138" height="20" uuid="5489c064-018f-4ed5-b8d4-dd39db01d227"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{DEVICE_DESC}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="35" width="165" height="20" uuid="8e0f0530-f8b1-4fff-8bdb-8efa53b0ae0d"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Customer Name ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="7" width="165" height="20" uuid="a55e7714-270f-4764-a682-50a2701be770"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Maintenance Operation Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="64" width="165" height="20" uuid="c01e6956-c341-453e-bdc3-e07c46cb0c0e"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Device Serial Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="96" width="165" height="20" uuid="22db5bde-b773-4eb3-97d6-94e028668f0a"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Device Description]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="238" y="125" width="138" height="20" uuid="b0a50466-6ec8-42e2-8578-fc7141ec639e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{PROBLEM_DESC}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="125" width="165" height="20" uuid="c15b1623-181c-4187-9021-53511bfc397e"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Problem Description]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="149" width="555" height="1" uuid="c700f0a8-9e9a-44e2-8ab2-1d429a77c9e4"/>
+			</line>
+			<line>
+				<reportElement x="0" y="30" width="555" height="1" uuid="2f6b8540-f5a5-429b-9b25-666b09b06c98"/>
+			</line>
+			<line>
+				<reportElement x="0" y="57" width="555" height="1" uuid="ca8773b3-3134-47db-90ce-f89e0e78d014"/>
+			</line>
+			<line>
+				<reportElement x="-1" y="89" width="555" height="1" uuid="60cbcd20-f0b7-4d3b-9066-76b58229f847"/>
+			</line>
+			<line>
+				<reportElement x="-1" y="119" width="555" height="1" uuid="40275f65-89bf-48a9-ae9a-f5dbc1719e3f"/>
+			</line>
+			<textField>
+				<reportElement x="238" y="7" width="138" height="20" uuid="e5548302-41fc-4c2e-ace4-0b9075e5fe2e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{MO_NBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="72" splitType="Stretch">
+			<staticText>
+				<reportElement x="8" y="39" width="140" height="20" uuid="429118b5-4fc8-40f4-92d0-5c492c24d97c"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Spare Part Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="39" width="100" height="20" uuid="00087d64-1844-4ce2-95d3-81dcc29ef5d8"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Spare part price]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="59" width="356" height="1" uuid="cc435b5c-15c1-42f9-988b-4925c8a05de2"/>
+			</line>
+			<staticText>
+				<reportElement x="133" y="5" width="290" height="20" uuid="d2b8604c-2f9f-413c-b05f-eee549db0019"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Spare Parts Used]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="39" splitType="Stretch">
+			<textField>
+				<reportElement x="8" y="3" width="140" height="20" uuid="db581d1c-e6b2-4375-8423-f96160184648"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{SP_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="208" y="3" width="100" height="20" uuid="486c66dd-4b6d-4adb-814e-0bc3adc33b5e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{PRICE}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="173" y="-13" width="1" height="52" uuid="3d9829a4-ec57-414f-ad29-c0d1bd30800b"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50">
+			<textField>
+				<reportElement x="33" y="18" width="100" height="20" uuid="771db844-f271-4960-9a38-8e192569186a"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="248">
+			<textField>
+				<reportElement x="238" y="49" width="100" height="20" uuid="4cdce05e-5571-4432-aeda-720a5c1f3848"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{MO_COST}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="238" y="19" width="100" height="20" uuid="44d0f3ab-a9d1-460a-a97e-482604b6f97f"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{SP_COST}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="207" y="42" width="1" height="125" uuid="b36dab2b-b381-46a5-913a-cf3a606b754d"/>
+			</line>
+			<staticText>
+				<reportElement x="8" y="19" width="165" height="20" uuid="47a5bd3a-5587-4786-8c59-63a93916c6ab"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Spare part Cost]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="42" width="356" height="1" uuid="02af5345-e618-4eee-a709-ddeb98344151"/>
+			</line>
+			<textField>
+				<reportElement x="238" y="81" width="100" height="20" uuid="ad6789f0-84cd-4ff2-9c7c-56cb12591ff2"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[Double.valueOf($F{SP_COST}.doubleValue())+Double.valueOf($F{MO_COST}.doubleValue())]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="72" width="356" height="1" uuid="86b74019-e173-41fc-add2-20c0738323f2"/>
+			</line>
+			<staticText>
+				<reportElement x="8" y="49" width="165" height="20" uuid="a987714c-5585-4d3d-b1b8-729d7c4fa8f6"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Maintenance operation cost]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="81" width="165" height="20" uuid="1ce84967-b00d-4a8c-802b-82ff5f5cc59b"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="113" width="165" height="20" uuid="3d2a7b54-620f-4236-9af4-2f5457a4529b"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[VAT]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="105" width="356" height="1" uuid="a7cb4fd2-d852-4a06-b7e6-da35071c484c"/>
+			</line>
+			<textField>
+				<reportElement x="238" y="113" width="100" height="20" uuid="2bc227e1-8248-4aea-8893-f46bac5fe887"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[Double.valueOf($F{SP_COST}.doubleValue()*0.05)+Double.valueOf($F{MO_COST}.doubleValue()*0.05)]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="136" width="356" height="1" uuid="1585feb6-ec24-44bc-b164-b4bd424d0f94"/>
+			</line>
+			<staticText>
+				<reportElement x="8" y="142" width="165" height="20" uuid="1969a2e0-d266-4c14-898d-8e3b12fc6ef0"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Total Cost]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="238" y="142" width="100" height="20" uuid="e21a4d0f-fd9a-4b14-8de7-173dac65d918"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[Double.valueOf($F{SP_COST}.doubleValue())+Double.valueOf($F{MO_COST}.doubleValue())+ Double.valueOf($F{SP_COST}.doubleValue()*0.05)+Double.valueOf($F{MO_COST}.doubleValue()*0.05)]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-1" y="0" width="556" height="1" uuid="e6933eb8-c24b-4237-8552-134e07f7a6d2"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

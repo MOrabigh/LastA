@@ -38,48 +38,10 @@ public class printreport extends JFrame {
      public printreport() throws HeadlessException{
         
      } 
-   public void showReportEN(String Number) throws JRException {
+   
+    public void InvoiceEN(String ss) throws JRException {
 
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\InvoiceEN.jrxml");
-        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('paid') AND m.MO_NBER ='" + Number + "'";
-
-        JRDesignQuery jrquery = new JRDesignQuery();
-        jrquery.setText(query);
-        jasperDesign.setQuery(jrquery);
-        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-
-        JasperPrint Jasperprint = JasperFillManager.fillReport(jasperReport, null, connection);
-        JRViewer viewer = new JRViewer(Jasperprint);
-        viewer.setOpaque(true);
-        viewer.setVisible(true);
-
-        this.add(viewer);
-        this.setSize(900, 500);
-        this.setVisible(true);
-
-    }
-
-    public void financialassessmentEN(String Number) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\financialassessmentEN.jrxml");
-        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired') AND m.MO_NBER = '" + Number + "'";
-        JRDesignQuery jrquery = new JRDesignQuery();
-        jrquery.setText(query);
-        jasperDesign.setQuery(jrquery);
-        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-        JasperPrint Jasperprint = JasperFillManager.fillReport(jasperReport, null, connection);
-        JRViewer viewer = new JRViewer(Jasperprint);
-        viewer.setOpaque(true);
-        viewer.setVisible(true);
-
-        this.add(viewer);
-        this.setSize(900, 500);
-        this.setVisible(true);
-
-    }
-
-    public void showReport(String ss) throws JRException {
-
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\Invoice.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\INVOICEENG.jrxml");
         String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('paid') AND m.MO_NBER ='" + ss + "'";
 
         JRDesignQuery jrquery = new JRDesignQuery();
@@ -98,9 +60,49 @@ public class printreport extends JFrame {
 
     }
 
-    public void financialassessment(String Number) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\financialassessment.jrxml");
-        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired') AND m.MO_NBER = '" + Number + "'";
+    public void financialassessmentEN(String ff) throws JRException {
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\FinancialassessmentENG.jrxml");
+          String A = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired') AND m.MO_NBER = '" + ff + "'";
+    //String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approve', 'under maintenance', 'other defects has been detected') AND m.MO_NBER = '" + ff + "'";
+        JRDesignQuery jrquery = new JRDesignQuery();
+        jrquery.setText(A);
+        jasperDesign.setQuery(jrquery);
+        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+        JasperPrint Jasperprint = JasperFillManager.fillReport(jasperReport, null, connection);
+        JRViewer viewer = new JRViewer(Jasperprint);
+        viewer.setOpaque(true);
+        viewer.setVisible(true);
+
+        this.add(viewer);
+        this.setSize(900, 500);
+        this.setVisible(true);
+
+    }
+
+    public void InvoiceAR(String ss) throws JRException {
+
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\INVOICEAR.jrxml");
+        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('دفعت') AND m.MO_NBER ='" + ss + "'";
+
+        JRDesignQuery jrquery = new JRDesignQuery();
+        jrquery.setText(query);
+        jasperDesign.setQuery(jrquery);
+        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+        JasperPrint Jasperprint = JasperFillManager.fillReport(jasperReport, null, connection);
+        JRViewer viewer = new JRViewer(Jasperprint);
+        viewer.setOpaque(true);
+        viewer.setVisible(true);
+
+        this.add(viewer);
+        this.setSize(900, 500);
+        this.setVisible(true);
+
+    }
+
+    public void financialassessmentAR(String ff) throws JRException {
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\financialassessmentAR.jrxml");
+        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('تم الإنشاء', 'تم الموافقة', 'تحت الصيانة', 'تم الكشف عن عيوب أخرى','مرفوضة','لا يمكن القيام بعملية الصيانة','تم الاصلاح') AND m.MO_NBER = '" + ff + "'";
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
         jasperDesign.setQuery(jrquery);
@@ -117,8 +119,8 @@ public class printreport extends JFrame {
     }
 
     public void PreviousMO(LocalDate bb, LocalDate ss) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\PreviousMO.jrxml");
-        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapprove') AND m.STARTING_DATE <= '" + bb + "' AND m.STARTING_DATE >= '" + ss + "'";
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\PreviousMO.jrxml");
+        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('دفعت','مرفوضة') AND m.STARTING_DATE <= '" + bb + "' AND m.STARTING_DATE >= '" + ss + "'";
         System.out.println(query);
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
@@ -136,8 +138,8 @@ public class printreport extends JFrame {
     }
 
     public void CurrentMO(LocalDate bb, LocalDate ss) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\CurrentMO.jrxml");
-        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approve','under maintenance') AND m.STARTING_DATE <= '" + bb + "' AND m.STARTING_DATE >= '" + ss + "'";
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\CurrentMO.jrxml");
+        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('تم الموافقة','تحت الصيانة') AND m.STARTING_DATE <= '" + bb + "' AND m.STARTING_DATE >= '" + ss + "'";
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
         jasperDesign.setQuery(jrquery);
@@ -153,8 +155,8 @@ public class printreport extends JFrame {
     }
 
     public void FinshedMO(LocalDate bb, LocalDate ss) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\FinshedMO.jrxml");
-        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired') AND m.STARTING_DATE <= '" + bb + "' AND m.STARTING_DATE >= '" + ss + "'";
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\FinshedMO.jrxml");
+        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('تم الاصلاح') AND m.STARTING_DATE <= '" + bb + "' AND m.STARTING_DATE >= '" + ss + "'";
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
         jasperDesign.setQuery(jrquery);
@@ -170,7 +172,7 @@ public class printreport extends JFrame {
     }
 
     public void CustomersList() throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\CustomersList.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\CustomersList.jrxml");
         //  String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapprove')";
         // JRDesignQuery jrquery = new JRDesignQuery();
         //jrquery.setText(query);
@@ -187,7 +189,7 @@ public class printreport extends JFrame {
     }
 
     public void EmployeesList() throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\EmployeesList.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\EmployeesList.jrxml");
         //  String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapprove')";
         // JRDesignQuery jrquery = new JRDesignQuery();
         //jrquery.setText(query);
@@ -204,7 +206,7 @@ public class printreport extends JFrame {
     }
 
     public void SuppliersList() throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\SuppliersList.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\SuppliersList.jrxml");
         //  String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapprove')";
         // JRDesignQuery jrquery = new JRDesignQuery();
         //jrquery.setText(query);
@@ -221,7 +223,7 @@ public class printreport extends JFrame {
     }
 
     public void SPsOUTOS() throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\SPs OUTOS.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\SPs OUTOS.jrxml");
         //  String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapprove')";
         // JRDesignQuery jrquery = new JRDesignQuery();
         //jrquery.setText(query);
@@ -238,7 +240,7 @@ public class printreport extends JFrame {
     }
 
     public void SPstobeOUTOS() throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\SPs to be OUTOS.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\SPs to be OUTOS.jrxml");
         //  String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapprove')";
         // JRDesignQuery jrquery = new JRDesignQuery();
         //jrquery.setText(query);
@@ -255,7 +257,7 @@ public class printreport extends JFrame {
     }
 
     public void ListofaemployeesMOs(String Number) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\List of a employee's MOs.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\List of a employee's MOs .jrxml");
         String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID Where e.EMP_NAME = '" + Number + "'";
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
@@ -273,7 +275,7 @@ public class printreport extends JFrame {
     }
 
     public void ListofcustomersMOs(String bb, String Number) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\List of a customer's MOs.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\List of a customer's MOs .jrxml");
         String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID Where m.MO_NBER = '" + bb + "'OR r.CUS_MOBILE_NBER = '" + Number + "'";
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
@@ -290,9 +292,9 @@ public class printreport extends JFrame {
 
     }
 
-    public void FinancialassessReport(String bb, String Number) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\Financialassessmentreport.jrxml");
-        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired') AND m.MO_NBER = '" + bb + "' OR r.CUS_MOBILE_NBER = '" + Number + "'";
+    public void FinancialassessReportAR(String bb, String Number) throws JRException {
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\FinancialassessmentreportAR.jrxml");
+        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('تم الإنشاء', 'تم الموافقة', 'تحت الصيانة', 'تم الكشف عن عيوب أخرى','مرفوضة','لا يمكن القيام بعملية الصيانة','تم الاصلاح') AND m.MO_NBER = '" + bb + "' OR r.CUS_MOBILE_NBER = '" + Number + "'";
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
         jasperDesign.setQuery(jrquery);
@@ -312,8 +314,8 @@ public class printreport extends JFrame {
     }
 
     void PreviousMOPeriod(LocalDate AA, LocalDate MM) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\PreviousMO.jrxml");
-        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapprove') AND m.STARTING_DATE >= '" + AA + "' AND m.STARTING_DATE <= '" + MM + "'";
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\PreviousMO.jrxml");
+        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('دفعت','مرفوضة') AND m.STARTING_DATE >= '" + AA + "' AND m.STARTING_DATE <= '" + MM + "'";
         System.out.println(query);
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
@@ -331,8 +333,8 @@ public class printreport extends JFrame {
     }
 
     void CurrentMOPeriod(LocalDate AA, LocalDate MM) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\CurrentMO.jrxml");
-        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approve','under maintenance') AND m.STARTING_DATE >= '" + AA + "' AND m.STARTING_DATE <= '" + MM + "'";
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\CurrentMO.jrxml");
+        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('تم الموافقة','تحت الصيانة') AND m.STARTING_DATE >= '" + AA + "' AND m.STARTING_DATE <= '" + MM + "'";
         System.out.println(query);
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
@@ -350,8 +352,8 @@ public class printreport extends JFrame {
     }
 
     public void FinshedMOPeriod(LocalDate AA, LocalDate MM) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\FinshedMO.jrxml");
-        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired') AND m.STARTING_DATE >= '" + AA + "' AND m.STARTING_DATE <= '" + MM + "'";
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\FinshedMO.jrxml");
+        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('تم الاصلاح') AND m.STARTING_DATE >= '" + AA + "' AND m.STARTING_DATE <= '" + MM + "'";
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
         jasperDesign.setQuery(jrquery);
@@ -367,8 +369,8 @@ public class printreport extends JFrame {
     }
 
     public void PreviousMOEN(LocalDate bb, LocalDate ss) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\PreviousMOEN.jrxml");
-        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapprove') AND m.STARTING_DATE <= '" + bb + "' AND m.STARTING_DATE >= '" + ss + "'";
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\PreviousMOEN.jrxml");
+        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapproved') AND m.STARTING_DATE <= '" + bb + "' AND m.STARTING_DATE >= '" + ss + "'";
         System.out.println(query);
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
@@ -386,8 +388,8 @@ public class printreport extends JFrame {
     }
 
     public void CurrentMOEN(LocalDate bb, LocalDate ss) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\CurrentMOEN.jrxml");
-        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approve','under maintenance') AND m.STARTING_DATE <= '" + bb + "' AND m.STARTING_DATE >= '" + ss + "'";
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\CurrentMOEN.jrxml");
+        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance') AND m.STARTING_DATE <= '" + bb + "' AND m.STARTING_DATE >= '" + ss + "'";
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
         jasperDesign.setQuery(jrquery);
@@ -403,7 +405,7 @@ public class printreport extends JFrame {
     }
 
     public void FinshedMOEN(LocalDate bb, LocalDate ss) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\FinshedMOEN.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\FinshedMOEN.jrxml");
         String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired') AND m.STARTING_DATE <= '" + bb + "' AND m.STARTING_DATE >= '" + ss + "'";
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
@@ -420,7 +422,7 @@ public class printreport extends JFrame {
     }
 
     public void CustomersListEN() throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\CustomersListEN.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\CustomersListEN.jrxml");
         //  String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapprove')";
         // JRDesignQuery jrquery = new JRDesignQuery();
         //jrquery.setText(query);
@@ -437,7 +439,7 @@ public class printreport extends JFrame {
     }
 
     public void EmployeesListEN() throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\EmployeesListEN.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\EmployeesListEN.jrxml");
         //  String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapprove')";
         // JRDesignQuery jrquery = new JRDesignQuery();
         //jrquery.setText(query);
@@ -454,7 +456,7 @@ public class printreport extends JFrame {
     }
 
     public void SuppliersListEN() throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\SuppliersListEN.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\SuppliersListEN.jrxml");
         //  String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapprove')";
         // JRDesignQuery jrquery = new JRDesignQuery();
         //jrquery.setText(query);
@@ -471,7 +473,7 @@ public class printreport extends JFrame {
     }
 
     public void SPsOUTOSEN() throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\SPs OUTOSEN.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\SPs OUTOSEN.jrxml");
         //  String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapprove')";
         // JRDesignQuery jrquery = new JRDesignQuery();
         //jrquery.setText(query);
@@ -488,7 +490,7 @@ public class printreport extends JFrame {
     }
 
     public void SPstobeOUTOSEN() throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\SPs to be OUTOSEN.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\SPs to be OUTOSEN.jrxml");
         //  String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapprove')";
         // JRDesignQuery jrquery = new JRDesignQuery();
         //jrquery.setText(query);
@@ -505,7 +507,7 @@ public class printreport extends JFrame {
     }
 
     public void ListofaemployeesMOsEN(String ss) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\List of a employee's MOsEN.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\List of a employee's MOsEN.jrxml");
         String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID Where e.EMP_NAME = '" + ss + "'";
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
@@ -523,7 +525,7 @@ public class printreport extends JFrame {
     }
 
     public void ListofcustomersMOsEN(String bb, String ss) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\List of a customer's MOsEN.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\List of a customer's MOsEN.jrxml");
         String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID Where m.MO_NBER = '" + bb + "'OR r.CUS_MOBILE_NBER = '" + ss + "'";
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
@@ -540,8 +542,8 @@ public class printreport extends JFrame {
 
     }
 
-    public void FinancialassessReportEN(String bb, String ss) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\FinancialassessmentreportEN.jrxml");
+    public void FinancialassessReportENG(String bb, String ss) throws JRException {
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\FinancialassessmentreportENG.jrxml");
         String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired') AND m.MO_NBER = '" + bb + "' OR r.CUS_MOBILE_NBER = '" + ss + "'";
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
@@ -562,7 +564,7 @@ public class printreport extends JFrame {
     }
 
     void PreviousMOPeriodEN(LocalDate AA, LocalDate MM) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\PreviousMOEN.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\PreviousMOEN.jrxml");
         String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','disapprove') AND m.STARTING_DATE >= '" + AA + "' AND m.STARTING_DATE <= '" + MM + "'";
         System.out.println(query);
         JRDesignQuery jrquery = new JRDesignQuery();
@@ -581,8 +583,8 @@ public class printreport extends JFrame {
     }
 
     void CurrentMOPeriodEN(LocalDate AA, LocalDate MM) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\CurrentMOEN.jrxml");
-        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approve','under maintenance') AND m.STARTING_DATE >= '" + AA + "' AND m.STARTING_DATE <= '" + MM + "'";
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\CurrentMOEN.jrxml");
+        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance') AND m.STARTING_DATE >= '" + AA + "' AND m.STARTING_DATE <= '" + MM + "'";
         System.out.println(query);
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
@@ -600,7 +602,7 @@ public class printreport extends JFrame {
     }
 
     public void FinshedMOPeriodEN(LocalDate AA, LocalDate MM) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\FinshedMOEN.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\FinshedMOEN.jrxml");
         String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired') AND m.STARTING_DATE >= '" + AA + "' AND m.STARTING_DATE <= '" + MM + "'";
         JRDesignQuery jrquery = new JRDesignQuery();
         jrquery.setText(query);
@@ -617,7 +619,7 @@ public class printreport extends JFrame {
     }
 
     public void RequestSPEN(String ss) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\RequestSPEN.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\RequestSPEN.jrxml");
         String query = "SELECT * FROM `requested_spare_parts` s JOIN `attach` r ON s.REQUEST_NBER = r.REQUEST_NBER JOIN spare_parts p ON r.SP_NBER = p.SP_NBER WHERE s.REQUEST_NBER ='" + ss + "'";
 
         JRDesignQuery jrquery = new JRDesignQuery();
@@ -637,7 +639,7 @@ public class printreport extends JFrame {
     }
 
     public void RequestSP(String ss) throws JRException {
-        JasperDesign jasperDesign = JRXmlLoader.load("C:\\MOProject\\RequestSP.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\RequestSP.jrxml");
         String query = "SELECT * FROM `requested_spare_parts` s JOIN `attach` r ON s.REQUEST_NBER = r.REQUEST_NBER JOIN spare_parts p ON r.SP_NBER = p.SP_NBER WHERE s.REQUEST_NBER ='" + ss + "'";
 
         JRDesignQuery jrquery = new JRDesignQuery();
@@ -655,5 +657,123 @@ public class printreport extends JFrame {
         this.setVisible(true);
 
     }
+      public void InvoiceENGWSP(String ss) throws JRException {
+
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\INVOICEENGWSP.jrxml");
+        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid') AND m.MO_NBER ='" + ss + "'";
+
+        JRDesignQuery jrquery = new JRDesignQuery();
+        jrquery.setText(query);
+        jasperDesign.setQuery(jrquery);
+        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+        JasperPrint Jasperprint = JasperFillManager.fillReport(jasperReport, null, connection);
+        JRViewer viewer = new JRViewer(Jasperprint);
+        viewer.setOpaque(true);
+        viewer.setVisible(true);
+
+        this.add(viewer);
+        this.setSize(900, 500);
+        this.setVisible(true);
+
+    }
+    public void financialassessmentENWSP(String ff) throws JRException {
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\FinancialassessmentENGWSP.jrxml");
+          String A = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired') AND m.MO_NBER = '" + ff + "'";
+    //String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approve', 'under maintenance', 'other defects has been detected') AND m.MO_NBER = '" + ff + "'";
+        JRDesignQuery jrquery = new JRDesignQuery();
+        jrquery.setText(A);
+        jasperDesign.setQuery(jrquery);
+        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+        JasperPrint Jasperprint = JasperFillManager.fillReport(jasperReport, null, connection);
+        JRViewer viewer = new JRViewer(Jasperprint);
+        viewer.setOpaque(true);
+        viewer.setVisible(true);
+
+        this.add(viewer);
+        this.setSize(900, 500);
+        this.setVisible(true);
+
+    }
+    public void InvoiceARWSP(String ss) throws JRException {
+
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\INVOICEARWSP.jrxml");
+        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('دفعت') AND m.MO_NBER ='" + ss + "'";
+
+        JRDesignQuery jrquery = new JRDesignQuery();
+        jrquery.setText(query);
+        jasperDesign.setQuery(jrquery);
+        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+        JasperPrint Jasperprint = JasperFillManager.fillReport(jasperReport, null, connection);
+        JRViewer viewer = new JRViewer(Jasperprint);
+        viewer.setOpaque(true);
+        viewer.setVisible(true);
+
+        this.add(viewer);
+        this.setSize(900, 500);
+        this.setVisible(true);
+
+    }
+      public void financialassessmentARWSP(String ff) throws JRException {
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\financialassessmentARWSP.jrxml");
+        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('تم الإنشاء', 'تم الموافقة', 'تحت الصيانة', 'تم الكشف عن عيوب أخرى','مرفوضة','لا يمكن القيام بعملية الصيانة','تم الاصلاح') AND m.MO_NBER = '" + ff + "'";
+        JRDesignQuery jrquery = new JRDesignQuery();
+        jrquery.setText(query);
+        jasperDesign.setQuery(jrquery);
+        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+        JasperPrint Jasperprint = JasperFillManager.fillReport(jasperReport, null, connection);
+        JRViewer viewer = new JRViewer(Jasperprint);
+        viewer.setOpaque(true);
+        viewer.setVisible(true);
+
+        this.add(viewer);
+        this.setSize(900, 500);
+        this.setVisible(true);
+
+    }
+       public void FinancialassessReportARWSP(String bb, String ss) throws JRException {
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\FinancialassessmentReportARWSP.jrxml");
+        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('تم الإنشاء', 'تم الموافقة', 'تحت الصيانة', 'تم الكشف عن عيوب أخرى','مرفوضة','لا يمكن القيام بعملية الصيانة','تم الاصلاح') AND m.MO_NBER = '" + bb + "' OR r.CUS_MOBILE_NBER = '" + ss + "'";
+        JRDesignQuery jrquery = new JRDesignQuery();
+        jrquery.setText(query);
+        jasperDesign.setQuery(jrquery);
+
+        jrquery.setText(query);
+        jasperDesign.setQuery(jrquery);
+        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+        JasperPrint Jasperprint = JasperFillManager.fillReport(jasperReport, null, connection);
+        JRViewer viewer = new JRViewer(Jasperprint);
+        viewer.setOpaque(true);
+        viewer.setVisible(true);
+
+        this.add(viewer);
+        this.setSize(900, 500);
+        this.setVisible(true);
+
+    }
+       public void FinancialassessReportENGWSP(String bb, String ss) throws JRException {
+        JasperDesign jasperDesign = JRXmlLoader.load("C:\\LastA\\src\\sample\\FinancialassessmentreportENGWSP.jrxml");
+        String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired') AND m.MO_NBER = '" + bb + "' OR r.CUS_MOBILE_NBER = '" + ss + "'";
+        JRDesignQuery jrquery = new JRDesignQuery();
+        jrquery.setText(query);
+        jasperDesign.setQuery(jrquery);
+
+        jrquery.setText(query);
+        jasperDesign.setQuery(jrquery);
+        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+        JasperPrint Jasperprint = JasperFillManager.fillReport(jasperReport, null, connection);
+        JRViewer viewer = new JRViewer(Jasperprint);
+        viewer.setOpaque(true);
+        viewer.setVisible(true);
+
+        this.add(viewer);
+        this.setSize(900, 500);
+        this.setVisible(true);
+
+    }
 
 }
+
+
+

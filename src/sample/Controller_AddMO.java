@@ -714,27 +714,55 @@ public class Controller_AddMO implements Initializable {
     private void M_Btn_Print_AddMo(ActionEvent event) {
         if (count_Language == 0) {
             if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("paid")) {
-                try {
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('paid') AND m.MO_NBER ='" + Txfiled_MOnum_AddMO.getText() + "'";
-                    System.out.println(query);
-                    java.sql.Statement statement1 = connection.createStatement();
+                try { 
+                Statement st2 = connection.createStatement();
+                String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('paid') AND m.MO_NBER ='" + Txfiled_MOnum_AddMO.getText() + "'";
+                System.out.println(query);
+                st2.executeQuery(query);
+                ResultSet rs2 = st2.getResultSet();
+                if (rs2.first()) {
+
                     printreport print = new printreport();
-                    print.showReportEN(Txfiled_MOnum_AddMO.getText());
+                    String ss = Txfiled_MOnum_AddMO.getText();
+
+                    print.InvoiceEN(ss);
+                } else {
+                    printreport print = new printreport();
+                    String ss = Txfiled_MOnum_AddMO.getText();
+
+                    print.InvoiceENGWSP(ss);
+
+                }
                     
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, ex);
                 } catch (JRException ex) {
                    JOptionPane.showMessageDialog(null, ex);
                 }
-            } else if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("created") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("approved") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("under maintenance") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("other defects has been detected")) {
+            } else if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("created") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("approved") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("under maintenance") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("other defects has been detected") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("disapproved") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("cannot be done") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("repaired")) {
                 try {
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected') AND m.MO_NBER = '" + Txfiled_MOnum_AddMO.getText() + "'";
-                    System.out.println(query);
-                    java.sql.Statement statement1 = connection.createStatement();
-                    
+                     Statement st2 = connection.createStatement();
+                String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired') AND m.MO_NBER = '" + Txfiled_MOnum_AddMO.getText() + "'";
+
+                System.out.println(query);
+                st2.executeQuery(query);
+                ResultSet rs2 = st2.getResultSet();
+                    if (rs2.first()) {
+
                     printreport print = new printreport();
-                    print.financialassessmentEN(Txfiled_MOnum_AddMO.getText());
-                } catch (JRException ex) {
+                    String ff = Txfiled_MOnum_AddMO.getText();
+                    print.financialassessmentEN(ff);
+                } else {
+                    printreport print = new printreport();
+                    String ff = Txfiled_MOnum_AddMO.getText();
+                    print.financialassessmentENWSP(ff);
+
+                }
+               
+                        
+            
+                  
+             } catch (JRException ex) {
                     JOptionPane.showMessageDialog(null, ex);
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, ex);
@@ -748,28 +776,49 @@ public class Controller_AddMO implements Initializable {
 
             }
         } else if (count_Language == 1) {
-            if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("paid")) {
+            if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("دفعت")) {
                 try {
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('paid') AND m.MO_NBER ='" + Txfiled_MOnum_AddMO.getText() + "'";
-                    System.out.println(query);
-                    java.sql.Statement statement1 = connection.createStatement();
-                    
+                    Statement st2 = connection.createStatement();
+                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('دفعت') AND m.MO_NBER ='" + Txfiled_MOnum_AddMO.getText() + "'";
+                System.out.println(query);
+                st2.executeQuery(query);
+                ResultSet rs2 = st2.getResultSet();
+                if (rs2.first()) {
+
+                printreport print = new printreport();
+                String ss = Txfiled_MOnum_AddMO.getText();
+
+                print.InvoiceAR(ss);
+                }else {
                     printreport print = new printreport();
+                String ss = Txfiled_MOnum_AddMO.getText();
+
+                print.InvoiceARWSP(ss);
                     
-                    print.showReport(Txfiled_MOnum_AddMO.getText());
+                }
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, ex);
                 } catch (JRException ex) {
                     JOptionPane.showMessageDialog(null, ex);
                 }
-            } else if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("created") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("approved") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("under maintenance") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("other defects has been detected")) {
+            } else if (Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تم الإنشاء") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تم الموافقة") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تحت الصيانة") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تم الكشف عن عيوب أخرى") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("مرفوضة") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("لا يمكن القيام بعملية الصيانة") || Selct_MoStatus_AddMO.getValue().equalsIgnoreCase("تم الاصلاح")) {
                 try {
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected') AND m.MO_NBER = '" + Txfiled_MOnum_AddMO.getText() + "'";
-                    System.out.println(query);
-                    java.sql.Statement statement1 = connection.createStatement();
-                    
+                      Statement st2 = connection.createStatement();
+                String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('تم الإنشاء', 'تم الموافقة', 'تحت الصيانة', 'تم الكشف عن عيوب أخرى','مرفوضة','لا يمكن القيام بعملية الصيانة','تم الاصلاح') AND m.MO_NBER = '" + Txfiled_MOnum_AddMO.getText() + "'";
+                System.out.println(query);
+                st2.executeQuery(query);
+                ResultSet rs2 = st2.getResultSet();
+                if(rs2.first()){
+
+                printreport print = new printreport();
+                String ff = Txfiled_MOnum_AddMO.getText();
+                print.financialassessmentAR(ff);
+                }else{
                     printreport print = new printreport();
-                    print.financialassessment(Txfiled_MOnum_AddMO.getText());
+                String ff = Txfiled_MOnum_AddMO.getText();
+                print.financialassessmentARWSP(ff);
+                    
+                }
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, ex);
                 } catch (JRException ex) {
