@@ -37,10 +37,13 @@
                               <Image url="@../icons/customer-support%20(2).png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="MainLable1" alignment="TOP_RIGHT" layoutX="399.0" layoutY="320.0" prefHeight="83.0" prefWidth="344.0" text="اسم مركز الصيانة">
+                        <Label fx:id="MainLable1" alignment="TOP_RIGHT" layoutX="149.0" layoutY="320.0" prefHeight="83.0" prefWidth="877.0" text="مركز رابغ لصيانة الاجهزة والبرمجيات">
                            <font>
-                              <Font size="44.0" />
+                              <Font name="System Bold" size="44.0" />
                            </font>
+                           <padding>
+                              <Insets right="120.0" />
+                           </padding>
                         </Label>
                         <HBox alignment="TOP_CENTER" layoutY="534.0" prefHeight="126.0" prefWidth="1142.0">
                            <children>
@@ -1706,7 +1709,7 @@
                <children>
                   <ImageView fitHeight="71.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../GP_AZZZ/src/icons/whhh.png" />
+                        <Image url="@../icons/whhh.png" />
                      </image>
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

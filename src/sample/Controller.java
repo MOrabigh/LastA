@@ -639,7 +639,7 @@ public class Controller implements Initializable {
             }
             rs.close();
 
-            String SPqury = "SELECT SP_NBER FROM spare_parts WHERE `SP_QUANTITY` < `MINIMUM_QUANTITY_IN_STOCK`";
+            String SPqury = "SELECT SP_NBER FROM spare_parts WHERE `SP_QUANTITY` < `MINIMUM_QUANTITY_IN_STOCK` AND `SP_QUANTITY` > 0";
             ResultSet rs2 = connectionClass.execQuery(SPqury);
             int rowcount = 0;
             if (rs2.last()) {
@@ -663,7 +663,7 @@ public class Controller implements Initializable {
     public void SP_Alert_Admin_EN() {
 
         try {
-            String SPqury = "SELECT SP_NBER FROM spare_parts WHERE `SP_QUANTITY` < `MINIMUM_QUANTITY_IN_STOCK`";
+           String SPqury = "SELECT SP_NBER FROM spare_parts WHERE `SP_QUANTITY` < `MINIMUM_QUANTITY_IN_STOCK` AND `SP_QUANTITY` > 0";
             ResultSet rs2 = connectionClass.execQuery(SPqury);
             int rowcount = 0;
             if (rs2.last()) {
@@ -688,7 +688,7 @@ public class Controller implements Initializable {
 
         try {
             //String alertMessage = "قطع الغيار التالية على وشك النفاذ";
-            String SPqury = "SELECT SP_NBER FROM spare_parts WHERE `SP_QUANTITY` < `MINIMUM_QUANTITY_IN_STOCK`";
+            String SPqury = "SELECT SP_NBER FROM spare_parts WHERE `SP_QUANTITY` < `MINIMUM_QUANTITY_IN_STOCK` AND `SP_QUANTITY` > 0";
             ResultSet rs2 = connectionClass.execQuery(SPqury);
             int rowcount = 0;
             if (rs2.last()) {
