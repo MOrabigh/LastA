@@ -1100,46 +1100,58 @@ public class Controller implements Initializable {
     @FXML
     private void M_Btn_Delete_Customer(ActionEvent event) {
         try {
-            String sql1 = "DELETE FROM  `customer`  WHERE CUS_MOBILE_NBER= " + Txfiled_MNum_Customer.getText();
-            System.out.println(sql1);
-            java.sql.Statement statement1 = connection.createStatement();
-            ClearCus();
-            try {
-                statement1.executeUpdate(sql1);
-
-                {
-                    if (count_Language == 0) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setHeaderText(null);
-                        alert.setContentText("Deleted Successfully");
-                        alert.showAndWait();
-                        return;
-
-                    } else if (count_Language == 1) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setHeaderText(null);
-                        alert.setContentText("تم الحذف بنجاح");
-                        alert.showAndWait();
-                        return;
-                    }
-                }
-
-            } catch (SQLException e) {
-                if (count_Language == 0) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText(null);
-                    alert.setContentText("Can not delete this customer");
-                    alert.showAndWait();
-                    return;
-                } else if (count_Language == 1) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText(null);
-                    alert.setContentText("لا يمكن حذف هذا العميل");
-                    alert.showAndWait();
-                }
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("");
+            alert.setHeaderText("");
+            if (count_Language == 0) {
+                alert.setContentText("This Cstomer will be deleted ");
+            } else {
+                alert.setContentText("  سوف يتم حذف هذا العميل ");
 
             }
 
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                String sql1 = "DELETE FROM  `customer`  WHERE CUS_MOBILE_NBER= " + Txfiled_MNum_Customer.getText();
+                System.out.println(sql1);
+                java.sql.Statement statement1 = connection.createStatement();
+                ClearCus();
+                try {
+                    statement1.executeUpdate(sql1);
+
+                    {
+                        if (count_Language == 0) {
+
+                            alert.setHeaderText(null);
+                            alert.setContentText("Deleted Successfully");
+                            alert.showAndWait();
+                            return;
+
+                        } else if (count_Language == 1) {
+
+                            alert.setHeaderText(null);
+                            alert.setContentText("تم الحذف بنجاح");
+                            alert.showAndWait();
+                            return;
+                        }
+                    }
+
+                } catch (SQLException e) {
+                    if (count_Language == 0) {
+
+                        alert.setHeaderText(null);
+                        alert.setContentText("Can not delete this customer");
+                        alert.showAndWait();
+                        return;
+                    } else if (count_Language == 1) {
+
+                        alert.setHeaderText(null);
+                        alert.setContentText("لا يمكن حذف هذا العميل");
+                        alert.showAndWait();
+                    }
+
+                }
+            }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -1148,50 +1160,56 @@ public class Controller implements Initializable {
     @FXML
     private void M_Btn_Save_Customer(ActionEvent event) {
 
-        alert2.setTitle(null);
+          Alert alert2 = new Alert(Alert.AlertType.ERROR);
         alert2.setHeaderText(null);
         String email = Txfiled_Email_Customer.getText();
 
         // ==== Check the availability of all required fields
-        if (Txfiled_Name_Customer.getText().isEmpty()) {  /// Name
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
+        if (!PhoneNvalid(Txfiled_MNum_Customer.getText())) {
+           
 
             if (count_Language == 0) {
-                alert.setContentText("Please, enter the customer name.");
+                alert2.setContentText("Please enter a valid mobile number ");
             } else {
-                alert.setContentText("الرجاء إدخال اسم العميل");
+                alert2.setContentText("الرجاء إدخال رقم هاتف صحيح");
 
             }
-            alert.showAndWait();
+            alert2.showAndWait();
+            return;
+        }
+        if (Txfiled_Name_Customer.getText().isEmpty()) {  /// Name
+           
+
+            if (count_Language == 0) {
+                alert2.setContentText("Please, enter the customer name.");
+            } else {
+                alert2.setContentText("الرجاء إدخال اسم العميل");
+
+            }
+            alert2.showAndWait();
             return;
         }
 
         if (!EmailValid(email)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-
+           
             if (count_Language == 0) {
-                alert.setContentText("Please enter a valid email address");
+                alert2.setContentText("Please enter a valid email address");
             } else {
-                alert.setContentText("الرجاء إدخال عنوان بريد إلكتروني صحيح");
+                alert2.setContentText("الرجاء إدخال عنوان بريد إلكتروني صحيح");
 
             }
-            alert.showAndWait();
+            alert2.showAndWait();
             return;
         }
-
-        if (!PhoneNvalid(Txfiled_MNum_Customer.getText())) {  // ===> To be moved to the appropriate place
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-
+        if (Txfiled_Address_Customer.getText().isEmpty()) {  // ===> To be moved to the appropriate place
+            
             if (count_Language == 0) {
-                alert.setContentText("Please enter a valid mobile ");
+                alert2.setContentText("Please enter customer address ");
             } else {
-                alert.setContentText("الرجاء إدخال القيمة");
+                alert2.setContentText("الرجاء إدخال عنوان العميل");
 
             }
-            alert.showAndWait();
+            alert2.showAndWait();
             return;
         }
 
@@ -1339,6 +1357,13 @@ public class Controller implements Initializable {
                 } else {
 
                     System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+                    if (count_Language == 0) {
+                        alert2.setContentText("New customer will be created");
+                    } else {
+                        alert2.setContentText(" سوف يتم انشاء عميل جديد");
+
+                    }
+                    alert2.showAndWait();
                     count = 1;
 
                     Btn_Cancel_Customer.setDisable(false);
@@ -1396,43 +1421,57 @@ public class Controller implements Initializable {
     @FXML
     void M_Btn_Delete_Employee(ActionEvent event) {
         try {
-            String sql1 = "DELETE FROM  `employee`  WHERE EMPLOYEE_ID= " + Txfiled_Num_Employee.getText();
-            System.out.println(sql1);
-            java.sql.Statement statement1 = connection.createStatement();
 
-            clearEmp();
-            try {
-                statement1.executeUpdate(sql1);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("");
+            alert.setHeaderText("");
+            if (count_Language == 0) {
+                alert.setContentText("This employee will be deleted ");
+            } else {
+                alert.setContentText("  سوف يتم حذف هذا الموظف ");
 
-                {
+            }
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                String sql1 = "DELETE FROM  `employee`  WHERE EMPLOYEE_ID= " + Txfiled_Num_Employee.getText();
+                System.out.println(sql1);
+                java.sql.Statement statement1 = connection.createStatement();
+
+                clearEmp();
+                try {
+                    statement1.executeUpdate(sql1);
+
+                    {
+                        if (count_Language == 0) {
+
+                            alert.setHeaderText(null);
+                            alert.setContentText("Deleted Successfully");
+                            alert.showAndWait();
+                            return;
+                        } else if (count_Language == 1) {
+
+                            alert.setHeaderText(null);
+                            alert.setContentText("تم الحذف بنجاح ");
+                            alert.showAndWait();
+                            return;
+
+                        }
+                    }
+                } catch (SQLException e) {
                     if (count_Language == 0) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
+
                         alert.setHeaderText(null);
-                        alert.setContentText("Deleted Successfully");
+                        alert.setContentText("Can not delete this employee");
                         alert.showAndWait();
                         return;
                     } else if (count_Language == 1) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
+
                         alert.setHeaderText(null);
-                        alert.setContentText("تم الحذف بنجاح ");
+                        alert.setContentText("لا يمكن حذف هذا الموظف");
                         alert.showAndWait();
                         return;
-
                     }
-                }
-            } catch (SQLException e) {
-                if (count_Language == 0) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText(null);
-                    alert.setContentText("Can not delete this employee");
-                    alert.showAndWait();
-                    return;
-                } else if (count_Language == 1) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText(null);
-                    alert.setContentText("لا يمكن حذف هذا الموظف");
-                    alert.showAndWait();
-                    return;
                 }
             }
         } catch (SQLException ex) {
@@ -1442,22 +1481,84 @@ public class Controller implements Initializable {
 
     @FXML
     private void M_Btn_Save_Employee(ActionEvent event) {
-        alert2.setTitle(null);
+        Alert alert2 = new Alert(Alert.AlertType.ERROR);
         alert2.setHeaderText(null);
-        if (Txfiled_Num_Employee.getText().isEmpty() || Txfiled_Name_Employee.getText().isEmpty() || Txfiled_Email_Employee.getText().isEmpty()
-                || Txfiled_Address_Employee.getText().isEmpty() || Txfiled_MNum_Employee.getText().isEmpty() || Selct_JType_Employee.getValue().isEmpty() || Selct_Sex_Employee.getValue().isEmpty() || Txfiled_Password_Employee.getText().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
+        if (!PhoneNvalid(Txfiled_MNum_Employee.getText())) {
 
             if (count_Language == 0) {
-                alert.setContentText("Please enter the value");
+                alert2.setContentText("Please enter a valid mobile number");
             } else {
-                alert.setContentText("الرجاء إدخال القيمة");
+                alert2.setContentText("الرجاء إدخال رقم هاتف صحيح");
 
             }
-            alert.showAndWait();
+            alert2.showAndWait();
             return;
+        }
+        if (!EmailValid(Txfiled_Email_Employee.getText())) {
 
+            if (count_Language == 0) {
+                alert2.setContentText("Please enter a valid email address");
+            } else {
+                alert2.setContentText("الرجاء إدخال عنوان بريد الكتروني صحيح");
+
+            }
+            alert2.showAndWait();
+            return;
+        }
+        if (Txfiled_Name_Employee.getText().isEmpty()) {
+
+            if (count_Language == 0) {
+                alert2.setContentText("Please enter the employee name");
+            } else {
+                alert2.setContentText("الرجاء ادخال اسم الموظف");
+
+            }
+            alert2.showAndWait();
+            return;
+        }
+        if (Txfiled_Address_Employee.getText().isEmpty()) {
+
+            if (count_Language == 0) {
+                alert2.setContentText("Please enter an address");
+            } else {
+                alert2.setContentText("الرجاء إدخال العنوان");
+
+            }
+            alert2.showAndWait();
+            return;
+        }
+        if (Selct_JType_Employee.getSelectionModel().isEmpty()) {
+
+            if (count_Language == 0) {
+                alert2.setContentText("Please select a jop type");
+            } else {
+                alert2.setContentText("الرجاء اختيار نوع الوظيفة");
+
+            }
+            alert2.showAndWait();
+            return;
+        }
+        if (Selct_Sex_Employee.getSelectionModel().isEmpty()) {
+
+            if (count_Language == 0) {
+                alert2.setContentText("Please select a sex");
+            } else {
+                alert2.setContentText("الرجاء اختيار النوع");
+
+            }
+            alert2.showAndWait();
+            return;
+        }
+        if (Txfiled_Password_Employee.getText().isEmpty()) {
+
+            if (count_Language == 0) {
+                alert2.setContentText("Please enter a password ");
+            } else {
+                alert2.setContentText("الرجاء إدخال كلمة المرور");
+
+            }
+            alert2.showAndWait();
+            return;
         } else if (EmailValid(Txfiled_Email_Employee.getText()) && (PhoneNvalid(Txfiled_MNum_Employee.getText()))) {
 
             if (count == 1) {
@@ -1522,10 +1623,12 @@ public class Controller implements Initializable {
 
     @FXML
     private void M_Btn_Search_Employee(ActionEvent event) {
+        alert2.setTitle(null);
+        alert2.setHeaderText(null);
         if (!Mumbervalid(Txfiled_Num_Employee.getText())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
-                      if (count_Language == 0) {
+            if (count_Language == 0) {
                 alert.setContentText("Please enter employee number");
             } else {
                 alert.setContentText("الرجاء ادخال رقم الموظف ");
@@ -1629,6 +1732,13 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+                        if (count_Language == 0) {
+                            alert2.setContentText("New employee will be created");
+                        } else {
+                            alert2.setContentText(" سوف يتم انشاء موظف جديد");
+
+                        }
+                        alert2.showAndWait();
                         //System.out.println();
 
                         count = 1;
@@ -1650,10 +1760,12 @@ public class Controller implements Initializable {
 
     @FXML
     void M_Btn_Search_SP(ActionEvent event) throws SQLException {
+        alert2.setTitle(null);
+        alert2.setHeaderText(null);
         if (!Mumbervalid(Txfiled_SPNum_SP.getText())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
-                       if (count_Language == 0) {
+            if (count_Language == 0) {
                 alert.setContentText("Please enter Spare part number");
             } else {
                 alert.setContentText("الرجاء ادخال رقم قطعة الغيار ");
@@ -1706,7 +1818,12 @@ public class Controller implements Initializable {
                 if (rs2.first()) {
 
                     System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-                    //System.out.println();
+                    if (count_Language == 0) {
+                        alert2.setContentText("New spare part will be created");
+                    } else {
+                        alert2.setContentText("سوف يتم انشاء قطعة غيار جديدة");
+
+                    }
 
                     count = 1;
                     SP_number = Integer.parseInt(rs2.getString("SP_NBER"));
@@ -1750,47 +1867,56 @@ public class Controller implements Initializable {
     @FXML
     private void M_Btn_Delete_SP(ActionEvent event) {
         try {
-            String sql1 = "DELETE FROM  `spare_parts`  WHERE SP_NBER= " + Txfiled_SPNum_SP.getText();
-            System.out.println(sql1);
-            java.sql.Statement statement1 = connection.createStatement();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("");
+            alert.setHeaderText("");
+            if (count_Language == 0) {
+                alert.setContentText("This spare part will be deleted ");
+            } else {
+                alert.setContentText("  سوف يتم حذف قطعة الغيار ");
 
-            ClearSp();
+            }
 
-            try {
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                String sql1 = "DELETE FROM  `spare_parts`  WHERE SP_NBER= " + Txfiled_SPNum_SP.getText();
+                System.out.println(sql1);
+                java.sql.Statement statement1 = connection.createStatement();
+                ClearSp();
 
-                statement1.executeUpdate(sql1);
-                {
+                try {
+
+                    statement1.executeUpdate(sql1);
+                    {
+                        if (count_Language == 0) {
+
+                            alert.setHeaderText(null);
+                            alert.setContentText("Deleted Successfully");
+                            alert.showAndWait();
+                            return;
+
+                        } else if (count_Language == 1) {
+
+                            alert.setHeaderText(null);
+                            alert.setContentText("تم الحذف بنجاح");
+                            alert.showAndWait();
+                            return;
+                        }
+                    }
+                } catch (SQLException e) {
                     if (count_Language == 0) {
 
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
-                        alert.setContentText("Deleted Successfully");
+                        alert.setContentText("Can not delete this spare part");
                         alert.showAndWait();
                         return;
-
                     } else if (count_Language == 1) {
 
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
-                        alert.setContentText("تم الحذف بنجاح");
+                        alert.setContentText("لا يمكن حذف  قطعة الغيار");
                         alert.showAndWait();
                         return;
                     }
-                }
-            } catch (SQLException e) {
-                if (count_Language == 0) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText(null);
-                    alert.setContentText("Can not delete this spare part");
-                    alert.showAndWait();
-                    return;
-                } else if (count_Language == 1) {
-
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText(null);
-                    alert.setContentText("لا يمكن حذف  قطعة الغيار");
-                    alert.showAndWait();
-                    return;
                 }
             }
         } catch (SQLException ex) {
@@ -1801,100 +1927,173 @@ public class Controller implements Initializable {
 
     @FXML
     private void M_Btn_Save_SP(ActionEvent event) {
-        alert2.setTitle(null);
+        Alert alert2 = new Alert(Alert.AlertType.ERROR);
         alert2.setHeaderText(null);
-        if (Txfiled_SPNum_SP.getText().isEmpty() || Txfiled_Name_SP.getText().isEmpty() || Txfiled_Price_SP.getText().isEmpty()
-                || Txfiled_Quantity_SP.getText().isEmpty() || Txfiled_Discription_SP.getText().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
 
+        if (Txfiled_Name_SP.getText().isEmpty()) {
             if (count_Language == 0) {
-                alert.setContentText("Please enter the value");
+                alert2.setContentText("Please enter the name of spare part");
             } else {
-                alert.setContentText("الرجاء إدخال القيمة");
+                alert2.setContentText("الرجاء إدخال اسم قطعة الغيار");
 
             }
-            alert.showAndWait();
+            alert2.showAndWait();
             return;
 
-        } else {
+        }
 
-            if (count == 1) {
-                try {
-                    System.out.println("=====" + Txfiled_Name_SP.getText());
-                    System.out.println("Equal  insert");
-                    // String A = "SET CHARACTER SET utf8 ";
-                    String sqll = "INSERT INTO spare_parts (SP_NBER, SP_NAME, PRICE,SP_QUANTITY ,DESCRIPTION, MINIMUM_QUANTITY_IN_STOCK) VALUES (" + SP_number + "," + "'" + Txfiled_Name_SP.getText() + "'" + "," + "'" + Txfiled_Price_SP.getText()
-                            + "'" + "," + "'" + Txfiled_Quantity_SP.getText() + "'" + "," + "'" + Txfiled_Discription_SP.getText() + "'" + "," + "'" + Txfiled_minimumQuantity_SP.getText() + "')";
-                    System.out.println(sqll);
-                    java.sql.Statement statement1 = connection.createStatement();
-                    //statement1.executeUpdate(A);
+        if (Txfiled_Price_SP.getText().isEmpty()) {
+            if (count_Language == 0) {
+                alert2.setContentText("Please enter the price of spare part");
+            } else {
+                alert2.setContentText("الرجاء إدخال سعر قطعة الغيار");
 
-                    statement1.executeUpdate(sqll);
-                    if (count_Language == 0) {
-
-                        alert2.setContentText(" A new Spare part has been created");
-                    } else {
-                        alert2.setContentText("تم انشاء قطعة غيار جديدة");
-
-                    }
-                    Btn_Delete_SP.setDisable(false);
-
-                    alert2.showAndWait();
-                    ClearSp();
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, ex);
-                }
-
-            } else if (count == 2) {
-                try {
-                    System.out.println("Equal  update");
-                    //System.out.println(Selct_MoStatus_AddMO.getValue());
-                    String sql1 = "UPDATE  `spare_parts` SET  SP_NAME='" + Txfiled_Name_SP.getText() + "',PRICE='" + Txfiled_Price_SP.getText() + "',SP_QUANTITY='" + Txfiled_Quantity_SP.getText() + "',DESCRIPTION='" + Txfiled_Discription_SP.getText() + "',MINIMUM_QUANTITY_IN_STOCK='" + Txfiled_minimumQuantity_SP.getText()
-                            + " 'WHERE SP_NBER=' " + Txfiled_SPNum_SP.getText() + "'";
-
-                    System.out.println(sql1);
-                    java.sql.Statement statement1 = connection.createStatement();
-                    statement1.executeUpdate(sql1);
-                    if (count_Language == 0) {
-
-                        alert2.setContentText(" Changes saved successfully");
-                    } else {
-                        alert2.setContentText("تم حفظ التعديلات بنجاح");
-
-                    }
-
-                    alert2.showAndWait();
-                    ClearSp();
-                } catch (SQLException ex) {
-                    //System.out.println(ex);
-                    JOptionPane.showMessageDialog(null, ex);
-                    // JOptionPane.showMessageDialog(null, ex);
-                }
             }
-            // count = 2;
-            RefreshMOTables();
+            alert2.showAndWait();
+            return;
 
         }
+        if (Txfiled_Quantity_SP.getText().isEmpty()) {
+            if (count_Language == 0) {
+                alert2.setContentText("Please enter the quantity of spare part");
+            } else {
+                alert2.setContentText("الرجاء إدخال كمية قطعة الغيار");
+
+            }
+            alert2.showAndWait();
+            return;
+
+        }
+        if (Txfiled_Discription_SP.getText().isEmpty()) {
+            if (count_Language == 0) {
+                alert2.setContentText("Please enter the description of spare part");
+            } else {
+                alert2.setContentText("الرجاء إدخال وصف قطعة الغيار");
+
+            }
+            alert2.showAndWait();
+            return;
+
+        }
+        if (Txfiled_minimumQuantity_SP.getText().isEmpty()) {
+            if (count_Language == 0) {
+                alert2.setContentText("Please enter the minimum quantity of spare part");
+            } else {
+                alert2.setContentText("الرجاء إدخال الحد الادنى  لقطعة الغيار");
+
+            }
+            alert2.showAndWait();
+            return;
+
+        }
+
+        if (count == 1) {
+            try {
+                System.out.println("=====" + Txfiled_Name_SP.getText());
+                System.out.println("Equal  insert");
+                // String A = "SET CHARACTER SET utf8 ";
+                String sqll = "INSERT INTO spare_parts (SP_NBER, SP_NAME, PRICE,SP_QUANTITY ,DESCRIPTION, MINIMUM_QUANTITY_IN_STOCK) VALUES (" + SP_number + "," + "'" + Txfiled_Name_SP.getText() + "'" + "," + "'" + Txfiled_Price_SP.getText()
+                        + "'" + "," + "'" + Txfiled_Quantity_SP.getText() + "'" + "," + "'" + Txfiled_Discription_SP.getText() + "'" + "," + "'" + Txfiled_minimumQuantity_SP.getText() + "')";
+                System.out.println(sqll);
+                java.sql.Statement statement1 = connection.createStatement();
+                //statement1.executeUpdate(A);
+
+                statement1.executeUpdate(sqll);
+                if (count_Language == 0) {
+
+                    alert2.setContentText(" A new Spare part has been created");
+                } else {
+                    alert2.setContentText("تم انشاء قطعة غيار جديدة");
+
+                }
+                Btn_Delete_SP.setDisable(false);
+
+                alert2.showAndWait();
+                ClearSp();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+
+        } else if (count == 2) {
+            try {
+                System.out.println("Equal  update");
+                //System.out.println(Selct_MoStatus_AddMO.getValue());
+                String sql1 = "UPDATE  `spare_parts` SET  SP_NAME='" + Txfiled_Name_SP.getText() + "',PRICE='" + Txfiled_Price_SP.getText() + "',SP_QUANTITY='" + Txfiled_Quantity_SP.getText() + "',DESCRIPTION='" + Txfiled_Discription_SP.getText() + "',MINIMUM_QUANTITY_IN_STOCK='" + Txfiled_minimumQuantity_SP.getText()
+                        + " 'WHERE SP_NBER=' " + Txfiled_SPNum_SP.getText() + "'";
+
+                System.out.println(sql1);
+                java.sql.Statement statement1 = connection.createStatement();
+                statement1.executeUpdate(sql1);
+                if (count_Language == 0) {
+
+                    alert2.setContentText(" Changes saved successfully");
+                } else {
+                    alert2.setContentText("تم حفظ التعديلات بنجاح");
+
+                }
+
+                alert2.showAndWait();
+                ClearSp();
+            } catch (SQLException ex) {
+                //System.out.println(ex);
+                JOptionPane.showMessageDialog(null, ex);
+                // JOptionPane.showMessageDialog(null, ex);
+            }
+        }
+        // count = 2;
+        RefreshMOTables();
 
     }
 
     @FXML
     private void M_Btn_Save_Supplier(ActionEvent event) {
-        alert2.setTitle(null);
+          Alert alert2 = new Alert(Alert.AlertType.ERROR);
         alert2.setHeaderText(null);
-        if (Txfiled_Num_Supplier.getText().isEmpty() || Txfiled_MNum_Supplier.getText().isEmpty() || Txfiled_Email_Supplier.getText().isEmpty()
-                || Txfiled_Name_Supplier.getText().isEmpty() || Txfiled_Address_Supplier.getText().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
+        if (!PhoneNvalid(Txfiled_MNum_Supplier.getText())) {
 
             if (count_Language == 0) {
-                alert.setContentText("Please enter the value");
+                alert2.setContentText("Please enter valid mobile number");
             } else {
-                alert.setContentText("الرجاء إدخال القيمة");
+                alert2.setContentText("الرجاء إدخال رقم هاتف صحيح");
 
             }
-            alert.showAndWait();
+            alert2.showAndWait();
+            return;
+
+        }
+        if (!EmailValid(Txfiled_Email_Supplier.getText())) {
+
+            if (count_Language == 0) {
+                alert2.setContentText("Please enter valid email address");
+            } else {
+                alert2.setContentText("الرجاء إدخال عنوان بريد إلكتروني صحيح");
+
+            }
+            alert2.showAndWait();
+            return;
+
+        }
+        if (Txfiled_Name_Supplier.getText().isEmpty()) {
+
+            if (count_Language == 0) {
+                alert2.setContentText("Please enter supplier name");
+            } else {
+                alert2.setContentText("الرجاء إدخال اسم المزود");
+
+            }
+            alert2.showAndWait();
+            return;
+
+        }
+        if (Txfiled_Address_Supplier.getText().isEmpty()) {
+
+            if (count_Language == 0) {
+                alert2.setContentText("Please enter supplier address");
+            } else {
+                alert2.setContentText("الرجاء إدخال عنوان المزود");
+
+            }
+            alert2.showAndWait();
             return;
 
         } else if (EmailValid(Txfiled_Email_Supplier.getText()) && (PhoneNvalid(Txfiled_MNum_Supplier.getText()))) {
@@ -1963,10 +2162,12 @@ public class Controller implements Initializable {
 
     @FXML
     private void M_Btn_Search_Supplier(ActionEvent event) {
+        alert2.setTitle(null);
+        alert2.setHeaderText(null);
         if (!Mumbervalid(Txfiled_Num_Supplier.getText())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
-                 if (count_Language == 0) {
+            if (count_Language == 0) {
                 alert.setContentText("Please enter supplier number");
             } else {
                 alert.setContentText("الرجاء ادخال رقم المزود ");
@@ -2005,7 +2206,7 @@ public class Controller implements Initializable {
                         count = 2;
                         String supnumber = "0" + rs.getString("SUP_MOBILE_NBER");
                         Txfiled_MNum_Supplier.setText(supnumber);
-                        
+
                         Txfiled_Email_Supplier.setText(rs.getString("SUP_EMAIL"));
                         Txfiled_Name_Supplier.setText(rs.getString("SUP_NAME"));
                         Txfiled_Address_Supplier.setText(rs.getString("SUP_ADDRESS"));
@@ -2021,7 +2222,13 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-                        //System.out.println();
+                        if (count_Language == 0) {
+                            alert2.setContentText("New supplier will be created");
+                        } else {
+                            alert2.setContentText("سوف يتم انشاء مزود جديد");
+
+                        }
+                        alert2.showAndWait();
 
                         count = 1;
                         SUP_number = Integer.parseInt(rs2.getString("SUPPLIER_NBER"));
@@ -2041,46 +2248,59 @@ public class Controller implements Initializable {
     @FXML
     private void M_Btn_Delete_Supplier(ActionEvent event) {
         try {
-            String sql1 = "DELETE FROM  `supplier`  WHERE SUPPLIER_NBER= " + Txfiled_Num_Supplier.getText();
-            System.out.println(sql1);
-            java.sql.Statement statement1 = connection.createStatement();
-            clearSUP();
-            try {
-                statement1.executeUpdate(sql1);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("");
+            alert.setHeaderText("");
+            if (count_Language == 0) {
+                alert.setContentText("This supplier will be deleted ");
+            } else {
+                alert.setContentText("  سوف يتم حذف هذا المزود ");
 
-                {
+            }
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                String sql1 = "DELETE FROM  `supplier`  WHERE SUPPLIER_NBER= " + Txfiled_Num_Supplier.getText();
+                System.out.println(sql1);
+                java.sql.Statement statement1 = connection.createStatement();
+                clearSUP();
+                try {
+                    statement1.executeUpdate(sql1);
+
+                    {
+                        if (count_Language == 0) {
+
+                            alert.setHeaderText(null);
+                            alert.setContentText("Deleted Successfully");
+                            alert.showAndWait();
+                            return;
+                        } else if (count_Language == 1) {
+
+                            alert.setHeaderText(null);
+                            alert.setContentText("تم الحذف بنجاح");
+                            alert.showAndWait();
+                            return;
+
+                        }
+
+                    }
+                } catch (SQLException e) {
                     if (count_Language == 0) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
+
                         alert.setHeaderText(null);
-                        alert.setContentText("Deleted Successfully");
+                        alert.setContentText("Can not delete this supplier");
                         alert.showAndWait();
                         return;
                     } else if (count_Language == 1) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
+
                         alert.setHeaderText(null);
-                        alert.setContentText("تم الحذف بنجاح");
+                        alert.setContentText("لا يمكن حذف هذا المزود");
                         alert.showAndWait();
                         return;
 
                     }
 
                 }
-            } catch (SQLException e) {
-                if (count_Language == 0) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText(null);
-                    alert.setContentText("Can not delete this supplier");
-                    alert.showAndWait();
-                    return;
-                } else if (count_Language == 1) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText(null);
-                    alert.setContentText("لا يمكن حذف هذا المزود");
-                    alert.showAndWait();
-                    return;
-
-                }
-
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -3299,47 +3519,93 @@ public class Controller implements Initializable {
     @FXML
     private void M_Btn_Delete_ReqSP(ActionEvent event) {
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle(null);
-        alert.setHeaderText(null);
-        if (count_Language == 0) {
-            alert.setContentText("This Request will be deleted ");
-        } else {
-            alert.setContentText("  سوف يتم حذف الطلب ");
+        try {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle(null);
+            alert.setHeaderText(null);
+            if (count_Language == 0) {
+                alert.setContentText("This Request spare part will be deleted ");
+            } else {
+                alert.setContentText("  سوف يتم حذف طلب قطعة الغيار");
 
-        }
+            }
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            try {
-                // ... user chose OK
-                String deletSP = "DELETE FROM  `attach` " + " WHERE REQUEST_NBER= " + Txfiled_REQnum_ReqSP.getText();
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+
                 String sql1 = "DELETE FROM  `requested_spare_parts` " + " WHERE REQUEST_NBER= " + Txfiled_REQnum_ReqSP.getText();
-                System.out.println(deletSP);
+
                 System.out.println(sql1);
                 java.sql.Statement statement1 = connection.createStatement();
-                statement1.executeUpdate(deletSP);
-                statement1.executeUpdate(sql1);
                 clear();
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex);
-            }
-        } else {
+                try {
+                    statement1.executeUpdate(sql1);
 
+                    {
+                        if (count_Language == 0) {
+                            alert.setHeaderText(null);
+                            alert.setContentText("Deleted Successfully");
+                            alert.showAndWait();
+                            return;
+
+                        } else if (count_Language == 1) {
+                            alert.setHeaderText(null);
+                            alert.setContentText("تم الحذف بنجاح");
+                            alert.showAndWait();
+                            return;
+
+                        }
+
+                    }
+                } catch (SQLException e) {
+                    if (count_Language == 0) {
+
+                        alert.setHeaderText(null);
+                        alert.setContentText("Can not delete this request spare part");
+                        alert.showAndWait();
+                        return;
+                    } else if (count_Language == 1) {
+
+                        alert.setHeaderText(null);
+                        alert.setContentText("لا يمكن حذف طلب  قطعة الغيار");
+                        alert.showAndWait();
+                        return;
+                    }
+                }
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
         }
     }
 
     @FXML
     private void M_Btn_Save_ReqSP(ActionEvent event) {
         try {
-            alert2.setTitle(null);
-            alert2.setHeaderText(null);
-            if (Txfiled_REQnum_ReqSP.getText().isEmpty() || Date_REQdate_ReqSP.getValue() == null || Selct_Supplier_ReqSP.getValue().isEmpty()) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setContentText("Pleas enter the value");
-                alert.showAndWait();
-                return;
+              Alert alert2 = new Alert(Alert.AlertType.ERROR);
+        alert2.setHeaderText(null);
+        if (Date_REQdate_ReqSP.getValue() == null ) {
+
+            if (count_Language == 0) {
+                alert2.setContentText("Please enter request date");
+            } else {
+                alert2.setContentText("الرجاء إدخال تاريخ الطلب");
+
+            }
+            alert2.showAndWait();
+            return;
+
+        }
+            if (Selct_Supplier_ReqSP.getSelectionModel().isEmpty()) {
+               
+               if (count_Language == 0) {
+                alert2.setContentText("Please select supplier");
+            } else {
+                alert2.setContentText("الرجاء اختيار المزود");
+
+            }
+            alert2.showAndWait();
+            return;
 
             } else {
                 Statement st2 = connection.createStatement();
@@ -3480,14 +3746,14 @@ public class Controller implements Initializable {
 
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
-                       if (count_Language == 0) {
-                alert.setContentText("Please enter Request number");
-            } else {
-                alert.setContentText("الرجاء ادخال رقم الطلب ");
+                if (count_Language == 0) {
+                    alert.setContentText("Please enter Request number");
+                } else {
+                    alert.setContentText("الرجاء ادخال رقم الطلب ");
 
-            }
+                }
                 alert.showAndWait();
-                
+
                 return;
 
             } else {

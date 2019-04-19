@@ -320,6 +320,8 @@ public class Controller_AddMO implements Initializable {
 
     //String INVOICE_NBER3=null;
     public void Search_MO(int MO) {
+        alert2.setTitle(null);
+        alert2.setHeaderText(null);
 
         Btn_Search_AddMo.setDisable(true);
         Txfiled_ProplemDisc_AddMO.setDisable(false);
@@ -506,7 +508,13 @@ public class Controller_AddMO implements Initializable {
                         monumber = MO_NBER;
                     }
                     System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-                    //System.out.println();
+                    if (count_Language == 0) {
+                        alert2.setContentText("New MO will be created");
+                    } else {
+                        alert2.setContentText(" سوف يتم انشاء عملية صيانة جديدة");
+
+                    }
+                    alert2.showAndWait();
                     count = 1;
                     monumber++;
                     System.out.println(monumber);
@@ -964,22 +972,105 @@ public class Controller_AddMO implements Initializable {
 
     @FXML
     private void M_Btn_Save_AddMo(ActionEvent event) {
-        alert2.setTitle(null);
+        Alert alert2 = new Alert(Alert.AlertType.ERROR);
         alert2.setHeaderText(null);
-        if (Txfiled_MOnum_AddMO.getText().isEmpty() || Txfiled_ProplemDisc_AddMO.getText().isEmpty() || Txfiled_CusMnum_AddMO.getText().isEmpty()
-                || Txfiled_DevSerialN_AddMO.getText().isEmpty() || Txfiled_DevDiscription_AddMO.getText().isEmpty() || Date_EndMO_AddMO.getValue() == null
-                || Date_StartMo_AddMO.getValue() == null || Date_Warranty_AddMO.getValue() == null || Selct_MoStatus_AddMO.getValue().isEmpty()
-                || Selct_Techichan_AddMO.getValue().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-
+        if (Txfiled_ProplemDisc_AddMO.getText().isEmpty()) {
             if (count_Language == 0) {
-                alert.setContentText("Please enter the value");
+                alert2.setContentText("Please enter the problem description ");
             } else {
-                alert.setContentText("الرجاء إدخال القيمة");
+                alert2.setContentText("الرجاء إدخال وصف المشكلة ");
 
             }
-            alert.showAndWait();
+            alert2.showAndWait();
+            return;
+
+        }
+        if (Txfiled_DevSerialN_AddMO.getText().isEmpty()) {
+            if (count_Language == 0) {
+                alert2.setContentText("Please enter the device serial number ");
+            } else {
+                alert2.setContentText("الرجاء إدخال الرقم التسلسلي للجهاز ");
+
+            }
+            alert2.showAndWait();
+            return;
+
+        }
+        if (Txfiled_DevDiscription_AddMO.getText().isEmpty()) {
+            if (count_Language == 0) {
+                alert2.setContentText("Please enter the device description ");
+            } else {
+                alert2.setContentText("الرجاء إدخال وصف الجهاز ");
+
+            }
+            alert2.showAndWait();
+            return;
+
+        }
+        if (Date_EndMO_AddMO.getValue() == null) {
+            if (count_Language == 0) {
+                alert2.setContentText("Please enter  expected ending date of MO ");
+            } else {
+                alert2.setContentText("الرجاء إدخال تاريخ الانتهاء المتوقع لعملية الصيانة ");
+
+            }
+            alert2.showAndWait();
+            return;
+
+        }
+        if (Date_StartMo_AddMO.getValue() == null) {
+            if (count_Language == 0) {
+                alert2.setContentText("Please enter starting date of MO ");
+            } else {
+                alert2.setContentText("الرجاء إدخال تاريخ بدء عملية الصيانة ");
+
+            }
+            alert2.showAndWait();
+            return;
+
+        }
+        if (Date_Warranty_AddMO.getValue() == null) {
+            if (count_Language == 0) {
+                alert2.setContentText("Please enter ending warranty date ");
+            } else {
+                alert2.setContentText("الرجاء إدخال تاريخ انتهاء الضمان ");
+
+            }
+            alert2.showAndWait();
+            return;
+
+        }
+        if (Selct_MoStatus_AddMO.getSelectionModel().isEmpty()) {
+            if (count_Language == 0) {
+                alert2.setContentText("Please select the state of MO ");
+            } else {
+                alert2.setContentText("الرجاء اختيار حالة عملية الصيانة ");
+
+            }
+            alert2.showAndWait();
+            return;
+
+        }
+        if (Selct_Techichan_AddMO.getSelectionModel().isEmpty()) {
+            if (count_Language == 0) {
+                alert2.setContentText("Please select the technician of MO ");
+            } else {
+                alert2.setContentText("الرجاءاختيار فني عملية الصيانة ");
+
+            }
+            alert2.showAndWait();
+            return;
+
+        }
+        if (Txfiled_MOCost_AddMO.getText().isEmpty()) {
+            if (count_Language == 0) {
+                alert2.setContentText("Please enter the MO cost ");
+            } else {
+                alert2.setContentText("الرجاء إدخال تكلفة عملية الصيانة ");
+
+            }
+            alert2.showAndWait();
+            return;
 
         } else {
             try {
