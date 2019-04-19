@@ -30,7 +30,7 @@
                         <Insets left="15.0" right="15.0" top="30.0" />
                      </VBox.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="Txfiled_MOCost_AddMO" alignment="CENTER" labelFloat="true" onKeyReleased="#M_Txfiled_SPCost_AddMO" promptText="MO Cost  " text="0.00">
+                  <JFXTextField fx:id="Txfiled_MOCost_AddMO" alignment="CENTER" disable="true" labelFloat="true" onKeyReleased="#M_Txfiled_SPCost_AddMO" promptText="MO Cost  " text="0.00">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" top="30.0" />
                      </VBox.margin>
@@ -102,12 +102,12 @@
                                     </VBox>
                                     <VBox alignment="CENTER" layoutX="727.0" layoutY="14.0" prefHeight="237.0" prefWidth="100.0">
                                        <children>
-                                          <JFXTextField fx:id="Txfiled_SpSerialN_AddMO" alignment="CENTER" onAction="#M_Txfiled_SpSerialN_AddMO" promptText="Serial number ">
+                                          <JFXTextField fx:id="Txfiled_SpSerialN_AddMO" alignment="CENTER" disable="true" onAction="#M_Txfiled_SpSerialN_AddMO" promptText="Serial number ">
                                              <VBox.margin>
                                                 <Insets bottom="15.0" />
                                              </VBox.margin>
                                           </JFXTextField>
-                                          <JFXTextField fx:id="Txfiled_SpPrice_AddMO" alignment="CENTER" onAction="#M_Txfiled_SpSerialN_AddMO" promptText="Cost">
+                                          <JFXTextField fx:id="Txfiled_SpPrice_AddMO" alignment="CENTER" disable="true" onAction="#M_Txfiled_SpSerialN_AddMO" promptText="Cost">
                                              <VBox.margin>
                                                 <Insets bottom="5.0" top="5.0" />
                                              </VBox.margin>
@@ -149,7 +149,7 @@
                                     </VBox>
                                     <VBox alignment="CENTER" layoutX="714.0" layoutY="14.0" prefHeight="212.0" prefWidth="113.0">
                                        <children>
-                                          <JFXTextField fx:id="Txfiled_SearchSP_AddMO" alignment="CENTER" onKeyReleased="#M_Txfiled_SearchSP_AddMO" promptText="Search">
+                                          <JFXTextField fx:id="Txfiled_SearchSP_AddMO" alignment="CENTER" disable="true" onKeyReleased="#M_Txfiled_SearchSP_AddMO" promptText="Search">
                                              <VBox.margin>
                                                 <Insets bottom="10.0" top="5.0" />
                                              </VBox.margin>
@@ -186,17 +186,17 @@
                         <Insets left="15.0" right="15.0" top="20.0" />
                      </VBox.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="Txfiled_CusMnum_AddMO" alignment="CENTER" labelFloat="true" onKeyReleased="#M_Txfiled_CusMnum_AddMO" promptText="Customer Mobile">
+                  <JFXTextField fx:id="Txfiled_CusMnum_AddMO" alignment="CENTER" disable="true" labelFloat="true" onKeyReleased="#M_Txfiled_CusMnum_AddMO" promptText="Customer Mobile">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" top="30.0" />
                      </VBox.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="Txfiled_DevSerialN_AddMO" alignment="CENTER" labelFloat="true" promptText="Device Serial number ">
+                  <JFXTextField fx:id="Txfiled_DevSerialN_AddMO" alignment="CENTER" disable="true" labelFloat="true" promptText="Device Serial number ">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" top="30.0" />
                      </VBox.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="Txfiled_DevDiscription_AddMO" alignment="CENTER" labelFloat="true" promptText="Device Description ">
+                  <JFXTextField fx:id="Txfiled_DevDiscription_AddMO" alignment="CENTER" disable="true" labelFloat="true" promptText="Device Description ">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" top="30.0" />
                      </VBox.margin>
@@ -290,17 +290,17 @@
                   </VBox>
                   <VBox alignment="TOP_RIGHT" prefHeight="101.0" prefWidth="150.0">
                      <children>
-                        <JFXDatePicker fx:id="Date_Warranty_AddMO" defaultColor="BLACK">
+                        <JFXDatePicker fx:id="Date_Warranty_AddMO" defaultColor="BLACK" disable="true">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" top="20.0" />
                            </VBox.margin>
                         </JFXDatePicker>
-                        <JFXDatePicker fx:id="Date_StartMo_AddMO" defaultColor="BLACK">
+                        <JFXDatePicker fx:id="Date_StartMo_AddMO" defaultColor="BLACK" disable="true">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" top="20.0" />
                            </VBox.margin>
                         </JFXDatePicker>
-                        <JFXDatePicker fx:id="Date_EndMO_AddMO" defaultColor="BLACK">
+                        <JFXDatePicker fx:id="Date_EndMO_AddMO" defaultColor="BLACK" disable="true">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" top="20.0" />
                            </VBox.margin>
@@ -316,7 +316,7 @@
                         <Insets left="15.0" right="15.0" top="20.0" />
                      </VBox.margin>
                   </JFXTextField>
-                  <JFXTextArea fx:id="Txfiled_ProplemDisc_AddMO" labelFloat="true" prefHeight="58.0" prefWidth="300.0" promptText="                          Describe the problem">
+                  <JFXTextArea fx:id="Txfiled_ProplemDisc_AddMO" disable="true" labelFloat="true" prefHeight="58.0" prefWidth="300.0" promptText="                          Describe the problem">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" top="20.0" />
                      </VBox.margin>
@@ -331,7 +331,7 @@
                               <Insets right="20.0" />
                            </HBox.margin>
                         </Label>
-                        <ComboBox fx:id="Selct_Techichan_AddMO" prefHeight="25.0" prefWidth="225.0">
+                        <ComboBox fx:id="Selct_Techichan_AddMO" disable="true" prefHeight="25.0" prefWidth="225.0">
                             
                                        <opaqueInsets>
                               <Insets />
@@ -355,7 +355,7 @@
                               <Insets right="20.0" />
                            </HBox.margin>
                         </Label>
-                        <ComboBox fx:id="Selct_MoStatus_AddMO" prefHeight="25.0" prefWidth="225.0">
+                        <ComboBox fx:id="Selct_MoStatus_AddMO" disable="true" prefHeight="25.0" prefWidth="225.0">
                          
                                  <opaqueInsets>
                                

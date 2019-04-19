@@ -204,7 +204,7 @@
                                           <Insets left="15.0" right="15.0" top="40.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_Email_Customer" alignment="CENTER" labelFloat="true" layoutX="25.0" layoutY="165.0" promptText="Email">
+                                    <JFXTextField fx:id="Txfiled_Email_Customer" alignment="CENTER" disable="true" labelFloat="true" layoutX="25.0" layoutY="165.0" promptText="Email">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="40.0" />
                                        </VBox.margin>
@@ -213,12 +213,12 @@
                               </VBox>
                               <VBox alignment="TOP_RIGHT" layoutX="299.0" layoutY="85.0" prefHeight="386.0" prefWidth="300.0">
                                  <children>
-                                    <JFXTextField fx:id="Txfiled_Name_Customer" alignment="CENTER" labelFloat="true" promptText="Name">
+                                    <JFXTextField fx:id="Txfiled_Name_Customer" alignment="CENTER" disable="true" labelFloat="true" promptText="Name">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="40.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_Address_Customer" alignment="CENTER" labelFloat="true" promptText="Address">
+                                    <JFXTextField fx:id="Txfiled_Address_Customer" alignment="CENTER" disable="true" labelFloat="true" promptText="Address">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="40.0" />
                                        </VBox.margin>
@@ -617,12 +617,12 @@
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_Price_SP" alignment="CENTER" labelFloat="true" promptText="Price">
+                                    <JFXTextField fx:id="Txfiled_Price_SP" alignment="CENTER" disable="true" labelFloat="true" promptText="Price">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextArea fx:id="Txfiled_Discription_SP" labelFloat="true" prefHeight="58.0" prefWidth="300.0" promptText="                      Spare part description">
+                                    <JFXTextArea fx:id="Txfiled_Discription_SP" disable="true" labelFloat="true" prefHeight="58.0" prefWidth="300.0" promptText="                      Spare part description">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="20.0" />
                                        </VBox.margin>
@@ -631,17 +631,17 @@
                               </VBox>
                               <VBox alignment="TOP_RIGHT" layoutX="299.0" layoutY="85.0" prefHeight="386.0" prefWidth="300.0">
                                  <children>
-                                    <JFXTextField fx:id="Txfiled_Name_SP" alignment="CENTER" labelFloat="true" promptText="Name">
+                                    <JFXTextField fx:id="Txfiled_Name_SP" alignment="CENTER" disable="true" labelFloat="true" promptText="Name">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_Quantity_SP" alignment="CENTER" labelFloat="true" promptText="Quantity">
+                                    <JFXTextField fx:id="Txfiled_Quantity_SP" alignment="CENTER" disable="true" labelFloat="true" promptText="Quantity">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_minimumQuantity_SP" alignment="CENTER" labelFloat="true" promptText="Minimum Quantity in Stock">
+                                    <JFXTextField fx:id="Txfiled_minimumQuantity_SP" alignment="CENTER" disable="true" labelFloat="true" promptText="Minimum Quantity in Stock">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
@@ -837,7 +837,7 @@
                                                       </VBox>
                                                       <VBox alignment="CENTER" layoutX="769.0" prefHeight="354.0" prefWidth="160.0">
                                                          <children>
-                                                            <JFXTextField fx:id="Txfiled_QuanitiySP_ReqSP" alignment="CENTER" onAction="#M_Txfiled_QuanitiySP_ReqSP" promptText="Quantity">
+                                                            <JFXTextField fx:id="Txfiled_QuanitiySP_ReqSP" alignment="CENTER" disable="true" onAction="#M_Txfiled_QuanitiySP_ReqSP" promptText="Quantity">
                                                                <VBox.margin>
                                                                   <Insets bottom="30.0" left="10.0" right="10.0" top="5.0" />
                                                                </VBox.margin>
@@ -877,7 +877,7 @@
                                                       </VBox>
                                                       <VBox alignment="CENTER" layoutX="775.0" layoutY="1.0" prefHeight="360.0" prefWidth="160.0">
                                                          <children>
-                                                            <JFXTextField fx:id="Txfiled_SearchSP_ReqSP" alignment="CENTER" onKeyReleased="#M_Txfiled_SearchSP_ReqSP" promptText="Search">
+                                                            <JFXTextField fx:id="Txfiled_SearchSP_ReqSP" alignment="CENTER" disable="true" onKeyReleased="#M_Txfiled_SearchSP_ReqSP" promptText="Search">
                                                                <VBox.margin>
                                                                   <Insets bottom="30.0" left="10.0" right="10.0" top="5.0" />
                                                                </VBox.margin>
@@ -917,7 +917,7 @@
                                           <Insets left="20.0" right="20.0" top="15.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <ComboBox fx:id="Selct_Supplier_ReqSP" prefWidth="150.0">
+                                    <ComboBox fx:id="Selct_Supplier_ReqSP" disable="true" prefWidth="150.0">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -942,7 +942,7 @@
                                           <Insets left="20.0" right="30.0" top="15.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <JFXDatePicker fx:id="Date_REQdate_ReqSP" defaultColor="BLACK" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="153.0">
+                                    <JFXDatePicker fx:id="Date_REQdate_ReqSP" defaultColor="BLACK" disable="true" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="153.0">
                                        <HBox.margin>
                                           <Insets left="10.0" right="35.0" />
                                        </HBox.margin>
@@ -1007,12 +1007,12 @@
                            <children>
                               <VBox layoutX="301.0" layoutY="85.0" prefHeight="386.0" prefWidth="300.0">
                                  <children>
-                                    <JFXTextField fx:id="Txfiled_Name_Supplier" alignment="CENTER" labelFloat="true" promptText="Name">
+                                    <JFXTextField fx:id="Txfiled_Name_Supplier" alignment="CENTER" disable="true" labelFloat="true" promptText="Name">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_Address_Supplier" alignment="CENTER" labelFloat="true" promptText="Address">
+                                    <JFXTextField fx:id="Txfiled_Address_Supplier" alignment="CENTER" disable="true" labelFloat="true" promptText="Address">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
@@ -1078,12 +1078,12 @@
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_MNum_Supplier" alignment="CENTER" labelFloat="true" promptText="Mobile Number">
+                                    <JFXTextField fx:id="Txfiled_MNum_Supplier" alignment="CENTER" disable="true" labelFloat="true" promptText="Mobile Number">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_Email_Supplier" alignment="CENTER" labelFloat="true" promptText="Email">
+                                    <JFXTextField fx:id="Txfiled_Email_Supplier" alignment="CENTER" disable="true" labelFloat="true" promptText="Email">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
@@ -1149,17 +1149,17 @@
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_Email_Employee" alignment="CENTER" labelFloat="true" promptText="Email">
+                                    <JFXTextField fx:id="Txfiled_Email_Employee" alignment="CENTER" disable="true" labelFloat="true" promptText="Email">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_Address_Employee" alignment="CENTER" labelFloat="true" promptText="Address">
+                                    <JFXTextField fx:id="Txfiled_Address_Employee" alignment="CENTER" disable="true" labelFloat="true" promptText="Address">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXPasswordField fx:id="Txfiled_Password_Employee" alignment="CENTER" promptText="Password">
+                                    <JFXPasswordField fx:id="Txfiled_Password_Employee" alignment="CENTER" disable="true" promptText="Password">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
@@ -1220,12 +1220,12 @@
                               </HBox>
                               <VBox layoutX="394.0" layoutY="85.0" prefHeight="386.0" prefWidth="300.0">
                                  <children>
-                                    <JFXTextField fx:id="Txfiled_Name_Employee" alignment="CENTER" labelFloat="true" promptText="Name">
+                                    <JFXTextField fx:id="Txfiled_Name_Employee" alignment="CENTER" disable="true" labelFloat="true" promptText="Name">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_MNum_Employee" alignment="CENTER" labelFloat="true" promptText="Mobile Number">
+                                    <JFXTextField fx:id="Txfiled_MNum_Employee" alignment="CENTER" disable="true" labelFloat="true" promptText="Mobile Number">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
@@ -1240,7 +1240,7 @@
                                                 <Insets left="20.0" right="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <ComboBox fx:id="Selct_Sex_Employee" prefWidth="150.0">
+                                          <ComboBox fx:id="Selct_Sex_Employee" disable="true" prefWidth="150.0">
                                              <opaqueInsets>
                                                 <Insets />
                                              </opaqueInsets>
@@ -1266,7 +1266,7 @@
                                                 <Insets left="20.0" right="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <ComboBox fx:id="Selct_JType_Employee" prefWidth="150.0">
+                                          <ComboBox fx:id="Selct_JType_Employee" disable="true" prefWidth="150.0">
                                              <opaqueInsets>
                                                 <Insets />
                                              </opaqueInsets>

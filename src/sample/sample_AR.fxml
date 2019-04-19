@@ -202,12 +202,12 @@
                            <children>
                               <VBox layoutX="-1.0" layoutY="85.0" prefHeight="386.0" prefWidth="300.0">
                                  <children>
-                                    <JFXTextField fx:id="Txfiled_Name_Customer" alignment="CENTER" labelFloat="true" promptText="الإسم">
+                                    <JFXTextField fx:id="Txfiled_Name_Customer" alignment="CENTER" disable="true" labelFloat="true" promptText="الإسم">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="40.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_Address_Customer" alignment="CENTER" labelFloat="true" layoutX="25.0" layoutY="165.0" promptText="العنوان">
+                                    <JFXTextField fx:id="Txfiled_Address_Customer" alignment="CENTER" disable="true" labelFloat="true" layoutX="25.0" layoutY="165.0" promptText="العنوان">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="40.0" />
                                        </VBox.margin>
@@ -221,7 +221,7 @@
                                           <Insets left="15.0" right="15.0" top="40.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_Email_Customer" alignment="CENTER" labelFloat="true" promptText="البريد الإلكتروني ">
+                                    <JFXTextField fx:id="Txfiled_Email_Customer" alignment="CENTER" disable="true" labelFloat="true" promptText="البريد الإلكتروني ">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="40.0" />
                                        </VBox.margin>
@@ -622,17 +622,17 @@
                            <children>
                               <VBox layoutX="-1.0" layoutY="85.0" prefHeight="386.0" prefWidth="300.0">
                                  <children>
-                                    <JFXTextField fx:id="Txfiled_Name_SP" alignment="CENTER" labelFloat="true" promptText="الإسم">
+                                    <JFXTextField fx:id="Txfiled_Name_SP" alignment="CENTER" disable="true" labelFloat="true" promptText="الإسم">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_Quantity_SP" alignment="CENTER" labelFloat="true" promptText="الكمية">
+                                    <JFXTextField fx:id="Txfiled_Quantity_SP" alignment="CENTER" disable="true" labelFloat="true" promptText="الكمية">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_minimumQuantity_SP" alignment="CENTER" labelFloat="true" promptText="الحد الادنى في المستودع">
+                                    <JFXTextField fx:id="Txfiled_minimumQuantity_SP" alignment="CENTER" disable="true" labelFloat="true" promptText="الحد الادنى في المستودع">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
@@ -646,12 +646,12 @@
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_Price_SP" alignment="CENTER" labelFloat="true" promptText="السعر">
+                                    <JFXTextField fx:id="Txfiled_Price_SP" alignment="CENTER" disable="true" labelFloat="true" promptText="السعر">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextArea fx:id="Txfiled_Discription_SP" labelFloat="true" prefHeight="58.0" prefWidth="300.0" promptText="وصف القطعة                              ">
+                                    <JFXTextArea fx:id="Txfiled_Discription_SP" disable="true" labelFloat="true" prefHeight="58.0" prefWidth="300.0" promptText="وصف القطعة                              ">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="20.0" />
                                        </VBox.margin>
@@ -770,7 +770,7 @@
                                  <children>
                                     <HBox alignment="CENTER" layoutX="10.0" layoutY="40.0" prefHeight="59.0" prefWidth="300.0">
                                        <children>
-                                          <JFXDatePicker fx:id="Date_REQdate_ReqSP" defaultColor="BLACK" prefHeight="25.0" prefWidth="153.0">
+                                          <JFXDatePicker fx:id="Date_REQdate_ReqSP" defaultColor="BLACK" disable="true" prefHeight="25.0" prefWidth="153.0">
                                              <HBox.margin>
                                                 <Insets left="35.0" right="20.0" />
                                              </HBox.margin>
@@ -885,12 +885,12 @@
                                                       </VBox>
                                                       <VBox alignment="CENTER" layoutX="769.0" prefHeight="354.0" prefWidth="160.0">
                                                          <children>
-                                                            <JFXTextField fx:id="Txfiled_QuanitiySP_ReqSP" alignment="CENTER" onAction="#M_Txfiled_QuanitiySP_ReqSP" promptText="الكمية">
+                                                            <JFXTextField fx:id="Txfiled_QuanitiySP_ReqSP" alignment="CENTER" disable="true" onAction="#M_Txfiled_QuanitiySP_ReqSP" promptText="الكمية">
                                                                <VBox.margin>
                                                                   <Insets bottom="30.0" left="10.0" right="10.0" top="5.0" />
                                                                </VBox.margin>
                                                             </JFXTextField>
-                                                            <JFXButton fx:id="Btn_RemoveSP_ReqSP" onAction="#M_Btn_RemoveSP_ReqSP" prefHeight="49.0" prefWidth="104.0" stylesheets="/css/hr.css" text="ازالة">
+                                                            <JFXButton fx:id="Btn_RemoveSP_ReqSP" disable="true" onAction="#M_Btn_RemoveSP_ReqSP" prefHeight="49.0" prefWidth="104.0" stylesheets="/css/hr.css" text="ازالة">
                                                                <graphic>
                                                                   <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                                                      <image>
@@ -925,12 +925,12 @@
                                                       </VBox>
                                                       <VBox alignment="CENTER" layoutX="775.0" layoutY="1.0" prefHeight="360.0" prefWidth="160.0">
                                                          <children>
-                                                            <JFXTextField fx:id="Txfiled_SearchSP_ReqSP" alignment="CENTER" onKeyReleased="#M_Txfiled_SearchSP_ReqSP" promptText="بحث">
+                                                            <JFXTextField fx:id="Txfiled_SearchSP_ReqSP" alignment="CENTER" disable="true" onKeyReleased="#M_Txfiled_SearchSP_ReqSP" promptText="بحث">
                                                                <VBox.margin>
                                                                   <Insets bottom="30.0" left="10.0" right="10.0" top="5.0" />
                                                                </VBox.margin>
                                                             </JFXTextField>
-                                                            <JFXButton fx:id="Btn_AddSP_ReqSP" onAction="#M_Btn_AddSP_ReqSP" prefHeight="51.0" prefWidth="105.0" stylesheets="/css/hr.css" text="اضافة">
+                                                            <JFXButton fx:id="Btn_AddSP_ReqSP" disable="true" onAction="#M_Btn_AddSP_ReqSP" prefHeight="51.0" prefWidth="105.0" stylesheets="/css/hr.css" text="اضافة">
                                                                <graphic>
                                                                   <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                                                      <image>
@@ -957,7 +957,7 @@
                               </HBox>
                               <HBox alignment="CENTER" layoutX="326.0" layoutY="96.0" prefHeight="59.0" prefWidth="300.0">
                                  <children>
-                                    <ComboBox fx:id="Selct_Supplier_ReqSP" prefWidth="150.0">
+                                    <ComboBox fx:id="Selct_Supplier_ReqSP" disable="true" prefWidth="150.0">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -1035,12 +1035,12 @@
                            <children>
                               <VBox layoutY="85.0" prefHeight="386.0" prefWidth="300.0">
                                  <children>
-                                    <JFXTextField fx:id="Txfiled_Name_Supplier" alignment="CENTER" labelFloat="true" promptText="اسم المزود">
+                                    <JFXTextField fx:id="Txfiled_Name_Supplier" alignment="CENTER" disable="true" labelFloat="true" promptText="اسم المزود">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_Address_Supplier" alignment="CENTER" labelFloat="true" promptText="العنوان">
+                                    <JFXTextField fx:id="Txfiled_Address_Supplier" alignment="CENTER" disable="true" labelFloat="true" promptText="العنوان">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
@@ -1054,12 +1054,12 @@
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_MNum_Supplier" alignment="CENTER" labelFloat="true" promptText="رقم الهاتف">
+                                    <JFXTextField fx:id="Txfiled_MNum_Supplier" alignment="CENTER" disable="true" labelFloat="true" promptText="رقم الهاتف">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_Email_Supplier" alignment="CENTER" labelFloat="true" promptText="البريد الإلكتروني ">
+                                    <JFXTextField fx:id="Txfiled_Email_Supplier" alignment="CENTER" disable="true" labelFloat="true" promptText="البريد الإلكتروني ">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
@@ -1176,19 +1176,19 @@
                            <children>
                               <VBox layoutX="-1.0" layoutY="85.0" prefHeight="386.0" prefWidth="300.0">
                                  <children>
-                                    <JFXTextField fx:id="Txfiled_Name_Employee" alignment="CENTER" labelFloat="true" promptText="الإسم">
+                                    <JFXTextField fx:id="Txfiled_Name_Employee" alignment="CENTER" disable="true" labelFloat="true" promptText="الإسم">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_MNum_Employee" alignment="CENTER" labelFloat="true" promptText="رقم الهاتف">
+                                    <JFXTextField fx:id="Txfiled_MNum_Employee" alignment="CENTER" disable="true" labelFloat="true" promptText="رقم الهاتف">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
                                     <HBox alignment="CENTER" prefHeight="59.0" prefWidth="300.0">
                                        <children>
-                                          <ComboBox fx:id="Selct_Sex_Employee" prefWidth="150.0">
+                                          <ComboBox fx:id="Selct_Sex_Employee" disable="true" prefWidth="150.0">
                                              <opaqueInsets>
                                                 <Insets />
                                              </opaqueInsets>
@@ -1214,7 +1214,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER" layoutX="10.0" layoutY="162.0" prefHeight="59.0" prefWidth="300.0">
                                        <children>
-                                          <ComboBox fx:id="Selct_JType_Employee" prefWidth="150.0">
+                                          <ComboBox fx:id="Selct_JType_Employee" disable="true" prefWidth="150.0">
                                              <opaqueInsets>
                                                 <Insets />
                                              </opaqueInsets>
@@ -1244,17 +1244,17 @@
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_Email_Employee" alignment="CENTER" labelFloat="true" promptText="البريد الإلكتروني ">
+                                    <JFXTextField fx:id="Txfiled_Email_Employee" alignment="CENTER" disable="true" labelFloat="true" promptText="البريد الإلكتروني ">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="Txfiled_Address_Employee" alignment="CENTER" labelFloat="true" promptText="العنوان">
+                                    <JFXTextField fx:id="Txfiled_Address_Employee" alignment="CENTER" disable="true" labelFloat="true" promptText="العنوان">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>
                                     </JFXTextField>
-                                    <JFXPasswordField fx:id="Txfiled_Password_Employee" alignment="CENTER" promptText="كلمة المرور">
+                                    <JFXPasswordField fx:id="Txfiled_Password_Employee" alignment="CENTER" disable="true" promptText="كلمة المرور">
                                        <VBox.margin>
                                           <Insets left="15.0" right="15.0" top="30.0" />
                                        </VBox.margin>

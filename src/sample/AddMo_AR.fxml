@@ -30,7 +30,7 @@
                         <Insets left="15.0" right="15.0" top="30.0" />
                      </VBox.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="Txfiled_MOCost_AddMO" alignment="CENTER" labelFloat="true" onKeyReleased="#M_Txfiled_SPCost_AddMO" promptText="تكلفة الصيانة" text="0.00">
+                  <JFXTextField fx:id="Txfiled_MOCost_AddMO" alignment="CENTER" disable="true" labelFloat="true" onKeyReleased="#M_Txfiled_SPCost_AddMO" promptText="تكلفة الصيانة" text="0.00">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" top="30.0" />
                      </VBox.margin>
@@ -54,14 +54,14 @@
                         <Insets left="15.0" right="15.0" top="20.0" />
                      </VBox.margin>
                   </JFXTextField>
-                  <JFXTextArea fx:id="Txfiled_ProplemDisc_AddMO" labelFloat="true" prefHeight="58.0" prefWidth="300.0" promptText="وصف العطـل                              ">
+                  <JFXTextArea fx:id="Txfiled_ProplemDisc_AddMO" disable="true" labelFloat="true" prefHeight="58.0" prefWidth="300.0" promptText="وصف العطـل                              ">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" top="20.0" />
                      </VBox.margin>
                   </JFXTextArea>
                   <HBox alignment="CENTER" prefHeight="55.0" prefWidth="300.0">
                      <children>
-                        <ComboBox fx:id="Selct_Techichan_AddMO" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="204.0">
+                        <ComboBox fx:id="Selct_Techichan_AddMO" disable="true" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="204.0">
                             
                            <opaqueInsets>
                               <Insets />
@@ -85,7 +85,7 @@
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="344.0" prefHeight="55.0" prefWidth="300.0">
                      <children>
-                        <ComboBox fx:id="Selct_MoStatus_AddMO" nodeOrientation="RIGHT_TO_LEFT" prefWidth="204.0">
+                        <ComboBox fx:id="Selct_MoStatus_AddMO" disable="true" nodeOrientation="RIGHT_TO_LEFT" prefWidth="204.0">
                          
                            <opaqueInsets>
                                
@@ -166,12 +166,12 @@
                                     </VBox>
                                     <VBox alignment="CENTER" layoutX="727.0" layoutY="14.0" prefHeight="237.0" prefWidth="100.0">
                                        <children>
-                                          <JFXTextField fx:id="Txfiled_SpSerialN_AddMO" alignment="CENTER" onAction="#M_Txfiled_SpSerialN_AddMO" promptText="الرقم التسلسلي">
+                                          <JFXTextField fx:id="Txfiled_SpSerialN_AddMO" alignment="CENTER" disable="true" onAction="#M_Txfiled_SpSerialN_AddMO" promptText="الرقم التسلسلي">
                                              <VBox.margin>
                                                 <Insets bottom="15.0" />
                                              </VBox.margin>
                                           </JFXTextField>
-                                          <JFXTextField fx:id="Txfiled_SpPrice_AddMO" alignment="CENTER" onAction="#M_Txfiled_SpSerialN_AddMO" promptText="السعر">
+                                          <JFXTextField fx:id="Txfiled_SpPrice_AddMO" alignment="CENTER" disable="true" onAction="#M_Txfiled_SpSerialN_AddMO" promptText="السعر">
                                              <VBox.margin>
                                                 <Insets bottom="5.0" top="5.0" />
                                              </VBox.margin>
@@ -213,7 +213,7 @@
                                     </VBox>
                                     <VBox alignment="CENTER" layoutX="714.0" layoutY="14.0" prefHeight="212.0" prefWidth="113.0">
                                        <children>
-                                          <JFXTextField fx:id="Txfiled_SearchSP_AddMO" alignment="CENTER" onKeyReleased="#M_Txfiled_SearchSP_AddMO" promptText="بحث">
+                                          <JFXTextField fx:id="Txfiled_SearchSP_AddMO" alignment="CENTER" disable="true" onKeyReleased="#M_Txfiled_SearchSP_AddMO" promptText="بحث">
                                              <VBox.margin>
                                                 <Insets bottom="10.0" top="5.0" />
                                              </VBox.margin>
@@ -250,17 +250,17 @@
                         <Insets left="15.0" right="15.0" top="20.0" />
                      </VBox.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="Txfiled_CusMnum_AddMO" alignment="CENTER" labelFloat="true" onKeyReleased="#M_Txfiled_CusMnum_AddMO" promptText="هاتف العميل">
+                  <JFXTextField fx:id="Txfiled_CusMnum_AddMO" alignment="CENTER" disable="true" labelFloat="true" onKeyReleased="#M_Txfiled_CusMnum_AddMO" promptText="هاتف العميل">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" top="30.0" />
                      </VBox.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="Txfiled_DevSerialN_AddMO" alignment="CENTER" labelFloat="true" promptText="الرقم التسلسلي للجهاز">
+                  <JFXTextField fx:id="Txfiled_DevSerialN_AddMO" alignment="CENTER" disable="true" labelFloat="true" promptText="الرقم التسلسلي للجهاز">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" top="30.0" />
                      </VBox.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="Txfiled_DevDiscription_AddMO" alignment="CENTER" labelFloat="true" promptText="وصف الجهاز">
+                  <JFXTextField fx:id="Txfiled_DevDiscription_AddMO" alignment="CENTER" disable="true" labelFloat="true" promptText="وصف الجهاز">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" top="30.0" />
                      </VBox.margin>
@@ -335,17 +335,17 @@
                <children>
                   <VBox alignment="TOP_RIGHT" prefHeight="101.0" prefWidth="150.0">
                      <children>
-                        <JFXDatePicker fx:id="Date_Warranty_AddMO" defaultColor="BLACK">
+                        <JFXDatePicker fx:id="Date_Warranty_AddMO" defaultColor="BLACK" disable="true">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" top="20.0" />
                            </VBox.margin>
                         </JFXDatePicker>
-                        <JFXDatePicker fx:id="Date_StartMo_AddMO" defaultColor="BLACK">
+                        <JFXDatePicker fx:id="Date_StartMo_AddMO" defaultColor="BLACK" disable="true">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" top="20.0" />
                            </VBox.margin>
                         </JFXDatePicker>
-                        <JFXDatePicker fx:id="Date_EndMO_AddMO" defaultColor="BLACK">
+                        <JFXDatePicker fx:id="Date_EndMO_AddMO" defaultColor="BLACK" disable="true">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" top="20.0" />
                            </VBox.margin>
