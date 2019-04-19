@@ -1145,47 +1145,77 @@ public class Controller implements Initializable {
         alert2.setTitle(null);
         alert2.setHeaderText(null);
         String email = Txfiled_Email_Customer.getText();
-        if (Txfiled_MNum_Customer.getText().isEmpty() || Txfiled_Name_Customer.getText().isEmpty() || !EmailValid(email) || !PhoneNvalid(Txfiled_MNum_Customer.getText())) {
+        
+        // ==== Check the availability of all required fields
+        if (Txfiled_Name_Customer.getText().isEmpty() ) {  /// Name
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
 
             if (count_Language == 0) {
-                alert.setContentText("Please enter the value");
+                alert.setContentText("Please, enter the customer name.");
+            } else {
+                alert.setContentText("الرجاء إدخال اسم العميل");
+
+            }
+            alert.showAndWait();
+            return;
+        }
+        
+        if (!EmailValid(email)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+
+            if (count_Language == 0) {
+                alert.setContentText("Please enter a valid email address");
+            } else {
+                alert.setContentText("الرجاء إدخال عنوان بريد إلكتروني صحيح");
+
+            }
+            alert.showAndWait();
+            return;
+        }
+        
+        if (!PhoneNvalid(Txfiled_MNum_Customer.getText())) {  // ===> To be moved to the appropriate place
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+
+            if (count_Language == 0) {
+                alert.setContentText("Please enter a valid mobile ");
             } else {
                 alert.setContentText("الرجاء إدخال القيمة");
 
             }
             alert.showAndWait();
             return;
-        } else {
+        }
+        
+        if (count == 1) {
+            try {
+                System.out.println("Equal  insert");
+                String sqll = ("INSERT INTO customer (CUS_MOBILE_NBER,CUS_NAME,CUS_EMAIL,CUS_ADDRESS) VALUES('" + Txfiled_MNum_Customer.getText() + "','" + Txfiled_Name_Customer.getText() + "','" + Txfiled_Email_Customer.getText() + "','" + Txfiled_Address_Customer.getText() + "')");
+                //"INSERT INTO customer (CUS_MOBILE_NBER ,'CUS_NAME','CUS_EMAIL',' CUS_ADDRESS') VALUES ("+Txfiled_MNum_Customer.getText()+ ""+","+"" +   Txfiled_Name_Customer.getText() + "" + ","+"" +    Txfiled_Email_Customer.getText()+ "" + ","+"" +  Txfiled_Address_Customer.getText()+")";
+                System.out.println(sqll);
+                java.sql.Statement statement1 = connection.createStatement();
 
-            if (count == 1) {
-                try {
-                    System.out.println("Equal  insert");
-                    String sqll = ("INSERT INTO customer (CUS_MOBILE_NBER,CUS_NAME,CUS_EMAIL,CUS_ADDRESS) VALUES('" + Txfiled_MNum_Customer.getText() + "','" + Txfiled_Name_Customer.getText() + "','" + Txfiled_Email_Customer.getText() + "','" + Txfiled_Address_Customer.getText() + "')");
-                    //"INSERT INTO customer (CUS_MOBILE_NBER ,'CUS_NAME','CUS_EMAIL',' CUS_ADDRESS') VALUES ("+Txfiled_MNum_Customer.getText()+ ""+","+"" +   Txfiled_Name_Customer.getText() + "" + ","+"" +    Txfiled_Email_Customer.getText()+ "" + ","+"" +  Txfiled_Address_Customer.getText()+")";
-                    System.out.println(sqll);
-                    java.sql.Statement statement1 = connection.createStatement();
+                statement1.executeUpdate(sqll);
+                if (count_Language == 0) {
 
-                    statement1.executeUpdate(sqll);
-                    if (count_Language == 0) {
-
-                        alert2.setContentText(" A new Customer has been created");
-                    } else {
-                        alert2.setContentText("تم انشاء عميل جديد");
-
-                    }
-                    alert2.showAndWait();
-                    ClearCus();
-                } /*
-                else if (count_Language == 0) {
-                alert2.setContentText("invalid Email");
+                    alert2.setContentText(" A new Customer has been created");
                 } else {
-                alert2.setContentText(" البريد الالكتروني خاطئ");
+                    alert2.setContentText("تم انشاء عميل جديد");
+
                 }
-                alert2.showAndWait();*/ catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, ex);
-                }
+                alert2.showAndWait();
+                ClearCus();
+            } /*
+            else if (count_Language == 0) {
+            alert2.setContentText("invalid Email");
+            } else {
+            alert2.setContentText(" البريد الالكتروني خاطئ");
+            }
+            alert2.showAndWait();*/ catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
 
             } else if (count == 2) {
                 try {
@@ -1255,7 +1285,7 @@ public class Controller implements Initializable {
         }
         //count = 2;
 
-    }
+    
     int SP_number = 0;
     int SUP_number = 0;
     int EMP_number = 0;
