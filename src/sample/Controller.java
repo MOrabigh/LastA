@@ -1160,13 +1160,12 @@ public class Controller implements Initializable {
     @FXML
     private void M_Btn_Save_Customer(ActionEvent event) {
 
-          Alert alert = new Alert(Alert.AlertType.ERROR);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
         String email = Txfiled_Email_Customer.getText();
 
         // ==== Check the availability of all required fields
         if (!PhoneNvalid(Txfiled_MNum_Customer.getText())) {
-           
 
             if (count_Language == 0) {
                 alert.setContentText("Please enter a valid mobile number ");
@@ -1178,7 +1177,6 @@ public class Controller implements Initializable {
             return;
         }
         if (Txfiled_Name_Customer.getText().isEmpty()) {  /// Name
-           
 
             if (count_Language == 0) {
                 alert.setContentText("Please, enter the customer name.");
@@ -1191,7 +1189,7 @@ public class Controller implements Initializable {
         }
 
         if (!EmailValid(email)) {
-           
+
             if (count_Language == 0) {
                 alert.setContentText("Please enter a valid email address");
             } else {
@@ -1202,7 +1200,7 @@ public class Controller implements Initializable {
             return;
         }
         if (Txfiled_Address_Customer.getText().isEmpty()) {  // ===> To be moved to the appropriate place
-            
+
             if (count_Language == 0) {
                 alert.setContentText("Please enter customer address ");
             } else {
@@ -2047,7 +2045,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void M_Btn_Save_Supplier(ActionEvent event) {
-          Alert alert = new Alert(Alert.AlertType.ERROR);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
         if (!PhoneNvalid(Txfiled_MNum_Supplier.getText())) {
 
@@ -2373,7 +2371,7 @@ public class Controller implements Initializable {
                         printreport print = new printreport();
                         LocalDate localdate = LocalDate.now();
                         LocalDate minusmonths = Date.minusMonths(1);
-                        print.PreviousMO(localdate, minusmonths );
+                        print.PreviousMO(localdate, minusmonths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2455,7 +2453,7 @@ public class Controller implements Initializable {
                         printreport print = new printreport();
                         LocalDate startingdate = Date_StartFrom.getValue();
                         LocalDate untildate = Date_Unill.getValue();
-                        print.PreviousMOPeriod( startingdate,untildate);
+                        print.PreviousMOPeriod(startingdate, untildate);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2537,7 +2535,7 @@ public class Controller implements Initializable {
                         printreport print = new printreport();
                         LocalDate localdate = LocalDate.now();
                         LocalDate minusmonths = Date.minusMonths(12);
-                        print.CurrentMO(localdate,minusmonths);
+                        print.CurrentMO(localdate, minusmonths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2645,7 +2643,7 @@ public class Controller implements Initializable {
                         printreport print = new printreport();
                         LocalDate localdate = LocalDate.now();
                         LocalDate minusmonths = Date.minusMonths(12);
-                        print.FinshedMO(localdate,  minusmonths);
+                        print.FinshedMO(localdate, minusmonths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2678,6 +2676,16 @@ public class Controller implements Initializable {
                 }
 
             } else if (SelectedItem.equalsIgnoreCase("- تقدير مالي عن عملية صيانة")) {
+                  if (!Mumbervalid(Txfiled_CUS_MNBER.getText())) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText(null);
+
+                    alert.setContentText("الرجاء ادخال رقم عملية الصيانة");
+
+                    alert.showAndWait();
+                    return;
+
+                }
                 Statement st2 = connection.createStatement();
                 String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired','تم الإنشاء', 'تم الموافقة', 'تحت الصيانة', 'تم الكشف عن عيوب أخرى','مرفوضة','لا يمكن القيام بعملية الصيانة','تم الاصلاح') AND m.MO_NBER = '" + Txfiled_MO_Nber.getText() + "'";
                 System.out.println(q);
@@ -2687,12 +2695,12 @@ public class Controller implements Initializable {
 
                     printreport print = new printreport();
                     String MOnumber = Txfiled_MO_Nber.getText();
-                    
+
                     print.FinancialassessReportAR(MOnumber);
                 } else {
                     printreport print = new printreport();
                     String MOnumber = Txfiled_MO_Nber.getText();
-                   
+
                     print.FinancialassessReportARWSP(MOnumber);
 
                 }
@@ -2705,6 +2713,16 @@ public class Controller implements Initializable {
                 print.CustomersList();
 
             } else if (SelectedItem.equalsIgnoreCase("- قائمة عمليات الصيانة لعميل")) {
+                   if (!Mumbervalid(Txfiled_CUS_MNBER.getText())) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText(null);
+
+                    alert.setContentText("الرجاء ادخل رقم هاتف العميل ");
+
+                    alert.showAndWait();
+                    return;
+
+                }
                 Statement st2 = connection.createStatement();
                 String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
                 System.out.println(q);
@@ -2716,7 +2734,7 @@ public class Controller implements Initializable {
                     System.out.println(query);
                     java.sql.Statement statement1 = connection.createStatement();
                     printreport print = new printreport();
-                 
+
                     String CusMobileNumber = Txfiled_CUS_MNBER.getText();
                     print.ListofcustomersMOs(CusMobileNumber);
                 } else {
@@ -2736,6 +2754,16 @@ public class Controller implements Initializable {
                 print.EmployeesList();
 
             } else if (SelectedItem.equalsIgnoreCase("- قائمة عمليات الصيانة لموظف")) {
+                   if (Selct_Name_Employee.getSelectionModel().isEmpty()) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText(null);
+
+                          alert.setContentText("الرجاء اختيار فني عملية الصيانة ");
+
+                    alert.showAndWait();
+                    return;
+
+                }
                 Statement st2 = connection.createStatement();
                 String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID Where e.EMP_NAME = '" + Selct_Name_Employee.getValue() + "'";
                 System.out.println(q);
@@ -2853,7 +2881,7 @@ public class Controller implements Initializable {
                         printreport print = new printreport();
                         LocalDate localedate = LocalDate.now();
                         LocalDate minusmounths = Date.minusMonths(12);
-                         print.PreviousMOEN(localedate, minusmounths);
+                        print.PreviousMOEN(localedate, minusmounths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2967,7 +2995,7 @@ public class Controller implements Initializable {
                         printreport print = new printreport();
                         LocalDate localedate = LocalDate.now();
                         LocalDate minusmounths = Date.minusMonths(12);
-                       print.CurrentMOEN(localedate, minusmounths);
+                        print.CurrentMOEN(localedate, minusmounths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2989,7 +3017,7 @@ public class Controller implements Initializable {
                         printreport print = new printreport();
                         LocalDate localedate = LocalDate.now();
                         LocalDate minusmounths = Date.minusMonths(12);
-                         print.CurrentMOEN(localedate, minusmounths);
+                        print.CurrentMOEN(localedate, minusmounths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -3024,6 +3052,7 @@ public class Controller implements Initializable {
                 }
 
             } else if (SelectedItem.equalsIgnoreCase("- Finished maintenance operations")) {
+
                 if (Rad_Last_month.isSelected()) {
                     Statement st2 = connection.createStatement();
 
@@ -3060,7 +3089,7 @@ public class Controller implements Initializable {
                         printreport print = new printreport();
                         LocalDate localedate = LocalDate.now();
                         LocalDate minusmounths = Date.minusMonths(3);
-                         print.FinshedMOEN(localedate, minusmounths);
+                        print.FinshedMOEN(localedate, minusmounths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -3082,7 +3111,7 @@ public class Controller implements Initializable {
                         printreport print = new printreport();
                         LocalDate localedate = LocalDate.now();
                         LocalDate minusmounths = Date.minusMonths(12);
-                          print.FinshedMOEN(localedate, minusmounths);
+                        print.FinshedMOEN(localedate, minusmounths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -3140,8 +3169,18 @@ public class Controller implements Initializable {
                 }
 
             } else if (SelectedItem.equalsIgnoreCase("- financial estimate of maintenance")) {
+                if (!Mumbervalid(Txfiled_CUS_MNBER.getText())) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText(null);
+
+                    alert.setContentText("Please enter MO number");
+
+                    alert.showAndWait();
+                    return;
+
+                }
                 Statement st2 = connection.createStatement();
-                String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired','تم الإنشاء', 'تم الموافقة', 'تحت الصيانة', 'تم الكشف عن عيوب أخرى','مرفوضة','لا يمكن القيام بعملية الصيانة','تم الاصلاح') AND m.MO_NBER = '" + Txfiled_MO_Nber.getText() +  "'";
+                String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired','تم الإنشاء', 'تم الموافقة', 'تحت الصيانة', 'تم الكشف عن عيوب أخرى','مرفوضة','لا يمكن القيام بعملية الصيانة','تم الاصلاح') AND m.MO_NBER = '" + Txfiled_MO_Nber.getText() + "'";
                 System.out.println(q);
                 st2.executeQuery(q);
                 ResultSet rs2 = st2.getResultSet();
@@ -3149,12 +3188,12 @@ public class Controller implements Initializable {
 
                     printreport print = new printreport();
                     String MOnumber = Txfiled_MO_Nber.getText();
-                    
+
                     print.FinancialassessReportENG(MOnumber);
                 } else {
                     printreport print = new printreport();
                     String MOnumber = Txfiled_MO_Nber.getText();
-                    
+
                     print.FinancialassessReportENGWSP(MOnumber);
 
                 }
@@ -3167,6 +3206,17 @@ public class Controller implements Initializable {
                 print.CustomersListEN();
 
             } else if (SelectedItem.equalsIgnoreCase("- list of customer maintenance operations")) {
+
+                if (!Mumbervalid(Txfiled_CUS_MNBER.getText())) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText(null);
+
+                    alert.setContentText("Please enter customer mobile number");
+
+                    alert.showAndWait();
+                    return;
+
+                }
                 Statement st2 = connection.createStatement();
                 String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
                 System.out.println(q);
@@ -3178,9 +3228,9 @@ public class Controller implements Initializable {
                     System.out.println(query);
                     java.sql.Statement statement1 = connection.createStatement();
                     printreport print = new printreport();
-                    
+
                     String CusMobileNumber = Txfiled_CUS_MNBER.getText();
-                    print.ListofcustomersMOsEN(CusMobileNumber );
+                    print.ListofcustomersMOsEN(CusMobileNumber);
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText(null);
@@ -3198,6 +3248,17 @@ public class Controller implements Initializable {
                 print.EmployeesListEN();
 
             } else if (SelectedItem.equalsIgnoreCase("- List of maintenance operations for an employee")) {
+                if (Selct_Name_Employee.getSelectionModel().isEmpty()) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText(null);
+
+                    alert.setContentText("Please select the technician of MO ");
+
+                    alert.showAndWait();
+                    return;
+
+                }
+
                 Statement st2 = connection.createStatement();
                 String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID Where e.EMP_NAME = '" + Selct_Name_Employee.getValue() + "'";
                 System.out.println(q);
@@ -3582,30 +3643,30 @@ public class Controller implements Initializable {
     @FXML
     private void M_Btn_Save_ReqSP(ActionEvent event) {
         try {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText(null);
-        if (Date_REQdate_ReqSP.getValue() == null ) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            if (Date_REQdate_ReqSP.getValue() == null) {
 
-            if (count_Language == 0) {
-                alert.setContentText("Please enter request date");
-            } else {
-                alert.setContentText("الرجاء إدخال تاريخ الطلب");
+                if (count_Language == 0) {
+                    alert.setContentText("Please enter request date");
+                } else {
+                    alert.setContentText("الرجاء إدخال تاريخ الطلب");
+
+                }
+                alert.showAndWait();
+                return;
 
             }
-            alert.showAndWait();
-            return;
-
-        }
             if (Selct_Supplier_ReqSP.getSelectionModel().isEmpty()) {
-               
-               if (count_Language == 0) {
-                alert.setContentText("Please select supplier");
-            } else {
-                alert.setContentText("الرجاء اختيار المزود");
 
-            }
-            alert.showAndWait();
-            return;
+                if (count_Language == 0) {
+                    alert.setContentText("Please select supplier");
+                } else {
+                    alert.setContentText("الرجاء اختيار المزود");
+
+                }
+                alert.showAndWait();
+                return;
 
             } else {
                 Statement st2 = connection.createStatement();

@@ -1055,7 +1055,7 @@ public class Controller_AddMO implements Initializable {
             if (count_Language == 0) {
                 alert.setContentText("Please select the technician of MO ");
             } else {
-                alert.setContentText("الرجاءاختيار فني عملية الصيانة ");
+                alert.setContentText("الرجاء اختيار فني عملية الصيانة ");
 
             }
             alert.showAndWait();
