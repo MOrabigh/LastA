@@ -1160,8 +1160,8 @@ public class Controller implements Initializable {
     @FXML
     private void M_Btn_Save_Customer(ActionEvent event) {
 
-          Alert alert2 = new Alert(Alert.AlertType.ERROR);
-        alert2.setHeaderText(null);
+          Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
         String email = Txfiled_Email_Customer.getText();
 
         // ==== Check the availability of all required fields
@@ -1169,47 +1169,47 @@ public class Controller implements Initializable {
            
 
             if (count_Language == 0) {
-                alert2.setContentText("Please enter a valid mobile number ");
+                alert.setContentText("Please enter a valid mobile number ");
             } else {
-                alert2.setContentText("الرجاء إدخال رقم هاتف صحيح");
+                alert.setContentText("الرجاء إدخال رقم هاتف صحيح");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
         }
         if (Txfiled_Name_Customer.getText().isEmpty()) {  /// Name
            
 
             if (count_Language == 0) {
-                alert2.setContentText("Please, enter the customer name.");
+                alert.setContentText("Please, enter the customer name.");
             } else {
-                alert2.setContentText("الرجاء إدخال اسم العميل");
+                alert.setContentText("الرجاء إدخال اسم العميل");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
         }
 
         if (!EmailValid(email)) {
            
             if (count_Language == 0) {
-                alert2.setContentText("Please enter a valid email address");
+                alert.setContentText("Please enter a valid email address");
             } else {
-                alert2.setContentText("الرجاء إدخال عنوان بريد إلكتروني صحيح");
+                alert.setContentText("الرجاء إدخال عنوان بريد إلكتروني صحيح");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
         }
         if (Txfiled_Address_Customer.getText().isEmpty()) {  // ===> To be moved to the appropriate place
             
             if (count_Language == 0) {
-                alert2.setContentText("Please enter customer address ");
+                alert.setContentText("Please enter customer address ");
             } else {
-                alert2.setContentText("الرجاء إدخال عنوان العميل");
+                alert.setContentText("الرجاء إدخال عنوان العميل");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
         }
 
@@ -1481,83 +1481,83 @@ public class Controller implements Initializable {
 
     @FXML
     private void M_Btn_Save_Employee(ActionEvent event) {
-        Alert alert2 = new Alert(Alert.AlertType.ERROR);
-        alert2.setHeaderText(null);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
         if (!PhoneNvalid(Txfiled_MNum_Employee.getText())) {
 
             if (count_Language == 0) {
-                alert2.setContentText("Please enter a valid mobile number");
+                alert.setContentText("Please enter a valid mobile number");
             } else {
-                alert2.setContentText("الرجاء إدخال رقم هاتف صحيح");
+                alert.setContentText("الرجاء إدخال رقم هاتف صحيح");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
         }
         if (!EmailValid(Txfiled_Email_Employee.getText())) {
 
             if (count_Language == 0) {
-                alert2.setContentText("Please enter a valid email address");
+                alert.setContentText("Please enter a valid email address");
             } else {
-                alert2.setContentText("الرجاء إدخال عنوان بريد الكتروني صحيح");
+                alert.setContentText("الرجاء إدخال عنوان بريد الكتروني صحيح");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
         }
         if (Txfiled_Name_Employee.getText().isEmpty()) {
 
             if (count_Language == 0) {
-                alert2.setContentText("Please enter the employee name");
+                alert.setContentText("Please enter the employee name");
             } else {
-                alert2.setContentText("الرجاء ادخال اسم الموظف");
+                alert.setContentText("الرجاء ادخال اسم الموظف");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
         }
         if (Txfiled_Address_Employee.getText().isEmpty()) {
 
             if (count_Language == 0) {
-                alert2.setContentText("Please enter an address");
+                alert.setContentText("Please enter an address");
             } else {
-                alert2.setContentText("الرجاء إدخال العنوان");
+                alert.setContentText("الرجاء إدخال العنوان");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
         }
         if (Selct_JType_Employee.getSelectionModel().isEmpty()) {
 
             if (count_Language == 0) {
-                alert2.setContentText("Please select a jop type");
+                alert.setContentText("Please select a jop type");
             } else {
-                alert2.setContentText("الرجاء اختيار نوع الوظيفة");
+                alert.setContentText("الرجاء اختيار نوع الوظيفة");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
         }
         if (Selct_Sex_Employee.getSelectionModel().isEmpty()) {
 
             if (count_Language == 0) {
-                alert2.setContentText("Please select a sex");
+                alert.setContentText("Please select a sex");
             } else {
-                alert2.setContentText("الرجاء اختيار النوع");
+                alert.setContentText("الرجاء اختيار النوع");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
         }
         if (Txfiled_Password_Employee.getText().isEmpty()) {
 
             if (count_Language == 0) {
-                alert2.setContentText("Please enter a password ");
+                alert.setContentText("Please enter a password ");
             } else {
-                alert2.setContentText("الرجاء إدخال كلمة المرور");
+                alert.setContentText("الرجاء إدخال كلمة المرور");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
         } else if (EmailValid(Txfiled_Email_Employee.getText()) && (PhoneNvalid(Txfiled_MNum_Employee.getText()))) {
 
@@ -1927,62 +1927,62 @@ public class Controller implements Initializable {
 
     @FXML
     private void M_Btn_Save_SP(ActionEvent event) {
-        Alert alert2 = new Alert(Alert.AlertType.ERROR);
-        alert2.setHeaderText(null);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
 
         if (Txfiled_Name_SP.getText().isEmpty()) {
             if (count_Language == 0) {
-                alert2.setContentText("Please enter the name of spare part");
+                alert.setContentText("Please enter the name of spare part");
             } else {
-                alert2.setContentText("الرجاء إدخال اسم قطعة الغيار");
+                alert.setContentText("الرجاء إدخال اسم قطعة الغيار");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
 
         }
 
         if (Txfiled_Price_SP.getText().isEmpty()) {
             if (count_Language == 0) {
-                alert2.setContentText("Please enter the price of spare part");
+                alert.setContentText("Please enter the price of spare part");
             } else {
-                alert2.setContentText("الرجاء إدخال سعر قطعة الغيار");
+                alert.setContentText("الرجاء إدخال سعر قطعة الغيار");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
 
         }
         if (Txfiled_Quantity_SP.getText().isEmpty()) {
             if (count_Language == 0) {
-                alert2.setContentText("Please enter the quantity of spare part");
+                alert.setContentText("Please enter the quantity of spare part");
             } else {
-                alert2.setContentText("الرجاء إدخال كمية قطعة الغيار");
+                alert.setContentText("الرجاء إدخال كمية قطعة الغيار");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
 
         }
         if (Txfiled_Discription_SP.getText().isEmpty()) {
             if (count_Language == 0) {
-                alert2.setContentText("Please enter the description of spare part");
+                alert.setContentText("Please enter the description of spare part");
             } else {
-                alert2.setContentText("الرجاء إدخال وصف قطعة الغيار");
+                alert.setContentText("الرجاء إدخال وصف قطعة الغيار");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
 
         }
         if (Txfiled_minimumQuantity_SP.getText().isEmpty()) {
             if (count_Language == 0) {
-                alert2.setContentText("Please enter the minimum quantity of spare part");
+                alert.setContentText("Please enter the minimum quantity of spare part");
             } else {
-                alert2.setContentText("الرجاء إدخال الحد الادنى  لقطعة الغيار");
+                alert.setContentText("الرجاء إدخال الحد الادنى  لقطعة الغيار");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
 
         }
@@ -2047,53 +2047,53 @@ public class Controller implements Initializable {
 
     @FXML
     private void M_Btn_Save_Supplier(ActionEvent event) {
-          Alert alert2 = new Alert(Alert.AlertType.ERROR);
-        alert2.setHeaderText(null);
+          Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
         if (!PhoneNvalid(Txfiled_MNum_Supplier.getText())) {
 
             if (count_Language == 0) {
-                alert2.setContentText("Please enter valid mobile number");
+                alert.setContentText("Please enter valid mobile number");
             } else {
-                alert2.setContentText("الرجاء إدخال رقم هاتف صحيح");
+                alert.setContentText("الرجاء إدخال رقم هاتف صحيح");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
 
         }
         if (!EmailValid(Txfiled_Email_Supplier.getText())) {
 
             if (count_Language == 0) {
-                alert2.setContentText("Please enter valid email address");
+                alert.setContentText("Please enter valid email address");
             } else {
-                alert2.setContentText("الرجاء إدخال عنوان بريد إلكتروني صحيح");
+                alert.setContentText("الرجاء إدخال عنوان بريد إلكتروني صحيح");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
 
         }
         if (Txfiled_Name_Supplier.getText().isEmpty()) {
 
             if (count_Language == 0) {
-                alert2.setContentText("Please enter supplier name");
+                alert.setContentText("Please enter supplier name");
             } else {
-                alert2.setContentText("الرجاء إدخال اسم المزود");
+                alert.setContentText("الرجاء إدخال اسم المزود");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
 
         }
         if (Txfiled_Address_Supplier.getText().isEmpty()) {
 
             if (count_Language == 0) {
-                alert2.setContentText("Please enter supplier address");
+                alert.setContentText("Please enter supplier address");
             } else {
-                alert2.setContentText("الرجاء إدخال عنوان المزود");
+                alert.setContentText("الرجاء إدخال عنوان المزود");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
 
         } else if (EmailValid(Txfiled_Email_Supplier.getText()) && (PhoneNvalid(Txfiled_MNum_Supplier.getText()))) {
@@ -2371,9 +2371,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(1);
-                        print.PreviousMO(bb, ss);
+                        LocalDate localdate = LocalDate.now();
+                        LocalDate minusmonths = Date.minusMonths(1);
+                        print.PreviousMO(localdate, minusmonths );
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2392,9 +2392,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(3);
-                        print.PreviousMO(bb, ss);
+                        LocalDate localdate = LocalDate.now();
+                        LocalDate minusmonths = Date.minusMonths(3);
+                        print.PreviousMO(localdate, minusmonths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2412,9 +2412,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(12);
-                        print.PreviousMO(bb, ss);
+                        LocalDate localdate = LocalDate.now();
+                        LocalDate minusmonths = Date.minusMonths(12);
+                        print.PreviousMO(localdate, minusmonths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2432,9 +2432,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(12);
-                        print.PreviousMO(bb, ss);
+                        LocalDate localdate = LocalDate.now();
+                        LocalDate minusmonths = Date.minusMonths(12);
+                        print.PreviousMO(localdate, minusmonths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2453,9 +2453,9 @@ public class Controller implements Initializable {
                     ResultSet rs2 = st2.getResultSet();
                     if (rs2.first()) {
                         printreport print = new printreport();
-                        LocalDate AA = Date_StartFrom.getValue();
-                        LocalDate MM = Date_Unill.getValue();
-                        print.PreviousMOPeriod(AA, MM);
+                        LocalDate startingdate = Date_StartFrom.getValue();
+                        LocalDate untildate = Date_Unill.getValue();
+                        print.PreviousMOPeriod( startingdate,untildate);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2475,9 +2475,9 @@ public class Controller implements Initializable {
                     ResultSet rs2 = st2.getResultSet();
                     if (rs2.first()) {
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(1);
-                        print.CurrentMO(bb, ss);
+                        LocalDate localdate = LocalDate.now();
+                        LocalDate minusmonths = Date.minusMonths(1);
+                        print.CurrentMO(localdate, minusmonths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2495,9 +2495,9 @@ public class Controller implements Initializable {
                     ResultSet rs2 = st2.getResultSet();
                     if (rs2.first()) {
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(3);
-                        print.CurrentMO(bb, ss);
+                        LocalDate localdate = LocalDate.now();
+                        LocalDate minusmonths = Date.minusMonths(3);
+                        print.CurrentMO(localdate, minusmonths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2515,9 +2515,9 @@ public class Controller implements Initializable {
                     ResultSet rs2 = st2.getResultSet();
                     if (rs2.first()) {
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(12);
-                        print.CurrentMO(bb, ss);
+                        LocalDate localdate = LocalDate.now();
+                        LocalDate minusmonths = Date.minusMonths(12);
+                        print.CurrentMO(localdate, minusmonths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2535,9 +2535,9 @@ public class Controller implements Initializable {
                     ResultSet rs2 = st2.getResultSet();
                     if (rs2.first()) {
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(12);
-                        print.CurrentMO(bb, ss);
+                        LocalDate localdate = LocalDate.now();
+                        LocalDate minusmonths = Date.minusMonths(12);
+                        print.CurrentMO(localdate,minusmonths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2556,9 +2556,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate AA = Date_StartFrom.getValue();
-                        LocalDate MM = Date_Unill.getValue();
-                        print.CurrentMOPeriod(AA, MM);
+                        LocalDate startingdate = Date_StartFrom.getValue();
+                        LocalDate untildate = Date_Unill.getValue();
+                        print.CurrentMOPeriod(startingdate, untildate);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2580,9 +2580,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(1);
-                        print.FinshedMO(bb, ss);
+                        LocalDate localdate = LocalDate.now();
+                        LocalDate minusmonths = Date.minusMonths(1);
+                        print.FinshedMO(localdate, minusmonths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2601,9 +2601,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(3);
-                        print.FinshedMO(bb, ss);
+                        LocalDate localdate = LocalDate.now();
+                        LocalDate minusmonths = Date.minusMonths(3);
+                        print.FinshedMO(localdate, minusmonths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2622,9 +2622,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(12);
-                        print.FinshedMO(bb, ss);
+                        LocalDate localdate = LocalDate.now();
+                        LocalDate minusmonths = Date.minusMonths(12);
+                        print.FinshedMO(localdate, minusmonths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2643,9 +2643,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(12);
-                        print.FinshedMO(bb, ss);
+                        LocalDate localdate = LocalDate.now();
+                        LocalDate minusmonths = Date.minusMonths(12);
+                        print.FinshedMO(localdate,  minusmonths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2664,9 +2664,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate AA = Date_StartFrom.getValue();
-                        LocalDate MM = Date_Unill.getValue();
-                        print.FinshedMOPeriod(AA, MM);
+                        LocalDate startingdate = Date_StartFrom.getValue();
+                        LocalDate untildate = Date_Unill.getValue();
+                        print.FinshedMOPeriod(startingdate, untildate);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2679,21 +2679,21 @@ public class Controller implements Initializable {
 
             } else if (SelectedItem.equalsIgnoreCase("- تقدير مالي عن عملية صيانة")) {
                 Statement st2 = connection.createStatement();
-                String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired','تم الإنشاء', 'تم الموافقة', 'تحت الصيانة', 'تم الكشف عن عيوب أخرى','مرفوضة','لا يمكن القيام بعملية الصيانة','تم الاصلاح') AND m.MO_NBER = '" + Txfiled_MO_Nber.getText() + "' OR r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
+                String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired','تم الإنشاء', 'تم الموافقة', 'تحت الصيانة', 'تم الكشف عن عيوب أخرى','مرفوضة','لا يمكن القيام بعملية الصيانة','تم الاصلاح') AND m.MO_NBER = '" + Txfiled_MO_Nber.getText() + "'";
                 System.out.println(q);
                 st2.executeQuery(q);
                 ResultSet rs2 = st2.getResultSet();
                 if (rs2.first()) {
 
                     printreport print = new printreport();
-                    String bb = Txfiled_MO_Nber.getText();
-                    String ss = Txfiled_CUS_MNBER.getText();
-                    print.FinancialassessReportAR(bb, ss);
+                    String MOnumber = Txfiled_MO_Nber.getText();
+                    
+                    print.FinancialassessReportAR(MOnumber);
                 } else {
                     printreport print = new printreport();
-                    String bb = Txfiled_MO_Nber.getText();
-                    String ss = Txfiled_CUS_MNBER.getText();
-                    print.FinancialassessReportARWSP(bb, ss);
+                    String MOnumber = Txfiled_MO_Nber.getText();
+                   
+                    print.FinancialassessReportARWSP(MOnumber);
 
                 }
             } else if (SelectedItem.equalsIgnoreCase("- قائمة بالعملاء")) {
@@ -2706,19 +2706,19 @@ public class Controller implements Initializable {
 
             } else if (SelectedItem.equalsIgnoreCase("- قائمة عمليات الصيانة لعميل")) {
                 Statement st2 = connection.createStatement();
-                String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.MO_NBER = '" + Txfiled_MO_Nber.getText() + "' OR r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
+                String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
                 System.out.println(q);
                 st2.executeQuery(q);
                 ResultSet rs2 = st2.getResultSet();
                 if (rs2.first()) {
 
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.MO_NBER = '" + Txfiled_MO_Nber.getText() + "' OR r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
                     System.out.println(query);
                     java.sql.Statement statement1 = connection.createStatement();
                     printreport print = new printreport();
-                    String bb = Txfiled_MO_Nber.getText();
-                    String ss = Txfiled_CUS_MNBER.getText();
-                    print.ListofcustomersMOs(bb, ss);
+                 
+                    String CusMobileNumber = Txfiled_CUS_MNBER.getText();
+                    print.ListofcustomersMOs(CusMobileNumber);
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText(null);
@@ -2750,8 +2750,8 @@ public class Controller implements Initializable {
                     System.out.println(Selct_Name_Employee.getValue());
 
                     printreport print = new printreport();
-                    String ss = Selct_Name_Employee.getValue();
-                    print.ListofaemployeesMOs(ss);
+                    String EmployeeName = Selct_Name_Employee.getValue();
+                    print.ListofaemployeesMOs(EmployeeName);
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText(null);
@@ -2808,9 +2808,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(1);
-                        print.PreviousMOEN(bb, ss);
+                        LocalDate localedate = LocalDate.now();
+                        LocalDate minusmounths = Date.minusMonths(1);
+                        print.PreviousMOEN(localedate, minusmounths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2830,9 +2830,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(3);
-                        print.PreviousMOEN(bb, ss);
+                        LocalDate localedate = LocalDate.now();
+                        LocalDate minusmounths = Date.minusMonths(3);
+                        print.PreviousMOEN(localedate, minusmounths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2851,9 +2851,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(12);
-                        print.PreviousMOEN(bb, ss);
+                        LocalDate localedate = LocalDate.now();
+                        LocalDate minusmounths = Date.minusMonths(12);
+                         print.PreviousMOEN(localedate, minusmounths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2872,9 +2872,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(12);
-                        print.PreviousMOEN(bb, ss);
+                        LocalDate localedate = LocalDate.now();
+                        LocalDate minusmounths = Date.minusMonths(12);
+                        print.PreviousMOEN(localedate, minusmounths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2895,9 +2895,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate AA = Date_StartFrom.getValue();
-                        LocalDate MM = Date_Unill.getValue();
-                        print.PreviousMOPeriodEN(AA, MM);
+                        LocalDate startingdate = Date_StartFrom.getValue();
+                        LocalDate untildate = Date_Unill.getValue();
+                        print.PreviousMOPeriodEN(startingdate, untildate);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2921,9 +2921,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(1);
-                        print.CurrentMOEN(bb, ss);
+                        LocalDate localedate = LocalDate.now();
+                        LocalDate minusmounths = Date.minusMonths(1);
+                        print.CurrentMOEN(localedate, minusmounths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2943,9 +2943,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(3);
-                        print.CurrentMOEN(bb, ss);
+                        LocalDate localedate = LocalDate.now();
+                        LocalDate minusmounths = Date.minusMonths(3);
+                        print.CurrentMOEN(localedate, minusmounths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2965,9 +2965,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(12);
-                        print.CurrentMOEN(bb, ss);
+                        LocalDate localedate = LocalDate.now();
+                        LocalDate minusmounths = Date.minusMonths(12);
+                       print.CurrentMOEN(localedate, minusmounths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -2987,9 +2987,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(12);
-                        print.CurrentMOEN(bb, ss);
+                        LocalDate localedate = LocalDate.now();
+                        LocalDate minusmounths = Date.minusMonths(12);
+                         print.CurrentMOEN(localedate, minusmounths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -3010,9 +3010,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate AA = Date_StartFrom.getValue();
-                        LocalDate MM = Date_Unill.getValue();
-                        print.CurrentMOPeriodEN(AA, MM);
+                        LocalDate startingdate = Date_StartFrom.getValue();
+                        LocalDate untildate = Date_Unill.getValue();
+                        print.CurrentMOPeriodEN(startingdate, untildate);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -3035,9 +3035,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(1);
-                        print.FinshedMOEN(bb, ss);
+                        LocalDate localedate = LocalDate.now();
+                        LocalDate minusmounths = Date.minusMonths(1);
+                        print.FinshedMOEN(localedate, minusmounths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -3058,9 +3058,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(3);
-                        print.FinshedMOEN(bb, ss);
+                        LocalDate localedate = LocalDate.now();
+                        LocalDate minusmounths = Date.minusMonths(3);
+                         print.FinshedMOEN(localedate, minusmounths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -3080,9 +3080,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(12);
-                        print.FinshedMOEN(bb, ss);
+                        LocalDate localedate = LocalDate.now();
+                        LocalDate minusmounths = Date.minusMonths(12);
+                          print.FinshedMOEN(localedate, minusmounths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -3103,9 +3103,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate bb = LocalDate.now();
-                        LocalDate ss = Date.minusMonths(12);
-                        print.FinshedMOEN(bb, ss);
+                        LocalDate localedate = LocalDate.now();
+                        LocalDate minusmounths = Date.minusMonths(12);
+                        print.FinshedMOEN(localedate, minusmounths);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -3126,9 +3126,9 @@ public class Controller implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        LocalDate AA = Date_StartFrom.getValue();
-                        LocalDate MM = Date_Unill.getValue();
-                        print.FinshedMOPeriodEN(AA, MM);
+                        LocalDate startingdate = Date_StartFrom.getValue();
+                        LocalDate untildate = Date_Unill.getValue();
+                        print.FinshedMOPeriodEN(startingdate, startingdate);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
@@ -3141,21 +3141,21 @@ public class Controller implements Initializable {
 
             } else if (SelectedItem.equalsIgnoreCase("- financial estimate of maintenance")) {
                 Statement st2 = connection.createStatement();
-                String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired','تم الإنشاء', 'تم الموافقة', 'تحت الصيانة', 'تم الكشف عن عيوب أخرى','مرفوضة','لا يمكن القيام بعملية الصيانة','تم الاصلاح') AND m.MO_NBER = '" + Txfiled_MO_Nber.getText() + "' OR r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
+                String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired','تم الإنشاء', 'تم الموافقة', 'تحت الصيانة', 'تم الكشف عن عيوب أخرى','مرفوضة','لا يمكن القيام بعملية الصيانة','تم الاصلاح') AND m.MO_NBER = '" + Txfiled_MO_Nber.getText() +  "'";
                 System.out.println(q);
                 st2.executeQuery(q);
                 ResultSet rs2 = st2.getResultSet();
                 if (rs2.first()) {
 
                     printreport print = new printreport();
-                    String bb = Txfiled_MO_Nber.getText();
-                    String ss = Txfiled_CUS_MNBER.getText();
-                    print.FinancialassessReportENG(bb, ss);
+                    String MOnumber = Txfiled_MO_Nber.getText();
+                    
+                    print.FinancialassessReportENG(MOnumber);
                 } else {
                     printreport print = new printreport();
-                    String bb = Txfiled_MO_Nber.getText();
-                    String ss = Txfiled_CUS_MNBER.getText();
-                    print.FinancialassessReportENGWSP(bb, ss);
+                    String MOnumber = Txfiled_MO_Nber.getText();
+                    
+                    print.FinancialassessReportENGWSP(MOnumber);
 
                 }
             } else if (SelectedItem.equalsIgnoreCase("- list of customers")) {
@@ -3168,19 +3168,19 @@ public class Controller implements Initializable {
 
             } else if (SelectedItem.equalsIgnoreCase("- list of customer maintenance operations")) {
                 Statement st2 = connection.createStatement();
-                String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.MO_NBER = '" + Txfiled_MO_Nber.getText() + "' OR r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
+                String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
                 System.out.println(q);
                 st2.executeQuery(q);
                 ResultSet rs2 = st2.getResultSet();
                 if (rs2.first()) {
 
-                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.MO_NBER = '" + Txfiled_MO_Nber.getText() + "' OR r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
+                    String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
                     System.out.println(query);
                     java.sql.Statement statement1 = connection.createStatement();
                     printreport print = new printreport();
-                    String bb = Txfiled_MO_Nber.getText();
-                    String ss = Txfiled_CUS_MNBER.getText();
-                    print.ListofcustomersMOsEN(bb, ss);
+                    
+                    String CusMobileNumber = Txfiled_CUS_MNBER.getText();
+                    print.ListofcustomersMOsEN(CusMobileNumber );
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText(null);
@@ -3212,8 +3212,8 @@ public class Controller implements Initializable {
                     System.out.println(Selct_Name_Employee.getValue());
 
                     printreport print = new printreport();
-                    String ss = Selct_Name_Employee.getValue();
-                    print.ListofaemployeesMOsEN(ss);
+                    String EmployeeName = Selct_Name_Employee.getValue();
+                    print.ListofaemployeesMOsEN(EmployeeName);
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText(null);
@@ -3582,29 +3582,29 @@ public class Controller implements Initializable {
     @FXML
     private void M_Btn_Save_ReqSP(ActionEvent event) {
         try {
-              Alert alert2 = new Alert(Alert.AlertType.ERROR);
-        alert2.setHeaderText(null);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
         if (Date_REQdate_ReqSP.getValue() == null ) {
 
             if (count_Language == 0) {
-                alert2.setContentText("Please enter request date");
+                alert.setContentText("Please enter request date");
             } else {
-                alert2.setContentText("الرجاء إدخال تاريخ الطلب");
+                alert.setContentText("الرجاء إدخال تاريخ الطلب");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
 
         }
             if (Selct_Supplier_ReqSP.getSelectionModel().isEmpty()) {
                
                if (count_Language == 0) {
-                alert2.setContentText("Please select supplier");
+                alert.setContentText("Please select supplier");
             } else {
-                alert2.setContentText("الرجاء اختيار المزود");
+                alert.setContentText("الرجاء اختيار المزود");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
 
             } else {

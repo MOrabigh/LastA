@@ -754,14 +754,14 @@ public class Controller_AddMO implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        String ss = Txfiled_MOnum_AddMO.getText();
+                        String MOnumber = Txfiled_MOnum_AddMO.getText();
 
-                        print.InvoiceEN(ss);
+                        print.InvoiceEN(MOnumber );
                     } else {
                         printreport print = new printreport();
-                        String ss = Txfiled_MOnum_AddMO.getText();
+                        String MOnumber  = Txfiled_MOnum_AddMO.getText();
 
-                        print.InvoiceENGWSP(ss);
+                        print.InvoiceENGWSP(MOnumber );
 
                     }
 
@@ -781,12 +781,12 @@ public class Controller_AddMO implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        String ff = Txfiled_MOnum_AddMO.getText();
-                        print.financialassessmentEN(ff);
+                        String MOnumber  = Txfiled_MOnum_AddMO.getText();
+                        print.financialassessmentEN(MOnumber );
                     } else {
                         printreport print = new printreport();
-                        String ff = Txfiled_MOnum_AddMO.getText();
-                        print.financialassessmentENWSP(ff);
+                        String MOnumber  = Txfiled_MOnum_AddMO.getText();
+                        print.financialassessmentENWSP(MOnumber );
 
                     }
 
@@ -814,14 +814,14 @@ public class Controller_AddMO implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        String ss = Txfiled_MOnum_AddMO.getText();
+                        String MOnumber  = Txfiled_MOnum_AddMO.getText();
 
-                        print.InvoiceAR(ss);
+                        print.InvoiceAR(MOnumber );
                     } else {
                         printreport print = new printreport();
-                        String ss = Txfiled_MOnum_AddMO.getText();
+                        String MOnumber  = Txfiled_MOnum_AddMO.getText();
 
-                        print.InvoiceARWSP(ss);
+                        print.InvoiceARWSP(MOnumber );
 
                     }
                 } catch (SQLException ex) {
@@ -839,12 +839,12 @@ public class Controller_AddMO implements Initializable {
                     if (rs2.first()) {
 
                         printreport print = new printreport();
-                        String ff = Txfiled_MOnum_AddMO.getText();
-                        print.financialassessmentAR(ff);
+                        String MOnumber  = Txfiled_MOnum_AddMO.getText();
+                        print.financialassessmentAR(MOnumber );
                     } else {
                         printreport print = new printreport();
-                        String ff = Txfiled_MOnum_AddMO.getText();
-                        print.financialassessmentARWSP(ff);
+                        String MOnumber  = Txfiled_MOnum_AddMO.getText();
+                        print.financialassessmentARWSP(MOnumber );
 
                     }
                 } catch (SQLException ex) {
@@ -972,104 +972,104 @@ public class Controller_AddMO implements Initializable {
 
     @FXML
     private void M_Btn_Save_AddMo(ActionEvent event) {
-        Alert alert2 = new Alert(Alert.AlertType.ERROR);
-        alert2.setHeaderText(null);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
         if (Txfiled_ProplemDisc_AddMO.getText().isEmpty()) {
             if (count_Language == 0) {
-                alert2.setContentText("Please enter the problem description ");
+                alert.setContentText("Please enter the problem description ");
             } else {
-                alert2.setContentText("الرجاء إدخال وصف المشكلة ");
+                alert.setContentText("الرجاء إدخال وصف المشكلة ");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
 
         }
         if (Txfiled_DevSerialN_AddMO.getText().isEmpty()) {
             if (count_Language == 0) {
-                alert2.setContentText("Please enter the device serial number ");
+                alert.setContentText("Please enter the device serial number ");
             } else {
-                alert2.setContentText("الرجاء إدخال الرقم التسلسلي للجهاز ");
+                alert.setContentText("الرجاء إدخال الرقم التسلسلي للجهاز ");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
 
         }
         if (Txfiled_DevDiscription_AddMO.getText().isEmpty()) {
             if (count_Language == 0) {
-                alert2.setContentText("Please enter the device description ");
+                alert.setContentText("Please enter the device description ");
             } else {
-                alert2.setContentText("الرجاء إدخال وصف الجهاز ");
+                alert.setContentText("الرجاء إدخال وصف الجهاز ");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
 
         }
         if (Date_EndMO_AddMO.getValue() == null) {
             if (count_Language == 0) {
-                alert2.setContentText("Please enter  expected ending date of MO ");
+                alert.setContentText("Please enter  expected ending date of MO ");
             } else {
-                alert2.setContentText("الرجاء إدخال تاريخ الانتهاء المتوقع لعملية الصيانة ");
+                alert.setContentText("الرجاء إدخال تاريخ الانتهاء المتوقع لعملية الصيانة ");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
 
         }
         if (Date_StartMo_AddMO.getValue() == null) {
             if (count_Language == 0) {
-                alert2.setContentText("Please enter starting date of MO ");
+                alert.setContentText("Please enter starting date of MO ");
             } else {
-                alert2.setContentText("الرجاء إدخال تاريخ بدء عملية الصيانة ");
+                alert.setContentText("الرجاء إدخال تاريخ بدء عملية الصيانة ");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
 
         }
         if (Date_Warranty_AddMO.getValue() == null) {
             if (count_Language == 0) {
-                alert2.setContentText("Please enter ending warranty date ");
+                alert.setContentText("Please enter ending warranty date ");
             } else {
-                alert2.setContentText("الرجاء إدخال تاريخ انتهاء الضمان ");
+                alert.setContentText("الرجاء إدخال تاريخ انتهاء الضمان ");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
 
         }
         if (Selct_MoStatus_AddMO.getSelectionModel().isEmpty()) {
             if (count_Language == 0) {
-                alert2.setContentText("Please select the state of MO ");
+                alert.setContentText("Please select the state of MO ");
             } else {
-                alert2.setContentText("الرجاء اختيار حالة عملية الصيانة ");
+                alert.setContentText("الرجاء اختيار حالة عملية الصيانة ");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
 
         }
         if (Selct_Techichan_AddMO.getSelectionModel().isEmpty()) {
             if (count_Language == 0) {
-                alert2.setContentText("Please select the technician of MO ");
+                alert.setContentText("Please select the technician of MO ");
             } else {
-                alert2.setContentText("الرجاءاختيار فني عملية الصيانة ");
+                alert.setContentText("الرجاءاختيار فني عملية الصيانة ");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
 
         }
         if (Txfiled_MOCost_AddMO.getText().isEmpty()) {
             if (count_Language == 0) {
-                alert2.setContentText("Please enter the MO cost ");
+                alert.setContentText("Please enter the MO cost ");
             } else {
-                alert2.setContentText("الرجاء إدخال تكلفة عملية الصيانة ");
+                alert.setContentText("الرجاء إدخال تكلفة عملية الصيانة ");
 
             }
-            alert2.showAndWait();
+            alert.showAndWait();
             return;
 
         } else {
@@ -1094,7 +1094,7 @@ public class Controller_AddMO implements Initializable {
                 }
                 if (Txfiled_CusName_AddMO.getText().isEmpty()) {
 
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    
                     alert.setHeaderText(null);
 
                     if (count_Language == 0) {
