@@ -67,14 +67,12 @@ import javax.swing.JOptionPane;
 public class Controller implements Initializable {
 
     ConnectionClass connectionClass = new ConnectionClass();
-    // we call conneClass  that we make it up
     Connection connection = connectionClass.getConnection();
 
     Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
 
     int count = 0;
 
-    //0 equal EN    And 1 == AR
     public ListView List_of_reports;
     ObservableList<String> items = FXCollections.observableArrayList();
 
@@ -393,19 +391,14 @@ public class Controller implements Initializable {
     private JFXTextField Txfiled_Search_MangePendingMO;
     @FXML
     private JFXButton Btn_Search_SP;
-    //private ListView<?> List_of_reports;
     @FXML
     private JFXButton Btn_RestoreDB_Tools;
 
-    //int count = 0;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("count_Language =" + count_Language);
         connectionClass.connectDB();
 
         intilCol();
-        //loadAllMO();
-        //loadAllSP();
         loadSuppliers();
         List_of_reports.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         Selct_Name_Employee.setItems(ListOfselectName);
@@ -414,7 +407,6 @@ public class Controller implements Initializable {
 
     public void EmJob_SEX_lang(int c) {
         count_Language = c;
-        System.out.println("NOW count_Language =" + count_Language);
         if (count_Language == 0) {
             Selct_JType_Employee.setItems(ListOfJobtype_EN);
             Selct_Sex_Employee.setItems(ListOfSex_EN);
@@ -457,7 +449,6 @@ public class Controller implements Initializable {
 
         }
         loadAllMO();
-        System.out.println("AFTEER count_Language =" + count_Language);
 
     }
 
@@ -495,7 +486,6 @@ public class Controller implements Initializable {
         Col_MOCost_Pending_MngMO.setCellValueFactory(new PropertyValueFactory<>("MO_TotalCost"));
         Col_MOStatus_Pending_MngMO.setCellValueFactory(new PropertyValueFactory<>("MO_Status"));
 
-        //______________________________________________________
         Col_SPnum_AddSP_ReqSP.setCellValueFactory(new PropertyValueFactory<>("SP_Number"));
         Col_SPname_AddSP_ReqSP.setCellValueFactory(new PropertyValueFactory<>("SP_Name"));
         Col_SPQuantity_AddSP_ReqSP.setCellValueFactory(new PropertyValueFactory<>("SP_Quantity"));
@@ -513,8 +503,6 @@ public class Controller implements Initializable {
 
         try {
             while (rs.next()) {
-                System.out.println("HEREEEEE");
-                //System.out.println("rs.getString(\"MO_Number\")  ="+rs.getString("MO_Number"));
 
                 String MONber = rs.getString("MO_NBER");
                 String mobile = rs.getString("CUS_MOBILE_NBER");
@@ -526,29 +514,7 @@ public class Controller implements Initializable {
                 double total = Double.parseDouble(priceSP) + Double.parseDouble(priceMO);
                 double vat = total * 0.05;
                 double TotalCost = total + vat;
-                /*
-                if (rs.getString("STATE").equalsIgnoreCase("cannot be done") || rs.getString("STATE").equalsIgnoreCase("other defects has been detected")
-                || rs.getString("STATE").equalsIgnoreCase("created")
-                || rs.getString("STATE").equalsIgnoreCase("لا يمكن القيام بعملية الصيانة") || rs.getString("STATE").equalsIgnoreCase("تم الكشف عن عيوب أخرى")
-                || rs.getString("STATE").equalsIgnoreCase("تم الإنشاء")) {
-                //Pending
-                
-                PendingList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, rs.getString("STATE")));
-                
-                } else if (rs.getString("STATE").equalsIgnoreCase("approved") || rs.getString("STATE").equalsIgnoreCase("under maintenance")
-                || rs.getString("STATE").equalsIgnoreCase("تم الموافقة") || rs.getString("STATE").equalsIgnoreCase("تحت الصيانة")) {
-                //Current
-                CurrnetList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, rs.getString("STATE")));
-                
-                } else if (rs.getString("STATE").equalsIgnoreCase("repaired") || rs.getString("STATE").equalsIgnoreCase("تم الاصلاح")) {
-                //Finshed
-                FinshedList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, rs.getString("STATE")));
-                
-                } else if (rs.getString("STATE").equalsIgnoreCase("paid") || rs.getString("STATE").equalsIgnoreCase("disapproved")
-                || rs.getString("STATE").equalsIgnoreCase("دفعت") || rs.getString("STATE").equalsIgnoreCase("مرفوضة")) {
-                //Priveous
-                PriveousList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, rs.getString("STATE")));
-                 */
+
                 String State;
 
                 if (rs.getString("STATE").equals("created") || rs.getString("STATE").equals("تم الإنشاء")) {
@@ -612,7 +578,6 @@ public class Controller implements Initializable {
                     FinshedList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, State));
 
                 } else if (rs.getString("STATE").equals("تحت الصيانة") || rs.getString("STATE").equals("under maintenance")) {
-                    System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP+  " + count_Language);
 
                     if (count_Language == 0) {
                         State = "under maintenance";
@@ -624,7 +589,6 @@ public class Controller implements Initializable {
                     CurrnetList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, State));
 
                 } else if (rs.getString("STATE").equalsIgnoreCase("دفعت") || rs.getString("STATE").equalsIgnoreCase("paid")) {
-                    System.out.println("whyyyyyyyyyyyyyyyyyy?????");
                     if (count_Language == 0) {
 
                         State = "paid";
@@ -677,17 +641,14 @@ public class Controller implements Initializable {
                 alert.setContentText(alertMessage);
                 alert.showAndWait();
             }
-            // Table_AddSP_ReqSP.getItems().setAll(ListOFSP);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
-            // JOptionPane.showMessageDialog(null, ex);
         }
     }
 
     public void SP_Alert_Admin_AR() {
 
         try {
-            //String alertMessage = "قطع الغيار التالية على وشك النفاذ";
             String SPqury = "SELECT SP_NBER FROM spare_parts WHERE `SP_QUANTITY` < `MINIMUM_QUANTITY_IN_STOCK` AND `SP_QUANTITY` > 0";
             ResultSet rs2 = connectionClass.execQuery(SPqury);
             int rowcount = 0;
@@ -741,14 +702,11 @@ public class Controller implements Initializable {
             String query = "SELECT * FROM `spare_parts`";
             ResultSet rs = connectionClass.execQuery(query);
             if (rs.isBeforeFirst() == false) {
-                System.out.println("NULL RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRr");
 
                 loadAllSP();
-                System.out.println("NULL KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK");
             } else {
 
                 while (rs.next()) {
-                    System.out.println("NOOOOT NULL EEEEEEEEEEEEEE");
                     String SPnumber = rs.getString("SP_NBER");
 
                     String SPquantity = rs.getString("SP_QUANTITY");
@@ -764,58 +722,13 @@ public class Controller implements Initializable {
                 for (int i = 0; i < ListOFSP.size(); i++) {
                     for (int j = 0; j < ListOFSelectedSP.size(); j++) {
                         if (ListOFSP.get(i).getSP_Number().equals(ListOFSelectedSP.get(j).getSP_Number())) {
-                            System.out.println(ListOFSP.get(i).getSP_Number() + "-----------" + ListOFSelectedSP.get(j).getSP_Number());
-                            System.out.println("i==" + i + "j==" + j);
                             ListOFSP.remove(i);
-                            System.out.println("Size==" + ListOFSP.size());
-                            System.out.println("NOOOOT NULL OOOOOOOOOOOOOOOOOO");
 
                         }
                     }
 
                 }
 
-                /*   try {
-                while (rs.next()) {
-                System.out.println("?????????????????????????????????????????????");
-                
-                String SPnumber = rs.getString("SP_NBER");
-                
-                String SPquantity = rs.getString("SP_QUANTITY");
-                
-                int SP_num = Integer.parseInt(SPnumber);
-                int SP_quantity = Integer.parseInt(SPquantity);
-                System.out.println("");
-                if (ListOFSP.isEmpty()) {
-                System.out.println("Equal 00000000000");
-                ListOFSP.add(new AddSP(SP_num, rs.getString("SP_NAME"), SP_quantity));
-                
-                } else {
-                for (int i = 0; i < ListOFSP.size(); i++) {
-                if (ListOFSP.get(i).getSP_Number().equals(SP_num)) {
-                System.out.println("How are youuuu!!!" + ListOFSP.get(i).getSP_Number() + "====" + SP_num);
-                rs.next();
-                SPnumber = rs.getString("SP_NBER");
-                SP_num = Integer.parseInt(SPnumber);
-                i=1000;
-                
-                } else if (!ListOFSP.get(i).getSP_Number().equals(SP_num)) {
-                
-                ListOFSP.add(new AddSP(SP_num, rs.getString("SP_NAME"), SP_quantity));
-                
-                System.out.println("i am fine!!!");
-                
-                }
-                }
-                }
-                }
-                rs.close();
-                
-                } catch (SQLException ex) {
-                ex.printStackTrace();
-                
-                }*/
-                // ListOFSelectedSP.forEach(ListOFSP::remove);
                 Table_AddSP_ReqSP.getItems().setAll(ListOFSP);
 
             }
@@ -827,10 +740,8 @@ public class Controller implements Initializable {
 
     private void loadSpSelected() {
         ListOFSelectedSP.clear();
-        System.out.println("i am in loadSpSelected ");
         String SQLqq = "SELECT * FROM `spare_parts` s JOIN `attach` r ON s.SP_NBER = r.SP_NBER WHERE r.REQUEST_NBER=" + Txfiled_REQnum_ReqSP.getText();
 
-        System.out.println(SQLqq);
         ResultSet rs = connectionClass.execQuery(SQLqq);
 
         try {
@@ -840,14 +751,8 @@ public class Controller implements Initializable {
 
                     int SP_num = Integer.parseInt(rs.getString("SP_NBER"));
                     int SP_Quant = Integer.parseInt(rs.getString("Req_QUANTITY"));
-
-                    //loadlist.add(new Controller_AddMO.SelectedSP(SP_num, rs.getString("SP_NAME"), rs.getString("DESCRIPTION"), SP_Pri2, rs.getString("SERIAL_NUMBER"),SP_Seq));
-                    // if (rs.getString("REQUEST_NBER").equals(Txfiled_REQnum_ReqSP.getText())) {
-                    //loadlist.add(new Controller_AddMO.SelectedSP(SP_num, mid, mobile, SP_Pri, rs.getString("SERIAL_NUMBER")));
-                    ListOFSelectedSP.add(new AddSP(SP_num, rs.getString("SP_Name"), SP_Quant));                // }
-
+                    ListOFSelectedSP.add(new AddSP(SP_num, rs.getString("SP_Name"), SP_Quant));
                 }
-                //System.out.println(loadlist.get(0).getSP2_Name());
                 Table_SelectedSP_ReqSP.getItems().setAll(ListOFSelectedSP);
             }
 
@@ -875,11 +780,9 @@ public class Controller implements Initializable {
 
     @FXML
     private void Btn_AddMO_MangeMO(ActionEvent event) {
-        System.out.println("ok now ?" + count_Language);
 
         FXMLLoader loader = new FXMLLoader();
 
-        //Controller controller = loader.getController();
         if (count_Language == 0) {
             loader.setLocation(getClass().getResource("/sample/AddMo_EN.fxml"));
             try {
@@ -946,13 +849,6 @@ public class Controller implements Initializable {
             return false;
         }
 
-        /*
-
-        Pattern p = Pattern.compile(".*[0-9].*");
-
-        Matcher m = p.matcher(s);
-        return (m.find() && m.group().equals(s));
-         */
     }
     String CusMO = "";
 
@@ -1010,8 +906,6 @@ public class Controller implements Initializable {
         AllSP = TableName.getItems();
         SPSelected = TableName.getSelectionModel().getSelectedItems();
         if (TableName.getSelectionModel().getSelectedItems().isEmpty() == false) {
-            System.out.println("Cus name   " + SPSelected.get(0).getCus_Name());
-            System.out.println("MO_NUMBER=  " + SPSelected.get(0).getMO_Number());
             FXMLLoader loader = new FXMLLoader();
             if (count_Language == 0) {
 
@@ -1040,24 +934,7 @@ public class Controller implements Initializable {
             }
             Controller_AddMO controller_AddMO = loader.getController();
             controller_AddMO.Search_MO(SPSelected.get(0).getMO_Number());
-            /*
-            
-            Connection connection = connectionClass.getConnection();
-            
-            Statement st = connection.createStatement();
-            st.executeQuery("SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE MO_NBER = " + SPSelected.get(0).getMO_Number());
-            
-            ResultSet rs = st.getResultSet();
-            
-            if (rs.first()) {
-            
-            Controller_AddMO controller_AddMO = loader.getController();
-            
-            controller_AddMO.loadInTO(rs.getString("MO_NBER"), rs.getString("CUS_NAME"), rs.getString("PROBLEM_DESC"), rs.getString("CUS_MOBILE_NBER"), rs.getString("SP_COST"), rs.getString("MO_COST"),
-            rs.getString("DEVICE_SN"), rs.getString("DEVICE_DESC"), rs.getString("WARRANTY"), rs.getString("STARTING_DATE"), rs.getString("ENDING_DATE"), rs.getString("STATE"), rs.getString("EMP_NAME"));
-            //controller_AddMO.Txfiled_CusName_AddMO.setText("GGGGGGGGGGGGGGGGGGGGG");
-            }
-             */
+
             Parent parent = loader.getRoot();
             Stage stage = new Stage();
             stage.setScene(new Scene(parent));
@@ -1113,7 +990,6 @@ public class Controller implements Initializable {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 String sql1 = "DELETE FROM  `customer`  WHERE CUS_MOBILE_NBER= " + Txfiled_MNum_Customer.getText();
-                System.out.println(sql1);
                 java.sql.Statement statement1 = connection.createStatement();
                 ClearCus();
                 try {
@@ -1164,7 +1040,6 @@ public class Controller implements Initializable {
         alert.setHeaderText(null);
         String email = Txfiled_Email_Customer.getText();
 
-        // ==== Check the availability of all required fields
         if (!PhoneNvalid(Txfiled_MNum_Customer.getText())) {
 
             if (count_Language == 0) {
@@ -1176,7 +1051,7 @@ public class Controller implements Initializable {
             alert.showAndWait();
             return;
         }
-        if (Txfiled_Name_Customer.getText().isEmpty()) {  /// Name
+        if (Txfiled_Name_Customer.getText().isEmpty()) {
 
             if (count_Language == 0) {
                 alert.setContentText("Please, enter the customer name.");
@@ -1199,7 +1074,7 @@ public class Controller implements Initializable {
             alert.showAndWait();
             return;
         }
-        if (Txfiled_Address_Customer.getText().isEmpty()) {  // ===> To be moved to the appropriate place
+        if (Txfiled_Address_Customer.getText().isEmpty()) {
 
             if (count_Language == 0) {
                 alert.setContentText("Please enter customer address ");
@@ -1213,10 +1088,7 @@ public class Controller implements Initializable {
 
         if (count == 1) {
             try {
-                System.out.println("Equal  insert");
                 String sqll = ("INSERT INTO customer (CUS_MOBILE_NBER,CUS_NAME,CUS_EMAIL,CUS_ADDRESS) VALUES('" + Txfiled_MNum_Customer.getText() + "','" + Txfiled_Name_Customer.getText() + "','" + Txfiled_Email_Customer.getText() + "','" + Txfiled_Address_Customer.getText() + "')");
-                //"INSERT INTO customer (CUS_MOBILE_NBER ,'CUS_NAME','CUS_EMAIL',' CUS_ADDRESS') VALUES ("+Txfiled_MNum_Customer.getText()+ ""+","+"" +   Txfiled_Name_Customer.getText() + "" + ","+"" +    Txfiled_Email_Customer.getText()+ "" + ","+"" +  Txfiled_Address_Customer.getText()+")";
-                System.out.println(sqll);
                 java.sql.Statement statement1 = connection.createStatement();
 
                 statement1.executeUpdate(sqll);
@@ -1229,23 +1101,14 @@ public class Controller implements Initializable {
                 }
                 alert2.showAndWait();
                 ClearCus();
-            } /*
-            else if (count_Language == 0) {
-            alert2.setContentText("invalid Email");
-            } else {
-            alert2.setContentText(" البريد الالكتروني خاطئ");
-            }
-            alert2.showAndWait();*/ catch (SQLException ex) {
+            } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, ex);
             }
 
         } else if (count == 2) {
             try {
-                System.out.println("Equal  update");
-                //System.out.println(Selct_MoStatus_AddMO.getValue());
                 String sql1 = "UPDATE  `customer` SET CUS_NAME='" + Txfiled_Name_Customer.getText() + "',CUS_EMAIL='" + Txfiled_Email_Customer.getText() + "',CUS_ADDRESS='" + Txfiled_Address_Customer.getText()
                         + "' WHERE CUS_MOBILE_NBER= '" + Txfiled_MNum_Customer.getText() + "'";
-                System.out.println(sql1);
                 java.sql.Statement statement1 = connection.createStatement();
                 statement1.executeUpdate(sql1);
                 if (count_Language == 0) {
@@ -1265,15 +1128,11 @@ public class Controller implements Initializable {
 
             try {
                 String sqlSetGl = "set GLOBAL FOREIGN_key_checks=0";
-                System.out.println(sqlSetGl);
                 java.sql.Statement statement3 = connection.createStatement();
                 statement3.executeUpdate(sqlSetGl);
 
-                System.out.println("Equal  update mobile number");
                 String sqll = "UPDATE customer SET CUS_MOBILE_NBER='" + Txfiled_MNum_Customer.getText() + "' WHERE CUS_NAME= '" + Txfiled_Name_Customer.getText() + "'";
-                System.out.println(sqll);
                 java.sql.Statement statement1 = connection.createStatement();
-                //CusMO
 
                 String sqlupdatePrice = "UPDATE `maintenance_operation` SET `CUS_MOBILE_NBER` = " + Txfiled_MNum_Customer.getText() + " WHERE `CUS_MOBILE_NBER` = " + CusMO + ";";
                 statement1.executeUpdate(sqll);
@@ -1294,18 +1153,8 @@ public class Controller implements Initializable {
                 JOptionPane.showMessageDialog(null, ex);
             }
         }
-        /*
-        else if (count_Language == 0) {
-                alert2.setContentText("invalid Mobile Number");
-            } else {
-                alert2.setContentText(" رقم الهاتف خاطئ");
 
-            }
-            alert2.showAndWait();
-
-        }*/
     }
-    //count = 2;
 
     int SP_number = 0;
     int SUP_number = 0;
@@ -1315,9 +1164,7 @@ public class Controller implements Initializable {
     private void M_Btn_Search_Customer(ActionEvent event) {
         alert2.setTitle(null);
         alert2.setHeaderText(null);
-        //EmailValid(Txfiled_Email_Customer.getText()) ||
 
-        System.out.println("?>?>" + PhoneNvalid(Txfiled_MNum_Customer.getText()));
         if ((PhoneNvalid(Txfiled_MNum_Customer.getText()))) {
 
             Txfiled_MNum_Customer.setDisable(true);
@@ -1334,12 +1181,6 @@ public class Controller implements Initializable {
                 ResultSet rs = st.getResultSet();
                 if (rs.first()) {
 
-                    System.out.println(Txfiled_MNum_Customer.getText());
-
-                    System.out.println("THIS MO NUMBER IN DB== " + rs.getString("CUS_MOBILE_NBER"));
-                    System.out.println("THIS MO NUMBER IN FILED== " + Txfiled_MNum_Customer.getText());
-
-                    // if (rs.getString("CUS_MOBILE_NBER").equals(Txfiled_MNum_Customer.getText())) {
                     count = 2;
 
                     Txfiled_Name_Customer.setText(rs.getString("CUS_NAME"));
@@ -1351,10 +1192,8 @@ public class Controller implements Initializable {
                     Btn_Save_Customer.setDisable(false);
                     Btn_ChangeMN_Customer.setDisable(false);
 
-                    // }
                 } else {
 
-                    System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
                     if (count_Language == 0) {
                         alert2.setContentText("New customer will be created");
                     } else {
@@ -1433,7 +1272,6 @@ public class Controller implements Initializable {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 String sql1 = "DELETE FROM  `employee`  WHERE EMPLOYEE_ID= " + Txfiled_Num_Employee.getText();
-                System.out.println(sql1);
                 java.sql.Statement statement1 = connection.createStatement();
 
                 clearEmp();
@@ -1557,66 +1395,51 @@ public class Controller implements Initializable {
             }
             alert.showAndWait();
             return;
-        } else if (EmailValid(Txfiled_Email_Employee.getText()) && (PhoneNvalid(Txfiled_MNum_Employee.getText()))) {
-
-            if (count == 1) {
-                try {
-                    System.out.println("Equal  insert");
-                    String sqll = "INSERT INTO employee (EMPLOYEE_ID, EMP_NAME, EMP_EMAIL,EMP_ADDRESS,EMP_MOBILE_NBER,JOP_TYPE,SEX,PASSWORD) VALUES (" + EMP_number + "," + "'" + Txfiled_Name_Employee.getText() + "'" + "," + "'" + Txfiled_Email_Employee.getText()
-                            + "'" + "," + "'" + Txfiled_Address_Employee.getText() + "'" + "," + "'" + Txfiled_MNum_Employee.getText() + "'" + "," + "'" + Selct_JType_Employee.getValue() + "'" + "," + "'" + Selct_Sex_Employee.getValue()
-                            + "'" + "," + "'" + Txfiled_Password_Employee.getText() + "')";
-                    System.out.println(sqll);
-                    java.sql.Statement statement1 = connection.createStatement();
-
-                    statement1.executeUpdate(sqll);
-                    if (count_Language == 0) {
-
-                        alert2.setContentText(" A new Employee has been created");
-                    } else {
-                        alert2.setContentText("تم انشاء موظف جديد");
-                    }
-
-                    alert2.showAndWait();
-                    clearEmp();
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, ex);
-                }
-            } else if (count == 2) {
-                try {
-                    System.out.println("Equal  update");
-                    //System.out.println(Selct_MoStatus_AddMO.getValue());
-                    String sql1 = "UPDATE  `employee` SET   EMP_NAME='" + Txfiled_Name_Employee.getText() + "',EMP_EMAIL='" + Txfiled_Email_Employee.getText() + "',EMP_ADDRESS='" + Txfiled_Address_Employee.getText() + "',EMP_MOBILE_NBER='" + Txfiled_MNum_Employee.getText()
-                            + "',JOP_TYPE='" + Selct_JType_Employee.getValue() + "',SEX='" + Selct_Sex_Employee.getValue() + "',PASSWORD='" + Txfiled_Password_Employee.getText()
-                            + "'WHERE EMPLOYEE_ID=' " + Txfiled_Num_Employee.getText() + "'";
-
-                    System.out.println(sql1);
-                    java.sql.Statement statement1 = connection.createStatement();
-                    statement1.executeUpdate(sql1);
-                    if (count_Language == 0) {
-
-                        alert2.setContentText(" Changes saved successfully");
-                    } else {
-                        alert2.setContentText("تم حفظ التعديلات بنجاح");
-
-                    }
-
-                    alert2.showAndWait();
-                    clearEmp();
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, ex);
-                }
-            }
-
-        } else {
-            if (count_Language == 0) {
-
-                alert2.setContentText(" invalid Mobile Number or Email");
-            } else {
-                alert2.setContentText("رقم الهاتف او البريد الالكتروني خاطئ");
-            }
-            alert2.showAndWait();
-
         }
+
+        if (count == 1) {
+            try {
+                String sqll = "INSERT INTO employee (EMPLOYEE_ID, EMP_NAME, EMP_EMAIL,EMP_ADDRESS,EMP_MOBILE_NBER,JOP_TYPE,SEX,PASSWORD) VALUES (" + EMP_number + "," + "'" + Txfiled_Name_Employee.getText() + "'" + "," + "'" + Txfiled_Email_Employee.getText()
+                        + "'" + "," + "'" + Txfiled_Address_Employee.getText() + "'" + "," + "'" + Txfiled_MNum_Employee.getText() + "'" + "," + "'" + Selct_JType_Employee.getValue() + "'" + "," + "'" + Selct_Sex_Employee.getValue()
+                        + "'" + "," + "'" + Txfiled_Password_Employee.getText() + "')";
+                java.sql.Statement statement1 = connection.createStatement();
+
+                statement1.executeUpdate(sqll);
+                if (count_Language == 0) {
+
+                    alert2.setContentText(" A new Employee has been created");
+                } else {
+                    alert2.setContentText("تم انشاء موظف جديد");
+                }
+
+                alert2.showAndWait();
+                clearEmp();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        } else if (count == 2) {
+            try {
+                String sql1 = "UPDATE  `employee` SET   EMP_NAME='" + Txfiled_Name_Employee.getText() + "',EMP_EMAIL='" + Txfiled_Email_Employee.getText() + "',EMP_ADDRESS='" + Txfiled_Address_Employee.getText() + "',EMP_MOBILE_NBER='" + Txfiled_MNum_Employee.getText()
+                        + "',JOP_TYPE='" + Selct_JType_Employee.getValue() + "',SEX='" + Selct_Sex_Employee.getValue() + "',PASSWORD='" + Txfiled_Password_Employee.getText()
+                        + "'WHERE EMPLOYEE_ID=' " + Txfiled_Num_Employee.getText() + "'";
+
+                java.sql.Statement statement1 = connection.createStatement();
+                statement1.executeUpdate(sql1);
+                if (count_Language == 0) {
+
+                    alert2.setContentText(" Changes saved successfully");
+                } else {
+                    alert2.setContentText("تم حفظ التعديلات بنجاح");
+
+                }
+
+                alert2.showAndWait();
+                clearEmp();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        }
+
     }
 
     @FXML
@@ -1635,125 +1458,112 @@ public class Controller implements Initializable {
             alert.showAndWait();
             return;
 
-        } else {
-
-            Txfiled_Num_Employee.setDisable(true);
-            Btn_Save_Employee.setDisable(false);
-            Btn_Cancel_Employee.setDisable(false);
-            Btn_Search_Employee.setDisable(true);
-
-            Txfiled_Name_Employee.setDisable(false);
-            Txfiled_Email_Employee.setDisable(false);
-            Txfiled_Address_Employee.setDisable(false);
-            Txfiled_MNum_Employee.setDisable(false);
-            Selct_JType_Employee.setDisable(false);
-            Selct_Sex_Employee.setDisable(false);
-            Txfiled_Password_Employee.setDisable(false);
-            try {
-                Connection connection = connectionClass.getConnection();
-                Statement st = connection.createStatement();
-                st.executeQuery("SELECT * FROM `employee`  WHERE EMPLOYEE_ID = " + Txfiled_Num_Employee.getText());
-                ResultSet rs = st.getResultSet();
-                if (rs.first()) {
-
-                    System.out.println(Txfiled_Num_Employee.getText());
-
-                    System.out.println("THIS NU NUMBER IN DB== " + rs.getString("EMPLOYEE_ID"));
-                    System.out.println("THIS NU NUMBER IN FILED== " + Txfiled_Num_Employee.getText());
-
-                    if (rs.getString("EMPLOYEE_ID").equals(Txfiled_Num_Employee.getText())) {
-
-                        count = 2;
-
-                        Txfiled_Name_Employee.setText(rs.getString("EMP_NAME"));
-                        Txfiled_Email_Employee.setText(rs.getString("EMP_EMAIL"));
-                        Txfiled_Address_Employee.setText(rs.getString("EMP_ADDRESS"));
-                        String emnumber = "0" + rs.getString("EMP_MOBILE_NBER");
-
-                        Txfiled_MNum_Employee.setText(emnumber);
-
-                        Txfiled_Password_Employee.setText(rs.getString("PASSWORD"));
-
-                        if (rs.getString("JOP_TYPE").equals("فني") || rs.getString("JOP_TYPE").equals("Technician")) {
-                            if (count_Language == 0) {
-                                Selct_JType_Employee.getSelectionModel().select("Technician");
-                            } else {
-                                Selct_JType_Employee.getSelectionModel().select("فني");
-
-                            }
-                        } else if (rs.getString("JOP_TYPE").equals("اداري") || rs.getString("JOP_TYPE").equals("Administrator")) {
-                            if (count_Language == 0) {
-                                Selct_JType_Employee.getSelectionModel().select("Administrator");
-                            } else {
-                                Selct_JType_Employee.getSelectionModel().select("اداري");
-
-                            }
-
-                        } else if (rs.getString("JOP_TYPE").equals("استقبال") || rs.getString("JOP_TYPE").equals("ReceptionDesk")) {
-                            if (count_Language == 0) {
-                                Selct_JType_Employee.getSelectionModel().select("ReceptionDesk");
-                            } else {
-                                Selct_JType_Employee.getSelectionModel().select("استقبال");
-
-                            }
-
-                        }
-                        if (rs.getString("SEX").equals("ذكر") || rs.getString("SEX").equals("Male")) {
-                            if (count_Language == 0) {
-                                Selct_Sex_Employee.getSelectionModel().select("Male");
-                            } else {
-                                Selct_Sex_Employee.getSelectionModel().select("ذكر");
-
-                            }
-
-                        } else if (rs.getString("SEX").equals("انثى") || rs.getString("SEX").equals("Female")) {
-                            if (count_Language == 0) {
-                                Selct_Sex_Employee.getSelectionModel().select("Female");
-                            } else {
-                                Selct_Sex_Employee.getSelectionModel().select("انثى");
-
-                            }
-
-                        }
-                        //Selct_JType_Employee.getSelectionModel().select(rs.getString("JOP_TYPE"));
-
-                        //Selct_Sex_Employee.getSelectionModel().select(rs.getString("SEX"));
-                        Btn_Delete_Employee.setDisable(false);
-
-                    }
-                } else {
-                    System.out.println("??????????????? why");
-                    Statement st2 = connection.createStatement();
-                    st2.executeQuery("SELECT * FROM `employee` ORDER BY EMPLOYEE_ID DESC LIMIT 1");
-                    ResultSet rs2 = st2.getResultSet();
-                    //System.out.println("FFFFFFFFFFFFFFFFF"+rs2.getString("MO_NBER"));
-                    if (rs2.first()) {
-
-                        System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-                        if (count_Language == 0) {
-                            alert2.setContentText("New employee will be created");
-                        } else {
-                            alert2.setContentText(" سوف يتم انشاء موظف جديد");
-
-                        }
-                        alert2.showAndWait();
-                        //System.out.println();
-
-                        count = 1;
-                        EMP_number = Integer.parseInt(rs2.getString("EMPLOYEE_ID"));
-                        EMP_number++;
-                        System.out.println(EMP_number);
-                        Txfiled_Num_Employee.setText(String.valueOf(EMP_number));
-
-                        Btn_Delete_Employee.setDisable(true);
-
-                    }
-                }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex);
-
-            }
         }
+
+        Txfiled_Num_Employee.setDisable(true);
+        Btn_Save_Employee.setDisable(false);
+        Btn_Cancel_Employee.setDisable(false);
+        Btn_Search_Employee.setDisable(true);
+
+        Txfiled_Name_Employee.setDisable(false);
+        Txfiled_Email_Employee.setDisable(false);
+        Txfiled_Address_Employee.setDisable(false);
+        Txfiled_MNum_Employee.setDisable(false);
+        Selct_JType_Employee.setDisable(false);
+        Selct_Sex_Employee.setDisable(false);
+        Txfiled_Password_Employee.setDisable(false);
+        try {
+            Connection connection = connectionClass.getConnection();
+            Statement st = connection.createStatement();
+            st.executeQuery("SELECT * FROM `employee`  WHERE EMPLOYEE_ID = " + Txfiled_Num_Employee.getText());
+            ResultSet rs = st.getResultSet();
+            if (rs.first()) {
+
+                if (rs.getString("EMPLOYEE_ID").equals(Txfiled_Num_Employee.getText())) {
+
+                    count = 2;
+
+                    Txfiled_Name_Employee.setText(rs.getString("EMP_NAME"));
+                    Txfiled_Email_Employee.setText(rs.getString("EMP_EMAIL"));
+                    Txfiled_Address_Employee.setText(rs.getString("EMP_ADDRESS"));
+                    String emnumber = "0" + rs.getString("EMP_MOBILE_NBER");
+
+                    Txfiled_MNum_Employee.setText(emnumber);
+
+                    Txfiled_Password_Employee.setText(rs.getString("PASSWORD"));
+
+                    if (rs.getString("JOP_TYPE").equals("فني") || rs.getString("JOP_TYPE").equals("Technician")) {
+                        if (count_Language == 0) {
+                            Selct_JType_Employee.getSelectionModel().select("Technician");
+                        } else {
+                            Selct_JType_Employee.getSelectionModel().select("فني");
+
+                        }
+                    } else if (rs.getString("JOP_TYPE").equals("اداري") || rs.getString("JOP_TYPE").equals("Administrator")) {
+                        if (count_Language == 0) {
+                            Selct_JType_Employee.getSelectionModel().select("Administrator");
+                        } else {
+                            Selct_JType_Employee.getSelectionModel().select("اداري");
+
+                        }
+
+                    } else if (rs.getString("JOP_TYPE").equals("استقبال") || rs.getString("JOP_TYPE").equals("ReceptionDesk")) {
+                        if (count_Language == 0) {
+                            Selct_JType_Employee.getSelectionModel().select("ReceptionDesk");
+                        } else {
+                            Selct_JType_Employee.getSelectionModel().select("استقبال");
+
+                        }
+
+                    }
+                    if (rs.getString("SEX").equals("ذكر") || rs.getString("SEX").equals("Male")) {
+                        if (count_Language == 0) {
+                            Selct_Sex_Employee.getSelectionModel().select("Male");
+                        } else {
+                            Selct_Sex_Employee.getSelectionModel().select("ذكر");
+
+                        }
+
+                    } else if (rs.getString("SEX").equals("انثى") || rs.getString("SEX").equals("Female")) {
+                        if (count_Language == 0) {
+                            Selct_Sex_Employee.getSelectionModel().select("Female");
+                        } else {
+                            Selct_Sex_Employee.getSelectionModel().select("انثى");
+
+                        }
+
+                    }
+                    Btn_Delete_Employee.setDisable(false);
+
+                }
+            } else {
+                Statement st2 = connection.createStatement();
+                st2.executeQuery("SELECT * FROM `employee` ORDER BY EMPLOYEE_ID DESC LIMIT 1");
+                ResultSet rs2 = st2.getResultSet();
+                if (rs2.first()) {
+
+                    if (count_Language == 0) {
+                        alert2.setContentText("New employee will be created");
+                    } else {
+                        alert2.setContentText(" سوف يتم انشاء موظف جديد");
+
+                    }
+                    alert2.showAndWait();
+
+                    count = 1;
+                    EMP_number = Integer.parseInt(rs2.getString("EMPLOYEE_ID"));
+                    EMP_number++;
+                    Txfiled_Num_Employee.setText(String.valueOf(EMP_number));
+
+                    Btn_Delete_Employee.setDisable(true);
+
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+
     }
 
     @FXML
@@ -1772,69 +1582,60 @@ public class Controller implements Initializable {
             alert.showAndWait();
             return;
 
-        } else {
-            Btn_Search_SP.setDisable(true);
-            Txfiled_Name_SP.setDisable(false);
-            Txfiled_Price_SP.setDisable(false);
-            Txfiled_Quantity_SP.setDisable(false);
-            Txfiled_Discription_SP.setDisable(false);
-            Txfiled_minimumQuantity_SP.setDisable(false);
-            Btn_Save_SP.setDisable(false);
-            Btn_Cancel_SP.setDisable(false);
-            Txfiled_SPNum_SP.setDisable(true);
-
-            Connection connection = connectionClass.getConnection();
-            Statement st = connection.createStatement();
-            st.executeQuery("SELECT * FROM `spare_parts`  WHERE SP_NBER = " + Txfiled_SPNum_SP.getText());
-            ResultSet rs = st.getResultSet();
-            if (rs.first()) {
-
-                System.out.println(Txfiled_SPNum_SP.getText());
-
-                System.out.println("THIS NU NUMBER IN DB== " + rs.getString("SP_NBER"));
-                System.out.println("THIS NU NUMBER IN FILED== " + Txfiled_SPNum_SP.getText());
-
-                if (rs.getString("SP_NBER").equals(Txfiled_SPNum_SP.getText())) {
-
-                    count = 2;
-
-                    Txfiled_Name_SP.setText(rs.getString("SP_NAME"));
-                    Txfiled_Price_SP.setText(rs.getString("PRICE"));
-                    Txfiled_Quantity_SP.setText(rs.getString("SP_QUANTITY"));
-                    Txfiled_Discription_SP.setText(rs.getString("DESCRIPTION"));
-                    Txfiled_minimumQuantity_SP.setText(rs.getString("MINIMUM_QUANTITY_IN_STOCK"));
-
-                    Btn_Delete_SP.setDisable(false);
-
-                }
-            } else {
-
-                Statement st2 = connection.createStatement();
-                st2.executeQuery("SELECT * FROM spare_parts ORDER BY SP_NBER DESC LIMIT 1");
-                ResultSet rs2 = st2.getResultSet();
-                //System.out.println("FFFFFFFFFFFFFFFFF"+rs2.getString("MO_NBER"));
-                if (rs2.first()) {
-
-                    System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-                    if (count_Language == 0) {
-                        alert2.setContentText("New spare part will be created");
-                    } else {
-                        alert2.setContentText("سوف يتم انشاء قطعة غيار جديدة");
-
-                    }
-
-                    count = 1;
-                    SP_number = Integer.parseInt(rs2.getString("SP_NBER"));
-                    SP_number++;
-                    System.out.println(SP_number);
-                    Txfiled_SPNum_SP.setText(String.valueOf(SP_number));
-
-                    Btn_Delete_SP.setDisable(true);
-
-                }
-            }
-
         }
+        Btn_Search_SP.setDisable(true);
+        Txfiled_Name_SP.setDisable(false);
+        Txfiled_Price_SP.setDisable(false);
+        Txfiled_Quantity_SP.setDisable(false);
+        Txfiled_Discription_SP.setDisable(false);
+        Txfiled_minimumQuantity_SP.setDisable(false);
+        Btn_Save_SP.setDisable(false);
+        Btn_Cancel_SP.setDisable(false);
+        Txfiled_SPNum_SP.setDisable(true);
+
+        Connection connection = connectionClass.getConnection();
+        Statement st = connection.createStatement();
+        st.executeQuery("SELECT * FROM `spare_parts`  WHERE SP_NBER = " + Txfiled_SPNum_SP.getText());
+        ResultSet rs = st.getResultSet();
+        if (rs.first()) {
+
+            if (rs.getString("SP_NBER").equals(Txfiled_SPNum_SP.getText())) {
+
+                count = 2;
+
+                Txfiled_Name_SP.setText(rs.getString("SP_NAME"));
+                Txfiled_Price_SP.setText(rs.getString("PRICE"));
+                Txfiled_Quantity_SP.setText(rs.getString("SP_QUANTITY"));
+                Txfiled_Discription_SP.setText(rs.getString("DESCRIPTION"));
+                Txfiled_minimumQuantity_SP.setText(rs.getString("MINIMUM_QUANTITY_IN_STOCK"));
+
+                Btn_Delete_SP.setDisable(false);
+
+            }
+        } else {
+
+            Statement st2 = connection.createStatement();
+            st2.executeQuery("SELECT * FROM spare_parts ORDER BY SP_NBER DESC LIMIT 1");
+            ResultSet rs2 = st2.getResultSet();
+            if (rs2.first()) {
+
+                if (count_Language == 0) {
+                    alert2.setContentText("New spare part will be created");
+                } else {
+                    alert2.setContentText("سوف يتم انشاء قطعة غيار جديدة");
+
+                }
+
+                count = 1;
+                SP_number = Integer.parseInt(rs2.getString("SP_NBER"));
+                SP_number++;
+                Txfiled_SPNum_SP.setText(String.valueOf(SP_number));
+
+                Btn_Delete_SP.setDisable(true);
+
+            }
+        }
+
     }
 
     @FXML
@@ -1878,7 +1679,6 @@ public class Controller implements Initializable {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 String sql1 = "DELETE FROM  `spare_parts`  WHERE SP_NBER= " + Txfiled_SPNum_SP.getText();
-                System.out.println(sql1);
                 java.sql.Statement statement1 = connection.createStatement();
                 ClearSp();
 
@@ -1987,14 +1787,9 @@ public class Controller implements Initializable {
 
         if (count == 1) {
             try {
-                System.out.println("=====" + Txfiled_Name_SP.getText());
-                System.out.println("Equal  insert");
-                // String A = "SET CHARACTER SET utf8 ";
                 String sqll = "INSERT INTO spare_parts (SP_NBER, SP_NAME, PRICE,SP_QUANTITY ,DESCRIPTION, MINIMUM_QUANTITY_IN_STOCK) VALUES (" + SP_number + "," + "'" + Txfiled_Name_SP.getText() + "'" + "," + "'" + Txfiled_Price_SP.getText()
                         + "'" + "," + "'" + Txfiled_Quantity_SP.getText() + "'" + "," + "'" + Txfiled_Discription_SP.getText() + "'" + "," + "'" + Txfiled_minimumQuantity_SP.getText() + "')";
-                System.out.println(sqll);
                 java.sql.Statement statement1 = connection.createStatement();
-                //statement1.executeUpdate(A);
 
                 statement1.executeUpdate(sqll);
                 if (count_Language == 0) {
@@ -2014,12 +1809,9 @@ public class Controller implements Initializable {
 
         } else if (count == 2) {
             try {
-                System.out.println("Equal  update");
-                //System.out.println(Selct_MoStatus_AddMO.getValue());
                 String sql1 = "UPDATE  `spare_parts` SET  SP_NAME='" + Txfiled_Name_SP.getText() + "',PRICE='" + Txfiled_Price_SP.getText() + "',SP_QUANTITY='" + Txfiled_Quantity_SP.getText() + "',DESCRIPTION='" + Txfiled_Discription_SP.getText() + "',MINIMUM_QUANTITY_IN_STOCK='" + Txfiled_minimumQuantity_SP.getText()
                         + " 'WHERE SP_NBER=' " + Txfiled_SPNum_SP.getText() + "'";
 
-                System.out.println(sql1);
                 java.sql.Statement statement1 = connection.createStatement();
                 statement1.executeUpdate(sql1);
                 if (count_Language == 0) {
@@ -2033,12 +1825,9 @@ public class Controller implements Initializable {
                 alert2.showAndWait();
                 ClearSp();
             } catch (SQLException ex) {
-                //System.out.println(ex);
                 JOptionPane.showMessageDialog(null, ex);
-                // JOptionPane.showMessageDialog(null, ex);
             }
         }
-        // count = 2;
         RefreshMOTables();
 
     }
@@ -2098,10 +1887,8 @@ public class Controller implements Initializable {
 
             if (count == 1) {
                 try {
-                    System.out.println("Equal  insert");
                     String sqll = "INSERT INTO supplier (SUPPLIER_NBER, SUP_MOBILE_NBER, SUP_EMAIL,SUP_NAME ,SUP_ADDRESS) VALUES (" + SUP_number + "," + "'" + Txfiled_MNum_Supplier.getText() + "'" + "," + "'" + Txfiled_Email_Supplier.getText()
                             + "'" + "," + "'" + Txfiled_Name_Supplier.getText() + "'" + "," + "'" + Txfiled_Address_Supplier.getText() + "')";
-                    System.out.println(sqll);
                     java.sql.Statement statement1 = connection.createStatement();
 
                     statement1.executeUpdate(sqll);
@@ -2121,12 +1908,9 @@ public class Controller implements Initializable {
             } else if (count == 2) {
 
                 try {
-                    System.out.println("Equal  update");
-                    //System.out.println(Selct_MoStatus_AddMO.getValue());
                     String sql1 = "UPDATE  `supplier` SET  SUP_MOBILE_NBER='" + Txfiled_MNum_Supplier.getText() + "',SUP_EMAIL='" + Txfiled_Email_Supplier.getText() + "',SUP_NAME='" + Txfiled_Name_Supplier.getText() + "',SUP_ADDRESS='" + Txfiled_Address_Supplier.getText()
                             + "' WHERE SUPPLIER_NBER= '" + Txfiled_Num_Supplier.getText() + "'";
 
-                    System.out.println(sql1);
                     java.sql.Statement statement1 = connection.createStatement();
                     statement1.executeUpdate(sql1);
                     if (count_Language == 0) {
@@ -2174,72 +1958,64 @@ public class Controller implements Initializable {
             alert.showAndWait();
             return;
 
-        } else {
+        }
 
-            Txfiled_Num_Supplier.setDisable(true);
-            Btn_Save_Supplier.setDisable(false);
-            Btn_Cancel_Supplier.setDisable(false);
-            Btn_Search_Supplier.setDisable(true);
+        Txfiled_Num_Supplier.setDisable(true);
+        Btn_Save_Supplier.setDisable(false);
+        Btn_Cancel_Supplier.setDisable(false);
+        Btn_Search_Supplier.setDisable(true);
 
-            Txfiled_MNum_Supplier.setDisable(false);
-            Txfiled_Email_Supplier.setDisable(false);
-            Txfiled_Name_Supplier.setDisable(false);
-            Txfiled_Address_Supplier.setDisable(false);
+        Txfiled_MNum_Supplier.setDisable(false);
+        Txfiled_Email_Supplier.setDisable(false);
+        Txfiled_Name_Supplier.setDisable(false);
+        Txfiled_Address_Supplier.setDisable(false);
 
-            try {
+        try {
 
-                Connection connection = connectionClass.getConnection();
-                Statement st = connection.createStatement();
-                st.executeQuery("SELECT * FROM `supplier`  WHERE SUPPLIER_NBER = " + Txfiled_Num_Supplier.getText());
-                ResultSet rs = st.getResultSet();
-                if (rs.first()) {
+            Connection connection = connectionClass.getConnection();
+            Statement st = connection.createStatement();
+            st.executeQuery("SELECT * FROM `supplier`  WHERE SUPPLIER_NBER = " + Txfiled_Num_Supplier.getText());
+            ResultSet rs = st.getResultSet();
+            if (rs.first()) {
 
-                    System.out.println(Txfiled_Num_Supplier.getText());
+                if (rs.getString("SUPPLIER_NBER").equals(Txfiled_Num_Supplier.getText())) {
 
-                    System.out.println("THIS NU NUMBER IN DB== " + rs.getString("SUPPLIER_NBER"));
-                    System.out.println("THIS NU NUMBER IN FILED== " + Txfiled_Num_Supplier.getText());
+                    count = 2;
+                    String supnumber = "0" + rs.getString("SUP_MOBILE_NBER");
+                    Txfiled_MNum_Supplier.setText(supnumber);
 
-                    if (rs.getString("SUPPLIER_NBER").equals(Txfiled_Num_Supplier.getText())) {
+                    Txfiled_Email_Supplier.setText(rs.getString("SUP_EMAIL"));
+                    Txfiled_Name_Supplier.setText(rs.getString("SUP_NAME"));
+                    Txfiled_Address_Supplier.setText(rs.getString("SUP_ADDRESS"));
 
-                        count = 2;
-                        String supnumber = "0" + rs.getString("SUP_MOBILE_NBER");
-                        Txfiled_MNum_Supplier.setText(supnumber);
+                    Btn_Delete_Supplier.setDisable(false);
 
-                        Txfiled_Email_Supplier.setText(rs.getString("SUP_EMAIL"));
-                        Txfiled_Name_Supplier.setText(rs.getString("SUP_NAME"));
-                        Txfiled_Address_Supplier.setText(rs.getString("SUP_ADDRESS"));
-
-                        Btn_Delete_Supplier.setDisable(false);
-
-                    }
-                } else {
-                    Statement st2 = connection.createStatement();
-                    st2.executeQuery("SELECT * FROM supplier ORDER BY SUPPLIER_NBER DESC LIMIT 1");
-                    ResultSet rs2 = st2.getResultSet();
-                    //System.out.println("FFFFFFFFFFFFFFFFF"+rs2.getString("MO_NBER"));
-                    if (rs2.first()) {
-
-                        System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-                        if (count_Language == 0) {
-                            alert2.setContentText("New supplier will be created");
-                        } else {
-                            alert2.setContentText("سوف يتم انشاء مزود جديد");
-
-                        }
-                        alert2.showAndWait();
-
-                        count = 1;
-                        SUP_number = Integer.parseInt(rs2.getString("SUPPLIER_NBER"));
-                        SUP_number++;
-                        System.out.println(SUP_number);
-                        Txfiled_Num_Supplier.setText(String.valueOf(SUP_number));
-                        Btn_Delete_Supplier.setDisable(true);
-
-                    }
                 }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex);
+            } else {
+                Statement st2 = connection.createStatement();
+                st2.executeQuery("SELECT * FROM supplier ORDER BY SUPPLIER_NBER DESC LIMIT 1");
+                ResultSet rs2 = st2.getResultSet();
+                if (rs2.first()) {
+
+                    if (count_Language == 0) {
+                        alert2.setContentText("New supplier will be created");
+                    } else {
+                        alert2.setContentText("سوف يتم انشاء مزود جديد");
+
+                    }
+                    alert2.showAndWait();
+
+                    count = 1;
+                    SUP_number = Integer.parseInt(rs2.getString("SUPPLIER_NBER"));
+                    SUP_number++;
+                    Txfiled_Num_Supplier.setText(String.valueOf(SUP_number));
+                    Btn_Delete_Supplier.setDisable(true);
+
+                }
             }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+
         }
     }
 
@@ -2259,7 +2035,6 @@ public class Controller implements Initializable {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 String sql1 = "DELETE FROM  `supplier`  WHERE SUPPLIER_NBER= " + Txfiled_Num_Supplier.getText();
-                System.out.println(sql1);
                 java.sql.Statement statement1 = connection.createStatement();
                 clearSUP();
                 try {
@@ -2333,12 +2108,6 @@ public class Controller implements Initializable {
         List_of_reports.setItems(items);
 
         List_of_reports.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        //ObservableList <String> names;
-        //names= List_of_reports.getSelectionModel().getSelectedItems();
-
-        //names= List_of_reports.setItems("عمليات الصيانة الحالية");
-        // List_of_reports.getSelectionModel().getSelectedItems();
-        // System.out.println( List_of_reports.getSelectionModel().getSelectedItems());
     }
 
     @FXML
@@ -2346,14 +2115,8 @@ public class Controller implements Initializable {
         if (count_Language == 1) {
             ObservableList<String> names;
             names = List_of_reports.getSelectionModel().getSelectedItems();
-            //names= List_of_reports.setItems("عمليات الصيانة الحالية");
-            // for (String name : names){
-            //   System.out.println("");
-            // System.out.println(names);
 
             String SelectedItem = (String) List_of_reports.getSelectionModel().getSelectedItem();
-
-            System.out.println("HERE  B:" + SelectedItem);
 
             LocalDate Date = LocalDate.now();
             if (SelectedItem.equalsIgnoreCase("- عمليات الصيانة السابقة")) {
@@ -2362,7 +2125,6 @@ public class Controller implements Initializable {
 
                     Statement st2 = connection.createStatement();
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','دفعت','disapproved','مرفوضة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(1) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
 
@@ -2383,7 +2145,6 @@ public class Controller implements Initializable {
                 } else if (Rad_LastThree_months.isSelected()) {
                     Statement st2 = connection.createStatement();
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','دفعت','disapproved','مرفوضة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(3) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
 
@@ -2403,7 +2164,6 @@ public class Controller implements Initializable {
                 } else if (Rad_This_Year.isSelected()) {
                     Statement st2 = connection.createStatement();
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','دفعت','disapproved','مرفوضة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
 
@@ -2423,7 +2183,6 @@ public class Controller implements Initializable {
                 } else if (Rad_Last_Year.isSelected()) {
                     Statement st2 = connection.createStatement();
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','دفعت','disapproved','مرفوضة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
 
@@ -2443,10 +2202,8 @@ public class Controller implements Initializable {
 
                 } else if (Rad_Choose_Period.isSelected()) {
                     Statement st2 = connection.createStatement();
-                    System.out.println(Rad_Choose_Period.getText());
 
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','دفعت','disapproved','مرفوضة') AND m.STARTING_DATE >= '" + Date_StartFrom.getValue() + "' AND m.STARTING_DATE <= '" + Date_Unill.getValue() + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
                     if (rs2.first()) {
@@ -2468,7 +2225,6 @@ public class Controller implements Initializable {
                     Statement st2 = connection.createStatement();
 
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance','تم الموافقة','تحت الصيانة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(1) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
                     if (rs2.first()) {
@@ -2488,7 +2244,6 @@ public class Controller implements Initializable {
                 } else if (Rad_LastThree_months.isSelected()) {
                     Statement st2 = connection.createStatement();
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance','تم الموافقة','تحت الصيانة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(3) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
                     if (rs2.first()) {
@@ -2508,7 +2263,6 @@ public class Controller implements Initializable {
                 } else if (Rad_This_Year.isSelected()) {
                     Statement st2 = connection.createStatement();
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance','تم الموافقة','تحت الصيانة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
                     if (rs2.first()) {
@@ -2528,7 +2282,6 @@ public class Controller implements Initializable {
                 } else if (Rad_Last_Year.isSelected()) {
                     Statement st2 = connection.createStatement();
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance','تم الموافقة','تحت الصيانة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
                     if (rs2.first()) {
@@ -2548,7 +2301,6 @@ public class Controller implements Initializable {
                     Statement st2 = connection.createStatement();
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance','تم الموافقة','تحت الصيانة') AND m.STARTING_DATE >= '" + Date_StartFrom.getValue() + "' AND m.STARTING_DATE <= '" + Date_Unill.getValue() + "'";
 
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
                     if (rs2.first()) {
@@ -2572,7 +2324,6 @@ public class Controller implements Initializable {
                     Statement st2 = connection.createStatement();
 
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('تم الاصلاح','repaired') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(1) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
                     if (rs2.first()) {
@@ -2593,7 +2344,6 @@ public class Controller implements Initializable {
                     Statement st2 = connection.createStatement();
 
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('تم الاصلاح','repaired') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(3) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
                     if (rs2.first()) {
@@ -2614,7 +2364,6 @@ public class Controller implements Initializable {
                 } else if (Rad_This_Year.isSelected()) {
                     Statement st2 = connection.createStatement();
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('تم الاصلاح','repaired') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
                     if (rs2.first()) {
@@ -2635,7 +2384,6 @@ public class Controller implements Initializable {
                 } else if (Rad_Last_Year.isSelected()) {
                     Statement st2 = connection.createStatement();
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('تم الاصلاح','repaired') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
                     if (rs2.first()) {
@@ -2656,7 +2404,6 @@ public class Controller implements Initializable {
                 } else if (Rad_Choose_Period.isSelected()) {
                     Statement st2 = connection.createStatement();
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('تم الاصلاح','repaired') AND m.STARTING_DATE >= '" + Date_StartFrom.getValue() + "' AND m.STARTING_DATE <= '" + Date_Unill.getValue() + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
                     if (rs2.first()) {
@@ -2670,13 +2417,12 @@ public class Controller implements Initializable {
                         alert.setHeaderText(null);
                         alert.setContentText("لايمكن طباعة هذا التقرير");
                         alert.showAndWait();
-                        return;
 
                     }
                 }
 
             } else if (SelectedItem.equalsIgnoreCase("- تقدير مالي عن عملية صيانة")) {
-                  if (!Mumbervalid(Txfiled_CUS_MNBER.getText())) {
+                if (!Mumbervalid(Txfiled_CUS_MNBER.getText())) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText(null);
 
@@ -2688,7 +2434,6 @@ public class Controller implements Initializable {
                 }
                 Statement st2 = connection.createStatement();
                 String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired','تم الإنشاء', 'تم الموافقة', 'تحت الصيانة', 'تم الكشف عن عيوب أخرى','مرفوضة','لا يمكن القيام بعملية الصيانة','تم الاصلاح') AND m.MO_NBER = '" + Txfiled_MO_Nber.getText() + "'";
-                System.out.println(q);
                 st2.executeQuery(q);
                 ResultSet rs2 = st2.getResultSet();
                 if (rs2.first()) {
@@ -2706,14 +2451,13 @@ public class Controller implements Initializable {
                 }
             } else if (SelectedItem.equalsIgnoreCase("- قائمة بالعملاء")) {
                 String query = "SELECT * FROM `customer`";
-                System.out.println(query);
                 java.sql.Statement statement1 = connection.createStatement();
 
                 printreport print = new printreport();
                 print.CustomersList();
 
             } else if (SelectedItem.equalsIgnoreCase("- قائمة عمليات الصيانة لعميل")) {
-                   if (!Mumbervalid(Txfiled_CUS_MNBER.getText())) {
+                if (!Mumbervalid(Txfiled_CUS_MNBER.getText())) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText(null);
 
@@ -2725,13 +2469,11 @@ public class Controller implements Initializable {
                 }
                 Statement st2 = connection.createStatement();
                 String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
-                System.out.println(q);
                 st2.executeQuery(q);
                 ResultSet rs2 = st2.getResultSet();
                 if (rs2.first()) {
 
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
-                    System.out.println(query);
                     java.sql.Statement statement1 = connection.createStatement();
                     printreport print = new printreport();
 
@@ -2747,18 +2489,17 @@ public class Controller implements Initializable {
 
             } else if (SelectedItem.equalsIgnoreCase("- قائمة بالموظفين")) {
                 String query = "SELECT * FROM `employee`";
-                System.out.println(query);
                 java.sql.Statement statement1 = connection.createStatement();
 
                 printreport print = new printreport();
                 print.EmployeesList();
 
             } else if (SelectedItem.equalsIgnoreCase("- قائمة عمليات الصيانة لموظف")) {
-                   if (Selct_Name_Employee.getSelectionModel().isEmpty()) {
+                if (Selct_Name_Employee.getSelectionModel().isEmpty()) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText(null);
 
-                          alert.setContentText("الرجاء اختيار فني عملية الصيانة ");
+                    alert.setContentText("الرجاء اختيار فني عملية الصيانة ");
 
                     alert.showAndWait();
                     return;
@@ -2766,16 +2507,12 @@ public class Controller implements Initializable {
                 }
                 Statement st2 = connection.createStatement();
                 String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID Where e.EMP_NAME = '" + Selct_Name_Employee.getValue() + "'";
-                System.out.println(q);
                 st2.executeQuery(q);
                 ResultSet rs2 = st2.getResultSet();
                 if (rs2.first()) {
 
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID Where e.EMP_NAME = '" + Selct_Name_Employee.getValue() + "'";
-                    System.out.println(query);
                     java.sql.Statement statement1 = connection.createStatement();
-
-                    System.out.println(Selct_Name_Employee.getValue());
 
                     printreport print = new printreport();
                     String EmployeeName = Selct_Name_Employee.getValue();
@@ -2791,7 +2528,6 @@ public class Controller implements Initializable {
 
             } else if (SelectedItem.equalsIgnoreCase("- قائمة بالمزودين")) {
                 String query = "SELECT * FROM `supplier`";
-                System.out.println(query);
                 java.sql.Statement statement1 = connection.createStatement();
 
                 printreport print = new printreport();
@@ -2799,7 +2535,6 @@ public class Controller implements Initializable {
 
             } else if (SelectedItem.equalsIgnoreCase("- قطع على وشك النفاذ")) {
                 String query = "SELECT * FROM spare_parts WHERE `SP_QUANTITY` < `MINIMUM_QUANTITY_IN_STOCK` AND `SP_QUANTITY` <>0";
-                System.out.println(query);
                 java.sql.Statement statement1 = connection.createStatement();
 
                 printreport print = new printreport();
@@ -2807,7 +2542,6 @@ public class Controller implements Initializable {
 
             } else if (SelectedItem.equalsIgnoreCase("- قطع الغيار التي نفذت كميتها")) {
                 String query = "SELECT * FROM spare_parts WHERE `SP_QUANTITY` = 0";
-                System.out.println(query);
                 java.sql.Statement statement1 = connection.createStatement();
 
                 printreport print = new printreport();
@@ -2821,15 +2555,12 @@ public class Controller implements Initializable {
 
             String SelectedItem = (String) List_of_reports.getSelectionModel().getSelectedItem();
 
-            System.out.println("HERE  B:" + SelectedItem);
-
             LocalDate Date = LocalDate.now();
             if (SelectedItem.equalsIgnoreCase("- previous  maintenance operations")) {
                 if (Rad_Last_month.isSelected()) {
 
                     Statement st2 = connection.createStatement();
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','دفعت','disapproved','مرفوضة')  AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(1) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
 
@@ -2851,7 +2582,6 @@ public class Controller implements Initializable {
 
                     Statement st2 = connection.createStatement();
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','دفعت','disapproved','مرفوضة')  AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(3) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
 
@@ -2872,7 +2602,6 @@ public class Controller implements Initializable {
 
                     Statement st2 = connection.createStatement();
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','دفعت','disapproved','مرفوضة')  AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
 
@@ -2893,7 +2622,6 @@ public class Controller implements Initializable {
 
                     Statement st2 = connection.createStatement();
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','دفعت','disapproved','مرفوضة')  AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
 
@@ -2913,10 +2641,8 @@ public class Controller implements Initializable {
 
                 } else if (Rad_Choose_Period.isSelected()) {
                     Statement st2 = connection.createStatement();
-                    System.out.println(Rad_Choose_Period.getText());
 
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('paid','دفعت','disapproved','مرفوضة') AND m.STARTING_DATE >= '" + Date_StartFrom.getValue() + "' AND m.STARTING_DATE <= '" + Date_Unill.getValue() + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
 
@@ -2940,9 +2666,7 @@ public class Controller implements Initializable {
                 if (Rad_Last_month.isSelected()) {
                     Statement st2 = connection.createStatement();
 
-                    //String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance') AND '" + LocalDate.now() + "'>='" + Date.minusMonths(3) + "'";
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance','تم الموافقة','تحت الصيانة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(1) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
 
@@ -2964,7 +2688,6 @@ public class Controller implements Initializable {
                 } else if (Rad_LastThree_months.isSelected()) {
                     Statement st2 = connection.createStatement();
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance','تم الموافقة','تحت الصيانة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(3) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
 
@@ -2986,7 +2709,6 @@ public class Controller implements Initializable {
                 } else if (Rad_This_Year.isSelected()) {
                     Statement st2 = connection.createStatement();
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance','تم الموافقة','تحت الصيانة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
 
@@ -3008,7 +2730,6 @@ public class Controller implements Initializable {
                 } else if (Rad_Last_Year.isSelected()) {
                     Statement st2 = connection.createStatement();
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance','تم الموافقة','تحت الصيانة') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
 
@@ -3031,7 +2752,6 @@ public class Controller implements Initializable {
                     Statement st2 = connection.createStatement();
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('approved','under maintenance','تم الموافقة','تحت الصيانة') AND m.STARTING_DATE >= '" + Date_StartFrom.getValue() + "' AND m.STARTING_DATE <= '" + Date_Unill.getValue() + "'";
 
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
 
@@ -3057,7 +2777,6 @@ public class Controller implements Initializable {
                     Statement st2 = connection.createStatement();
 
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired','تم الاصلاح') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(1) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
 
@@ -3080,7 +2799,6 @@ public class Controller implements Initializable {
                     Statement st2 = connection.createStatement();
 
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired','تم الاصلاح') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(3) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
 
@@ -3102,7 +2820,6 @@ public class Controller implements Initializable {
 
                     Statement st2 = connection.createStatement();
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired','تم الاصلاح') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
 
@@ -3125,7 +2842,6 @@ public class Controller implements Initializable {
                     Statement st2 = connection.createStatement();
 
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired','تم الاصلاح') AND m.STARTING_DATE <= '" + LocalDate.now() + "' AND m.STARTING_DATE >= '" + Date.minusMonths(12) + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
 
@@ -3148,7 +2864,6 @@ public class Controller implements Initializable {
                     Statement st2 = connection.createStatement();
 
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE m.STATE IN ('repaired','تم الاصلاح') AND m.STARTING_DATE >= '" + Date_StartFrom.getValue() + "' AND m.STARTING_DATE <= '" + Date_Unill.getValue() + "'";
-                    System.out.println(query);
                     st2.executeQuery(query);
                     ResultSet rs2 = st2.getResultSet();
 
@@ -3181,7 +2896,6 @@ public class Controller implements Initializable {
                 }
                 Statement st2 = connection.createStatement();
                 String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID JOIN `require` a ON m.MO_NBER = a.MO_NBER JOIN `spare_parts` s ON a.SP_NBER = s.SP_NBER WHERE m.STATE IN ('created', 'approved', 'under maintenance', 'other defects has been detected','disapproved','cannot be done','repaired','تم الإنشاء', 'تم الموافقة', 'تحت الصيانة', 'تم الكشف عن عيوب أخرى','مرفوضة','لا يمكن القيام بعملية الصيانة','تم الاصلاح') AND m.MO_NBER = '" + Txfiled_MO_Nber.getText() + "'";
-                System.out.println(q);
                 st2.executeQuery(q);
                 ResultSet rs2 = st2.getResultSet();
                 if (rs2.first()) {
@@ -3199,7 +2913,6 @@ public class Controller implements Initializable {
                 }
             } else if (SelectedItem.equalsIgnoreCase("- list of customers")) {
                 String query = "SELECT * FROM `customer`";
-                System.out.println(query);
                 java.sql.Statement statement1 = connection.createStatement();
 
                 printreport print = new printreport();
@@ -3219,13 +2932,11 @@ public class Controller implements Initializable {
                 }
                 Statement st2 = connection.createStatement();
                 String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
-                System.out.println(q);
                 st2.executeQuery(q);
                 ResultSet rs2 = st2.getResultSet();
                 if (rs2.first()) {
 
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID WHERE r.CUS_MOBILE_NBER = '" + Txfiled_CUS_MNBER.getText() + "'";
-                    System.out.println(query);
                     java.sql.Statement statement1 = connection.createStatement();
                     printreport print = new printreport();
 
@@ -3241,7 +2952,6 @@ public class Controller implements Initializable {
 
             } else if (SelectedItem.equalsIgnoreCase("- list of employees")) {
                 String query = "SELECT * FROM `employee`";
-                System.out.println(query);
                 java.sql.Statement statement1 = connection.createStatement();
 
                 printreport print = new printreport();
@@ -3261,16 +2971,12 @@ public class Controller implements Initializable {
 
                 Statement st2 = connection.createStatement();
                 String q = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID Where e.EMP_NAME = '" + Selct_Name_Employee.getValue() + "'";
-                System.out.println(q);
                 st2.executeQuery(q);
                 ResultSet rs2 = st2.getResultSet();
                 if (rs2.first()) {
 
                     String query = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER  = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID Where e.EMP_NAME = '" + Selct_Name_Employee.getValue() + "'";
-                    System.out.println(query);
                     java.sql.Statement statement1 = connection.createStatement();
-
-                    System.out.println(Selct_Name_Employee.getValue());
 
                     printreport print = new printreport();
                     String EmployeeName = Selct_Name_Employee.getValue();
@@ -3286,7 +2992,6 @@ public class Controller implements Initializable {
 
             } else if (SelectedItem.equalsIgnoreCase("- list of Suppliers")) {
                 String query = "SELECT * FROM `supplier`";
-                System.out.println(query);
                 java.sql.Statement statement1 = connection.createStatement();
 
                 printreport print = new printreport();
@@ -3294,7 +2999,6 @@ public class Controller implements Initializable {
 
             } else if (SelectedItem.equalsIgnoreCase("- Spare Parts about to be out of stock")) {
                 String query = "SELECT * FROM spare_parts WHERE `SP_QUANTITY` < `MINIMUM_QUANTITY_IN_STOCK` AND `SP_QUANTITY` <>0";
-                System.out.println(query);
                 java.sql.Statement statement1 = connection.createStatement();
 
                 printreport print = new printreport();
@@ -3302,7 +3006,6 @@ public class Controller implements Initializable {
 
             } else if (SelectedItem.equalsIgnoreCase("- Spare parts out of stock")) {
                 String query = "SELECT * FROM spare_parts WHERE `SP_QUANTITY` = 0";
-                System.out.println(query);
                 java.sql.Statement statement1 = connection.createStatement();
 
                 printreport print = new printreport();
@@ -3443,20 +3146,10 @@ public class Controller implements Initializable {
         AllSP2 = Table_SelectedSP_ReqSP.getItems();
         SPSelected2 = Table_SelectedSP_ReqSP.getSelectionModel().getSelectedItems();
 
-        //Txfiled_SpSerialN_AddMO.setText(SPSelected2.get(0).getSP_SN());
-        //_____________________
-        //for (AddSP addSP : Table_AddSP_AddMO.getSelectionModel().getSelectedItems()) {
         for (int i = 0; i < SPSelected2.size(); i++) {
             try {
-                //for(int i =1;i<=1; i++){
-                //list.clear();
-                // list.add(new Controller_AddMO.AddSP(SPSelected2.get(i).getSP2_Number(), SPSelected2.get(i).getSP2_Name(), SPSelected2.get(i).getSP2_Description(),
-                //SPSelected2.get(i).getSP_Price2()));
-                // Table_AddSP_AddMO.setItems(list);
-                String sqlDeletSP = "DELETE FROM `attach` " + " WHERE SP_NBER= " + SPSelected2.get(i).getSP_Number() + " AND REQUEST_NBER=" + Txfiled_REQnum_ReqSP.getText();
 
-                System.out.println(sqlDeletSP);
-                //SPSelected2.get(i).ge
+                String sqlDeletSP = "DELETE FROM `attach` " + " WHERE SP_NBER= " + SPSelected2.get(i).getSP_Number() + " AND REQUEST_NBER=" + Txfiled_REQnum_ReqSP.getText();
 
                 java.sql.Statement statement1 = connection.createStatement();
                 statement1.executeUpdate(sqlDeletSP);
@@ -3472,14 +3165,10 @@ public class Controller implements Initializable {
                 JOptionPane.showMessageDialog(null, ex);
             }
         }
-        //}
-        // SPSelected2.forEach(ListOFSelectedSP::remove);
-        //Table_SelectedSP_ReqSP.getItems().setAll(ListOFSelectedSP);
+
         loadSpSelected();
         loadSpecifecSP();
-        //calculate();
-        //DELETE FROM `require` WHERE `require`.`MO_NBER` = 7 AND `require`.`SP_NBER` = 3;
-        // Txfiled_SPCost_AddMO.setText(String.valueOf(spcost));
+
     }
 
     @FXML
@@ -3489,24 +3178,15 @@ public class Controller implements Initializable {
         ObservableList<AddSP> SPSelected, AllSP;
         AllSP = Table_AddSP_ReqSP.getItems();
         SPSelected = Table_AddSP_ReqSP.getSelectionModel().getSelectedItems();
-        // ObservableList<Controller_AddMO.SelectedSP> SPSelected3, AllSP3;
-        //AllSP3 = Table_SelectedSP_AddMO.getItems();
-        ///SPSelected3 = Table_SelectedSP_AddMO.getSelectionModel().getSelectedItems();
 
-        //_____________________
-        //for (AddSP addSP : Table_AddSP_AddMO.getSelectionModel().getSelectedItems()) {
         for (int i = 0; i < SPSelected.size(); i++) {
             try {
-                System.out.println(SPSelected.size());
-                //for(int i =1;i<=1; i++){
 
                 ListOFSelectedSP.add(new AddSP(SPSelected.get(i).getSP_Number(), SPSelected.get(i).getSP_Name(), 1));
-                //AllSP3.add()
 
                 String sql1 = "INSERT INTO `attach` VALUES(" + SPSelected.get(0).getSP_Number() + ",'" + Txfiled_REQnum_ReqSP.getText() + "','"
                         + 1 + "')";
                 java.sql.Statement statement1 = connection.createStatement();
-                System.out.println(sql1);
                 statement1.executeUpdate(sql1);
 
                 if (count_Language == 0) {
@@ -3520,20 +3200,9 @@ public class Controller implements Initializable {
                 JOptionPane.showMessageDialog(null, ex);
             }
         }
-        //}
 
         loadSpSelected();
         loadSpecifecSP();
-        // Table_SelectedSP_ReqSP.getItems().setAll(ListOFSelectedSP);
-        //SPSelected.forEach(AllSP::remove);
-        // Txfiled_SPCost_AddMO.setText(String.valueOf(spcost));
-        //SPSelected.forEach(AllSP::remove);
-        //System.out.println(SPSelected);
-        //list.add(new Controller_AddMO.AddSP(aa, mid, mobile));
-        //list2.add(SPSelected.get(1));
-        //System.out.println(SPSelected.get(0).SP_Description);
-        //Table_AddSP_AddMO.getItems().setAll(list);
-        //Table_SelectedSP_AddMO.getItems().setAll(list2);
 
     }
 
@@ -3543,7 +3212,6 @@ public class Controller implements Initializable {
         if (count_Language == 0) {
             try {
                 String query = "SELECT * FROM `requested_spare_parts` s JOIN `attach` r ON s.REQUEST_NBER = r.REQUEST_NBER JOIN spare_parts p ON r.SP_NBER = p.SP_NBER WHERE s.REQUEST_NBER ='" + Txfiled_REQnum_ReqSP.getText() + "'";
-                System.out.println(query);
                 java.sql.Statement statement1 = connection.createStatement();
                 printreport print = new printreport();
                 String ss = Txfiled_REQnum_ReqSP.getText();
@@ -3557,7 +3225,6 @@ public class Controller implements Initializable {
         } else if (count_Language == 1) {
             try {
                 String query = "SELECT * FROM `requested_spare_parts` s JOIN `attach` r ON s.REQUEST_NBER = r.REQUEST_NBER JOIN spare_parts p ON r.SP_NBER = p.SP_NBER WHERE s.REQUEST_NBER ='" + Txfiled_REQnum_ReqSP.getText() + "'";
-                System.out.println(query);
                 java.sql.Statement statement1 = connection.createStatement();
                 printreport print = new printreport();
                 String ss = Txfiled_REQnum_ReqSP.getText();
@@ -3593,15 +3260,15 @@ public class Controller implements Initializable {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
-
+                String deletSP = "DELETE FROM  `attach` " + " WHERE REQUEST_NBER= " + Txfiled_REQnum_ReqSP.getText();
                 String sql1 = "DELETE FROM  `requested_spare_parts` " + " WHERE REQUEST_NBER= " + Txfiled_REQnum_ReqSP.getText();
 
-                System.out.println(sql1);
                 java.sql.Statement statement1 = connection.createStatement();
-                clear();
-                try {
-                    statement1.executeUpdate(sql1);
 
+                try {
+                    statement1.executeUpdate(deletSP);
+                    statement1.executeUpdate(sql1);
+                    clear();
                     {
                         if (count_Language == 0) {
                             alert.setHeaderText(null);
@@ -3642,6 +3309,8 @@ public class Controller implements Initializable {
 
     @FXML
     private void M_Btn_Save_ReqSP(ActionEvent event) {
+        alert2.setTitle(null);
+        alert2.setHeaderText(null);
         try {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
@@ -3668,81 +3337,58 @@ public class Controller implements Initializable {
                 alert.showAndWait();
                 return;
 
-            } else {
-                Statement st2 = connection.createStatement();
-                st2.executeQuery("SELECT * FROM `supplier`");
-                ResultSet rs2 = st2.getResultSet();
-                //SELECT * FROM `employee`
-                int IndexOFTech = 0;
-                for (int i = 0; i < ListOfSuppliers.size(); i++) {
+            }
+            Statement st2 = connection.createStatement();
+            st2.executeQuery("SELECT * FROM `supplier`");
+            ResultSet rs2 = st2.getResultSet();
+            int IndexOFTech = 0;
+            for (int i = 0; i < ListOfSuppliers.size(); i++) {
 
-                    while (rs2.next()) {
+                while (rs2.next()) {
 
-                        //ListOfTechichan.add(rs2.getString("EMP_NAME"));
-                        //البحث ب رقم العميل من الداتابيس
-                        if (Selct_Supplier_ReqSP.getValue().equals(rs2.getString("SUP_NAME"))) {
+                    if (Selct_Supplier_ReqSP.getValue().equals(rs2.getString("SUP_NAME"))) {
 
-                            IndexOFTech = Integer.parseInt(rs2.getString("SUPPLIER_NBER"));
-
-                        }
-                    }
-                }//IndexOFTech++;
-
-                System.out.println("INDEX== " + IndexOFTech);
-                // Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                //alert.setTitle(null);
-                // alert.setHeaderText(null);
-                //alert.setContentText("Are you ok with this?");
-
-                // ... user chose OK
-                if (count == 1) {
-                    System.out.println("Equal  insert");
-
-                    String sql1 = "INSERT INTO `requested_spare_parts` VALUES(" + monumber + "," + "'" + Date_REQdate_ReqSP.getValue() + "'" + "," + "'" + IndexOFTech + "')";
-                    System.out.println(sql1);
-                    java.sql.Statement statement1 = connection.createStatement();
-                    statement1.executeUpdate(sql1);
-                    if (count_Language == 0) {
-
-                        alert2.setContentText(" A new Request Spare Part has been created");
-                    } else {
-                        alert2.setContentText("تم انشاء طلب غيار جديد ");
-                    }
-                    alert2.showAndWait();
-
-                } else if (count == 2) {
-                    System.out.println("Equal  update");
-                    //System.out.println(Selct_MoStatus_AddMO.getValue());
-                    String sql1 = "UPDATE  `requested_spare_parts` SET REQUEST_DATE='" + Date_REQdate_ReqSP.getValue() + "',SUPPLIER_NBER='" + IndexOFTech
-                            + "' WHERE REQUEST_NBER= '" + Txfiled_REQnum_ReqSP.getText() + "'";
-                    System.out.println(sql1);
-                    java.sql.Statement statement1 = connection.createStatement();
-                    statement1.executeUpdate(sql1);
-                    if (count_Language == 0) {
-
-                        alert2.setContentText(" Changes saved successfully");
-                    } else {
-                        alert2.setContentText("تم حفظ التعديلات بنجاح");
+                        IndexOFTech = Integer.parseInt(rs2.getString("SUPPLIER_NBER"));
 
                     }
+                }
+            }
 
-                    alert2.showAndWait();
+            if (count == 1) {
+
+                String sql1 = "INSERT INTO `requested_spare_parts` VALUES(" + monumber + "," + "'" + Date_REQdate_ReqSP.getValue() + "'" + "," + "'" + IndexOFTech + "')";
+                java.sql.Statement statement1 = connection.createStatement();
+                statement1.executeUpdate(sql1);
+                if (count_Language == 0) {
+
+                    alert2.setContentText(" A new Request Spare Part has been created");
+                } else {
+                    alert2.setContentText("تم انشاء طلب غيار جديد ");
+                }
+                alert2.showAndWait();
+
+            } else if (count == 2) {
+                String sql1 = "UPDATE  `requested_spare_parts` SET REQUEST_DATE='" + Date_REQdate_ReqSP.getValue() + "',SUPPLIER_NBER='" + IndexOFTech
+                        + "' WHERE REQUEST_NBER= '" + Txfiled_REQnum_ReqSP.getText() + "'";
+                java.sql.Statement statement1 = connection.createStatement();
+                statement1.executeUpdate(sql1);
+                if (count_Language == 0) {
+
+                    alert2.setContentText(" Changes saved successfully");
+                } else {
+                    alert2.setContentText("تم حفظ التعديلات بنجاح");
 
                 }
-                /*
-            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-            alert2.setTitle(null);
-            alert2.setHeaderText(null);
-            alert2.setContentText("I have a great message for you!");
 
-            alert2.showAndWait();*/
-                clear();
-                count = 2;
+                alert2.showAndWait();
+
             }
+
+            clear();
+            count = 2;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-
     }
 
     public void clear() {
@@ -3817,78 +3463,60 @@ public class Controller implements Initializable {
 
                 return;
 
+            }
+            Btn_Search_ReqSP.setDisable(true);
+            Btn_Save_ReqSP.setDisable(false);
+            Btn_Cancel_ReqSP.setDisable(false);
+            Selct_Supplier_ReqSP.setDisable(false);
+            Date_REQdate_ReqSP.setDisable(false);
+
+            Connection connection = connectionClass.getConnection();
+            Statement st = connection.createStatement();
+            st.executeQuery("SELECT * FROM `requested_spare_parts` r JOIN `supplier` s ON r.SUPPLIER_NBER  = s.SUPPLIER_NBER  WHERE REQUEST_NBER = " + Txfiled_REQnum_ReqSP.getText());
+            ResultSet rs = st.getResultSet();
+
+            if (rs.first()) {
+
+                if (rs.getString("REQUEST_NBER").equals(Txfiled_REQnum_ReqSP.getText())) {
+
+                    count = 2;
+
+                    Txfiled_REQnum_ReqSP.setDisable(true);
+
+                    LocalDate REQUEST_DATE = LocalDate.parse(rs.getString("REQUEST_DATE"));
+
+                    Date_REQdate_ReqSP.setValue(REQUEST_DATE);
+
+                    Selct_Supplier_ReqSP.getSelectionModel().select(rs.getString("SUP_NAME"));
+
+                    Btn_Print_ReqSP.setDisable(false);
+                    Btn_Delete_ReqSP.setDisable(false);
+                    Txfiled_QuanitiySP_ReqSP.setDisable(false);
+                    Txfiled_SearchSP_ReqSP.setDisable(false);
+                    Btn_AddSP_ReqSP.setDisable(false);
+                    Btn_RemoveSP_ReqSP.setDisable(false);
+                    loadSpSelected();
+                    loadSpecifecSP();
+
+                }
+
             } else {
-                Btn_Search_ReqSP.setDisable(true);
-                Btn_Save_ReqSP.setDisable(false);
-                Btn_Cancel_ReqSP.setDisable(false);
-                Selct_Supplier_ReqSP.setDisable(false);
-                Date_REQdate_ReqSP.setDisable(false);
 
-                Connection connection = connectionClass.getConnection();
-                Statement st = connection.createStatement();
-                st.executeQuery("SELECT * FROM `requested_spare_parts` r JOIN `supplier` s ON r.SUPPLIER_NBER  = s.SUPPLIER_NBER  WHERE REQUEST_NBER = " + Txfiled_REQnum_ReqSP.getText());
-//REQUEST_NBER
-                ResultSet rs = st.getResultSet();
-//st = connection.prepareCall(sql);
-
-                if (rs.first()) {
-
-                    System.out.println(Txfiled_REQnum_ReqSP.getText());
-
-                    System.out.println("THIS MO NUMBER IN DB== " + rs.getString("REQUEST_NBER"));
-                    System.out.println("THIS MO NUMBER IN FILED== " + Txfiled_REQnum_ReqSP.getText());
-
-                    if (rs.getString("REQUEST_NBER").equals(Txfiled_REQnum_ReqSP.getText())) {
-
-                        count = 2;
-
-                        Txfiled_REQnum_ReqSP.setDisable(true);
-
-                        LocalDate REQUEST_DATE = LocalDate.parse(rs.getString("REQUEST_DATE"));
-
-                        Date_REQdate_ReqSP.setValue(REQUEST_DATE);
-
-                        System.out.println("PPPPPPPPPPPPPP " + rs.getString("SUP_NAME"));
-                        Selct_Supplier_ReqSP.getSelectionModel().select(rs.getString("SUP_NAME"));
-
-                        Btn_Print_ReqSP.setDisable(false);
-                        Btn_Delete_ReqSP.setDisable(false);
-                        Txfiled_QuanitiySP_ReqSP.setDisable(false);
-                        Txfiled_SearchSP_ReqSP.setDisable(false);
-                        Btn_AddSP_ReqSP.setDisable(false);
-                        Btn_RemoveSP_ReqSP.setDisable(false);
-                        //loadlist.clear();
-                        loadSpSelected();
-                        loadSpecifecSP();
-
-                        //calculate();
-                    }
-
-                    //java.sql.Statement statement1 = connection.createStatement();
-                    //statement1.executeQuery(sql);
-                } else {
-
-                    Statement st2 = connection.createStatement();
-                    st2.executeQuery("SELECT * FROM `requested_spare_parts` ORDER BY `REQUEST_NBER` DESC LIMIT 1");
-                    ResultSet rs2 = st2.getResultSet();
-                    //System.out.println("FFFFFFFFFFFFFFFFF"+rs2.getString("MO_NBER"));
-                    if (rs2.first()) {
-                        System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-                        //System.out.println();
-                        count = 1;
-                        monumber = Integer.parseInt(rs2.getString("REQUEST_NBER"));
-                        monumber++;
-                        System.out.println(monumber);
-                        Txfiled_REQnum_ReqSP.setText(String.valueOf(monumber));
-                        Txfiled_REQnum_ReqSP.setDisable(true);
-                        //Txfiled_MOnum_AddMO.clear();
-                        Btn_Delete_ReqSP.setDisable(true);
-                        Btn_Print_ReqSP.setDisable(true);
-                    }
+                Statement st2 = connection.createStatement();
+                st2.executeQuery("SELECT * FROM `requested_spare_parts` ORDER BY `REQUEST_NBER` DESC LIMIT 1");
+                ResultSet rs2 = st2.getResultSet();
+                if (rs2.first()) {
+                    count = 1;
+                    monumber = Integer.parseInt(rs2.getString("REQUEST_NBER"));
+                    monumber++;
+                    Txfiled_REQnum_ReqSP.setText(String.valueOf(monumber));
+                    Txfiled_REQnum_ReqSP.setDisable(true);
+                    Btn_Delete_ReqSP.setDisable(true);
+                    Btn_Print_ReqSP.setDisable(true);
                 }
             }
-        }//}
-        catch (SQLException ex) {
+
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
@@ -3903,31 +3531,41 @@ public class Controller implements Initializable {
 
     @FXML
     private void M_Txfiled_QuanitiySP_ReqSP(ActionEvent event) {
+
+        if (!Mumbervalid(Txfiled_QuanitiySP_ReqSP.getText())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            if (count_Language == 0) {
+                alert.setContentText("Please enter the quantity");
+            } else {
+                alert.setContentText("الرجاء ادخال الكمية ");
+
+            }
+            alert.showAndWait();
+            return;
+
+        }
+
         alert2.setTitle(null);
         alert2.setHeaderText(null);
         AllSP2 = Table_SelectedSP_ReqSP.getItems();
         SPSelected2 = Table_SelectedSP_ReqSP.getSelectionModel().getSelectedItems();
-        //  SPSelected2.get(0).SP_SNProperty("");
-        //Txfiled_SpSerialN_AddMO.getText();
         int perSp_Quant = Integer.parseInt(Txfiled_QuanitiySP_ReqSP.getText());
 
         for (int i = 0; i < SPSelected2.size(); i++) {
             try {
-                ListOFSelectedSP.add(new AddSP(SPSelected2.get(i).getSP_Number(), SPSelected2.get(i).getSP_Name(), perSp_Quant));                // }
+                ListOFSelectedSP.add(new AddSP(SPSelected2.get(i).getSP_Number(), SPSelected2.get(i).getSP_Name(), perSp_Quant));
 
                 String sqlupdateAddSP = "UPDATE `attach` SET `Req_QUANTITY` = '" + Txfiled_QuanitiySP_ReqSP.getText() + "' WHERE REQUEST_NBER= " + Txfiled_REQnum_ReqSP.getText()
                         + " AND SP_NBER=" + SPSelected2.get(i).getSP_Number();
-                System.out.println(sqlupdateAddSP);
                 java.sql.Statement statement1 = connection.createStatement();
                 statement1.executeUpdate(sqlupdateAddSP);
 
                 SPSelected2.forEach(ListOFSelectedSP::remove);
                 Table_SelectedSP_ReqSP.getItems().setAll(ListOFSelectedSP);
-                //calculate();
 
                 if (count_Language == 0) {
                     Txfiled_QuanitiySP_ReqSP.setText("Quantity");
-                    //alert2.setContentText("The price of the spare part has been adjusted");
 
                     alert2.setContentText("Changes saved successfully");
                 } else {
@@ -3950,34 +3588,20 @@ public class Controller implements Initializable {
         ListOFSP.clear();
 
         String id1 = Txfiled_SearchSP_ReqSP.getText();
-        System.out.println("__________  " + id1);
-        System.out.println("__________  " + Txfiled_SearchSP_ReqSP.getText());
 
-        /* if (id1.isEmpty()) {
-            loadSpecifecSP();
-            
-        } else {
-         */ String sql1 = "SELECT * FROM spare_parts WHERE SP_NAME = '" + Txfiled_SearchSP_ReqSP.getText() + "'";
+        String sql1 = "SELECT * FROM spare_parts WHERE SP_NAME = '" + Txfiled_SearchSP_ReqSP.getText() + "'";
         String trysql = "SELECT * FROM spare_parts WHERE SP_NAME LIKE '" + Txfiled_SearchSP_ReqSP.getText() + "%';";
-        System.out.println(trysql);
         Search(trysql, Choose);
 
-        // }
     }
 
     @FXML
     private void M_Txfiled_Search_MangeCurrentMO(KeyEvent event) {
         Choose = 3;
-        System.out.println(event.getEventType().toString());
-        System.out.println(event.getText());
-        System.out.println("GEEEEEEET TEXT   " + Txfiled_Search_MangeCurrentMO.getText());
-        System.out.println("yyyyyyyyyyy TEXT   " + Txfiled_Search_MangeCurrentMO.getSelectedText());
 
         String sql1 = "SELECT * FROM `maintenance_operation` WHERE `MO_NBER` = '" + Txfiled_Search_MangeCurrentMO.getText() + "'";
         String trysql = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID "
                 + "WHERE `MO_NBER` LIKE '" + Txfiled_Search_MangeCurrentMO.getText() + "%' AND STATE IN ('approved' ,'under maintenance','تم الموافقة' ,'تحت الصيانة'); ";
-        // + "OR `CUS_NAME` LIKE '" + id3 + "%' AND STATE ='approved' OR STATE ='under maintenance';";
-        System.out.println(trysql);
         Search(trysql, Choose);
 
     }
@@ -3985,43 +3609,31 @@ public class Controller implements Initializable {
     @FXML
     private void Txfiled_Search_MangeFinshedMO(KeyEvent event) {
         Choose = 4;
-        System.out.println(event.getEventType().toString());
-        System.out.println(event.getText());
 
         String sql1 = "SELECT * FROM `maintenance_operation` WHERE `MO_NBER` = '" + Txfiled_Search_MangeFinshedMO.getText() + "'";
         String trysql = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID "
                 + "WHERE `MO_NBER` LIKE '" + Txfiled_Search_MangeFinshedMO.getText() + "%' AND STATE IN ('repaired','تم الاصلاح'); ";
-        //  + "OR `CUS_NAME` LIKE '" + id3 + "%' AND STATE ='repaired' ;";
-        System.out.println(trysql);
         Search(trysql, Choose);
     }
 
     @FXML
     private void Txfiled_Search_MangePreviousMO(KeyEvent event) {
         Choose = 5;
-        System.out.println(event.getEventType().toString());
-        System.out.println(event.getText());
 
         String sql1 = "SELECT * FROM `maintenance_operation` WHERE `MO_NBER` = '" + Txfiled_Search_MangePreviousMO.getText() + "'";
         String trysql = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID "
                 + "WHERE `MO_NBER` LIKE '" + Txfiled_Search_MangePreviousMO.getText() + "%' AND STATE IN ('paid' ,'disapproved','دفعت' ,'مرفوضة'); ";
-        // + "OR `CUS_NAME` LIKE '" + id3 + "%' AND STATE ='paid' OR STATE ='disapproved';";
-        System.out.println(trysql);
         Search(trysql, Choose);
     }
 
     @FXML
     private void Txfiled_Search_MangePendingMO(KeyEvent event) {
         Choose = 6;
-        System.out.println(event.getEventType().toString());
-        System.out.println(event.getText());
 
         String sql1 = "SELECT * FROM `maintenance_operation` WHERE `MO_NBER` = '" + Txfiled_Search_MangePendingMO.getText() + "'";
         String trysql = "SELECT * FROM `maintenance_operation` m JOIN `customer` r ON m.CUS_MOBILE_NBER = r.CUS_MOBILE_NBER JOIN employee e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID "
                 + "WHERE `MO_NBER` LIKE '" + Txfiled_Search_MangePendingMO.getText() + "%' AND STATE IN( 'other defects has been detected' ,'cannot be done' ,'created'"
                 + ",'تم الكشف عن عيوب أخرى' ,'لا يمكن القيام بعملية الصيانة' ,'تم الإنشاء'); ";
-        //+ "OR `CUS_NAME` LIKE '" + id3 + "%' AND STATE ='other defects has been detected' OR STATE ='cannot be done' OR STATE ='created';";
-        System.out.println(trysql);
         Search(trysql, Choose);
     }
 
@@ -4109,26 +3721,20 @@ public class Controller implements Initializable {
         try {
             String sqlDrop = "DROP DATABASE mo_db";
             String sqlCreate = "CREATE DATABASE mo_db";
-            System.out.println(sqlDrop);
-            //System.out.println(sql1);
             java.sql.Statement statement1 = connection.createStatement();
             statement1.executeUpdate(sqlDrop);
             statement1.executeUpdate(sqlCreate);
 
             FileChooser fileChooser = new FileChooser();
-            // DirectoryChooser directoryChooser = new DirectoryChooser();
             Window stage = null;
             File selectedDirectory = fileChooser.showOpenDialog(stage);
 
             if (selectedDirectory == null) {
-                //No Directory selected
             } else {
-                System.out.println(selectedDirectory.getAbsolutePath());
                 String Path = selectedDirectory.getAbsolutePath();
 
                 String[] executeCmd = new String[]{"C:\\xampp\\mysql\\bin\\mysql.exe", "mo_db", "--user=" + "root", "--password=" + "", "-e", " source " + Path};
 
-                System.out.println(executeCmd);
                 Process runtimeProcess;
                 try {
 
@@ -4140,11 +3746,8 @@ public class Controller implements Initializable {
 
                     if (processComplete == 0) {
                         alert.setContentText("Restored Succuss");
-                        System.out.println("Restored Succuss");
-                        //return true;
                     } else {
                         alert.setContentText("Can't Restored");
-                        System.out.println("Can't Restored");
                     }
                     alert.showAndWait();
                 } catch (Exception ex) {
@@ -4160,22 +3763,16 @@ public class Controller implements Initializable {
 
     @FXML
     private void M_Btn_SaveDB_Tools(ActionEvent event) {
-        System.out.println("Btn_SaveDB_Tools");
-        // int a =3;
-        //Path_aa path_aa =new Path_aa();
         DirectoryChooser directoryChooser = new DirectoryChooser();
         Window stage = null;
         File selectedDirectory = directoryChooser.showDialog(stage);
 
         if (selectedDirectory == null) {
-            //No Directory selected
         } else {
-            System.out.println(selectedDirectory.getAbsolutePath());
 
             String executeCmd = "C:\\xampp\\mysql\\bin\\mysqldump.exe -u root  mo_db -r ";
             String Path = selectedDirectory.getAbsolutePath();
             Path = Path + "\\SaveDB_" + LocalDate.now() + ".sql";
-            System.out.println(executeCmd + Path);
             Process runtimeProcess;
             try {
 
@@ -4187,11 +3784,8 @@ public class Controller implements Initializable {
 
                 if (processComplete == 0) {
                     alert.setContentText("Backup created successfully");
-                    System.out.println("Backup created successfully");
-                    //return true;
                 } else {
                     alert.setContentText("Could not create the backup");
-                    System.out.println("Could not create the backup");
                 }
                 alert.showAndWait();
             } catch (Exception ex) {
@@ -4206,7 +3800,6 @@ public class Controller implements Initializable {
     private void M_Btn_ArchiveDB_Tools(ActionEvent event) {
 
         FXMLLoader loader = new FXMLLoader();
-        //Controller controller = loader.getController();
         if (count_Language == 0) {
             loader.setLocation(getClass().getResource("/sample/ForArchive_Date_EN.fxml"));
             try {
@@ -4219,7 +3812,6 @@ public class Controller implements Initializable {
             Controller_ArchiveDate controller_ArchiveDate = loader.getController();
             controller_ArchiveDate.Set_count_Language(0);
 
-            //controller.count_Language=0;
         } else if (count_Language == 1) {
             loader.setLocation(getClass().getResource("/sample/ForArchive_Date_AR.fxml"));
 
@@ -4235,45 +3827,12 @@ public class Controller implements Initializable {
 
         }
 
-        //loadWindow("/sample/ChangePassword.fxml" ,"" );
         Parent parent = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
         stage.setResizable(false);
         stage.showAndWait();
 
-        /*
-            String query = "SELECT * FROM `maintenance_operation` Where `STARTING_DATE` < \"2019-01-30\" ";
-            ResultSet rs = connectionClass.execQuery(query);
-            
-            while (rs.next()) {
-            System.out.println("HEREEEEE");
-            //System.out.println("rs.getString(\"MO_Number\")  ="+rs.getString("MO_Number"));
-
-            String query_requier = "SELECT * FROM `require` Where `MO_NBER` =" + rs.getString("MO_NBER");
-            ResultSet rs2 = connectionClass.execQuery(query_requier);
-
-            String insert_to_MO = "INSERT INTO `maintenance_operation_backup` VALUES(" + rs.getString("MO_NBER") + "," + "'" + rs.getString("STATE") + "'" + "," + "'" + rs.getString("MO_COST")
-            + "'" + "," + "'" + rs.getString("SP_COST") + "'" + "," + "'" + rs.getString("STARTING_DATE") + "'" + "," + "'" + rs.getString("ENDING_DATE") + "'" + "," + "'"
-            + rs.getString("WARRANTY") + "'" + "," + "'" + rs.getString("PROBLEM_DESC") + "'" + "," + "'" + rs.getString("DEVICE_SN") + "'" + "," + "'" + rs.getString("DEVICE_DESC")
-            + "'" + "," + "'" + rs.getString("EMPLOYEE_ID") + "'" + "," + "'" + rs.getString("CUS_MOBILE_NBER") + "','" + rs.getString("INVOICE_DATE") + "'," + rs.getString("INVOICE_NBER") + ")";
-            System.out.println(insert_to_MO);
-            java.sql.Statement statement1 = connection.createStatement();
-            statement1.executeUpdate(insert_to_MO);
-            while (rs2.next()) {
-            
-            String insert_to_requir = "INSERT INTO `require_backup` VALUES(" + rs2.getString("MO_NBER") + ",'" + rs2.getString("SP_NBER") + "','"
-            + rs2.getString("Seq_Nber") + "','" + rs2.getString("SERIAL_NUMBER") + "'" + ",'" + rs2.getString("Effective_Price") + "')";
-            System.out.println(insert_to_requir);
-            statement1.executeUpdate(insert_to_requir);
-            }
-            String deletSP = "DELETE FROM  `require` " + " WHERE MO_NBER= " + rs.getString("MO_NBER");
-            String sql1 = "DELETE FROM  `maintenance_operation` " + " WHERE MO_NBER= " + rs.getString("MO_NBER");
-            System.out.println(deletSP);
-            System.out.println(sql1);
-            statement1.executeUpdate(deletSP);
-            statement1.executeUpdate(sql1);
-         */
     }
 
     @FXML
@@ -4288,7 +3847,6 @@ public class Controller implements Initializable {
     private void M_ReportList_MouseClicked(MouseEvent event) {
 
         GetSelectedItem = (String) List_of_reports.getSelectionModel().getSelectedItem();
-        System.out.println("SS===MouseEvent" + GetSelectedItem);
         if (count_Language == 0) {
             CheckListReportVisabil_EN(GetSelectedItem);
         } else {
@@ -4299,11 +3857,8 @@ public class Controller implements Initializable {
 
     @FXML
     private void M_ReportList_KeyReleased(KeyEvent event) {
-        //event.getCode()
         if (event.getCode().isNavigationKey() == true) {
-            System.out.println("upppp");
             GetSelectedItem = (String) List_of_reports.getSelectionModel().getSelectedItem();
-            System.out.println("SS===SwipeEvent" + GetSelectedItem);
             if (count_Language == 0) {
                 CheckListReportVisabil_EN(GetSelectedItem);
             } else {
@@ -4418,11 +3973,7 @@ public class Controller implements Initializable {
                 for (int i = 0; i < ListOFSP.size(); i++) {
                     for (int j = 0; j < ListOFSelectedSP.size(); j++) {
                         if (ListOFSP.get(i).getSP_Number().equals(ListOFSelectedSP.get(j).getSP_Number())) {
-                            System.out.println(ListOFSP.get(i).getSP_Number() + "-----------" + ListOFSelectedSP.get(j).getSP_Number());
-                            System.out.println("i==" + i + "j==" + j);
                             ListOFSP.remove(i);
-                            System.out.println("Size==" + ListOFSP.size());
-                            System.out.println("NOOOOT NULL OOOOOOOOOOOOOOOOOO");
 
                         }
 
@@ -4441,7 +3992,6 @@ public class Controller implements Initializable {
             try {
                 while (rs.next()) {
 
-                    //Txfiled_CusName_AddMO.setText(rs.getString("CUS_NAME"));
                 }
 
             } catch (SQLException ex) {
@@ -4474,7 +4024,6 @@ public class Controller implements Initializable {
                         CurrnetList.add(new MO(MO_num, rs.getString("CUS_NAME"), CusMobile, rs.getString("EMP_NAME"), rs.getString("ENDING_DATE"), TotalCost, State));
 
                     } else if (rs.getString("STATE").equals("تحت الصيانة") || rs.getString("STATE").equals("under maintenance")) {
-                        System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP+  " + count_Language);
 
                         if (count_Language == 0) {
                             State = "under maintenance";
@@ -4635,7 +4184,6 @@ public class Controller implements Initializable {
     private void M_Btn_ChangePassword_Tools(ActionEvent event) {
 
         FXMLLoader loader = new FXMLLoader();
-        //Controller controller = loader.getController();
         if (count_Language == 0) {
             loader.setLocation(getClass().getResource("/sample/ChangePassword_EN.fxml"));
             try {
@@ -4648,7 +4196,6 @@ public class Controller implements Initializable {
             Controller_ChangePassword changePassword = loader.getController();
             changePassword.Set_count_Language(0);
 
-            //controller.count_Language=0;
         } else if (count_Language == 1) {
             loader.setLocation(getClass().getResource("/sample/ChangePassword_AR.fxml"));
 
@@ -4664,7 +4211,6 @@ public class Controller implements Initializable {
 
         }
 
-        //loadWindow("/sample/ChangePassword.fxml" ,"" );
         Controller_ChangePassword changePassword = loader.getController();
         changePassword.Em_Id = Em_Id;
 
@@ -4711,228 +4257,3 @@ public class Controller implements Initializable {
 
     }
 }
-
-/*
-package sample;
-
-import com.jfoenix.controls.JFXButton;
-import javafx.animation.TranslateTransition;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.util.Callback;
-import javafx.util.Duration;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class Controller implements Initializable{
-    public Tab Mangment_MO_Tab;
-    public Label MainLable;
-
-    public TreeTableView TableViewReports;
-    public TreeTableColumn Table_ColomnViewReports;
-   public Label RepLable;
-    public Tab Main_Tab;
-    public ImageView icMaonMove;
-    public AnchorPane kk;
-    public JFXButton prbutton;
-    public ListView List_of_reports;
-    public JFXButton ShowMoWindowbuttn;
-
-
-
-    @FXML
-    private Label MainLable1;
-    @FXML
-    private ToggleGroup ReportsDate;
-
-
-    @FXML
-    public void Mangment_MO_tab_selected(Event event) {
-
-      //  MainLable.setText("ادارة عمليات الصيانة");
-
-    }
-
-    @FXML
-    public void Mangment_Customer_tab_selected(Event event) {
-//        MainLable.setText("ادارة العملاء");
-
-    }
-
-    @FXML
-    public void Mangment_supliers_tab_selected(Event event) {
-  //      MainLable.setText("ادارة المزودين");
-    }
-
-    @FXML
-    public void Mangment_Staff_tab_selected(Event event) {
-    //    MainLable.setText("ادارة الموظفين");
-    }
-
-    @FXML
-    public void RequstSpearPart_tab_selected(Event event) {
-    //    MainLable.setText("طلب قطع غيار");
-    }
-
-    @FXML
-    public void Mangment_SpearParts_tab_selected(Event event) {
-        //MainLable.setText("ادارة قطع الغيار");
-    }
-
-    @FXML
-    public void Mangment_Reports_tab_selected(Event event) {
-        //MainLable.setText("ادارة التقارير");
-    }
-
-
-
-    @FXML
-    public void Main_Tab(Event event) {
-       
-    }
-
-
-
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        listv.getItems().add("- عمليات الصيانة الحالية");
-        listv.getItems().add("- عمليات الصيانة المنتهية");
-        listv.getItems().add("- عمليات الصيانة السابقة");
-        listv.getItems().add("- تقدير مالي عن عملية صيانة");
-        listv.getItems().add("---------------------------");
-        listv.getItems().add("- قائمة بالعملاء");
-        listv.getItems().add("- قائمة عمليات الصيانة لعميل");
-        listv.getItems().add("---------------------------");
-        listv.getItems().add("- قائمة بالموظفين");
-        listv.getItems().add("- قائمة عمليات الصيانة لموظف");
-        listv.getItems().add("---------------------------");
-        listv.getItems().add("- قائمة بالمزودين");
-        listv.getItems().add("---------------------------");
-        listv.getItems().add("- قطع على وشك النفاذ");
-        listv.getItems().add("- قطع الغيار التي نفذت كميتها");
-
-
-       
-
-
-    }
-
-    @FXML
-    public void prbuttonReports(ActionEvent actionEvent) {
-        //ReportTable.getItems().setAll(studentsModels1);
-        //ReportTable.setItems(studentsModels1);
-    }
-
-    @FXML
-    public void ShowMoWindow(ActionEvent actionEvent) {
-        loadWindow("/sample/AddMoNeww.fxml" ,"" );
-    }
-
-
-    void loadWindow(String loc , String title){
-        try {
-
-            Parent parent = FXMLLoader.load(getClass().getResource(loc));
-            Stage stage = new Stage(StageStyle.DECORATED);
-            stage.setScene(new Scene(parent));
-            stage.setTitle(title);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }}
-
-    @FXML
-    private void Btn_ChangeMN_Customer(ActionEvent event) {
-    }
-
-    @FXML
-    private void Btn_Cancel_Customer(ActionEvent event) {
-    }
-
-    @FXML
-    private void Btn_Delete_Customer(ActionEvent event) {
-    }
-
-    @FXML
-    private void Btn_Save_Customer(ActionEvent event) {
-    }
-
-    @FXML
-    private void Btn_Search_Customer(ActionEvent event) {
-    }
-
-    @FXML
-    private void Btn_Edit_MangeCurrentMO(ActionEvent event) {
-    }
-
-    @FXML
-    private void Txfiled_Search_MangeCurrentMO(ActionEvent event) {
-    }
-
-    @FXML
-    private void Btn_Edit_MangeFinshedMO(ActionEvent event) {
-    }
-
-    @FXML
-    private void Txfiled_Search_MangeFinshedMO(ActionEvent event) {
-    }
-
-    @FXML
-    private void Btn_Edit_MangePreviousMO(ActionEvent event) {
-    }
-
-    @FXML
-    private void Txfiled_Search_MangePreviousMO(ActionEvent event) {
-    }
-
-    @FXML
-    private void Btn_Edit_MangePendingMO(ActionEvent event) {
-    }
-
-    @FXML
-    private void Txfiled_Search_MangePendingMO(ActionEvent event) {
-    }
-
-
-    class StudentsModel {
-
-//  private SimpleStringProperty Name;
-  private  SimpleStringProperty Name;
-
-
-
-        public StudentsModel( String reports) {
-   this.Name = new SimpleStringProperty(reports);
-
-  }
-
-  public String getName() {
-   return Name.get();
-  }
-
-  public void setName(String reportTableCol) {
-   this.Name = new SimpleStringProperty(reportTableCol);
-  }
-
- }
-}
- */

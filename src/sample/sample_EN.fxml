@@ -1307,12 +1307,12 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Label alignment="CENTER_RIGHT" prefHeight="150.0" prefWidth="120.0" rotate="90.0" text="Employee Management " VBox.vgrow="ALWAYS">
+                              <Label alignment="CENTER_RIGHT" prefHeight="150.0" prefWidth="120.0" rotate="90.0" text="Employees Management " VBox.vgrow="ALWAYS">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
                                  <padding>
-                                    <Insets left="-80.0" right="-140.0" />
+                                    <Insets left="-80.0" right="-145.0" />
                                  </padding>
                                  <VBox.margin>
                                     <Insets />
