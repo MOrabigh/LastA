@@ -169,9 +169,7 @@ public class Controller_Login {
 
                         controller.Em_Id = Integer.parseInt(Txfiled_UserID_Login.getText());
                         controller.SetUserinformation(rs3.getString("EMP_NAME"), rs3.getString("JOP_TYPE"));
-                        if (rs3.getString("JOP_TYPE").equalsIgnoreCase("Administrator") || rs3.getString("JOP_TYPE").equalsIgnoreCase("اداري")) {
-
-                        } else if (rs3.getString("JOP_TYPE").equalsIgnoreCase("ReceptionDesk") || rs3.getString("JOP_TYPE").equalsIgnoreCase("استقبال")) {
+                        if (rs3.getString("JOP_TYPE").equalsIgnoreCase("ReceptionDesk") || rs3.getString("JOP_TYPE").equalsIgnoreCase("استقبال")) {
                             controller.FatharTap.getTabs().remove(controller.Tab_ReqSP);
                             controller.FatharTap.getTabs().remove(controller.Tab_EmployeeMangment);
                             controller.FatharTap.getTabs().remove(controller.Tab_Reports);
@@ -195,12 +193,13 @@ public class Controller_Login {
                         stage.setScene(new Scene(parent));
                         stage.setResizable(false);
                         stage.show();
+                        if (rs3.getString("JOP_TYPE").equalsIgnoreCase("Administrator") || rs3.getString("JOP_TYPE").equalsIgnoreCase("اداري")) {
+                            if (count_Language == 0) {
+                                controller.SP_Alert_Admin_EN();
 
-                        if (count_Language == 0) {
-                            controller.SP_Alert_Admin_EN();
-
-                        } else if (count_Language == 1) {
-                            controller.SP_Alert_Admin_AR();
+                            } else if (count_Language == 1) {
+                                controller.SP_Alert_Admin_AR();
+                            }
                         }
 
                     } else {

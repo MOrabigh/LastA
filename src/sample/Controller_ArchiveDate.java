@@ -42,9 +42,9 @@ public class Controller_ArchiveDate {
             alert.setHeaderText(null);
 
             if (count_Language == 0) {
-                alert.setContentText("Please enter the value");
+                alert.setContentText("Please enter the date");
             } else {
-                alert.setContentText("الرجاء إدخال القيمة");
+                alert.setContentText("الرجاء إدخال التاريخ");
 
             }
             alert.showAndWait();

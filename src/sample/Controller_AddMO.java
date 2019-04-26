@@ -185,6 +185,7 @@ public class Controller_AddMO implements Initializable {
         }
         alert2.setTitle(null);
         alert2.setHeaderText(null);
+        
         AllSP2 = Table_SelectedSP_AddMO.getItems();
         SPSelected2 = Table_SelectedSP_AddMO.getSelectionModel().getSelectedItems();
 
@@ -495,44 +496,7 @@ public class Controller_AddMO implements Initializable {
         }
     }
 
-    public void loadInTO(String MO_Nber, String CUS_NAME, String PROBLEM_DESC, String CUS_MOBILE_NBER, String SP_COST, String MO_COST, String DEVICE_SN, String DEVICE_DESC, String WARRANTY, String STARTING_DATE, String ENDING_DATE,
-            String STATE, String EMP_NAME) {
-        count = 2;
 
-        Txfiled_MOnum_AddMO.setDisable(true);
-        Txfiled_MOnum_AddMO.setText(MO_Nber);
-        Txfiled_CusName_AddMO.setText(CUS_NAME);
-        Txfiled_ProplemDisc_AddMO.setText(PROBLEM_DESC);
-        Txfiled_CusMnum_AddMO.setText(CUS_MOBILE_NBER);
-        Txfiled_SPCost_AddMO.setText(SP_COST);
-        Txfiled_MOCost_AddMO.setText(MO_COST);
-        Txfiled_DevSerialN_AddMO.setText(DEVICE_SN);
-        Txfiled_DevDiscription_AddMO.setText(DEVICE_DESC);
-
-        LocalDate WARRANTYDate = LocalDate.parse(WARRANTY);
-        LocalDate STARTINGDate = LocalDate.parse(STARTING_DATE);
-        LocalDate ENDINGDate = LocalDate.parse(ENDING_DATE);
-
-        Date_Warranty_AddMO.setValue(WARRANTYDate);
-        Date_StartMo_AddMO.setValue(STARTINGDate);
-        Date_EndMO_AddMO.setValue(ENDINGDate);
-
-        Selct_MoStatus_AddMO.getSelectionModel().select(STATE);
-
-        Selct_Techichan_AddMO.getSelectionModel().select(EMP_NAME);
-
-        Btn_Delete_AddMo.setDisable(false);
-        Btn_Save_AddMo.setDisable(false);
-        Btn_Print_AddMo.setDisable(false);
-        Btn_Delete_AddMo.setDisable(false);
-        Txfiled_CusName_AddMO.setDisable(true);
-        Btn_Cancel_AddMo.setDisable(false);
-        Btn_AddSP_AddMo.setDisable(false);
-        Btn_ReomveSP_AddMo.setDisable(false);
-
-        calculate();
-
-    }
 
     public void Search(String Search, int Choose) {
         if (Choose == 2) {
@@ -1415,14 +1379,7 @@ public class Controller_AddMO implements Initializable {
 
         }
         Table_AddSP_AddMO.getItems().setAll(list);
-        for (int i = 0; i < Table_AddSP_AddMO.getItems().size(); i++) {
-            if (Table_AddSP_AddMO.getItems().get(i).getSP_Quantity() <= 0) {
 
-            } else {
-                Table_AddSP_AddMO.setStyle("-fx-my-cell-background: green");
-
-            }
-        }
 
     }
 
