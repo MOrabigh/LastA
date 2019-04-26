@@ -980,6 +980,10 @@ public class Controller implements Initializable {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("");
             alert.setHeaderText("");
+            
+              Alert alert3 = new Alert(Alert.AlertType.INFORMATION);
+            alert3.setTitle("");
+            alert3.setHeaderText("");
             if (count_Language == 0) {
                 alert.setContentText("This Cstomer will be deleted ");
             } else {
@@ -998,16 +1002,16 @@ public class Controller implements Initializable {
                     {
                         if (count_Language == 0) {
 
-                            alert.setHeaderText(null);
-                            alert.setContentText("Deleted Successfully");
-                            alert.showAndWait();
+                            alert3.setHeaderText(null);
+                            alert3.setContentText("Deleted Successfully");
+                            alert3.showAndWait();
                             return;
 
                         } else if (count_Language == 1) {
 
-                            alert.setHeaderText(null);
-                            alert.setContentText("تم الحذف بنجاح");
-                            alert.showAndWait();
+                            alert3.setHeaderText(null);
+                            alert3.setContentText("تم الحذف بنجاح");
+                            alert3.showAndWait();
                             return;
                         }
                     }
@@ -1015,15 +1019,15 @@ public class Controller implements Initializable {
                 } catch (SQLException e) {
                     if (count_Language == 0) {
 
-                        alert.setHeaderText(null);
-                        alert.setContentText("Can not delete this customer");
-                        alert.showAndWait();
+                        alert3.setHeaderText(null);
+                        alert3.setContentText("Can not delete this customer");
+                        alert3.showAndWait();
                         return;
                     } else if (count_Language == 1) {
 
-                        alert.setHeaderText(null);
-                        alert.setContentText("لا يمكن حذف هذا العميل");
-                        alert.showAndWait();
+                        alert3.setHeaderText(null);
+                        alert3.setContentText("لا يمكن حذف هذا العميل");
+                        alert3.showAndWait();
                     }
 
                 }
@@ -1262,6 +1266,11 @@ public class Controller implements Initializable {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("");
             alert.setHeaderText("");
+            
+             Alert alert3 = new Alert(Alert.AlertType.INFORMATION);
+            alert3.setTitle("");
+            alert3.setHeaderText("");
+            
             if (count_Language == 0) {
                 alert.setContentText("This employee will be deleted ");
             } else {
@@ -1281,15 +1290,15 @@ public class Controller implements Initializable {
                     {
                         if (count_Language == 0) {
 
-                            alert.setHeaderText(null);
-                            alert.setContentText("Deleted Successfully");
-                            alert.showAndWait();
+                            alert3.setHeaderText(null);
+                            alert3.setContentText("Deleted Successfully");
+                            alert3.showAndWait();
                             return;
                         } else if (count_Language == 1) {
 
-                            alert.setHeaderText(null);
-                            alert.setContentText("تم الحذف بنجاح ");
-                            alert.showAndWait();
+                            alert3.setHeaderText(null);
+                            alert3.setContentText("تم الحذف بنجاح ");
+                            alert3.showAndWait();
                             return;
 
                         }
@@ -1297,15 +1306,15 @@ public class Controller implements Initializable {
                 } catch (SQLException e) {
                     if (count_Language == 0) {
 
-                        alert.setHeaderText(null);
-                        alert.setContentText("Can not delete this employee");
-                        alert.showAndWait();
+                        alert3.setHeaderText(null);
+                        alert3.setContentText("Can not delete this employee");
+                        alert3.showAndWait();
                         return;
                     } else if (count_Language == 1) {
 
-                        alert.setHeaderText(null);
-                        alert.setContentText("لا يمكن حذف هذا الموظف");
-                        alert.showAndWait();
+                        alert3.setHeaderText(null);
+                        alert3.setContentText("لا يمكن حذف هذا الموظف");
+                        alert3.showAndWait();
                         return;
                     }
                 }
@@ -1625,6 +1634,7 @@ public class Controller implements Initializable {
                     alert2.setContentText("سوف يتم انشاء قطعة غيار جديدة");
 
                 }
+                alert2.showAndWait();
 
                 count = 1;
                 SP_number = Integer.parseInt(rs2.getString("SP_NBER"));
@@ -1669,6 +1679,10 @@ public class Controller implements Initializable {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("");
             alert.setHeaderText("");
+            
+             Alert alert3 = new Alert(Alert.AlertType.INFORMATION);
+            alert3.setTitle("");
+            alert3.setHeaderText("");
             if (count_Language == 0) {
                 alert.setContentText("This spare part will be deleted ");
             } else {
@@ -1688,31 +1702,31 @@ public class Controller implements Initializable {
                     {
                         if (count_Language == 0) {
 
-                            alert.setHeaderText(null);
-                            alert.setContentText("Deleted Successfully");
-                            alert.showAndWait();
+                            alert3.setHeaderText(null);
+                            alert3.setContentText("Deleted Successfully");
+                            alert3.showAndWait();
                             return;
 
                         } else if (count_Language == 1) {
 
-                            alert.setHeaderText(null);
-                            alert.setContentText("تم الحذف بنجاح");
-                            alert.showAndWait();
+                            alert3.setHeaderText(null);
+                            alert3.setContentText("تم الحذف بنجاح");
+                            alert3.showAndWait();
                             return;
                         }
                     }
                 } catch (SQLException e) {
                     if (count_Language == 0) {
 
-                        alert.setHeaderText(null);
-                        alert.setContentText("Can not delete this spare part");
-                        alert.showAndWait();
+                        alert3.setHeaderText(null);
+                        alert3.setContentText("Can not delete this spare part");
+                        alert3.showAndWait();
                         return;
                     } else if (count_Language == 1) {
 
-                        alert.setHeaderText(null);
-                        alert.setContentText("لا يمكن حذف  قطعة الغيار");
-                        alert.showAndWait();
+                        alert3.setHeaderText(null);
+                        alert3.setContentText("لا يمكن حذف  قطعة الغيار");
+                        alert3.showAndWait();
                         return;
                     }
                 }
@@ -2025,6 +2039,9 @@ public class Controller implements Initializable {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("");
             alert.setHeaderText("");
+             Alert alert3 = new Alert(Alert.AlertType.INFORMATION);
+            alert3.setTitle("");
+            alert3.setHeaderText("");
             if (count_Language == 0) {
                 alert.setContentText("This supplier will be deleted ");
             } else {
@@ -2043,15 +2060,15 @@ public class Controller implements Initializable {
                     {
                         if (count_Language == 0) {
 
-                            alert.setHeaderText(null);
-                            alert.setContentText("Deleted Successfully");
-                            alert.showAndWait();
+                            alert3.setHeaderText(null);
+                            alert3.setContentText("Deleted Successfully");
+                            alert3.showAndWait();
                             return;
                         } else if (count_Language == 1) {
 
-                            alert.setHeaderText(null);
-                            alert.setContentText("تم الحذف بنجاح");
-                            alert.showAndWait();
+                            alert3.setHeaderText(null);
+                            alert3.setContentText("تم الحذف بنجاح");
+                            alert3.showAndWait();
                             return;
 
                         }
@@ -2060,15 +2077,15 @@ public class Controller implements Initializable {
                 } catch (SQLException e) {
                     if (count_Language == 0) {
 
-                        alert.setHeaderText(null);
-                        alert.setContentText("Can not delete this supplier");
-                        alert.showAndWait();
+                        alert3.setHeaderText(null);
+                        alert3.setContentText("Can not delete this supplier");
+                        alert3.showAndWait();
                         return;
                     } else if (count_Language == 1) {
 
-                        alert.setHeaderText(null);
-                        alert.setContentText("لا يمكن حذف هذا المزود");
-                        alert.showAndWait();
+                        alert3.setHeaderText(null);
+                        alert3.setContentText("لا يمكن حذف هذا المزود");
+                        alert3.showAndWait();
                         return;
 
                     }
@@ -3251,6 +3268,10 @@ public class Controller implements Initializable {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle(null);
             alert.setHeaderText(null);
+            
+             Alert alert3 = new Alert(Alert.AlertType.INFORMATION);
+            alert3.setTitle("");
+            alert3.setHeaderText("");
             if (count_Language == 0) {
                 alert.setContentText("This Request spare part will be deleted ");
             } else {
@@ -3271,15 +3292,15 @@ public class Controller implements Initializable {
                     clear();
                     {
                         if (count_Language == 0) {
-                            alert.setHeaderText(null);
-                            alert.setContentText("Deleted Successfully");
-                            alert.showAndWait();
+                            alert3.setHeaderText(null);
+                            alert3.setContentText("Deleted Successfully");
+                            alert3.showAndWait();
                             return;
 
                         } else if (count_Language == 1) {
-                            alert.setHeaderText(null);
-                            alert.setContentText("تم الحذف بنجاح");
-                            alert.showAndWait();
+                            alert3.setHeaderText(null);
+                            alert3.setContentText("تم الحذف بنجاح");
+                            alert3.showAndWait();
                             return;
 
                         }
@@ -3288,15 +3309,15 @@ public class Controller implements Initializable {
                 } catch (SQLException e) {
                     if (count_Language == 0) {
 
-                        alert.setHeaderText(null);
-                        alert.setContentText("Can not delete this request spare part");
-                        alert.showAndWait();
+                        alert3.setHeaderText(null);
+                        alert3.setContentText("Can not delete this request spare part");
+                        alert3.showAndWait();
                         return;
                     } else if (count_Language == 1) {
 
-                        alert.setHeaderText(null);
-                        alert.setContentText("لا يمكن حذف طلب  قطعة الغيار");
-                        alert.showAndWait();
+                        alert3.setHeaderText(null);
+                        alert3.setContentText("لا يمكن حذف طلب  قطعة الغيار");
+                        alert3.showAndWait();
                         return;
                     }
                 }
@@ -3501,11 +3522,20 @@ public class Controller implements Initializable {
                 }
 
             } else {
+                
+                
 
                 Statement st2 = connection.createStatement();
                 st2.executeQuery("SELECT * FROM `requested_spare_parts` ORDER BY `REQUEST_NBER` DESC LIMIT 1");
                 ResultSet rs2 = st2.getResultSet();
                 if (rs2.first()) {
+                     if (count_Language == 0) {
+                    alert2.setContentText("New request for spare part will be created");
+                } else {
+                    alert2.setContentText("سوف يتم انشاء طلب قطع غيار جديدة");
+
+                }
+                alert2.showAndWait();
                     count = 1;
                     monumber = Integer.parseInt(rs2.getString("REQUEST_NBER"));
                     monumber++;
@@ -3719,11 +3749,7 @@ public class Controller implements Initializable {
     private void M_Btn_RestoreDB_Tools(ActionEvent event) {
 
         try {
-            String sqlDrop = "DROP DATABASE mo_db";
-            String sqlCreate = "CREATE DATABASE mo_db";
-            java.sql.Statement statement1 = connection.createStatement();
-            statement1.executeUpdate(sqlDrop);
-            statement1.executeUpdate(sqlCreate);
+       
 
             FileChooser fileChooser = new FileChooser();
             Window stage = null;
@@ -3731,6 +3757,11 @@ public class Controller implements Initializable {
 
             if (selectedDirectory == null) {
             } else {
+                     String sqlDrop = "DROP DATABASE mo_db";
+            String sqlCreate = "CREATE DATABASE mo_db";
+            java.sql.Statement statement1 = connection.createStatement();
+            statement1.executeUpdate(sqlDrop);
+            statement1.executeUpdate(sqlCreate);
                 String Path = selectedDirectory.getAbsolutePath();
 
                 String[] executeCmd = new String[]{"C:\\xampp\\mysql\\bin\\mysql.exe", "mo_db", "--user=" + "root", "--password=" + "", "-e", " source " + Path};
